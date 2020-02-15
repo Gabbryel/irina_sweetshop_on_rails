@@ -1,1 +1,8 @@
-// Specific CSS for your home-page
+body {
+  height: 100vh;
+  width: 100%;
+  background-image: url('./bday_cake.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
