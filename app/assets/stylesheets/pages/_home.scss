@@ -1,8 +1,22 @@
-body {
-  height: 100vh;
+.home-page {
+  height: 90vh;
   width: 100%;
   background-image: url('./bday_cake.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+#main-page_button {
+  position: absolute;
+  bottom: 100px;
+  width: 80%;
+  left: 10%;
+  height: 60px;
+  color: white;
+  background-color: $navbar-background;
+  border-radius: 10px;
+    a {
+      color: white;
+    }
 }

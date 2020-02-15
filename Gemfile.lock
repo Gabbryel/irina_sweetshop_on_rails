@@ -59,7 +59,13 @@ GEM
     autoprefixer-rails (9.7.4)
       execjs
     bcrypt (3.1.13)
+    better_errors (2.5.1)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     bindex (0.8.1)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -67,6 +73,7 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    debug_inspector (0.0.3)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -119,6 +126,8 @@ GEM
       pry (>= 0.10.4)
     puma (4.3.1)
       nio4r (~> 2.0)
+    pundit (2.1.0)
+      activesupport (>= 3.0.0)
     rack (2.2.2)
     rack-proxy (0.6.5)
       rack
@@ -208,6 +217,8 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  better_errors
+  binding_of_caller
   bootsnap
   devise
   dotenv-rails
@@ -218,6 +229,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  pundit
   rails (= 6.0.2.1)
   redis
   sassc-rails
