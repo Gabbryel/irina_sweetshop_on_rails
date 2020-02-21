@@ -4,7 +4,7 @@ class RecipePolicy < ApplicationPolicy
       scope.all
     end
   end
-  def index?
+    def index?
     true
   end
 
@@ -12,10 +12,13 @@ class RecipePolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    create?
+  end
+  
   def create?
     isUserAdm?
   end
-
 
   def update?
     isUserAdm?

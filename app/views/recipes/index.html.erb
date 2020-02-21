@@ -1,10 +1,19 @@
 
 
-
-<h1>Retete din categoria '<%= @recipes.first.category.name %>'</h1>
-
+<% if @recipes.first %>
+  <h1>Retete din categoria '<%= @recipes.first.category.name %>'</h1>
+<% else %>
+  <h1>Nicio reteta in aceasta categorie!!!</h1>
+<% end %>
 
 <% @recipes.each do |r| %>
 <p><%= r.name %></p>
 <p><%= r.content %></p>
+<!-- <%= cl_image_tag r.photo.key %> -->
+<%= link_to 'Edit', edit_category_recipe_path(r.category_id, r.id) %>
+<%= link_to 'Delete', category_recipe_path(r.category_id, r.id), method: :delete %>
 <% end %>
+
+<br>
+<hr>
+<%= link_to 'New recipe', new_category_recipe_path %>
