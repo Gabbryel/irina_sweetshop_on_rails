@@ -10,7 +10,9 @@
           <% if c.name != 'Candy bar' %>
           <%= link_to 'Rețete', category_recipes_path(c.id) %>  
           <% end %>
+          <% if c.name == 'Torturi' || c.name == 'Candy bar' %>
           <%= link_to 'Modele' %>
+        <% end %>
         <% if policy(c).edit? %>
           <%= link_to 'Edit', edit_category_path(c.id) %>  
         <% end %>

@@ -1,4 +1,5 @@
 class CategoryPolicy < ApplicationPolicy
+  
   class Scope < Scope
     def resolve
       scope.all
@@ -12,31 +13,23 @@ class CategoryPolicy < ApplicationPolicy
   def show?
     true
   end
-  
-  def new?
-    create?
-  end
 
   def create?
-    if user
-      user.admin
-    end
+    isUserAdm?
   end
 
 
   def update?
-    if user
-      user.admin
-    end
-  end
-
-  def edit?
-    update?
+    isUserAdm?
   end
 
   def destroy?
-    if user
-      user.admin
-    end
+    isUserAdm?
+  end
+
+  private 
+
+  def isUserAdm?
+    user && user.admin
   end
 end

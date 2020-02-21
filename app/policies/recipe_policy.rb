@@ -9,26 +9,25 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def show?
-    false
+    true
   end
 
   def create?
-    false
+    isUserAdm?
   end
 
-  def new?
-    create?
-  end
 
   def update?
-    false
-  end
-
-  def edit?
-    update?
+    isUserAdm?
   end
 
   def destroy?
-    false
+    isUserAdm?
+  end
+
+  private 
+
+  def isUserAdm?
+    user && user.admin
   end
 end
