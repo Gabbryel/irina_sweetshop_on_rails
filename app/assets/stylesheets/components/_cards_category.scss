@@ -1,0 +1,39 @@
+.cards-container {
+  position: relative;
+  top: 10vh;
+}
+.card-container {
+  overflow: hidden;
+  box-shadow: 2px 2px 7px lightgrey;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 0;
+  max-height: 600px;
+  max-width: 320px;
+  a {
+    color: lightgrey;
+    text-decoration: none;
+    border: 1px solid lightgrey;
+    border-radius: 40px;
+    margin: 5px;
+    padding: 2px 7px;
+      &:hover {
+        color: darkgrey;
+        border-color: darkgrey;
+      }
+    }
+}
+.card-image {
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+  min-height: 250px;
+  max-height: 250px;
+}
+.card-category_name {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+}

@@ -1,0 +1,6 @@
+<h3 class="text-center">This form allows you to create a new category</h3>
+<%= simple_form_for @category do |f| %>
+  <%= f.input :name %>
+  <%= f.input :photo, as: :file %>
+  <%= f.button :submit %>
+<% end %>

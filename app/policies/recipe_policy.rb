@@ -1,33 +1,27 @@
-class CategoryPolicy < ApplicationPolicy
+class RecipePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
-  
   def index?
     true
   end
 
   def show?
-    true
+    false
   end
-  
+
+  def create?
+    false
+  end
+
   def new?
     create?
   end
 
-  def create?
-    if user
-      user.admin
-    end
-  end
-
-
   def update?
-    if user
-      user.admin
-    end
+    false
   end
 
   def edit?
@@ -35,8 +29,6 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def destroy?
-    if user
-      user.admin
-    end
+    false
   end
 end
