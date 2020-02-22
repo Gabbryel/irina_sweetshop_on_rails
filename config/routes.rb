@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :categories do
-    resources :recipes
+    resources :recipes do
+      resources :reviews, only: %i[new create]
+    end
   end
   devise_for :users
   root to: 'pages#home'
