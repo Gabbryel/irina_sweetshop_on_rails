@@ -1,18 +1,18 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_category, only: [:new, :create, :edit, :destroy]
+  before_action :set_recipe, only: [:edit, :update, :destroy]
   
   def index
     @recipes = policy_scope(Recipe).where(category_id: params[:category_id])
   end
 
   def new
-    @category = Category.find(params[:category_id])
     @recipe = Recipe.new
     authorize @recipe
   end
 
   def create
-    @category = Category.find(params[:category_id])
     @recipe = Recipe.new(recipe_params)
     @recipe.category = @category
     if @recipe.save
@@ -24,23 +24,15 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
-    @category = Category.find(params[:category_id])
-    authorize @recipe
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
-    authorize @recipe
     redirect_to category_recipes_path(params[:category_id])
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
-    @category = Category.find(params[:category_id])
     @recipe.destroy
-    authorize @recipe
     redirect_to category_recipes_path(params[:category_id])
   end
 
@@ -50,6 +42,12 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:name, :content, :photo)
   end
 
-  def set_category_and_recipe
+  def set_category
+    @category = Category.find(params[:category_id])
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+    authorize @recipe
   end
 end

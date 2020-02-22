@@ -11,6 +11,7 @@
   max-height: 600px;
   max-width: 320px;
   a {
+    font-size: .8rem;
     color: lightgrey;
     text-decoration: none;
     border: 1px solid lightgrey;
@@ -27,6 +28,7 @@
   position: relative;
   width: 100%;
   object-fit: cover;
+  object-position: top;
   min-height: 250px;
   max-height: 250px;
 }
@@ -36,4 +38,26 @@
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid lightgrey;
+}
+
+.card-title {
+  font-size: 1.4rem;
+}
+
+.category-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $navbar-background;
+  height: 10vh;
+  width: 100%;
+  border-radius: 30px;
+  a {
+    color: white;
+  }
+}
+
+.card-content {
+  font-size: .8rem;
+  padding: 1rem;
 }

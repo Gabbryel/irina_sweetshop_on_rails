@@ -1,6 +1,9 @@
-<h3 class="text-center">This form allows you to create a new category</h3>
+<p class="text-center font-weight-bold form-title">Creează o nouă categorie</p>
+
 <%= simple_form_for @category do |f| %>
-  <%= f.input :name %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
+  <%= f.input :name, label: 'Nume categorie', placeholder: 'Ex.: Torturi, Prajituri' %>
+  <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom-color btn-block' } %>
+  <%= f.input :has_recipe, label: 'Are rețetă?' %>
+  <%= f.input :has_models, label: 'Are modele de expus?' %>
+  <%= f.button :submit, class: 'btn btn-danger btn-block' %>
 <% end %>

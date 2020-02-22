@@ -1,19 +1,35 @@
+<div class="container">
+  <h3 class='text-center'>Retete de <%= Category.find(params[:category_id]).name %>  (<%= @recipes.count %>)</h3>
+  <div class="row">
+    
+    <% @recipes.each do |r| %>
+    <div class="col-sm-5 col-md-5 col-lg-3 card-container">
+      <h4 class='text-center'><%= r.name %></h4>
+      <%= cl_image_tag r.photo.key, class: 'card-image' %> <br>
+      <p class='text-justify card-content'><%= r.content %></p>
+      <p>
+        <% if policy(r).edit? %>
+          <%= link_to 'Edit', edit_category_recipe_path(r.category_id, r.id) %>
+        <% end %>
+        <% if policy(r).destroy? %>
+          <%= link_to 'Delete', category_recipe_path(r.category_id, r.id), method: :delete %>
+        <% end %>
 
-
-<% if @recipes.first %>
-  <h1>Retete din categoria '<%= @recipes.first.category.name %>'</h1>
-<% else %>
-  <h1>Nicio reteta in aceasta categorie!!!</h1>
-<% end %>
-
-<% @recipes.each do |r| %>
-<p><%= r.name %></p>
-<p><%= r.content %></p>
-<!-- <%= cl_image_tag r.photo.key %> -->
-<%= link_to 'Edit', edit_category_recipe_path(r.category_id, r.id) %>
-<%= link_to 'Delete', category_recipe_path(r.category_id, r.id), method: :delete %>
-<% end %>
+      </p>
+      
+    </div>
+    <% end %>
+  </div>
+</div>
 
 <br>
-<hr>
-<%= link_to 'New recipe', new_category_recipe_path %>
+
+   
+
+
+
+<% if policy(Recipe).new? %>
+<div class="category-button">
+  <%= link_to 'New recipe', new_category_recipe_path %>
+</div>
+<% end %>

@@ -4,26 +4,28 @@
       <div class="col-sm-5 col-md-5 col-lg-3 card-container">
       <%= cl_image_tag c.photo.key, class: 'card-image'%>
       <div class="card-category_name">
-        <h2><%=  c.name %></h2>
+        <p class='card-title'><%=  c.name %></p>
       </div>
         <p class='text-center justify-content-around my-2'>
-          <% if c.name != 'Candy bar' %>
-          <%= link_to 'Rețete', category_recipes_path(c.id) %>  
+          <% if c.has_recipe %>
+            <%= link_to 'Rețete', category_recipes_path(c.id) %>  
           <% end %>
-          <% if c.name == 'Torturi' || c.name == 'Candy bar' %>
-          <%= link_to 'Modele' %>
-        <% end %>
-        <% if policy(c).edit? %>
-          <%= link_to 'Edit', edit_category_path(c.id) %>  
-        <% end %>
-        <% if policy(c).destroy? %>
-        <%= link_to 'Delete', category_path(c), method: :delete %></p>
-        <% end %>
+          <% if c.has_models %>
+            <%= link_to 'Modele' %>
+          <% end %>
+          <% if policy(c).edit? %>
+            <%= link_to 'Edit', edit_category_path(c.id) %>  
+          <% end %>
+          <% if policy(c).destroy? %>
+            <%= link_to 'Delete', category_path(c), method: :delete %></p>
+          <% end %>
       </div>
       <% end %>
     </div>
     
     <% if policy(Category).new? %>
-    <%= link_to 'New category', new_category_path %>
+    <div class="category-button">
+      <%= link_to 'New category', new_category_path, class: 'category' %>
+    </div>
     <% end %>
   </div>    
