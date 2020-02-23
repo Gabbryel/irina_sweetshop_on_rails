@@ -5,7 +5,7 @@
     <% @recipes.each do |r| %>
     <div class="col-sm-5 col-md-5 col-lg-3 card-container card-overflow">
       <%= cl_image_tag r.photo.key, class: 'card-image' %> <br>
-      <h4 class='text-center p-1'><%= r.name %></h4>
+      <h4 class='text-center p-1'><%= link_to r.name, recipe_path(r.id) %></h4>
       <p class='rating-total border-bottom border-secondary'>Rating total: <%= '⭐️' * r.overall_rating.to_i %> <%= "(#{r.overall_rating})"%></p>
       <h6 class='text-center p-2 '>Descriere</h6>
       <p class='text-justify card-content border-bottom border-secondary'><%= r.content %></p>

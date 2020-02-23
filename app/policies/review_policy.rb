@@ -10,6 +10,6 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def create?
-    user
+    true
   end
 end

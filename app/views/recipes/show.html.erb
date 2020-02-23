@@ -1,0 +1,26 @@
+<br>
+<div class="container">
+  <h6 class="text-center">Opinia ta!</h6>
+  <%= simple_form_for [@recipe, @review] do |f| %>
+    <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5' %>
+    <%= f.input :content, label: 'Recenzie (min. 20 / max. 100 car.)' %>
+    <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-secondary' %>
+  <% end %>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="rating-card_holder">
+        <h6 class='text-center'>Rating & reviews</h6>
+        <% @recipe.reviews.each do |rev| %>
+        <div class="rating-card">
+          <p>Recenzie (id: <%= rev.id %>) - Rating: <%= '⭐️' * rev.rating %><%= "(#{rev.rating})" %></p>
+          <p><%= rev.content %></p>
+          <p>Autor: <%= rev.user.email.split('@').first.capitalize %></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

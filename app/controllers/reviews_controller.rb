@@ -1,21 +1,17 @@
 class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
   
-
-  def new
-    @recipe = Recipe.find(params[:recipe_id])
-    @review = Review.new
-  end
-
   def create
     @recipe = Recipe.find(params[:recipe_id])
     @review = Review.new(review_params)
     @review.recipe = @recipe
+    @review.user = current_user
       if @review.save
-        redirect_to category_recipes_path(params[:category_id])
+        redirect_to recipe_path(params[:recipe_id])
       else
-        render :new
+        render 'recipes/show'
       end
+      authorize @review
   end
 
   private

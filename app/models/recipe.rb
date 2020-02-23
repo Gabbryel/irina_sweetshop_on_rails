@@ -11,6 +11,6 @@ class Recipe < ApplicationRecord
     self.reviews.each do |rev|
       ratings << rev.rating
     end
-    ratings.count == 0 ? "" : ratings.sum / ratings.count
+    ratings.count == 0 ? "" : ratings.sum / ratings.count.to_f
   end
 end
