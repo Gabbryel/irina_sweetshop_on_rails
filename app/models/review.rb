@@ -1,7 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
-  belongs_to :recipe
-  validates :user_id, uniqueness: { scope: :recipe }
+  belongs_to :reviewable, :polymorphic => true
   validates :rating, presence: true
   validates :content, presence: true
   validates :content, length: { minimum: 10 }
