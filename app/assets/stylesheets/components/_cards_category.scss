@@ -24,6 +24,13 @@
       }
     }
 }
+
+.card-overflow {
+  overflow: scroll;
+  img {
+    min-height: 300px;
+  }
+}
 .card-image {
   position: relative;
   width: 100%;
@@ -58,6 +65,26 @@
 }
 
 .card-content {
-  font-size: .8rem;
+  font-size: .7rem;
+  padding: 0 1rem;
+}
+
+.rating-total {
+  font-size: 12px;
+}
+
+.rating-card_holder {
+  overflow: visible;
+    h6 {
+      font-size: 14px;;
+    }
+    p {
+      font-size: 12px;
+      line-height: .3rem;
+    }
+}
+
+.rating-card {
   padding: 1rem;
+  border-bottom: 1px solid lightgray;
 }
