@@ -4,9 +4,9 @@ class ReviewsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
     @review = Review.new(review_params)
-    @review.recipe = @recipe
+    @review.reviewable = @recipe
     @review.user = current_user
-      if @review.save
+      if @review.save!
         redirect_to recipe_path(params[:recipe_id])
       else
         render 'recipes/show'
