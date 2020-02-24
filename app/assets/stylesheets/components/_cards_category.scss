@@ -3,12 +3,13 @@
   top: 10vh;
 }
 .card-container {
+  position: relative;
   overflow: hidden;
   box-shadow: 2px 2px 7px lightgrey;
   border-radius: 20px;
-  margin: 20px;
+  margin: 20px 0;
   padding: 0;
-  max-height: 600px;
+  max-height: 700px;
   max-width: 320px;
   a {
     font-size: .8rem;
@@ -80,11 +81,18 @@
     }
     p {
       font-size: 12px;
-      line-height: .3rem;
+      line-height: .7rem;
+    }
+    a {
+      color: black;
     }
 }
 
 .rating-card {
   padding: 1rem;
   border-bottom: 1px solid lightgray;
+}
+
+.small-letters {
+  font-size: 18px;
 }

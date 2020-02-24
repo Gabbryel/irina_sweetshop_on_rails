@@ -1,23 +1,16 @@
 <div class="container cards-container">
-  <h3 class='text-center'><%= Category.find(params[:category_id]).name %>  (<%= @recipes.count %>)</h3>
-  <div class="row jusify-content-center">
+  <h3 class='text-center'><%= Category.find(params[:category_id]).name %>  <span class="small-letters">(<%= @recipes.count %>)</span></h3>
+  <div class="row justify-content-center">
     
     <% @recipes.each do |r| %>
-    <div class="col-sm-5 col-md-5 col-lg-3 card-container card-overflow">
+    <div class="col-sm-5 col-md-5 col-lg-3 card-container">
       <%= cl_image_tag r.photo.key, class: 'card-image' %> <br>
-      <h4 class='text-center p-1'><%= link_to r.name, recipe_path(r.id) %></h4>
-      <p class='rating-total border-bottom border-secondary'>Rating total: <%= '⭐️' * r.overall_rating.to_i %> <%= "(#{r.overall_rating})"%></p>
+      <h4 class='text-center p-1'><%= r.name %></h4>
+      <p class='rating-total border-bottom border-secondary text-center'><%= '⭐️' * r.overall_rating.to_i %> <%= "(#{r.overall_rating.to_f.round(2)})"%></p>
       <h6 class='text-center p-2 '>Descriere</h6>
       <p class='text-justify card-content border-bottom border-secondary'><%= r.content %></p>
     <div class="rating-card_holder">
-      <h6 class='text-center'>Rating & reviews</h6>
-      <% r.reviews.each do |rev| %>
-      <div class="rating-card">
-        <p>Recenzie (id: <%= rev.id %>) - Rating: <%= '⭐️' * rev.rating %><%= "(#{rev.rating})" %></p>
-        <p><%= rev.content %></p>
-        <p>Autor: <%= rev.user.email.split('@').first.capitalize %></p>
-      </div>
-      <% end %>
+      <h6 class='text-center btn btn-secondary btn-block'><%= link_to 'Rating & reviews', recipe_path(r.id)%> </h6>
     </div>
 
       <p>
