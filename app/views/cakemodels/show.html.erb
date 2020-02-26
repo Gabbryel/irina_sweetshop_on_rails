@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= @cakemodel.content %>
+      <div>
+        <%= cl_image_tag @cakemodel.photo.key %>
+      </div>
+      <div>
+        <h6>Ratings & reviews</h6>
+
+        <%= simple_form_for [@cakemodel, @review] do |f| %>
+          <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts' } %>
+          <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts' } %>
+          <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-secondary' %>
+        <% end %>
+
+        <% @cakemodel.reviews.each do |rev| %>
+          <%= rev.rating %>
+          <%= rev.content %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

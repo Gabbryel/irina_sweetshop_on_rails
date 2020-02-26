@@ -1,0 +1,7 @@
+<hr>
+
+<%= simple_form_for [@category, @cakemodel] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :photo, as: :file %>
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,23 @@
+
+<div class="container">
+  <div class="row">
+    <% @cakemodels.each do |cm| %>
+    <div class="col">
+      <div class="cakemodel-index_card-photo">
+        <%= cl_image_tag cm.photo.key %>
+     </div>
+      <p><%= cm.content %></p>
+      <div class="cakemodel-show_button">
+        <%= link_to 'Reviews', cakemodel_path(cm.id) %>
+      </div>
+      <div class="links">
+        <%= link_to 'Edit', edit_category_cakemodel_path(cm.category_id, cm.id) %>
+        <%= link_to 'Delete', category_cakemodel_path(cm.category_id, cm.id), method: :delete %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Adauga model', new_category_cakemodel_path(params[:category_id]) %>
