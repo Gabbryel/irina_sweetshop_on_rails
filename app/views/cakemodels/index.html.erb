@@ -1,5 +1,4 @@
-
-<div class="container">
+<div class="container index-cakemodel_container">
   <div class="row">
     <% @cakemodels.each do |cm| %>
     <div class="col">
@@ -17,7 +16,10 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <p class="btn btn-custom btn-block mt-5">
+      <%= link_to 'Adauga model', new_category_cakemodel_path(params[:category_id]) %>
+    </p>
+  </div>
 </div>
 
-
-<%= link_to 'Adauga model', new_category_cakemodel_path(params[:category_id]) %>

@@ -3,14 +3,6 @@ class RecipesController < ApplicationController
   before_action :set_category, only: [:new, :create, :edit, :destroy]
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   
-  def index
-    @recipes = policy_scope(Recipe).where(category_id: params[:category_id])
-  end
-
-  def show
-    @review = Review.new
-  end
-
   def new
     @recipe = Recipe.new
     authorize @recipe
@@ -26,6 +18,16 @@ class RecipesController < ApplicationController
     end
     authorize @recipe
   end
+  
+  def index
+    @recipes = policy_scope(Recipe).where(category_id: params[:category_id])
+  end
+
+  def show
+    @review = Review.new
+  end
+
+
 
   def edit
   end
