@@ -2,9 +2,12 @@
   position: relative;
   top: 10vh;
   .recipe-cards_title {
-    font-family: 'Pacifico';
+    font-family: 'Life Savers';
     color: $official-color;
     font-size: 40px;
+  }
+  a {
+    font-family: 'Life Savers';
   }
 }
 
@@ -36,18 +39,18 @@
     }
     .recipe-card_name {
       position: absolute;
-      font-family: 'Pacifico';
-      top: 355px;
+      font-family: 'Life Savers';
+      top: 360px;
       width: 100%;
       color: black;
       font-size: 28px;
     }
     .recipe-card_rating-total {
       position: absolute;
-      top: 410px;
+      top: 400px;
       width: 100%;
       color: black;
-      font-size: 10px;
+      font-size: 14px;
         .font-stars {
           font-size: 5px;
           text-shadow: 2px 2px 2px lightgrey;
@@ -62,13 +65,14 @@
       color: black;
       border-top: 1px solid  lightgrey;
       border-bottom: 1px solid lightgrey;
-      p {
-        font-size: 15px;
-      }
+        p {
+          font-size: 15px;
+          font-family: 'Life Savers';
+        }
     }
     .recipe-rating_button {
       position: absolute;
-      top: 545px;
+      top: 535px;
       width: 100%;
       color: $official-color;
     }

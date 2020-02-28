@@ -1,35 +1,54 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+<div class="container account-edit">
+  <div class="row">
+    <div class="col">
+      <h4 class="edit-fonts text-center">Editează <%= current_user.email.split('@').first.capitalize %></h4>
+      
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
+      
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true, label: "Adresa de email" %>
+      
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+      
+          <%= f.input :password,
+                      hint: "lasă spațiul gol dacă nu vrei să modifici",
+                      required: false,
+                      input_html: { autocomplete: "new-password" },
+                      label: "Parola nouă" %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" },
+                      label: "Confirmă parola nouă" %>
+          <%= f.input :current_password,
+                      hint: "avem nevoie de parola existentă",
+                      required: true,
+                      input_html: { autocomplete: "current-password" },
+                      label: "Parola veche" %>
+        </div>
+      
+        <div class="form-actions">
+          <%= f.button :submit, "Salvează modificările", class: "btn btn-block edit-fonts btn-custom" %>
+        </div>
+      <% end %>
+      
+      
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="row cancel-account_container mt-5">
+    <div class="col">
+      <h5 class="text-center edit-fonts">Cancel my account</h5>
+      
+      <p class="text-center">Vrei să ne părăsești? <%= link_to "Șterge contul!!!", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-custom" %></p>
+    </div>
   </div>
-<% end %>
+  <div class="row">
+    <div class="col">
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

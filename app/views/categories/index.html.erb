@@ -1,4 +1,33 @@
-<%= render 'partials/cards_category' %>
+<div class="container cards-container">
+  <div class="row justify-content-center">
+    <% @categories.each do |c| %>
+      <div class="col-sm-5 col-md-5 col-lg-3 card-container">
+      <%= cl_image_tag c.photo.key, class: 'card-image'%>
+      <div class="card-category_name">
+        <p class='card-title'><%=  c.name %></p>
+      </div>
+        <p class='text-center justify-content-around my-2'>
+          <% if c.has_recipe %>
+            <%= link_to 'Rețete', category_recipes_path(c.id) %>  
+          <% end %>
+          <% if c.has_models %>
+            <%= link_to 'Modele', category_cakemodels_path(c.id) %>
+          <% end %>
+          <% if policy(c).edit? %>
+            <%= link_to 'Edit', edit_category_path(c.id) %>  
+          <% end %>
+          <% if policy(c).destroy? %>
+            <%= link_to 'Delete', category_path(c), method: :delete %></p>
+          <% end %>
+      </div>
+      <% end %>
+    </div>
+    
+    <% if policy(Category).new? %>
+    <p class="btn btn-custom btn-block mt-5"><%= link_to 'New category', new_category_path, class: 'category' %></p>
+    <% end %>
+  </div>    
+
 
 
 
