@@ -9,8 +9,8 @@
   border-radius: 20px;
   margin: 20px 0;
   padding: 0;
-  max-height: 700px;
-  max-width: 320px;
+  // max-height: 700px;
+  // max-width: 320px;
   a {
     font-size: .8rem;
     color: lightgrey;
@@ -26,19 +26,12 @@
     }
 }
 
-.card-overflow {
-  overflow: scroll;
-  img {
-    min-height: 300px;
-  }
-}
 .card-image {
   position: relative;
   width: 100%;
   object-fit: cover;
   object-position: top;
-  min-height: 250px;
-  max-height: 250px;
+  height: 380px;
 }
 .card-category_name {
   display: flex;

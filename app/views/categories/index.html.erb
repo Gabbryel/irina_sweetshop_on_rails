@@ -1,12 +1,13 @@
+<% content_for(:title) {'Categorii de produse - Cofetăria Irina - Bacău'} %>
 <div class="container cards-container">
   <div class="row justify-content-center">
     <% @categories.each do |c| %>
-      <div class="col-sm-5 col-md-5 col-lg-3 card-container">
+      <div class="col-sm-12 mr-4 ml-4 col-md-5 col-lg-4 card-container">
       <%= cl_image_tag c.photo.key, class: 'card-image'%>
       <div class="card-category_name">
-        <p class='card-title'><%=  c.name %></p>
+        <p class='card-title edit-fonts'><%=  c.name %></p>
       </div>
-        <p class='text-center justify-content-around my-2'>
+        <p class='text-center justify-content-around my-2 edit-fonts'>
           <% if c.has_recipe %>
             <%= link_to 'Rețete', category_recipes_path(c.id) %>  
           <% end %>

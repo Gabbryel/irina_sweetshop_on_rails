@@ -1,9 +1,17 @@
-<p class="text-center font-weight-bold form-title">Creează o nouă categorie</p>
+<% content_for(:title) {'Creează o nouă categorie - Cofetăria Irina - Bacău'} %>
+<div class="container edit-fonts">
+  <div class="row">
+    <div class="col">
+      <h4 class="text-center font-weight-bold mt-3 mb-4 edit-fonts">Creează o nouă categorie</h4>
+      
+      <%= simple_form_for @category do |f| %>
+        <%= f.input :name, label: 'Nume categorie', placeholder: 'Ex.: Torturi, Prăjituri' %>
+        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom btn-block' } %>
+        <%= f.input :has_recipe, label: 'Are rețetă?' %>
+        <%= f.input :has_models, label: 'Are modele de expus?' %>
+        <%= f.button :submit, value: 'Categorie nouă', class: 'btn btn-custom btn-block' %>
+      <% end %>
 
-<%= simple_form_for @category do |f| %>
-  <%= f.input :name, label: 'Nume categorie', placeholder: 'Ex.: Torturi, Prajituri' %>
-  <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom-color btn-block' } %>
-  <%= f.input :has_recipe, label: 'Are rețetă?' %>
-  <%= f.input :has_models, label: 'Are modele de expus?' %>
-  <%= f.button :submit, value: 'Categorie nouă', class: 'btn btn-danger btn-block' %>
-<% end %>
+    </div>
+  </div>
+</div>

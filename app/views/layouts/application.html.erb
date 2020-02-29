@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo|Modak&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Life+Savers:400,700&display=swap" rel="stylesheet">
-    <title>Cofetaria Irina - Bacau</title>
+    <title><%= content_for?(:title) ? yield(:title) : 'Cofetăria Irina - Bacău' %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>

@@ -1,7 +1,13 @@
-<h3 class="text-center">This form allows you to create a new recipe</h3>
-<%= simple_form_for [@category, @recipe] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :content %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container new-recipe_container edit-fonts">
+  <div class="row">
+    <div class="col">
+      <h4 class="text-center edit-fonts mb-4">Adaugă o rețetă</h4>
+      <%= simple_form_for [@category, @recipe] do |f| %>
+        <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată' %>
+        <%= f.input :content, label: 'Descrierea rețetei' %>
+        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-custom-1 btn-block'} %>
+        <%= f.button :submit, value: 'Creează rețeta', class: 'btn btn-custom btn-block edit-fonts' %>
+      <% end %>
+    </div>
+  </div>
+</div>
