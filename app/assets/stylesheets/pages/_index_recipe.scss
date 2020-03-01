@@ -1,6 +1,6 @@
 .recipe-cards_container {
   position: relative;
-  top: 10vh;
+  top: 16vh;
   .recipe-cards_title {
     font-family: 'Life Savers';
     color: $official-color;
@@ -66,10 +66,11 @@
       border-top: 1px solid  lightgrey;
       border-bottom: 1px solid lightgrey;
         p {
-          font-size: 15px;
+          font-size: 18px;
           font-family: 'Life Savers';
         }
     }
+
     .recipe-rating_button {
       position: absolute;
       top: 535px;

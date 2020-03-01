@@ -1,35 +1,35 @@
-<%= render 'partials/links_top' %>
-<div class="container recipe-cards_container">
-  <h3 class='text-center recipe-cards_title'><%= Category.find(params[:category_id]).name %> <span class="small-letters">(<%= @recipes.count %>)</span></h3>
+<div class="container recipe-cards_container pb-5">
+  <h3 class='text-center recipe-cards_title'><%= Category.find(params[:category_id]).name %> <span
+      class="small-letters">(<%= @recipes.count %>)</span></h3>
   <div class="row justify-content-center">
-    
+
     <% @recipes.each do |r| %>
     <div class="col-sm-5 col-md-5 col-lg-3 recipe-card_container">
       <p class="recipe-heart"></p>
       <%= cl_image_tag r.photo.key, class: 'card-image', class: 'recipe-card_image' %> <br>
       <h4 class='text-center p-1 recipe-card_name'><%= r.name %></h4>
-      <div class='recipe-card_rating-total'> 
+      <div class='recipe-card_rating-total'>
         <p class='text-center'><%= "#{r.overall_rating.to_f.round(2)}"%> <%= '⭐️' * r.overall_rating.to_i %></p>
       </div>
       <div class="recipe-card_describe-card">
         <p class='text-center card-content p-2'><%= r.content %></p>
       </div>
-      <%= link_to 'Rating & reviews', recipe_path(r.id), class: 'text-center recipe-rating_button'%>
+      <%= link_to 'Rating & recenzii', recipe_path(r.id), class: 'text-center recipe-rating_button'%>
 
       <div class='recipe-card_admin-links'>
         <% if policy(r).edit? %>
-          <%= link_to 'Edit |', edit_category_recipe_path(r.category_id, r.id) %> 
+        <%= link_to 'Edit |', edit_category_recipe_path(r.category_id, r.id) %>
         <% end %>
         <% if policy(r).destroy? %>
-          <%= link_to 'Delete', category_recipe_path(r.category_id, r.id), method: :delete %>
+        <%= link_to 'Delete', category_recipe_path(r.category_id, r.id), method: :delete %>
         <% end %>
       </div>
     </div>
     <% end %>
   </div>
-
   <% if policy(Recipe).new? %>
-  <p class="btn btn-custom btn-block mt-5"><%= link_to 'New recipe', new_category_recipe_path %></p>
+  <div>
+    <p class="btn btn-custom rounded-pill btn-block"><%= link_to 'Rețetă nouă', new_category_recipe_path %></p>
+  </div>
   <% end %>
-
 </div>

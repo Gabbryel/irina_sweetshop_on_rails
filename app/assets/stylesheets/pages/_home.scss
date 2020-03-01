@@ -1,5 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+
 .home-page {
-  height: 90vh;
+  position: absolute;
+  height: 100%;
   width: 100%;
     background: {
       image: asset_url('bday_cake.jpg');
@@ -9,34 +20,12 @@
     }
 }
 
-#main-page_button {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 15vh;
-  width: 80%;
-  left: 10%;
-  height: 60px;
-  color: $navbar-background;
-    background: {
-      color: white;
-    }
-  border-radius: 80px;
-  text-decoration: none;
-    a {
-      color: white;
-      font-weight: bold;
-    }
-}
-
-#punch-line {
-  position: relative;
-  display: block;
-  max-width: 90vw;
-  top: 20vh;
-  left: 5vw;
-  color: white;
-  font-size: 40px;
-  text-shadow: 1px 1px 5px black;
+.btn-homepage {
+  top: 70%;
+  width: 70%;
+  left: 15%;
+  background-color: white;
+  font-family: 'Life Savers';
+  font-weight: 700;
+  font-size: 24px;
 }

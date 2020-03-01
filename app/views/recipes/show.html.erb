@@ -1,6 +1,5 @@
-<br>
-<%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-secondary' %>
-<div class="container">
+<div class="container edit-fonts pt-5">
+  <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-custom' %>
   <div class="show-recipe_photo">
     <%= cl_image_tag @recipe.photo.key %>
   </div>
@@ -11,7 +10,7 @@
   <% end %>
 </div>
 <br>
-<div class="container">
+<div class="container pb-5 edit-fonts">
   <div class="row">
     <div class="col">
       <div class="rating-card_holder">
@@ -26,5 +25,5 @@
       </div>
     </div>
   </div>
+  <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-custom' %>
 </div>
-<%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-secondary' %>
