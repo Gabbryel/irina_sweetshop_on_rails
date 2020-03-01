@@ -1,7 +1,10 @@
+<% content_for(:title) {'Creează o nouă categorie - Cofetăria Irina - Bacău'} %>
+
 <div class="container new-recipe_container edit-fonts">
+  <%= render 'partials/links_top' %>
   <div class="row">
     <div class="col">
-      <h4 class="text-center edit-fonts mb-4">Adaugă o rețetă</h4>
+      <h4 class="text-center edit-fonts mt-5 mb-4">Adaugă o rețetă</h4>
       <%= simple_form_for [@category, @recipe] do |f| %>
         <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată' %>
         <%= f.input :content, label: 'Descrierea rețetei' %>

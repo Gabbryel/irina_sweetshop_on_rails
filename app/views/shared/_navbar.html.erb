@@ -9,14 +9,21 @@
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto edit-fonts">
       <% if user_signed_in? %>
         <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link_custom edit-fonts" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Produse", categories_path, class: "nav-link_custom edit-fonts" %>
+          <%= link_to "Categorii de produse", categories_path, class: "nav-link_custom edit-fonts" %>
         </li>
+
+        <% Category.all.each do |cat| %>
+        <li class="nav-item">
+            <%= link_to cat.name, category_recipes_path(cat.id),class: "nav-link_custom" %>
+          <% end %>
+        </li>
+
         <li class="nav-item">
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link_custom edit-fonts" %>
         </li>

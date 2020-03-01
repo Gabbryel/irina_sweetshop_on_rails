@@ -1,4 +1,5 @@
 <div class="container recipe-cards_container">
+  <%= render 'partials/links_top' %>
   <h3 class='text-center recipe-cards_title'><%= Category.find(params[:category_id]).name %> <span class="small-letters">(<%= @recipes.count %>)</span></h3>
   <div class="row justify-content-center">
     
