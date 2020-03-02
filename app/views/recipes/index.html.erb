@@ -2,10 +2,8 @@
   <h3 class='text-center recipe-cards_title'><%= Category.find(params[:category_id]).name %> <span
       class="small-letters">(<%= @recipes.count %>)</span></h3>
   <div class="row justify-content-center">
-
     <% @recipes.each do |r| %>
     <div class="col-sm-5 col-md-5 col-lg-3 recipe-card_container">
-      <p class="recipe-heart"></p>
       <%= cl_image_tag r.photo.key, class: 'card-image', class: 'recipe-card_image' %> <br>
       <h4 class='text-center p-1 recipe-card_name'><%= r.name %></h4>
       <div class='recipe-card_rating-total'>
