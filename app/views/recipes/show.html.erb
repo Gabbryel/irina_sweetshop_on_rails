@@ -6,7 +6,7 @@
   <%= simple_form_for [@recipe, @review] do |f| %>
     <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts' } %>
     <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts' } %>
-    <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-secondary' %>
+    <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-custom btn-block' %>
   <% end %>
 </div>
 <br>
@@ -14,11 +14,11 @@
   <div class="row">
     <div class="col">
       <div class="rating-card_holder">
-        <h6 class='text-center'>Rating & reviews</h6>
+        <h5 class='text-center'>Rating & reviews</h5>
         <% @recipe.reviews.each do |rev| %>
-        <div class="rating-card">
+        <div>
           <p>Recenzie (id: <%= rev.id %>) - Rating: <%= '⭐️' * rev.rating %><%= "(#{rev.rating})" %></p>
-          <p><%= rev.content %></p>
+          <p class="review-font"><%= rev.content %></p>
           <p>Autor: <%= rev.user.email.split('@').first.capitalize %></p>
         </div>
         <% end %>

@@ -2,11 +2,28 @@
   display: flex;
   justify-content: center;
   padding: 20px 0;
-    img {
-      box-shadow: .4px .4px 10px lightgray;
+  img {
+    box-shadow: .4px .4px 10px lightgray;
+    height: auto;
+    width: 80%;
     }
 }
 
 .form-fonts {
   font-size: 16px;
+}
+
+.rating-card_holder {
+  overflow: visible;
+    p {
+      font-size: 16px;
+      line-height: .7rem;
+    }
+    a {
+      color: black;
+    }
+}
+
+.review-font {
+  font-size: 18px;
 }
