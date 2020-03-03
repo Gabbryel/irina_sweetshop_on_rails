@@ -6,7 +6,7 @@
   <%= simple_form_for [@recipe, @review] do |f| %>
     <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts' } %>
     <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts' } %>
-    <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-custom btn-block' %>
+    <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-custom btn-block rounded-pill' %>
   <% end %>
 </div>
 <br>

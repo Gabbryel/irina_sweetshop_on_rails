@@ -1,7 +1,12 @@
-<hr>
-
-<%= simple_form_for [@category, @cakemodel] do |f| %>
-  <%= f.input :content %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container edit-fonts">
+  <div class="row">
+    <div class="col mt-5">
+      <h5 class="text-center edit-fonts mb-5">Creează un nou model</h5>
+      <%= simple_form_for [@category, @cakemodel] do |f| %>
+        <%= f.input :content, label: 'Conținut' %>
+        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom-1 btn-block' } %>
+        <%= f.button :submit, value: 'Model nou', class: 'btn btn-block btn-custom rounded-pill' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container edit-fonts pt-5 pb-5">
+  <%= link_to 'Înapoi', category_cakemodels_path(@cakemodel.category.id), class: 'btn btn-sm btn-custom' %>
   <div class="row">
     <div class="col">
-      <%= @cakemodel.content %>
-      <div>
+      <div class="show-recipe_photo">
         <%= cl_image_tag @cakemodel.photo.key %>
       </div>
       <div>
-        <h6>Ratings & reviews</h6>
+        <h5 class="text-center edit-fonts">Ratings & reviews</h5>
 
         <%= simple_form_for [@cakemodel, @review] do |f| %>
           <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts' } %>
           <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts' } %>
-          <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-secondary' %>
+          <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-custom btn-block rounded-pill mb-5 edit-fonts' %>
         <% end %>
 
         <% @cakemodel.reviews.each do |rev| %>
@@ -21,4 +21,6 @@
       </div>
     </div>
   </div>
+  <%= link_to 'Înapoi', category_cakemodels_path(@cakemodel.category.id), class: 'btn btn-sm btn-custom' %>
+
 </div>

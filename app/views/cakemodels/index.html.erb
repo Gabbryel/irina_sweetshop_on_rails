@@ -22,10 +22,12 @@
       </div>
       <% end %>
     </div>
+
   </div>
-    <% if policy(Cakemodel).new? %>
-    <div>
-      <p class="btn btn-custom rounded-pill btn-block"><%= link_to 'Adauga model', new_category_cakemodel_path(params[:category_id]) %></p>
+  <% if policy(Cakemodel).new? %>
+  <div>
+    <p class="btn btn-custom rounded-pill btn-block">
+      <%= link_to 'Adauga model', new_category_cakemodel_path(params[:category_id]) %></p>
     <% end %>
-    </div>
+  </div>
 </div>

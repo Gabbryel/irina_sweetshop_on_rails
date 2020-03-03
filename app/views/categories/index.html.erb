@@ -22,9 +22,10 @@
       <% end %>
     </div>
     <% end %>
-    <% if policy(Category).new? %>
-      <p class="btn btn-custom btn-block mt-5 mb-5 edit-fonts position-relative">
-      <%= link_to 'New category', new_category_path, class: 'category' %></p>
-    <% end %>
   </div>
+  <% if policy(Category).new? %>
+  <div>
+    <p class="btn btn-custom btn-block mt-5 mb-5 edit-fonts position-relative rounded-pill"><%= link_to 'Categorie nouă', new_category_path, class: 'category' %></p>
+  </div>
+  <% end %>
 </div>
