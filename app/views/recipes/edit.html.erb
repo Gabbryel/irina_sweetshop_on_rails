@@ -1,7 +1,1 @@
-<h3 class="text-center">This form allows you to create a new recipe</h3>
-<%= simple_form_for [@category, @recipe] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :content %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
-<% end %>
+<%= render 'partials/form_new_recipe' %>

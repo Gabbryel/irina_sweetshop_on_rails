@@ -1,9 +1,18 @@
-<% content_for(:title) {'Creează o nouă categorie - Cofetăria Irina - Bacău'} %>
+<% if @recipe.id %>
+  <% content_for(:title) {'Modifică rețeta - Cofetăria Irina - Bacău'} %>
+<% else %>
+  <% content_for(:title) {'Rețetă nouă - Cofetăria Irina - Bacău'} %>
+<% end %>
 
 <div class="container new-recipe_container edit-fonts">
   <div class="row">
     <div class="col">
-      <h4 class="text-center edit-fonts mt-5 mb-4">Adaugă o rețetă</h4>
+      <% if  !@recipe.id%>
+        <h4 class="text-center edit-fonts mt-5 mb-4">Adaugă o rețetă</h4>
+      <% else %>
+        <h4 class="text-center edit-fonts mt-5 mb-4">Modifică rețeta</h4>
+      <% end %>
+
       <%= simple_form_for [@category, @recipe] do |f| %>
         <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată' %>
         <%= f.input :content, label: 'Descrierea rețetei' %>
