@@ -11,14 +11,18 @@ class ReviewsController < ApplicationController
       @review.reviewable = @cakemodel
     end
     @review.user = current_user
-      if @review.save!
+      if @review.save
         if @recipe
           redirect_to recipe_path(params[:recipe_id])
         elsif @cakemodel
           redirect_to cakemodel_path(params[:cakemodel_id])
         end
       else
-        render 'recipes/show'
+        if @recipe
+          render 'recipes/show'
+        elsif @cakemodel
+          render 'cakemodels/show'
+        end
       end
       authorize @review
   end

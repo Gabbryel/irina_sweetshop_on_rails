@@ -18,3 +18,18 @@
   color: $official-color;
 }
 
+.navbar-custom {
+  position: relative;
+  height: 15px;
+  width: 30px;
+  border-top: 2px solid $official-color;
+  border-bottom: 2px solid $official-color;
+}
+
+.navbar-custom_bottom {
+  position: relative;
+  height: 13px;
+  width: 30px;
+  border-bottom: 2px solid $official-color;
+}
+

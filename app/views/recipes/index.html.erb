@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
     <% @recipes.each do |r| %>
     <div class="col-sm-5 col-md-5 col-lg-3 recipe-card_container">
-      <%= cl_image_tag r.photo.key, class: 'card-image', class: 'recipe-card_image' %> <br>
+      <%= cl_image_tag r.photo.key, class: 'card-image recipe-card_image' %> <br>
       <h4 class='text-center p-1 recipe-card_name'><%= r.name %></h4>
       <div class='recipe-card_rating-total'>
         <p class='text-center'><%= "#{r.overall_rating.to_f.round(2)}"%> <%= '⭐️' * r.overall_rating.to_i %> <%= r.no_of_ratings %> </p>
