@@ -1,6 +1,8 @@
 .cards-container {
-  position: relative;
   top: 10vh;
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 .card-container {
   position: relative;
@@ -65,4 +67,8 @@
   font-size: 18px;
   font-family: 'Courier New', Courier, monospace;
   color: $official-color;
+}
+
+.new-button_bottom {
+  position: relative;
 }

@@ -1,16 +1,15 @@
-<div class="container recipe-cards_container pb-5">
+<div class="container recipe-cards_container mb-5 pb-5">
   <h3 class='text-center recipe-cards_title'><%= Category.find(params[:category_id]).name %> <span
       class="small-letters">(<%= @cakemodels.count %>)</span></h3>
   <div class="row justify-content-center">
     <% @cakemodels.each do |cm| %>
-    <div class="col-sm-5 col-md-5 col-lg-3 recipe-card_container">
+    <div class="col-sm-12 recipe-card_container">
       <%= cl_image_tag cm.photo.key, class: 'card-image', class: 'recipe-card_image' %> <br>
       <div class='recipe-card_rating-total'>
-        <p class='text-center'><%= "#{cm.overall_rating.to_f.round(2)}"%> <%= '⭐️' * cm.overall_rating.to_i %>
-          <%= cm.no_of_ratings %> </p>
+        <p class='text-center'><%= "#{cm.overall_rating.to_f.round(2)}"%> <%= '⭐️' * cm.overall_rating.to_i %> <%= cm.no_of_ratings %> </p>
       </div>
       <div class="recipe-card_describe-card">
-        <p class='text-center card-content p-2'><%= cm.content %></p>
+        <p class='text-center card-content pt-1'><%= cm.content %></p>
       </div>
       <%= link_to 'Rating & recenzii', cakemodel_path(cm.id), class: 'text-center recipe-rating_button'%>
 

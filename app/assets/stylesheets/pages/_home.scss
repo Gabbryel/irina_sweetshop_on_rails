@@ -1,11 +1,8 @@
 * {
   box-sizing: border-box;
 }
-
-html,
-body {
-  height: 100%;
-  position: relative;
+html {
+  font-size: calc(1vw + 1em);
 }
 
 .home-page {

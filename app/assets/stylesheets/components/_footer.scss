@@ -1,13 +1,17 @@
 .footer {
   width: 100%;
-  height: 6vh;
-  position: fixed;
-  bottom: -1vh;
+  height: 70px;
+  bottom: 0%;
+  position: relative;
   background-color: $navbar-background;
 }
 
 .footer-text {
   font-size: 14px;
   color: $official-color;
-  top: 10px;
+  font-size: 3vw;
+}
+.fa-phone-square-alt {
+  color: white;
+  font-size: 20px;
 }

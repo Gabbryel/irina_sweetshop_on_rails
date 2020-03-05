@@ -1,5 +1,5 @@
 <% content_for(:title) {'Categorii de produse - Cofetăria Irina - Bacău'} %>
-<div class="container cards-container mb-5">
+<div class="container cards-container pb-5 mb-5">
   <div class="row justify-content-center">
     <% @categories.each do |c| %>
     <div class="col-sm-12 mr-4 ml-4 col-md-5 col-lg-4 card-container">
@@ -25,7 +25,7 @@
   </div>
   <% if policy(Category).new? %>
   <div>
-    <p class="btn btn-custom btn-block mt-5 mb-5 edit-fonts position-relative rounded-pill"><%= link_to 'Categorie nouă', new_category_path, class: 'category' %></p>
+    <p class="btn btn-custom btn-block mt-5 mb-5 edit-fonts rounded-pill new-button_bottom"><%= link_to 'Categorie nouă', new_category_path %></p>
   </div>
   <% end %>
 </div>

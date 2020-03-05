@@ -17,7 +17,11 @@
       <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom-1 btn-block' } %>
       <%= f.input :has_recipe, label: 'Are rețetă?' %>
       <%= f.input :has_models, label: 'Are modele de expus?' %>
-      <%= f.button :submit, value: 'Categorie nouă', class: 'btn btn-custom btn-block' %>
+        <% if %>
+          <%= f.button :submit, value: 'Modifică categoria', class: 'btn btn-custom btn-block' %>
+        <% else %>
+          <%= f.button :submit, value: 'Categorie nouă', class: 'btn btn-custom btn-block' %>
+        <% end %>
       <% end %>
     </div>
   </div>
