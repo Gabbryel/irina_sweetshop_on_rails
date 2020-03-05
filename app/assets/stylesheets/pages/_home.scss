@@ -12,20 +12,29 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-    background: {
-      image: asset_url('bday_cake.jpg');
-      position: center;
-      size: cover;
-      repeat: no-repeat;
-    }
 }
 
 .btn-homepage {
-  top: 70%;
-  width: 70%;
-  left: 15%;
-  background-color: white;
+  top: 80%;
+  width: 90%;
+  left: 5%;
+  background-color: $official-color;
   font-family: 'Life Savers';
   font-weight: 700;
   font-size: 24px;
+  color: white;
+}
+
+.punch-lines {
+  position: absolute;
+  top: 20vh;
+  color: $official-color;
+}
+
+.fa-cookie-bite,
+.fa-birthday-cake,
+.fa-seedling,
+.fa-image,
+.fa-home {
+  font-size: 44px;
 }
