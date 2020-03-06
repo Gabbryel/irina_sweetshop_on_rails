@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box;
 }
-html {
-  font-size: calc(1vw + 1em);
+body {
+  font-size: calc(1vw + 2vh);
 }
 
 .home-page {
@@ -12,19 +12,22 @@ html {
 }
 
 .btn-homepage {
-  top: 80%;
+  position: absolute;
+  bottom: 5%;
   width: 90%;
+  max-height: 7vh;
   left: 5%;
   background-color: $official-color;
   font-family: 'Life Savers';
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: white;
+  border-radius: 30px;
 }
 
 .punch-lines {
   position: absolute;
-  top: 15vh;
+  top: 17vh;
   color: $official-color;
 }
 
@@ -33,5 +36,5 @@ html {
 .fa-seedling,
 .fa-image,
 .fa-home {
-  font-size: 2rem;
+  font-size: 2.1rem;
 }
