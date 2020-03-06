@@ -5,7 +5,7 @@
       <%= simple_form_for [@category, @cakemodel] do |f| %>
         <%= f.input :content, label: 'Conținut' %>
         <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom-1 btn-block' } %>
-        <%= f.button :submit, value: 'Model nou', class: 'btn btn-block btn-custom rounded-pill' %>
+        <%= f.button :submit, value: 'Model nou', class: 'btn btn-block btn-custom' %>
       <% end %>
     </div>
   </div>

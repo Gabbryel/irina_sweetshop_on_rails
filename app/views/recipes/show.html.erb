@@ -1,29 +1,35 @@
-<div class="container edit-fonts pt-5">
-  <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-custom' %>
-  <div class="show-recipe_photo">
-    <%= cl_image_tag @recipe.photo.key %>
+<% content_for(:title) {"Recenzii pentru #{@recipe.name.downcase}"} %>
+<div class="container edit-fonts">
+  <div class="row pt-5">
+    <div class="col-sm-12 mt-5 pt-5">
+      <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-custom-1 rounded-pill' %>
+      <div class="show-recipe_photo">
+        <%= cl_image_tag @recipe.photo.key %>
+      </div>
+      <%= simple_form_for [@recipe, @review] do |f| %> 
+      <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts color-fonts' } %> 
+      <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts color-fonts' } %> 
+      <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-custom-1 btn-block rounded-lg' %> 
+      <% end %>
+    </div>
   </div>
-  <%= simple_form_for [@recipe, @review] do |f| %>
-    <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts' } %>
-    <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts' } %>
-    <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn btn-custom btn-block rounded' %>
-  <% end %>
 </div>
-<br>
-<div class="container pb-5 edit-fonts">
+<br />
+<div class="container pb-5 mb-5 edit-fonts">
   <div class="row">
     <div class="col">
       <div class="rating-card_holder">
-        <h5 class='text-center edit-fonts'>Rating & reviews</h5>
+        <h5 class="text-center edit-fonts color-fonts">Rating & reviews</h5>
         <% @recipe.reviews.each do |rev| %>
-        <div class='pt-3 mb-4 border-bottom'>
-          <p>Recenzie (id: <%= rev.id %>) - Rating: <%= '⭐️' * rev.rating %><%= "(#{rev.rating})" %></p>
-          <p class="review-font"><%= rev.content %></p>
-          <p>Autor: <%= rev.user.email.split('@').first.capitalize %></p>
+        <div class="pt-3 mb-4 border-bottom">
+          <p class="color-fonts">Recenzie (id: <%= rev.id %>) - Rating: <%= '⭐️' * rev.rating %><%="(#{rev.rating})" %>
+          </p>
+          <p class="review-font color-fonts w-100"><%= rev.content %></p>
+          <p class="color-fonts">Autor: <%= rev.user.email.split('@').first.capitalize %></p>
         </div>
         <% end %>
       </div>
     </div>
   </div>
-  <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-custom' %>
+  <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm btn-custom-1 rounded-pill' %>
 </div>

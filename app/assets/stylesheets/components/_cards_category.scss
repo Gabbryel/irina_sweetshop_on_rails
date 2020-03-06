@@ -11,19 +11,17 @@
   border-radius: 20px;
   margin: 20px 0;
   padding: 0;
-  // max-height: 700px;
-  // max-width: 320px;
   a {
     font-size: .8rem;
-    color: lightgrey;
+    color: $official-color;
     text-decoration: none;
-    border: 1px solid lightgrey;
+    border: 1px solid $official-color;
     border-radius: 40px;
     margin: 5px;
     padding: 2px 7px;
       &:hover {
-        color: darkgrey;
-        border-color: darkgrey;
+        color: $official-color;
+        border-color: $official-color;
       }
     }
 }
@@ -45,6 +43,7 @@
 
 .card-title {
   font-size: 1.4rem;
+  color: $official-color;
 }
 
 
@@ -71,4 +70,9 @@
 
 .new-button_bottom {
   position: relative;
+  background-color: $official-color;
+  max-height: 7vh;
+    a {
+      color: white;
+    }
 }

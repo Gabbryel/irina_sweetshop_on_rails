@@ -1,23 +1,22 @@
+<% content_for(:title) {"Modele de #{Category.find(params[:category_id]).name.downcase }"} %>
 <div class="container recipe-cards_container pt-5 mb-5 pb-5">
   <h3 class='text-center recipe-cards_title pt-2'><%= Category.find(params[:category_id]).name %> <span
       class="small-letters">(<%= @cakemodels.count %>)</span></h3>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mb-5">
     <% @cakemodels.each do |cm| %>
-    <div class="col-sm-12 recipe-card_container">
-      <%= cl_image_tag cm.photo.key, class: 'card-image', class: 'recipe-card_image' %> <br>
-      <div class='recipe-card_rating-total'>
-        <p class='text-center'><%= "#{cm.overall_rating.to_f.round(2)}"%> <%= '⭐️' * cm.overall_rating.to_i %> <%= cm.no_of_ratings %> </p>
-      </div>
-      <div class="recipe-card_describe-card">
-        <p class='text-center card-content pt-1'><%= cm.content %></p>
-      </div>
-      <%= link_to 'Rating & recenzii', cakemodel_path(cm.id), class: 'text-center recipe-rating_button'%>
+    <div class="col-sm-12 edit-fonts mt-5 cakemodel-container p-0">
+      <%= cl_image_tag cm.photo.key, class: 'cakemodel-image'%> <br>
+        <p class='text-center pt-1 border-bottom font-content edit-fonts color-fonts'><%= cm.content %></p>
+        <p class='text-center font-rating color-fonts'><%= "#{cm.overall_rating.to_f.round(2)}"%> <%= '⭐️' * cm.overall_rating.to_i %> <%= cm.no_of_ratings %> </p>
+      <%= link_to 'Rating & recenzii', cakemodel_path(cm.id), class: 'text-center btn btn-custom-1 btn-block mb-2'%>
 
       <div class="recipe-card_admin-links">
-        <% if policy(cm).edit? %>
-        <%= link_to 'Edit', edit_category_cakemodel_path(cm.category_id, cm.id) %>
-        <%= link_to 'Delete', category_cakemodel_path(cm.category_id, cm.id), method: :delete %>
-        <% end %>
+        <p class="text-center">
+          <% if policy(cm).edit? %>
+          <%= link_to 'Edit', edit_category_cakemodel_path(cm.category_id, cm.id), class: 'btn btn-custom-1 btn-sm rounded-pill' %>
+          <%= link_to 'Delete', category_cakemodel_path(cm.category_id, cm.id), method: :delete, class: 'btn btn-custom-1 btn-sm rounded-pill' %>
+          <% end %>
+        </p>
       </div>
     </div>
     <% end %>
@@ -25,8 +24,8 @@
   </div>
   <% if policy(Cakemodel).new? %>
   <div>
-    <p class="btn btn-custom rounded-pill btn-block">
-      <%= link_to 'Adauga model', new_category_cakemodel_path(params[:category_id]) %></p>
+    <p class="btn new-button_bottom edit-fonts rounded-pill btn-block mb-5">
+      <%= link_to 'Adaugă model', new_category_cakemodel_path(params[:category_id]) %></p>
     <% end %>
   </div>
 </div>

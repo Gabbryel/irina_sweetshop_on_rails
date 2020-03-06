@@ -7,17 +7,23 @@
 <div class="container new-recipe_container edit-fonts">
   <div class="row">
     <div class="col">
-      <% if  !@recipe.id%>
-        <h4 class="text-center edit-fonts mt-5 mb-4">Adaugă o rețetă</h4>
-      <% else %>
+      <% if  @recipe.id%>
         <h4 class="text-center edit-fonts mt-5 mb-4">Modifică rețeta</h4>
+      <% else %>
+        <h4 class="text-center edit-fonts mt-5 mb-4">Adaugă o rețetă</h4>
       <% end %>
 
       <%= simple_form_for [@category, @recipe] do |f| %>
         <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată' %>
         <%= f.input :content, label: 'Descrierea rețetei' %>
         <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-custom-1 btn-block'} %>
-        <%= f.button :submit, value: 'Creează rețeta', class: 'btn btn-custom btn-block edit-fonts' %>
+        
+        <% if  @recipe.id%>
+          <%= f.button :submit, value: 'Modifică rețeta', class: 'btn btn-custom btn-block edit-fonts' %>
+        <% else %>
+          <%= f.button :submit, value: 'Creează rețeta', class: 'btn btn-custom btn-block edit-fonts' %>
+        <% end %>
+
       <% end %>
     </div>
   </div>
