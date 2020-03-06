@@ -23,3 +23,20 @@
   font-size: 40px;
 }
 
+@media (min-width: 768px) {
+  .nav-link_custom {
+    font-size: 1.3rem;
+    margin-right: .2rem;
+    padding: 5px;
+    border-radius: 10px;
+     &:hover {
+       color: white;
+       text-decoration: none;
+       background-color: $official-color;
+     }
+  }
+  .over-768px {
+    display: none;
+  }
+}
+

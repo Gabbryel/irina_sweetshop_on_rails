@@ -50,3 +50,15 @@ body {
       color: $official-color;
     }
 }
+
+@media (min-width: 768px) {
+  .btn-homepage {
+    width: 50%;
+    max-height: 7vh;
+    left: 25%;
+  }
+  .punch-lines {
+    width: 70%;
+    left: 15%;
+  }
+}

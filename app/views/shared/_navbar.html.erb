@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto edit-fonts">
       <li class="nav-item text-center">
-        <%= link_to "Categorii de produse", categories_path, class: "nav-link_custom edit-fonts text-center" %>
+        <%= link_to "Tot felul", categories_path, class: "nav-link_custom edit-fonts text-center" %>
       </li>
       
       <% Category.all.each do |cat| %>
@@ -23,7 +23,7 @@
       <% end %>
       
       <% Category.all.each do |cat| %>
-      <li class="nav-item text-center">
+      <li class="nav-item text-center over-768px">
         <% if cat.has_models %>  
         <%= link_to "Modele de #{cat.name.downcase}", category_cakemodels_path(cat.id), class: "nav-link_custom" %>
         <% end %>
