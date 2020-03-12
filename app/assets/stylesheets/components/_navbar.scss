@@ -2,7 +2,7 @@
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  background: $navbar-background;
+  background: $navbar-background !important;
   z-index: 100;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .nav-link_custom {
-  color: $official-color;
+  color: $official-color !important;
 }
 
 .navbar-custom {
@@ -23,20 +23,12 @@
   font-size: 40px;
 }
 
-@media (min-width: 768px) {
-  .nav-link_custom {
-    font-size: 1.3rem;
-    margin-right: .2rem;
-    padding: 5px;
-    border-radius: 10px;
-     &:hover {
-       color: white;
-       text-decoration: none;
-       background-color: $official-color;
-     }
-  }
-  .over-768px {
-    display: none;
+.navbar-brand {
+  img {
+    width: 40px;
   }
 }
 
+.dropdown-menu-custom {
+  left: -150px;
+}
