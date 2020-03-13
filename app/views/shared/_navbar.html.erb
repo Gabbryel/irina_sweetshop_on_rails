@@ -1,44 +1,54 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lewagon edit-fonts">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png" %>
     <% end %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-birthday-cake navbar-custom"></i>
   </button>
 
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto edit-fonts">
-      <li class="nav-item text-center">
-        <%= link_to "Tot felul", categories_path, class: "nav-link_custom edit-fonts text-center" %>
+      <li class="nav-item active">
+        <%= link_to "Produse", categories_path, class: "nav-link color-fonts text-center" %>
       </li>
-      
-      <% Category.all.each do |cat| %>
-      <li class="nav-item text-center">
-        <% if cat.has_recipe %>
-        <%= link_to cat.name, category_recipes_path(cat.id),class: "nav-link_custom" %>
+     
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rețete</a>
+        <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
+          <% Category.all.each do |cat| %>
+            <% if cat.has_recipe %>
+            <%= link_to cat.name, category_recipes_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
         <% end %>
+          <% end %>
+        </div>
       </li>
-      <% end %>
-      
-      <% Category.all.each do |cat| %>
-      <li class="nav-item text-center over-768px">
-        <% if cat.has_models %>  
-        <%= link_to "Modele de #{cat.name.downcase}", category_cakemodels_path(cat.id), class: "nav-link_custom" %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii de prezentare</a>
+        <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
+          <% Category.all.each do |cat| %>
+            <% if cat.has_models %>
+            <%= link_to cat.name, category_cakemodels_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
         <% end %>
+          <% end %>
+        </div>
       </li>
-      <% end %>
-      
-      <% if user_signed_in? %>
-        <li class="nav-item text-right">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link_custom edit-fonts" %>
-        </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle color-fonts" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+        <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">
+          <% if user_signed_in? %>
+        <div class="dropdown-item">
+          <%= link_to "Log out, #{current_user.email.split('@').first}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center edit-fonts color-fonts" %>
+        </div>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link_custom edit-fonts" %>
-        </li>
+        <div class="dropdown-item">
+          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
+        </div>
       <% end %>
+        </div>
+      </li>
+      
     </ul>
   </div>
-</div>
+
+</nav>

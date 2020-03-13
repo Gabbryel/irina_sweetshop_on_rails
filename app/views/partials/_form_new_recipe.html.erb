@@ -1,7 +1,7 @@
 <% if @recipe.id %>
   <% content_for(:title) {'Modifică rețeta - Cofetăria Irina - Bacău'} %>
 <% else %>
-  <% content_for(:title) {'Rețetă nouă - Cofetăria Irina - Bacău'} %>
+  <% content_for(:title) {"Rețetă nouă de #{@category.name.downcase}- Cofetăria Irina - Bacău" } %>
 <% end %>
 
 <div class="container new-recipe_container edit-fonts">

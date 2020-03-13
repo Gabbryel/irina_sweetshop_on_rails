@@ -1,10 +1,10 @@
-<% content_for(:title) {"Modele de #{Category.find(params[:category_id]).name.downcase }"} %>
+<% content_for(:title) { "Modele de #{Category.find(params[:category_id]).name.downcase } - Cofetăria Irina Bacău" } %>
 <div class="container recipe-cards_container pt-5 mb-5 pb-5">
   <h3 class='text-center recipe-cards_title pt-2'><%= Category.find(params[:category_id]).name %> <span
       class="small-letters">(<%= @cakemodels.count %>)</span></h3>
-  <div class="row justify-content-center mb-5">
+  <div class="row justify-content-around mb-5">
     <% @cakemodels.each do |cm| %>
-    <div class="col-sm-12 edit-fonts mt-5 cakemodel-container p-0">
+    <div class="col-sm-10 col-md-4 col-lg-3 edit-fonts my-5 mx-1 cakemodel-container p-0">
       <%= cl_image_tag cm.photo.key, class: 'cakemodel-image'%> <br>
         <p class='text-center pt-1 border-bottom font-content edit-fonts color-fonts'><%= cm.content %></p>
         <p class='text-center font-rating color-fonts'><%= "#{cm.overall_rating.to_f.round(2)}"%> <%= '⭐️' * cm.overall_rating.to_i %> <%= cm.no_of_ratings %> </p>
