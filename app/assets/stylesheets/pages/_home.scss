@@ -57,9 +57,12 @@ body {
   background-color: $navbar-background;
 }
 
-// Media-queries ***********
+.irina-pers, .irina-logo {
+  display: none;
+}
 
-@media (min-width: 768px) {
+// Media-queries ***********
+@media (min-width: 577px) {
   .btn-homepage {
     width: 50%;
     max-height: 7vh;
@@ -68,8 +71,67 @@ body {
   .punch-lines {
     width: 70%;
     left: 15%;
+    font-size: 1.2rem;
+  }
+  .fa-cookie-bite,
+  .fa-birthday-cake,
+  .fa-seedling,
+  .fa-image,
+  .fa-home {  
+  font-size: 3.5rem;
   }
 }
+
+@media (min-width: 600px) {
+  .punch-lines {
+    width: 70%;
+    left: 22%;
+    font-size: 1.3rem;
+  }
+  .fa-cookie-bite,
+  .fa-birthday-cake,
+  .fa-seedling,
+  .fa-image,
+  .fa-home {  
+  font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 840px) {
+  .btn-homepage {
+    width: 40%;
+    max-height: 7vh;
+    left: 30%;
+  }
+  .punch-lines {
+    width: 57%;
+    left: 29%;
+    font-size: 1.5rem;
+  }
+  .fa-cookie-bite,
+  .fa-birthday-cake,
+  .fa-seedling,
+  .fa-image,
+  .fa-home {  
+  font-size: 3.5rem;
+  }
+
+}
+
+@media(min-width: 1025px) {
+  .irina-pers {
+    display: inline-block;
+    position: absolute;
+    top: 12vh;
+    right: 5%;
+    height: 78vh;
+    max-width: 20vh;
+      img {
+        height: 100%;
+      }
+  }
+}
+
 
 @media(max-width: 576px) {
   .punch-lines {

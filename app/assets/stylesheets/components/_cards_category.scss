@@ -1,5 +1,5 @@
 .cards-container {
-  top: 10vh;
+  top: 5vh;
   position: relative;
   height: 100%;
   width: 100%;
@@ -30,8 +30,8 @@
   position: relative;
   width: 100%;
   object-fit: cover;
-  object-position: top;
-  height: 380px;
+  object-position: center;
+  height: 400px;
 }
 .card-category_name {
   display: flex;

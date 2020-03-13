@@ -24,25 +24,25 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii</a>
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii de prezentare</a>
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
             <% if cat.has_models %>
-            <%= link_to cat.name, category_recipes_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
+            <%= link_to cat.name, category_cakemodels_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
         <% end %>
           <% end %>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle color-fonts" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
-        <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% if user_signed_in? %>
         <div class="dropdown-item">
-          <%= link_to "Log out, #{current_user.email.split('@').first}", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          <%= link_to "Log out, #{current_user.email.split('@').first}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center edit-fonts color-fonts" %>
         </div>
       <% else %>
         <div class="dropdown-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link_custom edit-fonts" %>
+          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
         </div>
       <% end %>
         </div>

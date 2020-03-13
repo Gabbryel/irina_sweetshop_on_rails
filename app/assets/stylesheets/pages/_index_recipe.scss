@@ -22,7 +22,6 @@
   margin: 20px 0;
   padding: 0;
   height: 600px;
-  max-width: 320px;
     .recipe-heart {
       position: absolute;
       top: 10px;
@@ -63,7 +62,6 @@
       top: 430px;
       color: black;
       border-top: 1px solid  lightgrey;
-      border-bottom: 1px solid lightgrey;
         p {
           font-size: 18px;
           font-family: 'Life Savers';
@@ -72,9 +70,9 @@
 
     .recipe-rating_button {
       position: absolute;
+      font-size: 1.2rem;
       top: 535px;
       width: 100%;
-      color: $official-color;
     }
     .recipe-card_admin-links {
       position: absolute;

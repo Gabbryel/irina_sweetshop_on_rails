@@ -1,10 +1,10 @@
-<% content_for(:title) {"Rețete de #{Category.find(params[:category_id]).name.downcase }"} %>
+<% content_for(:title) {"Rețete de #{Category.find(params[:category_id]).name.downcase } - Cofetăria Irina Bacău"} %>
 <div class="container recipe-cards_container pt-5 mb-5 pb-5">
   <h3 class='text-center recipe-cards_title pt-2'><%= Category.find(params[:category_id]).name %> <span
       class="small-letters">(<%= @recipes.count %>)</span></h3>
-  <div class="row justify-content-center">
+  <div class="row justify-content-around">
     <% @recipes.each do |r| %>
-    <div class="col-sm-5 col-md-5 col-lg-3 recipe-card_container">
+    <div class="col-10 col-sm-10 col-md-5 col-lg-5 mx-1 my-5 recipe-card_container">
       <%= cl_image_tag r.photo.key, class: 'card-image recipe-card_image' %> <br>
       <h4 class='text-center p-1 recipe-card_name color-fonts'><%= r.name %></h4>
       <div class='recipe-card_rating-total'>
@@ -13,7 +13,7 @@
       <div class="recipe-card_describe-card">
         <p class='text-center card-content p-2 color-fonts'><%= r.content %></p>
       </div>
-      <%= link_to 'Rating & recenzii', recipe_path(r.id), class: 'text-center recipe-rating_button'%>
+      <%= link_to 'Rating & recenzii', recipe_path(r.id), class: 'text-center recipe-rating_button btn-custom-1'%>
 
       <div class='recipe-card_admin-links'>
         <% if policy(r).edit? %>
