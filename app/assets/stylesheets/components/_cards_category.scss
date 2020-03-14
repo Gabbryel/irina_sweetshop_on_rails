@@ -74,5 +74,9 @@
   max-height: 7vh;
     a {
       color: white;
+      &:hover {
+        color: black;
+        text-decoration: none;
+      }
     }
 }
