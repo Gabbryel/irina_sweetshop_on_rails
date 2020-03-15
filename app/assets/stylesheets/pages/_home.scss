@@ -7,23 +7,27 @@ body {
 
 .home-page {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 .btn-homepage {
-  position: absolute;
-  bottom: 5%;
+  position: relative;
+  top: 80vh;
   width: 90%;
   max-height: 7vh;
   left: 5%;
-  background-color: $official-color;
+  background-color: $navbar-background;
   font-family: 'Life Savers';
   font-weight: 700;
   font-size: 1.5rem;
-  color: white;
+  color: $official-color;
   border-radius: 30px;
 }
+
+
+
+
 
 .punch-lines {
   position: absolute;
@@ -57,10 +61,6 @@ body {
   background-color: $navbar-background;
 }
 
-.irina-pers, .irina-logo {
-  display: none;
-}
-
 // Media-queries ***********
 @media (min-width: 577px) {
   .btn-homepage {
@@ -78,7 +78,7 @@ body {
   .fa-seedling,
   .fa-image,
   .fa-home {  
-  font-size: 3.5rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -93,7 +93,7 @@ body {
   .fa-seedling,
   .fa-image,
   .fa-home {  
-  font-size: 3.5rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -113,9 +113,9 @@ body {
   .fa-seedling,
   .fa-image,
   .fa-home {  
-  font-size: 3.5rem;
+    font-size: 3.5rem;
   }
-
+  
 }
 
 @media(min-width: 1025px) {
@@ -126,11 +126,50 @@ body {
     right: 5%;
     height: 78vh;
     max-width: 20vh;
-      img {
-        height: 100%;
-      }
+    img {
+      height: 100%;
+    }
+  }
+  
+  .btn-homepage {
+    display: none;
+  }
+  
+  .home-page {
+    background: url('praj3.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .punch-lines {
+    display: none;
+  }
+  
+  .punch-line-1 {
+    top: 20vh;
+    left: 5vw;
+    font-size: 4vw;
+  }
+  
+  .punch-line-2 {
+    top: 80vh;
+    right: 5vw;
+    border: .5px solid $official-color;
+    font-size: 3vw;
+    &:hover {
+      color: #df7861;
+      border: .5px solid #df7861;
+    }
+  }
+  .punch-line-1, .punch-line-2 {
+    position: absolute;
+    color: $official-color;
+    font-family: 'Life Savers';
+    font-weight: 700;
   }
 }
+
 
 
 @media(max-width: 576px) {

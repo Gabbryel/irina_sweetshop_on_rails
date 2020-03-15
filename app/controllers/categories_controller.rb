@@ -12,6 +12,8 @@ class CategoriesController < ApplicationController
    authorize @category
    if @category.save
     redirect_to categories_path, notice: 'Category was successfully created.'
+   else
+    render :new
    end
   end
 
