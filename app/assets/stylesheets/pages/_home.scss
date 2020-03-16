@@ -13,7 +13,7 @@ body {
 
 .btn-homepage {
   position: relative;
-  top: 80vh;
+  top: 70vh;
   width: 90%;
   max-height: 7vh;
   left: 5%;
@@ -29,9 +29,9 @@ body {
     }
 }
 
-
-
-
+.punch-line-1, .punch-line-2 {
+  display: none;
+}
 
 .punch-lines {
   position: absolute;
