@@ -16,6 +16,9 @@
     <%= render 'shared/flashes' %>
     <div class="main-container">
       <%= yield %>
+      <% unless current_page?(root_path) %>
+        <%= render 'shared/social' %>
+      <% end %>
     </div>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>

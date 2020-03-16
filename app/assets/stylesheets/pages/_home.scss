@@ -66,6 +66,14 @@ body {
   background-color: $navbar-background;
 }
 
+.social {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 40vh;
+  right: .5vw;
+}
+
 // Media-queries ***********
 @media (min-width: 577px) {
   .btn-homepage {
@@ -176,9 +184,9 @@ body {
   .social {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 40vh;
-    right: 2vw;
+    right: .5vw;
   }
 }
 
