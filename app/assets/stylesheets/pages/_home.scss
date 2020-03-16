@@ -17,12 +17,16 @@ body {
   width: 90%;
   max-height: 7vh;
   left: 5%;
-  background-color: $navbar-background;
   font-family: 'Life Savers';
   font-weight: 700;
   font-size: 1.5rem;
   color: $official-color;
   border-radius: 30px;
+  box-shadow: 0px 0px 1px $official-color;
+    &:hover {
+      color: $hover;
+      box-shadow: 0px 0px 1px $hover;
+    }
 }
 
 

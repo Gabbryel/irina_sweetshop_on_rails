@@ -7,7 +7,7 @@
       <div class="card-category_name">
         <p class='card-title edit-fonts'><%=  c.name %></p>
       </div>
-      <p class='text-center justify-content-around my-2 edit-fonts'>
+      <p class='text-center justify-content-around my-2 edit-fonts category-index-hover'>
         <% if c.has_recipe %>
         <%= link_to 'Rețete', category_recipes_path(c.id) %>
         <% end %>
@@ -25,7 +25,7 @@
   </div>
   <% if policy(Category).new? %>
   <div>
-    <p class="btn btn-block btn-custom-1 my-5 edit-fonts rounded-pill new-button_bottom"><%= link_to 'Categorie nouă', new_category_path %></p>
+    <p class="btn my-5 edit-fonts rounded-pill new-button_bottom"><%= link_to 'Categorie nouă', new_category_path %></p>
   </div>
   <% end %>
 </div>
