@@ -7,7 +7,7 @@ body {
 
 .home-page {
   position: absolute;
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
 }
 
@@ -74,6 +74,14 @@ body {
   right: .5vw;
 }
 
+.social-home {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 40vh;
+  right: .5vw;
+}
+
 // Media-queries ***********
 @media (min-width: 577px) {
   .btn-homepage {
@@ -132,23 +140,13 @@ body {
 }
 
 @media(min-width: 1025px) {
-  .irina-pers {
-    display: inline-block;
-    position: absolute;
-    top: 12vh;
-    right: 5%;
-    height: 78vh;
-    max-width: 20vh;
-    img {
-      height: 100%;
-    }
-  }
-  
+
   .btn-homepage {
     display: none;
   }
   
   .home-page {
+    height: 100vh;
     background: asset-url('praj3.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -181,22 +179,18 @@ body {
     font-family: 'Life Savers';
     font-weight: 700;
   }
-  .social-home {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 40vh;
-    right: .5vw;
-  }
 }
-
 
 
 @media(max-width: 576px) {
   .punch-lines {
     font-size: 1.3rem;
   }
+    .social-home {
+      display: none;
+    }
 }
+
 
 @media(max-width: 360px) {
   .punch-lines {

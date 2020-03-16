@@ -68,12 +68,18 @@
         }
     }
 
-    .recipe-rating_button {
-      position: absolute;
-      font-size: 1.2rem;
-      top: 535px;
-      width: 100%;
+    .review-setup {
+      bottom: 30px;
+      color: $official-color;
+      font-size: 1.4rem;
+      width: 25%;
+      left: 37.5%;
+        &:hover {
+          text-decoration: none;
+          border: .5px solid $official-color;
+        }
     }
+
     .recipe-card_admin-links {
       position: absolute;
       bottom: 0px;

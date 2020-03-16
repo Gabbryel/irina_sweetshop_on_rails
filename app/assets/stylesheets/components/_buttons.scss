@@ -1,0 +1,25 @@
+.button-default {
+  color: $official-color;
+  a {
+    color: $official-color;
+    &:hover {
+      border: 1px solid $official-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.new-button_bottom {
+  position: relative;
+  left: 25%;
+  width: 50%;
+  max-height: 7vh;
+  border: .5px solid $official-color;
+    a {
+      color: $official-color;
+      &:hover {
+        color: $hover;
+        text-decoration: none;
+      }
+    }
+}
