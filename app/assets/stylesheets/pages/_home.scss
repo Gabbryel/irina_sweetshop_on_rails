@@ -167,6 +167,7 @@ body {
     }
   }
   .punch-line-1, .punch-line-2 {
+    display: inline;
     position: absolute;
     color: $official-color;
     font-family: 'Life Savers';
