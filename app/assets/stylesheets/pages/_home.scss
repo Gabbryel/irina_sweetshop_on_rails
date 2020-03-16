@@ -36,6 +36,7 @@ body {
 .punch-lines {
   position: absolute;
   top: 17vh;
+  left: 10vw;
   color: $official-color;
   font-size: 1rem;
 }
@@ -159,11 +160,10 @@ body {
   .punch-line-2 {
     top: 80vh;
     right: 5vw;
-    border: .5px solid $official-color;
     font-size: 3vw;
     &:hover {
-      color: #df7861;
-      border: .5px solid #df7861;
+      color: $official-color;
+      border: .5px solid $official-color;
     }
   }
   .punch-line-1, .punch-line-2 {
@@ -172,6 +172,13 @@ body {
     color: $official-color;
     font-family: 'Life Savers';
     font-weight: 700;
+  }
+  .social {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 40vh;
+    right: 2vw;
   }
 }
 
