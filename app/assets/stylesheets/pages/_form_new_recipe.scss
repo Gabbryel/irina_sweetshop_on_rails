@@ -2,3 +2,16 @@
   position: relative;
   top: 10vh;
 }
+
+.form-control {
+  border-color: $official-color;
+  border-radius: 5px;
+}
+
+.required {
+  font-size: 1rem;
+}
+
+#recipe_photo {
+  color: $official-color;
+}

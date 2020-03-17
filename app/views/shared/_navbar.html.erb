@@ -7,7 +7,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav fonts-family rem1-3">
 
       <li class="nav-item active">
         <%= link_to "Produse", categories_path, class: "nav-link color-fonts text-center" %>
@@ -18,7 +18,7 @@
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
             <% if cat.has_recipe %>
-            <%= link_to cat.name, category_recipes_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
+            <%= link_to cat.name, category_recipes_path(cat.id),class: "dropdown-item text-center fonts-family color-fonts" %>
         <% end %>
           <% end %>
         </div>

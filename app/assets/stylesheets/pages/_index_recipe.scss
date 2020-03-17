@@ -47,7 +47,6 @@
       position: absolute;
       top: 400px;
       width: 100%;
-      color: black;
       font-size: 14px;
         .font-stars {
           font-size: 5px;
@@ -61,22 +60,10 @@
       width: 100%;
       top: 430px;
       color: black;
-      border-top: 1px solid  lightgrey;
+      border-top: 1px solid  $official-color;
         p {
           font-size: 18px;
           font-family: 'Life Savers';
-        }
-    }
-
-    .review-setup {
-      bottom: 30px;
-      color: $official-color;
-      font-size: 1.4rem;
-      width: 25%;
-      left: 37.5%;
-        &:hover {
-          text-decoration: none;
-          border: .5px solid $official-color;
         }
     }
 

@@ -1,0 +1,29 @@
+.fonts-family {
+  font-family: 'Life Savers';
+}
+
+.fonts-700 {
+  font-weight: 700;
+}
+
+.rem1-3 {
+  font-size: 1.3rem;
+}
+.rem1-5 {
+  font-size: 1.5rem;
+}
+
+.color-fonts{
+  color: $official-color !important;
+  a {
+    color: $official-color;
+  }
+}
+
+.brown-background {
+  background-color: $navbar-background;
+}
+
+.top-margin {
+  top: 10vh;
+}

@@ -71,8 +71,8 @@
 .category-index-hover {
   a {
     &:hover {
-      color: $hover;
-      border: 1px solid $hover;
+      color: $hover-color;
+      border: 1px solid $hover-color;
     }
   }
 }

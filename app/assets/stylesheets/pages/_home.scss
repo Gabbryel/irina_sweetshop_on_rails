@@ -12,21 +12,10 @@ body {
 }
 
 .btn-homepage {
-  position: relative;
   top: 70vh;
   width: 90%;
   max-height: 7vh;
   left: 5%;
-  font-family: 'Life Savers';
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: $official-color;
-  border-radius: 30px;
-  box-shadow: 0px 0px 1px $official-color;
-    &:hover {
-      color: $hover;
-      box-shadow: 0px 0px 1px $hover;
-    }
 }
 
 .punch-line-1, .punch-line-2 {
@@ -49,29 +38,12 @@ body {
   font-size: 2.1rem;
 }
 
-.edit-fonts {
-  font-family: 'Life Savers';
-  font-weight: 700;
-  font-size: 1.2rem;
-}
-
-.color-fonts{
-  color: $official-color !important;
-  a {
-    color: $official-color;
-  }
-}
-
-.brown-background {
-  background-color: $navbar-background;
-}
-
 .social {
   display: flex;
   flex-direction: column;
   position: fixed;
   top: 40vh;
-  right: .5vw;
+  right: .25vw;
 }
 
 .social-home {

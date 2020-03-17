@@ -4,24 +4,24 @@
   <% content_for(:title) {"Rețetă nouă de #{@category.name.downcase}- Cofetăria Irina - Bacău" } %>
 <% end %>
 
-<div class="container new-recipe_container edit-fonts">
-  <div class="row">
-    <div class="col">
+<div class="container new-recipe_container fonts-family">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-8 col-lg-6 mt-5">
       <% if  @recipe.id%>
-        <h4 class="text-center edit-fonts mt-5 mb-4">Modifică rețeta</h4>
+        <p class="text-center edit-fonts color-fonts mt-5 mb-4 fonts-700 rem1-5">Modifică rețeta</p>
       <% else %>
-        <h4 class="text-center edit-fonts mt-5 mb-4">Adaugă o rețetă</h4>
+        <p class="text-center edit-fonts color-fonts mt-5 mb-4 fonts-700">Adaugă o rețetă</p>
       <% end %>
 
       <%= simple_form_for [@category, @recipe] do |f| %>
-        <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată' %>
-        <%= f.input :content, label: 'Descrierea rețetei' %>
-        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-custom-1 btn-block'} %>
+        <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată', label_html: { class: 'color-fonts fonts-700 rem1-3' } %>
+        <%= f.input :content, label: 'Descrierea rețetei', label_html: { class: 'color-fonts fonts-700 mt-2 rem1-3' } %>
+        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-block button-default button-rounded'}, class: 'rem1-3' %>
         
         <% if  @recipe.id%>
-          <%= f.button :submit, value: 'Modifică rețeta', class: 'btn btn-custom btn-block edit-fonts' %>
+          <%= f.button :submit, value: 'Modifică rețeta', class: 'btn button-default btn-block edit-fonts mt-5' %>
         <% else %>
-          <%= f.button :submit, value: 'Creează rețeta', class: 'btn btn-custom btn-block edit-fonts' %>
+          <%= f.button :submit, value: 'Creează rețeta', class: 'btn button-default btn-block edit-fonts mt-5 button-rounded' %>
         <% end %>
 
       <% end %>
