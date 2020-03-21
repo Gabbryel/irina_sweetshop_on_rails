@@ -6,7 +6,6 @@
       text-decoration: none;
       border-color: $hover-color;
       color: $hover-color;
-      font-weight: 700;
     }
     a {
       color: $official-color;
@@ -34,4 +33,8 @@
 
 .button-rounded {
   border-radius: 10px;
+}
+
+.buttons-bottom {
+  bottom: 10vh;
 }

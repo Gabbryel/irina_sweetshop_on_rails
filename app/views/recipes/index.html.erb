@@ -8,7 +8,7 @@
       <%= cl_image_tag r.photo.key, class: 'card-image recipe-card_image' %> <br>
       <h4 class='text-center p-1 recipe-card_name color-fonts'><%= r.name %></h4>
       <div class='recipe-card_rating-total'>
-        <p class='text-center color-fonts'><%= "#{r.overall_rating.to_f.round(2)}"%> <%= '⭐️' * r.overall_rating.to_i %> <%= r.no_of_ratings %> </p>
+        <p class='text-center fonts-family color-fonts'><%= "#{r.overall_rating.to_f.round(2)}"%> <%= '⭐️' * r.overall_rating.to_i %> <%= r.no_of_ratings %> </p>
       </div>
       <div class="recipe-card_describe-card">
         <p class='text-center card-content p-2 color-fonts'><%= r.content %></p>

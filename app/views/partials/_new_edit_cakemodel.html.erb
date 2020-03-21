@@ -3,17 +3,17 @@
 <% else %>
   <%= content_for(:title) {"Model nou - Cofetăria Irina Bacău"} %>
 <% end %>
-<div class="container edit-fonts">
-  <div class="row">
-    <div class="col mt-5">
-      <h5 class="text-center edit-fonts mb-5">Creează un nou model</h5>
+<div class="container fonts-family color-fonts pt-5">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-8 col-lg-6 mt-5 pt-5">
+      <p class="text-center fonts-family fonts-700 mb-5 rem1-5">Creează un nou model</p>
       <%= simple_form_for [@category, @cakemodel] do |f| %>
-        <%= f.input :content, label: 'Conținut' %>
-        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom-1 btn-block' } %>
+        <%= f.input :content, label: 'Conținut', label_html: { class: 'fonts-700 rem1-2' } %>
+        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
         <% if @cakemodel.id %>
-          <%= f.button :submit, value: 'Modifică model', class: 'btn btn-block btn-custom' %>
+          <%= f.button :submit, value: 'Modifică model', class: 'btn button-default btn-block button-rounded mt-5' %>
         <% else %>
-          <%= f.button :submit, value: 'Model nou', class: 'btn btn-block btn-custom' %>
+          <%= f.button :submit, value: 'Model nou', class: 'btn button-default btn-block button-rounded mt-5' %>
         <% end %>
       <% end %>
     </div>

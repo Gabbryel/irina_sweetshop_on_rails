@@ -22,18 +22,12 @@
   margin: 20px 0;
   padding: 0;
   height: 600px;
-    .recipe-heart {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-      font-size: 30px;
-    }
     .recipe-card_image {
       position: absolute;
       top: 0;
       width: 100%;
       object-fit: cover;
+      object-position: center;
       max-height: 350px;
     }
     .recipe-card_name {

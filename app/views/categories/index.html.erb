@@ -1,5 +1,5 @@
 <% content_for(:title) {'Categorii de produse - Cofetăria Irina - Bacău'} %>
-<div class="container-fluid cards-container pt-5 pb-5 mb-5">
+<div class="container-fluid cards-container pt-5 pb-5 mb-5 fonts-family">
   <div class="row justify-content-around my-5">
     <% @categories.each do |c| %>
     <div class="col-10 mx-xs-3 col-sm-10 mx-sm-1 col-md-5 mx-md-1 col-lg-5 mx-lg-1 col-xl-3 mx-xl-2 card-container">
@@ -23,9 +23,11 @@
     </div>
     <% end %>
   </div>
-  <% if policy(Category).new? %>
-  <div>
-    <p class="btn my-5 edit-fonts rounded-pill new-button_bottom"><%= link_to 'Categorie nouă', new_category_path %></p>
+  <div class="row justify-content-center mb-5">
+    <div class="col-10 col-md-8 col-lg-6">
+      <% if policy(Category).new? %>
+        <%= link_to 'Categorie nouă', new_category_path, class: 'btn button-default button-rounded btn-block fonts-family rem1-5' %>
+      <% end %>
+    </div>
   </div>
-  <% end %>
 </div>

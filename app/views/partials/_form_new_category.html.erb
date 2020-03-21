@@ -4,23 +4,23 @@
 <% content_for(:title) {'Creează o nouă categorie - Cofetăria Irina - Bacău'} %>
 <% end %>
 
-<div class="container edit-fonts">
-  <div class="row my-5">
-    <div class="col-12 new-category-colon">
+<div class="container fonts-family">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-8 col-lg-6 mt-5 pt-5 new-category">
       <% if @category.id %>
-        <h2 class="text-center mt-5 mb-4 edit-fonts color-fonts">Modifică categoria</h2>
+        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Modifică categoria</p>
       <% else %>
-        <h2 class="text-center mt-5 mb-4 edit-fonts color-fonts">Creează o nouă categorie</h2>
+        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Creează o nouă categorie</p>
       <% end %>
       <%= simple_form_for @category do |f| %>
-    <%= f.input :name, label: 'Nume categorie', placeholder: 'Ex.: Torturi, Prăjituri', label_html: { class: 'color-fonts' } %>
-      <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn btn-custom-1 btn-block' } %>
-      <%= f.input :has_recipe, label: 'Are rețetă?', label_html: { class: 'color-fonts' } %>
-      <%= f.input :has_models, label: 'Are modele de expus?', label_html: { class: 'color-fonts' } %>
+    <%= f.input :name, label: 'Numele categoriei', placeholder: 'Ex.: Torturi, Prăjituri', label_html: { class: 'color-fonts fonts-700 rem1-3 my-2' } %>
+      <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded my-2' } %>
+      <%= f.input :has_recipe, label: 'Are rețetă?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
+      <%= f.input :has_models, label: 'Are modele de expus?', label_html: { class: 'color-fonts rem1' } %>
         <% if @category.id %>
-          <%= f.button :submit, value: 'Modifică categoria', class: 'btn btn-custom btn-block' %>
+          <%= f.button :submit, value: 'Modifică categoria', class: 'btn button-default btn-block button-rounded' %>
         <% else %>
-          <%= f.button :submit, value: 'Categorie nouă', class: 'btn btn-custom-1 btn-block' %>
+          <%= f.button :submit, value: 'Categorie nouă', class: 'btn button-default btn-block button-rounded' %>
         <% end %>
       <% end %>
     </div>

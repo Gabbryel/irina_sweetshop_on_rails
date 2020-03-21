@@ -4,13 +4,13 @@
   <% content_for(:title) {"Rețetă nouă de #{@category.name.downcase}- Cofetăria Irina - Bacău" } %>
 <% end %>
 
-<div class="container new-recipe_container fonts-family">
+<div class="container fonts-family">
   <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-6 mt-5">
+    <div class="col-10 col-md-8 col-lg-6 mt-5 pt-5">
       <% if  @recipe.id%>
-        <p class="text-center edit-fonts color-fonts mt-5 mb-4 fonts-700 rem1-5">Modifică rețeta</p>
+        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Modifică rețeta</p>
       <% else %>
-        <p class="text-center edit-fonts color-fonts mt-5 mb-4 fonts-700">Adaugă o rețetă</p>
+        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Adaugă o rețetă</p>
       <% end %>
 
       <%= simple_form_for [@category, @recipe] do |f| %>
@@ -19,9 +19,9 @@
         <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-block button-default button-rounded'}, class: 'rem1-3' %>
         
         <% if  @recipe.id%>
-          <%= f.button :submit, value: 'Modifică rețeta', class: 'btn button-default btn-block edit-fonts mt-5' %>
+          <%= f.button :submit, value: 'Modifică rețeta', class: 'btn button-default btn-block mt-5 button-rounded' %>
         <% else %>
-          <%= f.button :submit, value: 'Creează rețeta', class: 'btn button-default btn-block edit-fonts mt-5 button-rounded' %>
+          <%= f.button :submit, value: 'Creează rețeta', class: 'btn button-default btn-block mt-5 button-rounded' %>
         <% end %>
 
       <% end %>

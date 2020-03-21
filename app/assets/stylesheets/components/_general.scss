@@ -6,11 +6,19 @@
   font-weight: 700;
 }
 
+.rem1 {
+  font-size: 1rem !important;
+}
+
+.rem1-2 {
+  font-size: 1.2rem !important;
+}
+
 .rem1-3 {
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
 }
 .rem1-5 {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
 }
 
 .color-fonts{
@@ -26,4 +34,14 @@
 
 .top-margin {
   top: 10vh;
+}
+
+.hover-class {
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.border-bottom-custom {
+  border-bottom: 1px solid $official-color;
 }
