@@ -1,5 +1,7 @@
 <% content_for(:title) { "Modele de #{Category.find(params[:category_id]).name.downcase } - Cofetăria Irina Bacău" } %>
 <div class="container recipe-cards_container pt-5 mb-5 pb-5">
+  <%= link_to 'Înapoi', categories_path, class: 'btn button-default button-rounded fonts-family color-fonts mt-5' %>
+
   <h3 class='text-center recipe-cards_title pt-2'><%= Category.find(params[:category_id]).name %> <span
       class="small-letters">(<%= @cakemodels.count %>)</span></h3>
   <div class="row justify-content-around mb-5">
@@ -21,8 +23,9 @@
       </div>
     </div>
     <% end %>
-
   </div>
+  <%= link_to 'Înapoi', categories_path, class: 'btn button-default button-rounded fonts-family color-fonts' %>
+  <br>
   <% if policy(Cakemodel).new? %>
       <%= link_to 'Model nou', new_category_cakemodel_path(params[:category_id]), class: 'btn button-rounded button-default button-new-recipe_setup my-5' %>
     <% end %>
