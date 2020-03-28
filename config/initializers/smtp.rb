@@ -1,9 +1,9 @@
 ActionMailer::Base.smtp_settings = {
   address: "mail.irinasweet.ro",
   port: 465,
-  domain: 'gmail.com',
+  domain: 'irinasweet.ro',
   user_name: ENV['MAIL_ADDRESS'],
-  password: "SweetShop#1976",
+  password: ENV['MAIL_PASS'],
   authentication: :login,
   enable_starttls_auto: true
 }
