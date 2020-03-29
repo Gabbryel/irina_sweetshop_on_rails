@@ -1,9 +1,9 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://www.irinasweet.ro" }
+  config.action_mailer.default_url_options = { host: "www.irinasweet.ro" }
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "http://www.irinasweet.ro" }
+  config.action_mailer.delivery_method = :postmark
+  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
