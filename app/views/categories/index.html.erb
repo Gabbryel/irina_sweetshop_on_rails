@@ -1,8 +1,8 @@
 <% content_for(:title) {'Categorii de produse - Cofetăria Irina - Bacău'} %>
 <div class="container-fluid cards-container pt-5 pb-5 mb-5 fonts-family">
-  <div class="row justify-content-between my-5 mx-5">
+  <div class="row justify-content-around my-5 mx-5">
     <% @categories.each do |c| %>
-    <div class="col-10 mx-xs-3 my-5 col-sm-10 mx-sm-1 col-md-5 mx-md-1 mx-lg-1 col-xl-3 mx-xl-1 card-container">
+    <div class="col-12 my-5 col-sm-10 mx-sm-1 col-md-5 mx-md-1 mx-lg-1 col-xl-3 mx-xl-1 card-container">
       <%= cl_image_tag c.photo.key, class: 'card-image'%>
       <div class="card-category_name">
         <p class='card-title edit-fonts'><%=  c.name %></p>

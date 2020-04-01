@@ -9,6 +9,4 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match "Hi", mail.body.encoded
   end
 
-
-
 end

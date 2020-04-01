@@ -8,7 +8,11 @@
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav fonts-family rem1-3">
-
+      <li>
+        <a type="button" class="nav-link color-fonts text-center fonts-700" data-toggle="modal" data-target="#exampleModalLong">
+          Paște 2020
+        </a>
+      </li>
       <li class="nav-item active">
         <%= link_to "Produse", categories_path, class: "nav-link color-fonts text-center" %>
       </li>
@@ -42,7 +46,7 @@
         </div>
       <% else %>
         <div class="dropdown-item">
-          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
+          <!-- <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %> -->
         </div>
       <% end %>
         </div>
