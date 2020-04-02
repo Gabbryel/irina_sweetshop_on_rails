@@ -6,7 +6,7 @@
   <div class="row justify-content-around">
     <% @recipes.each do |r| %>
     <div class="col-9 col-md-5 col-lg-5 mx-3 my-5 recipe-card_container">
-      <%= cl_image_tag r.photo.key, class: 'card-image recipe-card_image' %> <br>
+      <%= cl_image_tag r.photo.key, alt: r.name,class: 'card-image recipe-card_image' %> <br>
       <h4 class='text-center p-1 recipe-card_name color-fonts'><%= r.name %></h4>
       <div class='recipe-card_rating-total'>
         <p class='text-center fonts-family color-fonts'><%= "#{r.overall_rating.to_f.round(2)}"%> <%= '⭐️' * r.overall_rating.to_i %> <%= r.no_of_ratings %> </p>
