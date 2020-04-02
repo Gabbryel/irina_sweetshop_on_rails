@@ -3,17 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Website al laboratorului de cofetarie Irina din Bacau.">
+    <meta name="description" content="<%= meta_description %>">
     <meta name="keywords" content="Bacau, Irina, cofetaria, cofetarie, cofetarii, prajitura, prajituri, tort, onomastica, botez, nunta, majorat, cozonac, cozonaci, julfa, pasca, colac, colaci, boema, africana, romania">
     <link href="https://fonts.googleapis.com/css?family=Life+Savers:400,700&display=swap" rel="stylesheet">
-    <title><%= content_for?(:title) ? yield(:title) : 'Cofetăria Irina - Bacău' %></title>
-
+    <title><%= content_for?(:title) ? yield(:title) : 'Cofetăria Irina - Bacău, str. Miorița, nr. 10' %></title>
+    <%= favicon_link_tag %>
     <!-- Facebook Open Graph data -->
-    <meta property="og:title" content="Cofetăria Irina - Bacău" />
+    <meta property="og:title" content="<%= meta_title %>" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%= request.original_url %>" />
-    <meta property="og:description" content="Website al laboratorului de cofetarie Irina din Bacau." />
-    <meta property="og:site_name" content="Cofetăria Irina" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
 
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
