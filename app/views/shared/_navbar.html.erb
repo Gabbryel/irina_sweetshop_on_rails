@@ -14,7 +14,7 @@
         </a>
       </li>
       <li class="nav-item active">
-        <%= link_to "Produse", root_path, class: "nav-link color-fonts text-center" %>
+        <%= link_to "Produse", categories_path, class: "nav-link color-fonts text-center" %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rețete</a>
@@ -45,7 +45,7 @@
         </div>
       <% else %>
         <div class="dropdown-item">
-          <!-- <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %> -->
+          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
         </div>
       <% end %>
         </div>
