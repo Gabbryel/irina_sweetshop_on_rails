@@ -20,7 +20,7 @@
   border-radius: 20px;
   margin: 20px 0;
   padding: 0;
-  height: 600px;
+  height: 620px;
     .recipe-card_image {
       position: absolute;
       top: 0;
@@ -49,7 +49,7 @@
     .recipe-card_describe-card {
       position: absolute;
       overflow: hidden;
-      height: 90px;
+      height: 120px;
       width: 100%;
       top: 430px;
       color: black;
@@ -69,4 +69,10 @@
           color: lightgray;
         }
     }
+}
+
+@media (min-width: 900px) {
+  .recipe-card_describe-card p {
+    font-size: 1.15rem !important;
+  }
 }
