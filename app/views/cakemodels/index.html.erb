@@ -10,7 +10,7 @@
       <%= cl_image_tag cm.photo.key, alt: cm.content, class: 'd-block border-bottom' %>
       <p class='text-center color-fonts cakemodel-content py-2 px-2 rem1-2'><%= cm.content %></p>
       <p class='text-center color-fonts cakemodel-rating rem1'><%= "#{cm.overall_rating.to_f.round(2)}"%> <%= '⭐️' * cm.overall_rating.to_i %> <%= cm.no_of_ratings %> </p>
-      <%= link_to 'Adaugă o recenzie', cakemodel_path(cm.id), class: 'btn btn-block text-center position-absolute button-review-setup button-default px-2 py-1'%>
+      <%= link_to 'Detalii', cakemodel_path(cm.id), class: 'btn btn-block text-center position-absolute button-review-setup button-default px-2 py-1'%>
       <div class="recipe-card_admin-links position-absolute rem1">
           <% if policy(cm).edit? %>
           <%= link_to edit_category_cakemodel_path(cm.category_id, cm.id) do %>
