@@ -15,10 +15,15 @@
         <%= link_to 'Modele', category_cakemodels_path(c.id) %>
         <% end %>
         <% if policy(c).edit? %>
-        <%= link_to 'Edit', edit_category_path(c.id) %>
+        <%= link_to edit_category_path(c.id) do %>
+        <i class="far fa-edit color-fonts"></i>
+        <% end %>
         <% end %>
         <% if policy(c).destroy? %>
-        <%= link_to 'Delete', category_path(c), method: :delete %></p>
+        <%= link_to category_path(c), method: :delete do %>
+          <i class="fas fa-trash-alt color-fonts"></i>
+        <% end %>
+      </p>
       <% end %>
     </div>
     <% end %>
