@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lewagon edit-fonts">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "logo.png", alt: 'Cofetăria Irina Bacău' %>
-    <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <%= image_tag "logo.png", alt: 'Cofetăria Irina Bacău' %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-birthday-cake navbar-custom"></i>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav fonts-family rem1-3">
       <li class="nav-item active">
-        <a href='#' class="nav-link color-fonts text-center fonts-700" data-toggle="modal" data-target="#exampleModalLong">
+        <a href='#' class="nav-link color-fonts text-center fonts-700" data-toggle="modal"
+          data-target="#exampleModalLong">
           Paște 2020
         </a>
       </li>
@@ -17,40 +19,51 @@
         <%= link_to "Categorii", categories_path, class: "nav-link color-fonts text-center" %>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rețete</a>
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rețete</a>
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
-            <% if cat.has_recipe %>
-            <%= link_to cat.name, category_recipes_path(cat.id),class: "dropdown-item text-center fonts-family color-fonts" %>
-        <% end %>
+          <% if cat.has_recipe %>
+          <%= link_to cat.name, category_recipes_path(cat.id),class: "dropdown-item text-center fonts-family color-fonts" %>
+          <% end %>
           <% end %>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii de prezentare</a>
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii de prezentare</a>
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
-            <% if cat.has_models %>
-            <%= link_to cat.name, category_cakemodels_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
-        <% end %>
+          <% if cat.has_models %>
+          <%= link_to cat.name, category_cakemodels_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
+          <% end %>
           <% end %>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+        <a class="nav-link dropdown-toggle color-fonts" href="#" id="navbarDropdownMenuLink" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
         <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">
+          <% if user_signed_in? && current_user.admin %>
+          <div class="dropdown-item">
+            <%= link_to "Admin app", devise_users_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
+          </div>
+        <% end %>
           <% if user_signed_in? %>
-        <div class="dropdown-item">
-          <%= link_to "Log out, #{current_user.email.split('@').first}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center edit-fonts color-fonts" %>
-        </div>
-      <% else %>
-        <div class="dropdown-item">
-          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
-        </div>
-      <% end %>
+          <div class="dropdown-item">
+            <%= link_to "Contul meu", devise_user_path(current_user), class: "dropdown-item text-center edit-fonts color-fonts" %>
+          </div>
+          <div class="dropdown-item">
+            <%= link_to "Log out, #{current_user.email.split('@').first}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center edit-fonts color-fonts" %>
+          </div>
+          <% else %>
+          <div class="dropdown-item">
+            <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
+          </div>
+          <% end %>
         </div>
       </li>
-      
+
     </ul>
   </div>
 

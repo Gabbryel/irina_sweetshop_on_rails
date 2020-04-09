@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row pt-5">
+    <% @devise_users.each do |du| %>
+    <div class="col-3 mt-5 pt-5 rem1 fonts-family">
+         <p class='color-fonts'>Id: <%= du.id %></p>
+         <p>Email: <%= du.email %></p>
+         <p>Admin: <%= du.admin? %></p>
+         <%= link_to 'admin', devise_users_path, class: 'btn btn-sm button-default button-rounded fonts-family color-fonts' %>
+         <%= link_to 'delete', devise_users_path, class: 'btn btn-sm button-default button-rounded fonts-family color-fonts' %>
+         <%= link_to 'edit', devise_users_path, class: 'btn btn-sm button-default button-rounded fonts-family color-fonts' %>
+    </div>
+       <% end %>
+  </div>
+</div>
