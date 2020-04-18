@@ -1,0 +1,24 @@
+<div class="col-12 mx-xs-2 col-md-5 col-lg-5 mx-3 my-5 recipe-card_container">
+  <%= cl_image_tag recipe.photo.key, alt: recipe.name,class: 'card-image recipe-card_image' %> <br>
+  <h4 class='text-center p-1 recipe-card_name color-fonts'><%= recipe.name %></h4>
+  <div class='recipe-card_rating-total'>
+    <p class='text-center fonts-family color-fonts'><%= "#{recipe.overall_rating.to_f.round(2)}"%> <%= '⭐️' * recipe.overall_rating.to_i %> <%= recipe.no_of_ratings %> </p>
+  </div>
+  <div class="recipe-card_describe-card">
+    <p class='text-center card-content p-2 color-fonts rem1'><%= recipe.content %></p>
+  </div>
+  <%= link_to 'Detalii', recipe_path(recipe.id), class: 'btn btn-block text-center position-absolute button-review-setup button-default px-2 py-1'%>
+
+  <div class='recipe-card_admin-links'>
+    <% if policy(recipe).edit? %>
+    <%= link_to edit_category_recipe_path(recipe.category_id, recipe.id) do %>
+      <i class="far fa-edit color-fonts"></i>
+    <% end %>
+    <% end %>
+    <% if policy(recipe).destroy? %>
+    <%= link_to category_recipe_path(recipe.category_id, recipe.id), method: :delete do %>
+      <i class="fas fa-trash-alt color-fonts"></i>
+    <% end %>
+    <% end %>
+  </div>
+</div>

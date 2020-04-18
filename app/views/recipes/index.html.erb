@@ -4,32 +4,7 @@
   <h3 class='text-center recipe-cards_title pt-5'><%= "Rețete de #{Category.find(params[:category_id]).name.downcase}" %> <span
       class="small-letters">(<%= @recipes.count %>)</span></h3>
   <div class="row mx-4 justify-content-around">
-    <% @recipes.each do |r| %>
-    <div class="col-12 mx-xs-2 col-md-5 col-lg-5 mx-3 my-5 recipe-card_container">
-      <%= cl_image_tag r.photo.key, alt: r.name,class: 'card-image recipe-card_image' %> <br>
-      <h4 class='text-center p-1 recipe-card_name color-fonts'><%= r.name %></h4>
-      <div class='recipe-card_rating-total'>
-        <p class='text-center fonts-family color-fonts'><%= "#{r.overall_rating.to_f.round(2)}"%> <%= '⭐️' * r.overall_rating.to_i %> <%= r.no_of_ratings %> </p>
-      </div>
-      <div class="recipe-card_describe-card">
-        <p class='text-center card-content p-2 color-fonts rem1'><%= r.content %></p>
-      </div>
-      <%= link_to 'Detalii', recipe_path(r.id), class: 'btn btn-block text-center position-absolute button-review-setup button-default px-2 py-1'%>
-
-      <div class='recipe-card_admin-links'>
-        <% if policy(r).edit? %>
-        <%= link_to edit_category_recipe_path(r.category_id, r.id) do %>
-          <i class="far fa-edit color-fonts"></i>
-        <% end %>
-        <% end %>
-        <% if policy(r).destroy? %>
-        <%= link_to category_recipe_path(r.category_id, r.id), method: :delete do %>
-          <i class="fas fa-trash-alt color-fonts"></i>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
+    <%= render @recipes %>
   </div>
   <%= link_to 'Înapoi', categories_path, class: 'btn button-default button-rounded fonts-family color-fonts mb-5' %>
   <br>

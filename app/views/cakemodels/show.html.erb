@@ -1,4 +1,5 @@
 <%= content_for(:title) {"Recenzii pentru #{@cakemodel.content}"} %>
+
 <div class="container fonts-family pt-5 pb-5 mb-5">
   <div class="row justify-content-center mt-5">
     <div class="col-10 col-md-8 mt-5">
@@ -17,11 +18,13 @@
         <% end %>
       </div>
       <div class="color-fonts">
+
       <% @cakemodel.reviews.each do |rev| %>
         <p class="rem1"><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
         <p class="rem1"><%= rev.content %></p>
         <p class="rem1 border-bottom-custom pb-3"><%= "Autor: #{rev.author}" %></p>
         <% end %>
+
       </div>
     </div>
   </div>

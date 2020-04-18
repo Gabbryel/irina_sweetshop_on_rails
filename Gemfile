@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.6.3'
 
 gem 'postmark-rails'
+gem 'ostruct'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'pundit'

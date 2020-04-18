@@ -5,24 +5,7 @@
   <p class='text-center recipe-cards_title mt-5 rem1-5'><%= "Modele de #{Category.find(params[:category_id]).name.downcase}" %> <span
       class="small-letters">(<%= @cakemodels.count %>)</span></p>
   <div class="row justify-content-around mb-2">
-    <% @cakemodels.each do |cm| %>
-    <div class="col-9 col-md-5 col-lg-5 edit-fonts my-5 mx-1 cakemodel-container p-0 fonts-family rem1-3">
-      <%= cl_image_tag cm.photo.key, alt: cm.content, class: 'd-block border-bottom' %>
-      <p class='text-center color-fonts cakemodel-content py-2 px-2 rem1-2'><%= cm.content %></p>
-      <p class='text-center color-fonts cakemodel-rating rem1'><%= "#{cm.overall_rating.to_f.round(2)}"%> <%= '⭐️' * cm.overall_rating.to_i %> <%= cm.no_of_ratings %> </p>
-      <%= link_to 'Detalii', cakemodel_path(cm.id), class: 'btn btn-block text-center position-absolute button-review-setup button-default px-2 py-1'%>
-      <div class="recipe-card_admin-links position-absolute rem1">
-          <% if policy(cm).edit? %>
-          <%= link_to edit_category_cakemodel_path(cm.category_id, cm.id) do %>
-            <i class="far fa-edit color-fonts ml-4"></i>
-          <% end %>
-          <%= link_to category_cakemodel_path(cm.category_id, cm.id), method: :delete do %>
-            <i class="fas fa-trash-alt color-fonts"></i>
-          <% end %>
-          <% end %>
-      </div>
-    </div>
-    <% end %>
+    <%= render @cakemodels %>
   </div>
   <%= link_to 'Înapoi', categories_path, class: 'btn button-default button-rounded fonts-family color-fonts mb-5' %>
   <br>
