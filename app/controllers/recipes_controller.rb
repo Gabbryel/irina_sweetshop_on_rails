@@ -25,6 +25,7 @@ class RecipesController < ApplicationController
 
   def show
     @review = Review.new
+    @reviews = @recipe.reviews.all
   end
 
 

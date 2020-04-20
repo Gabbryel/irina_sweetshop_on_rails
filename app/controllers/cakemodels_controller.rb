@@ -24,6 +24,7 @@ class CakemodelsController < ApplicationController
   
   def show
     @review = Review.new
+    @reviews =  @cakemodel.reviews.all
   end
 
   def edit
