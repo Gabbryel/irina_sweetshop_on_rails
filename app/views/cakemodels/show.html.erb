@@ -3,21 +3,17 @@
 <div class="container fonts-family pt-5 pb-5 mb-5">
   <div class="row justify-content-center mt-5">
     <div class="col-10 col-md-8 mt-5">
-      <%= link_to 'Înapoi', category_cakemodels_path(@cakemodel.category.id), class: 'btn btn-sm button-default button-rounded' %>
+      <%= render 'partials/back_button_show-page' %>
       <div class="show-recipe_photo">
         <%= cl_image_tag @cakemodel.photo.key %>
       </div>
       <div class="fonts-family color-fonts">
         <p class="text-center rem1-3">Ratings & reviews for: </p>
         <p class="text-center pb-4 rem1-2"><%= @cakemodel.content %> </p>
-        <%= simple_form_for [@cakemodel, @review] do |f| %>
-          <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts' } %>
-          <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts color-fonts' } %>
-          <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn button-default btn-block button-rounded mb-5' %>
-        <% end %>
+        <%= render 'partials/reviews_new_form' %>
       </div>
       <%= render 'partials/reviews_index' %>
     </div>
   </div>
-  <%= link_to 'Înapoi', category_cakemodels_path(@cakemodel.category.id), class: 'btn btn-sm button-default button-rounded' %>
+  <%= render 'partials/back_button_show-page' %>
 </div>
