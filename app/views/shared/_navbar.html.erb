@@ -41,7 +41,7 @@
         <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% if user_signed_in? %>
         <div class="dropdown-item">
-          <%= link_to "Log out, #{current_user.email.split('@').first}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center edit-fonts color-fonts" %>
+          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center edit-fonts color-fonts" %>
         </div>
       <% else %>
         <div class="dropdown-item">

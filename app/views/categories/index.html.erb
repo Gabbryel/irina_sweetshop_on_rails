@@ -1,32 +1,7 @@
 <% content_for(:title) {'Categorii de produse - Cofetăria Irina - Bacău'} %>
 <div class="container-fluid cards-container py-5 mb-5 fonts-family">
   <div class="row justify-content-around my-5 mx-4">
-    <% @categories.each do |c| %>
-    <div class="col-12 my-5 col-sm-10 mx-sm-1 col-md-5 mx-md-1 mx-lg-1 col-xl-3 mx-xl-1 card-container">
-      <%= cl_image_tag c.photo.key, alt: c.name , class: 'card-image'%>
-      <div class="card-category_name">
-        <p class='card-title edit-fonts'><%=  c.name %></p>
-      </div>
-      <p class='text-center justify-content-around my-2 edit-fonts category-index-hover'>
-        <% if c.has_recipe %>
-        <%= link_to 'Produse', category_recipes_path(c.id) %>
-        <% end %>
-        <% if c.has_models %>
-        <%= link_to 'Modele', category_cakemodels_path(c.id) %>
-        <% end %>
-        <% if policy(c).edit? %>
-        <%= link_to edit_category_path(c.id) do %>
-        <i class="far fa-edit color-fonts"></i>
-        <% end %>
-        <% end %>
-        <% if policy(c).destroy? %>
-        <%= link_to category_path(c), method: :delete do %>
-          <i class="fas fa-trash-alt color-fonts"></i>
-        <% end %>
-      </p>
-      <% end %>
-    </div>
-    <% end %>
+    <%=render @categories %>
   </div>
   <div class="row justify-content-center mb-5">
     <div class="col-10 col-md-8 col-lg-6">

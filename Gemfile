@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.6.3'
 
 gem 'postmark-rails'
+gem 'ostruct'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'pundit'
@@ -19,6 +20,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener', group: :development
+
+gem 'minimist'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
