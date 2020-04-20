@@ -2,4 +2,6 @@
   <%= link_to 'Înapoi', category_cakemodels_path(@cakemodel.category.id), class: 'btn btn-sm button-default button-rounded' %>
 <% elsif @recipe %>
   <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm button-default button-rounded' %>
+<% elsif @cakemodels || @recipes %>
+  <%= link_to 'Înapoi', categories_path, class: 'btn btn-sm button-default button-rounded fonts-family color-fonts my-3' %>  
 <% end %>
