@@ -17,15 +17,7 @@
           <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn button-default btn-block button-rounded mb-5' %>
         <% end %>
       </div>
-      <div class="color-fonts">
-
-      <% @reviews.each do |rev| %>
-        <p class="rem1"><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
-        <p class="rem1"><%= rev.content %></p>
-        <p class="rem1 border-bottom-custom pb-3"><%= "Autor: #{rev.author}" %></p>
-        <% end %>
-
-      </div>
+      <%= render 'partials/reviews_index' %>
     </div>
   </div>
   <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm button-default button-rounded' %>
