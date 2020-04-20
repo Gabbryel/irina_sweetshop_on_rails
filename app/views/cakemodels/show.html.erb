@@ -18,7 +18,7 @@
       </div>
       <div class="color-fonts">
 
-      <% @cakemodel.reviews.each do |rev| %>
+      <% @reviews.each do |rev| %>
         <p class="rem1"><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
         <p class="rem1"><%= rev.content %></p>
         <p class="rem1 border-bottom-custom pb-3"><%= "Autor: #{rev.author}" %></p>
