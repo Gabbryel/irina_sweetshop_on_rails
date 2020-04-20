@@ -5,6 +5,7 @@ class CakemodelsController < ApplicationController
   def new
     @cakemodel = Cakemodel.new
     authorize @cakemodel
+    @page_title = 'Sugestie de prezentare nouă || Cofetăria Irina Bacău'
   end
 
   def create
@@ -20,14 +21,17 @@ class CakemodelsController < ApplicationController
 
   def index
     @cakemodels = policy_scope(Cakemodel).where(category_id: params[:category_id] )
+    @page_title = "Modele de #{ Category.find(params[:category_id]).name.downcase } || Cofetăria Irina - Bacau"
   end
   
   def show
     @review = Review.new
     @reviews =  @cakemodel.reviews.all
+    @page_title = "Detalii și recenzii pentru #{ Cakemodel.find(params[:id]).content } "
   end
 
   def edit
+    @page_title = 'Modifică sugestie de prezentare || Cofetăria Irina Bacău'
   end
 def update
   @cakemodel.update(cakemodel_params)

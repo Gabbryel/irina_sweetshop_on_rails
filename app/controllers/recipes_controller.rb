@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     authorize @recipe
+    @page_title = "Rețetă nouă de #{@category.name.downcase}- Cofetăria Irina - Bacău"
   end
 
   def create
@@ -21,16 +22,18 @@ class RecipesController < ApplicationController
   
   def index
     @recipes = policy_scope(Recipe).where(category_id: params[:category_id])
+    @page_title = "Rețete de #{ Category.find(params[:category_id]).name.downcase }"
   end
 
   def show
     @review = Review.new
     @reviews = @recipe.reviews.all
+    @page_title = "Rețeta de #{ @recipe.name } || Cofetăria Irina - Bacău"
+    @seo_keywords = @recipe.content
   end
 
-
-
   def edit
+    @page_title = 'Modifică rețeta - Cofetăria Irina - Bacău'
   end
 
   def update
