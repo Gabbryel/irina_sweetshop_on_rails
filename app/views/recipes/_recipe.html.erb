@@ -1,4 +1,4 @@
-<div class="col-12 mx-xs-2 col-md-5 col-lg-5 mx-3 my-5 recipe-card_container">
+<div class= "col-10 col-md-5 col-lg-3 mx-1 recipe-card_container">
   <%= cl_image_tag recipe.photo.key, alt: recipe.name,class: 'card-image recipe-card_image' %> <br>
   <h4 class='text-center p-1 recipe-card_name color-fonts'><%= recipe.name %></h4>
   <div class='recipe-card_rating-total'>
@@ -11,14 +11,14 @@
 
   <div class='recipe-card_admin-links'>
     <% if policy(recipe).edit? %>
-    <%= link_to edit_category_recipe_path(recipe.category_id, recipe.id) do %>
-      <i class="far fa-edit color-fonts"></i>
-    <% end %>
+      <%= link_to edit_category_recipe_path(recipe.category_id, recipe.id) do %>
+        <i class="far fa-edit color-fonts"></i>
+      <% end %>
     <% end %>
     <% if policy(recipe).destroy? %>
-    <%= link_to category_recipe_path(recipe.category_id, recipe.id), method: :delete do %>
-      <i class="fas fa-trash-alt color-fonts"></i>
-    <% end %>
+      <%= link_to category_recipe_path(recipe.category_id, recipe.id), method: :delete do %>
+        <i class="fas fa-trash-alt color-fonts"></i>
+      <% end %>
     <% end %>
   </div>
 </div>

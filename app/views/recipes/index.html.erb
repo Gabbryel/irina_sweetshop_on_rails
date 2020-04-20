@@ -1,9 +1,10 @@
 <% content_for(:title) {"Rețete de #{Category.find(params[:category_id]).name.downcase } - Cofetăria Irina Bacău"} %>
-<div class="container recipe-cards_container pt-5 mb-5 pb-5">
+<div class="container-fluid recipe-cards_container py-5 mb-5">
   <%= render 'partials/back_buttons' %>
   <h3 class='text-center recipe-cards_title pt-5'><%= "Rețete de #{Category.find(params[:category_id]).name.downcase}" %> <span
-      class="small-letters">(<%= @recipes.count %>)</span></h3>
-  <div class="row mx-4 justify-content-around">
+      class="small-letters">(<%= @recipes.count %>)</span>
+  </h3>
+  <div class="row mx-2 justify-content-around">
     <%= render @recipes %>
   </div>
   <%= render 'partials/back_buttons' %>
