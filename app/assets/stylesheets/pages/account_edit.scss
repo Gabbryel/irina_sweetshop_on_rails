@@ -1,29 +1,7 @@
-.account-edit {
+.edit-user-container {
   position: relative;
-  top: 10vh;
-  font-family: 'Life Savers';
-  font-weight: 700;
+  top: 15vh;
 }
-
-.cancel-account_container {
-  position: relative;
-}
-
-.btn-custom {
-  color: white;
-  background-color: $button-color;
-    a {
-      color: white;
-      font-weight: 700;
-    }
-}
-
-.btn-custom-1 {
-  position: relative;
-  color: white;
-  font-weight: 700;
-  background-color: $official-color;
-    a {
-      color: white;
-    }
+.optional {
+  font-size: 1rem;
 }

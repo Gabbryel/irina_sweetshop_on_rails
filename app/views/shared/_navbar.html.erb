@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lewagon edit-fonts">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png", alt: 'Cofetăria Irina Bacău' %>
     <% end %>
@@ -31,7 +31,7 @@
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
             <% if cat.has_models %>
-            <%= link_to cat.name, category_cakemodels_path(cat.id),class: "dropdown-item text-center edit-fonts color-fonts" %>
+            <%= link_to cat.name, category_cakemodels_path(cat.id),class: "dropdown-item text-center color-fonts" %>
         <% end %>
           <% end %>
         </div>
@@ -40,12 +40,15 @@
         <a class="nav-link dropdown-toggle color-fonts" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
         <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% if user_signed_in? %>
+          <div class="dropdown-item">
+            <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center color-fonts" %>
+          </div>
         <div class="dropdown-item">
-          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center edit-fonts color-fonts" %>
+          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center color-fonts" %>
         </div>
       <% else %>
         <div class="dropdown-item">
-          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center edit-fonts color-fonts" %>
+          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center color-fonts" %>
         </div>
       <% end %>
         </div>

@@ -1,9 +1,9 @@
 <div class="col-12 my-5 col-sm-10 mx-sm-1 col-md-5 mx-md-1 mx-lg-1 col-xl-3 mx-xl-1 card-container">
   <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
   <div class="card-category_name">
-    <p class='card-title edit-fonts'><%=  category.name %></p>
+    <p class='card-title'><%=  category.name %></p>
   </div>
-  <p class='text-center justify-content-around my-2 edit-fonts category-index-hover'>
+  <p class='text-center justify-content-around my-2 category-index-hover'>
     <% if category.has_recipe %>
     <%= link_to 'Produse', category_recipes_path(category.id) %>
     <% end %>
