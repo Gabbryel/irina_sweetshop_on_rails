@@ -10,7 +10,6 @@
       <div class="fonts-family color-fonts">
         <p class="text-center rem1-3">Ratings & reviews for: </p>
         <p class="text-center pb-4 rem1-2"><%= @cakemodel.content %> </p>
-
         <%= simple_form_for [@cakemodel, @review] do |f| %>
           <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts' } %>
           <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts color-fonts' } %>

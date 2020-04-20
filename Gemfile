@@ -21,6 +21,8 @@ gem 'webpacker'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener', group: :development
 
+gem 'minimist'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
