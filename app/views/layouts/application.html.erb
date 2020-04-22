@@ -26,9 +26,7 @@
     <%= render 'shared/flashes' %>
     <div class="main-container">
       <%= yield %>
-      <% unless current_page?(root_path) %>
         <%= render 'shared/social' %>
-      <% end %>
     </div>
     <%= render 'shared/modal_paste' %>
     <%= render 'shared/footer' %>
