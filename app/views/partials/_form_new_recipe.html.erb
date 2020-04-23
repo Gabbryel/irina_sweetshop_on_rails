@@ -1,9 +1,3 @@
-<% if @recipe.id %>
-  <% content_for(:title) {'Modifică rețeta - Cofetăria Irina - Bacău'} %>
-<% else %>
-  <% content_for(:title) {"Rețetă nouă de #{@category.name.downcase}- Cofetăria Irina - Bacău" } %>
-<% end %>
-
 <div class="container fonts-family">
   <div class="row justify-content-center">
     <div class="col-10 col-md-8 col-lg-6 mt-5 pt-5">
@@ -21,7 +15,7 @@
         <% if  @recipe.id%>
           <%= f.button :submit, value: 'Modifică rețeta', class: 'btn button-default btn-block mt-5 button-rounded' %>
         <% else %>
-          <%= f.button :submit, value: 'Creează rețeta', class: 'btn button-default btn-block mt-5 button-rounded' %>
+          <%= f.button :submit, value: 'Adaugă o rețetă', class: 'btn button-default btn-block mt-5 button-rounded' %>
         <% end %>
 
       <% end %>

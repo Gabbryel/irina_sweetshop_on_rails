@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
     authorize @category
+    @page_title = 'Creează o nouă categorie || Cofetăria Irina - Bacău'
   end
 
   def create
@@ -19,12 +20,15 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = policy_scope(Category).order('id ASC')
+    @page_title = 'Categorii de produse || Cofetăria Irina - Bacau'
   end
 
   def show
+    @page_title = @category.name
   end
 
   def edit
+    @page_title = 'Modifică categoria || Cofetăria Irina - Bacău'
   end
 
   def update
