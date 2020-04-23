@@ -11,19 +11,6 @@
   border-radius: 20px;
   margin: 20px 0;
   padding: 0;
-  a {
-    font-size: .8rem;
-    color: $official-color;
-    text-decoration: none;
-    border: 1px solid $official-color;
-    border-radius: 40px;
-    margin: 5px;
-    padding: 2px 7px;
-      &:hover {
-        color: $official-color;
-        border-color: $official-color;
-      }
-    }
 }
 
 .card-image {
@@ -31,7 +18,7 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
-  height: 400px;
+  height: 300px;
 }
 .card-category_name {
   display: flex;

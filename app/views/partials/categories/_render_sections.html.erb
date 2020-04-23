@@ -1,0 +1,9 @@
+<% if @category.has_recipe && @category.has_models%>
+    <p class="px-3 py-1 active-section rem1-3 p-fonts-category-show">Rețete</p>
+    <p class="px-3 py-1 rem1-3 inactive-section p-fonts-category-show"> Prezentare</p>
+<% elsif @category.has_recipe %>
+  <p class="px-3 py-1 active-section rem1-3 p-fonts-category-show">Rețete</p>
+<% elsif  @category.has_models %>
+  <p class="px-3 py-1 rem1-3 active-section p-fonts-category-show"> Prezentare</p>
+<% end %>
+

@@ -1,11 +1,10 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_category, only: [:new, :create, :edit, :destroy]
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:edit, :update, :destroy]
   
   def new
-    @recipe = Recipe.new
-    authorize @recipe
+    @recipe = authorize Recipe.new
     @page_title = "Rețetă nouă de #{@category.name.downcase}- Cofetăria Irina - Bacău"
   end
 
@@ -26,6 +25,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @recipe = Recipe.friendly.find(params[:id])
     @review = Review.new
     @reviews = @recipe.reviews.all
     @page_title = "Rețeta de #{ @recipe.name } || Cofetăria Irina - Bacău"
@@ -53,7 +53,7 @@ class RecipesController < ApplicationController
   end
 
   def set_category
-    @category = Category.find(params[:category_id])
+    @category = Category.where(slug: params[:id])
   end
 
   def set_recipe

@@ -1,0 +1,39 @@
+.category-show__margin-top {
+  position: relative;
+  top: 160px;
+}
+
+.category-main-dashboard {
+  position: relative;
+  top: 50px;
+}
+
+.first-margin-bottom {
+  width: 50px;
+  border-bottom: 1px solid $official-color;
+}
+
+.last-margin-bottom {
+  border-bottom: 1px solid $official-color;
+  flex-grow: 1;
+}
+
+.active-section {
+  border: 1px solid $official-color;
+  border-bottom: none;
+  border-radius: 10px 10px 0  0;
+}
+
+.inactive-section {
+  border-bottom: 1px solid $official-color;
+}
+.category-recipes-index {
+  position: relative;
+  top: 40px;
+}
+
+@media (max-width: 500px) {
+  // .p-fonts-category-show {
+  //   font-size: 1rem !important;
+  // }
+}

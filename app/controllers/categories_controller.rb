@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   def new
     @category = Category.new
@@ -24,6 +24,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @category = authorize Category.friendly.find(params[:id])
+    @recipes = @category.recipes
     @page_title = @category.name
   end
 
@@ -47,12 +49,11 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :photo, :has_recipe, :has_models)
+    params.require(:category).permit(:name, :photo, :has_recipe, :has_models, :slug)
   end
 
   def set_category
-    @category = Category.find(params[:id])
-    authorize @category
+    @category = authorize Category.find(params[:id])
   end
 
 end
