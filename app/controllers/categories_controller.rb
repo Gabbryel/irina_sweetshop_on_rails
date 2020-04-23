@@ -24,6 +24,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @page_title = @category.name
   end
 
   def edit
