@@ -17,25 +17,22 @@
         <%= link_to "Categorii", categories_path, class: "nav-link color-fonts text-center" %>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rețete</a>
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
-            <% if cat.has_recipe %>
-            <%= link_to cat.name, category_recipes_path(cat.id),class: "dropdown-item text-center fonts-family color-fonts" %>
-        <% end %>
+            <%= link_to cat.name, category_path(cat), class: "dropdown-item text-center fonts-family color-fonts" %>
           <% end %>
         </div>
       </li>
+
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii de prezentare</a>
-        <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
-          <% Category.all.each do |cat| %>
-            <% if cat.has_models %>
-            <%= link_to cat.name, category_cakemodels_path(cat.id),class: "dropdown-item text-center color-fonts" %>
-        <% end %>
-          <% end %>
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utile</a>
+        <div class="dropdown-menu dropdown-menu-custom_links brown-background" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to 'Cum comand?', orders_path, class: "dropdown-item text-center fonts-family color-fonts" %>
+          <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center fonts-family color-fonts" %>
         </div>
       </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle color-fonts" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
         <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">

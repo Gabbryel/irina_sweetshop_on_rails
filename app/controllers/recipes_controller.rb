@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_category, only: [:new, :create, :edit, :destroy]
-  before_action :set_recipe, only: [:edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   
   def new
     @recipe = authorize Recipe.new
@@ -9,14 +9,13 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = authorize Recipe.new(recipe_params)
     @recipe.category = @category
     if @recipe.save
-      redirect_to category_recipes_path(params[:category_id])
+      redirect_to category_path(@category)
     else
       render :new
     end
-    authorize @recipe
   end
   
   def index
@@ -25,7 +24,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.friendly.find(params[:id])
     @review = Review.new
     @reviews = @recipe.reviews.all
     @page_title = "Rețeta de #{ @recipe.name } || Cofetăria Irina - Bacău"
@@ -38,12 +36,16 @@ class RecipesController < ApplicationController
 
   def update
     @recipe.update(recipe_params)
-    redirect_to category_recipes_path(params[:category_id])
+    if @recipe.update(recipe_params)
+      redirect_to category_path(Category.find(params[:category_id]))
+    else
+      render :edit
+    end
   end
 
   def destroy
     @recipe.destroy
-    redirect_to category_recipes_path(params[:category_id])
+    redirect_to category_path(@category)
   end
 
   private
@@ -53,7 +55,7 @@ class RecipesController < ApplicationController
   end
 
   def set_category
-    @category = Category.where(slug: params[:id])
+    @category = Category.find(params[:category_id])
   end
 
   def set_recipe

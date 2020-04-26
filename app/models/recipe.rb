@@ -6,9 +6,6 @@ class Recipe < ApplicationRecord
   validates :photo, presence: true
 
   include Reviewable
-
-  extend FriendlyId
-  friendly_id :name, use: :slugged
   
   def overall_rating
     ratings.count == 0 ? "" : ratings.sum / ratings.count.to_f

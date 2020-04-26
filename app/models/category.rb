@@ -4,8 +4,4 @@ class Category < ApplicationRecord
   has_many :cakemodels, dependent: :destroy
   validates :name, presence: true
   validates :photo, presence: true
-
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-  
 end

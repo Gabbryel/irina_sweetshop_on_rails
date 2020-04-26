@@ -6,4 +6,10 @@ class PagesController < ApplicationController
 
   def recepies
   end
+
+  def orders
+  end
+
+  def about
+  end
 end

@@ -3,33 +3,31 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  top: 5vh;
   overflow: hidden;
   box-shadow: 2px 2px 7px lightgrey;
   border-radius: 20px;
   margin: 20px 0;
   padding: 0;
-  height: 500px;
+  height: 460px;
     img {
         position: absolute;
         width: 100%;
         top: 0;
         object-fit: cover;
         object-position: center;
-        height: 330px;
+        height: 360px;
       }
      .cakemodel-content {
        width: 100%;
        position: absolute;
-       top: 330px;
+       top: 360px;
        overflow: hidden;
      }
-     .cakemodel-rating {
-       position: absolute;
-       width: 100%;
-       top: 400px;
-     }
-     .recipe-card_admin-links {
-       bottom: 0;
+     
+     hr {
+       margin: 2px 0;
+       border-top: 1px solid $official-color;
      }
 }
 

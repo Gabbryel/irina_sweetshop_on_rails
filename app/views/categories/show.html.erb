@@ -1,15 +1,15 @@
 <div class="container-fluid pb-5 mb-5">
   <div class="row">
     <div class="col category-show__margin-top px-5">
-      <h1 class="text-center fonts-family color-fonts"><%= @category.name %></h1>
+      <h1 class="text-center fonts-family color-fonts fonts-700"><%= @category.name %></h1>
       <div class="category-main-dashboard d-flex fonts-family color-fonts">
         <p class="first-margin-bottom"></p>
         <%= render 'partials/categories/render_sections' %>
         <p class="last-margin-bottom d-inline"></p>
       </div>
-      <div class="category-recipes-index row justify-content-around pb-5 mb-5">
-        <%= render 'partials/categories/recipe' %>
-      </div>
+      
+      <%= render 'partials/categories/render_sections_index' %>
+      
     </div>
   </div>
 </div>

@@ -20,27 +20,28 @@
   border-radius: 20px;
   margin: 20px 0;
   padding: 0;
-  height: 620px;
+  height: 460px;
     .recipe-card_image {
       position: absolute;
       top: 0;
       width: 100%;
       object-fit: cover;
-      object-position: center;
-      max-height: 350px;
+      object-position: top;
+      height: 360px;
     }
     .recipe-card_name {
       position: absolute;
       font-family: 'Life Savers';
       top: 360px;
       width: 100%;
-      font-size: 28px;
+      font-size: 1.5rem;
+      font-weight: 700;
     }
     .recipe-card_rating-total {
       position: absolute;
-      top: 400px;
+      top: 390px;
       width: 100%;
-      font-size: 14px;
+      font-size: .6rem;
         .font-stars {
           font-size: 5px;
           text-shadow: 2px 2px 2px lightgrey;
@@ -51,23 +52,26 @@
       overflow: hidden;
       height: 120px;
       width: 100%;
-      top: 430px;
+      top: 410px;
       color: black;
       border-top: 1px solid  $official-color;
         p {
-          font-size: 18px;
+          font-size: .8rem;
           font-family: 'Life Savers';
         }
     }
 
-    .recipe-card_admin-links {
-      position: absolute;
-      bottom: 0px;
-      left: 20px;
-      font-size: 16px;
-        a {
-          color: lightgray;
-        }
-    }
-}
+  }
+      .recipe-card_admin-links {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        background-color: rgba(255, 255, 255, .5);
+        padding: 1px 7px;
+        border-radius: 10px;
+        font-size: 16px;
+          a {
+            color: lightgray;
+          }
+      }
 

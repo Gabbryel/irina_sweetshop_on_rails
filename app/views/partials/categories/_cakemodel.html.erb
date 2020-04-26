@@ -1,0 +1,41 @@
+<% @cakemodels.each do |cakemodel| %>
+<div class="col-11 col-md-5 col-lg-4 mx-1 cakemodel-container fonts-family rem1-3">
+  <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'd-block border-bottom' %>
+  <div class="cakemodel-content rem1 color-fonts">
+    <p class='p-0 m-0 text-center rem1-2 fonts-700'><%= link_to "Model ##{cakemodel.id}", cakemodel_path(cakemodel) %>
+    </p>
+    <p class="text-center color-fonts p-0 m-0 rem075">
+      <%= "#{cakemodel.overall_rating.to_f.round(2)}"%> <%= '⭐️' *
+      cakemodel.overall_rating.to_i %> <%= cakemodel.no_of_ratings %>
+    </p>
+    <hr>
+    <p class='p-0 m-0 text-center rem1'><%= cakemodel.content.split.first(12).join(' ') + '...'%>
+      <b><%= link_to 'detalii', cakemodel_path(cakemodel) %> </b></p>
+  </div>
+
+
+  <div class='recipe-card_admin-links'>
+    <% if policy(cakemodel).edit? %>
+    <%= link_to edit_category_cakemodel_path(cakemodel.category_id, cakemodel.id) do %>
+    <i class="far fa-edit color-fonts"></i>
+    <% end %>
+    <% end %>
+    <% if policy(cakemodel).destroy? %>
+    <%= link_to category_cakemodel_path(cakemodel.category_id, cakemodel.id), method: :delete do %>
+    <i class="fas fa-trash-alt color-fonts"></i>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% end %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class='col-10 col-md-5 col-lg-5 fonts-family'>
+      <% if policy(Cakemodel).new? %>
+      <%= link_to 'Model nou', new_category_cakemodel_path(@category.id), class: 'btn button-rounded button-default button-new-recipe_setup my-5' %>
+      <% end %>
+    </div>
+  </div>
+</div>
