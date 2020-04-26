@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'pages#home'
-  get 'orders', to: 'pages#orders'
+  get 'how_to_order', to: 'pages#how_to_order'
   get 'about', to: 'pages#about'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

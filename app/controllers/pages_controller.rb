@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   def recepies
   end
 
-  def orders
+  def how_to_order
   end
 
   def about
