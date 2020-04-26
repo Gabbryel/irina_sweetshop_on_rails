@@ -1,0 +1,49 @@
+.category-show__margin-top {
+  position: relative;
+  top: 140px;
+}
+
+.category-main-dashboard {
+  position: relative;
+  top: 30px;
+}
+
+.first-margin-bottom {
+  width: 50px;
+  border-bottom: 1px solid $official-color;
+  opacity: .5;
+}
+
+.last-margin-bottom {
+  border-bottom: 1px solid $official-color;
+  flex-grow: 1;
+  opacity: .5;
+}
+
+.active-section-btn {
+  border: 1px solid $official-color;
+  border-bottom: none;
+  border-radius: 10px 10px 0  0;
+}
+
+.inactive-section-btn {
+  border-bottom: 1px solid $official-color;
+  opacity: .5;
+}
+
+.active-section-index {
+  display: flex;
+}
+
+.inactive-section-index {
+  display: none;
+}
+
+.category-recipes-index {
+  position: relative;
+  top: 40px;
+}
+
+.category-show-buttons-hover:hover {
+  cursor: pointer;
+}

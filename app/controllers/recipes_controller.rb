@@ -4,20 +4,18 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   
   def new
-    @recipe = Recipe.new
-    authorize @recipe
+    @recipe = authorize Recipe.new
     @page_title = "Rețetă nouă de #{@category.name.downcase}- Cofetăria Irina - Bacău"
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = authorize Recipe.new(recipe_params)
     @recipe.category = @category
     if @recipe.save
-      redirect_to category_recipes_path(params[:category_id])
+      redirect_to category_path(@category)
     else
       render :new
     end
-    authorize @recipe
   end
   
   def index
@@ -38,12 +36,16 @@ class RecipesController < ApplicationController
 
   def update
     @recipe.update(recipe_params)
-    redirect_to category_recipes_path(params[:category_id])
+    if @recipe.update(recipe_params)
+      redirect_to category_path(Category.find(params[:category_id]))
+    else
+      render :edit
+    end
   end
 
   def destroy
     @recipe.destroy
-    redirect_to category_recipes_path(params[:category_id])
+    redirect_to category_path(@category)
   end
 
   private

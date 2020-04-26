@@ -1,24 +1,23 @@
-<div class="col-12 my-5 col-sm-10 mx-sm-1 col-md-5 mx-md-1 mx-lg-1 col-xl-3 mx-xl-1 card-container">
-  <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
-  <div class="card-category_name">
-    <p class='card-title'><%=  category.name %></p>
-  </div>
-  <p class='text-center justify-content-around my-2 category-index-hover'>
-    <% if category.has_recipe %>
-    <%= link_to 'Produse', category_recipes_path(category.id) %>
-    <% end %>
-    <% if category.has_models %>
-    <%= link_to 'Modele', category_cakemodels_path(category.id) %>
-    <% end %>
-    <% if policy(category).edit? %>
-    <%= link_to edit_category_path(category.id) do %>
-    <i class="far fa-edit color-fonts"></i>
-    <% end %>
-    <% end %>
-    <% if policy(category).destroy? %>
-    <%= link_to category_path(category), method: :delete do %>
-      <i class="fas fa-trash-alt color-fonts"></i>
-    <% end %>
-  </p>
+<div class="col-12 col-md-5 card-container">
+  <%= link_to category_path(category) do %>
+    <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
+      <p class='button-default text-center pt-3'><%= category.name %></p>
   <% end %>
+
+  <div class="category-index-crud-buttons position-absolute">
+    <p class='text-center justify-content-around my-2'>
+      <% if policy(category).edit? %>
+        <%= link_to edit_category_path(category.id),
+        class: 'btn btn-sm button-default button-rounded' do %>
+        <i class="far fa-edit color-fonts"></i>
+        <% end %>
+      <% end %>
+
+      <% if policy(category).destroy? %>
+        <%= link_to category_path(category), class: 'btn btn-sm button-default button-rounded', method: :delete do %>
+        <i class="fas fa-trash-alt color-fonts"></i>
+        <% end %>
+      <% end %>
+    </p>
+  </div>
 </div>

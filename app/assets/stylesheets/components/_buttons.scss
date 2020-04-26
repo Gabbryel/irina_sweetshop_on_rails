@@ -10,10 +10,6 @@
     a {
       color: $official-color;
       text-decoration: none;
-      &:hover {
-        color: $hover-color;
-        font-weight: 700;
-      }
     }
 }
 
@@ -26,7 +22,7 @@
 }
 
 .button-review-setup {
-  bottom: 30px;
+  bottom: 10px;
   font-size: 1.4rem;
   border-style: solid none solid none;
 }

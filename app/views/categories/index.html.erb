@@ -3,7 +3,7 @@
     <%=render @categories %>
   </div>
   <div class="row justify-content-center mb-5">
-    <div class="col-10 col-md-8 col-lg-6">
+    <div class="col-10 col-md-4 col-lg-3">
       <% if policy(Category).new? %>
         <%= link_to 'Categorie nouă', new_category_path, class: 'btn button-default button-rounded btn-block fonts-family rem1-5' %>
       <% end %>

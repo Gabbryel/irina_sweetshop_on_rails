@@ -21,6 +21,7 @@ gem 'webpacker'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener', group: :development
 
+gem 'friendly_id', '~> 5.2.4'
 gem 'minimist'
 
 group :development do

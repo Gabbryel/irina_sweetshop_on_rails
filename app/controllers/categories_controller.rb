@@ -24,6 +24,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @recipes = @category.recipes
+    @cakemodels = @category.cakemodels
     @page_title = @category.name
   end
 
@@ -47,12 +49,11 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :photo, :has_recipe, :has_models)
+    params.require(:category).permit(:name, :photo, :has_recipe, :has_models, :slug)
   end
 
   def set_category
-    @category = Category.find(params[:id])
-    authorize @category
+    @category = authorize Category.find(params[:id])
   end
 
 end
