@@ -10,6 +10,8 @@
   margin: 20px 0;
   padding: 0;
   height: 460px;
+  min-width: 336px;
+  max-width: 430px;
     img {
         position: absolute;
         width: 100%;
@@ -29,5 +31,4 @@
        margin: 2px 0;
        border-top: 1px solid $official-color;
      }
-}
-
+    }

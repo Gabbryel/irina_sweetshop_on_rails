@@ -1,5 +1,5 @@
 <% @cakemodels.each do |cakemodel| %>
-<div class="col-11 col-md-5 col-lg-4 mx-1 cakemodel-container fonts-family rem1-3">
+<div class="col-11 col-md-5 mx-md-3 col-xl-4 mx-xl-5 cakemodel-container fonts-family rem1-3">
   <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'd-block border-bottom' %>
   <div class="cakemodel-content rem1 color-fonts">
     <p class='p-0 m-0 text-center rem1-2 fonts-700'><%= link_to "Model ##{cakemodel.id}", cakemodel_path(cakemodel) %>
