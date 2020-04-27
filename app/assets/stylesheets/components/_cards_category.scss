@@ -1,4 +1,5 @@
 .cards-container {
+  display: flex;
   top: 5vh;
   position: relative;
   height: 100%;
@@ -7,11 +8,20 @@
 .card-container {
   position: relative;
   height: 450px;
+  max-width: 430px;
+  min-width: 336px;
   overflow: hidden;
   box-shadow: 2px 2px 7px lightgrey;
   border-radius: 20px;
   margin: 20px 0;
   padding: 0;
+  background-color: white;
+}
+
+@media (min-width: 1500px) {
+  .cards-container {
+    top: 150px;
+  }
 }
 
 .card-image {

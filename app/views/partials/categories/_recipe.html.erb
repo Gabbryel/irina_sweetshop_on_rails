@@ -1,5 +1,5 @@
   <% @recipes.each do |recipe| %>
-          <div class= "col-11 col-md-5 col-lg-4 mx-1 recipe-card_container">
+          <div class= "col-11 col-md-5 mx-md-3 col-xl-4 mx-xl-5 recipe-card_container">
             <%= cl_image_tag recipe.photo.key, alt: recipe.name,class: 'card-image recipe-card_image' %> <br>
             <h4 class='text-center p-1 recipe-card_name color-fonts'><%= link_to "#{recipe.name}", recipe_path(recipe) %></h4>
             <div class='recipe-card_rating-total'>
@@ -25,7 +25,7 @@
           </div>
   <% end %>
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center">
       <div class='col-10 col-md-5 col-lg-5 fonts-family'>
         <% if policy(Recipe).new? %>

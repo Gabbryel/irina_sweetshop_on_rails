@@ -40,3 +40,6 @@
 .dropdown-menu-custom_links {
   left: -80px;
 }
+.dropdown-item:hover {
+  background-color: $navbar-background-hover;
+}
