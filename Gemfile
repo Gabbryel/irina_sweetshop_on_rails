@@ -23,9 +23,11 @@ gem 'letter_opener', group: :development
 
 gem 'friendly_id', '~> 5.2.4'
 gem 'minimist'
+gem 'money-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'meta_request'
 end
 
 group :development, :test do

@@ -8,7 +8,8 @@
             <div class="recipe-card_describe-card">
               <p class='text-center card-content pt-1 color-fonts rem1'><%= recipe.content.split.first(7).join(' ') + '...'%><b><%= link_to 'detalii', recipe_path(recipe) %></b> </p>
             </div>
-            
+            <p class="recipe-price fonts-family text-center color-fonts"><%= humanized_money_with_symbol(recipe.price) %></p>
+
           
             <div class='recipe-card_admin-links'>
               <% if policy(recipe).edit? %>

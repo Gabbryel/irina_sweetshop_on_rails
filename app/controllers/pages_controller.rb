@@ -12,4 +12,7 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def admin_dashboard
+  end
 end
