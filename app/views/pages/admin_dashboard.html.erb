@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 mt-5 pt-5 ">
+      <% User.all.each do |u| %>
+        <%= u.email %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= User.all.count %>
+    </div>
+  </div>
+</div>

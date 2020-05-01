@@ -38,6 +38,9 @@
         <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% if user_signed_in? %>
           <div class="dropdown-item">
+            <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center color-fonts fonts-700" %>
+          </div>
+          <div class="dropdown-item">
             <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center color-fonts fonts-700" %>
           </div>
         <div class="dropdown-item">

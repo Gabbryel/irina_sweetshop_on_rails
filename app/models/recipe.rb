@@ -6,6 +6,8 @@ class Recipe < ApplicationRecord
   validates :photo, presence: true
 
   include Reviewable
+
+  monetize :price_cents
   
   def overall_rating
     ratings.count == 0 ? "" : ratings.sum / ratings.count.to_f
