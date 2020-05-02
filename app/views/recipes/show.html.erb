@@ -4,8 +4,13 @@
       <%= render 'partials/back_buttons' %>
       <div class="show-recipe_photo">
         <%= cl_image_tag @recipe.photo.key %>
+        <div class="recipe-price-holder-show d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700">
+          <p class="recipe-price-show  text-center  m-0 p-0"><%= humanized_money_with_symbol(@recipe.price) %></p>
+          <p class="p-0 m-0 rem1-2 fonts-family"><%= @recipe.kg ? 'kg' : 'buc' %></p>
+        </div>
       </div>
       <div class="fonts-family color-fonts">
+        <p class="text-center rem1-5 fonts-700"><%= @recipe.name %></p>
         <p class="text-center rem1-3">Ratings & reviews for: </p>
         <p class="text-center pb-4 rem1-2"><%= @recipe.content %> </p>
         <%= render 'partials/reviews_new_form' %>
