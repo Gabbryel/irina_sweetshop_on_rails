@@ -1,18 +1,18 @@
-<div class="container fonts-family pt-5 pb-5 mb-5">
+<div class="container fonts-family py-5 mb-5">
   <div class="row justify-content-center mt-5">
-    <div class="col-10 col-md-8 mt-5">
+    <div class="col-11 col-md-8 mt-5">
       <%= render 'partials/back_buttons' %>
-      <div class="show-recipe_photo">
+      <h2 class="text-center fonts-family color-fonts fonts-700 pt-5"><%= @recipe.name %></h2>
+      <div class="show-recipe_photo mt-5">
         <%= cl_image_tag @recipe.photo.key %>
         <div class="recipe-price-holder-show d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700">
-          <p class="recipe-price-show  text-center  m-0 p-0"><%= humanized_money_with_symbol(@recipe.price) %></p>
+          <p class="recipe-price-show text-center m-0 p-0"><%= humanized_money_with_symbol(@recipe.price) %></p>
           <p class="p-0 m-0 rem1-2 fonts-family"><%= @recipe.kg ? 'kg' : 'buc' %></p>
         </div>
       </div>
-      <div class="fonts-family color-fonts">
-        <p class="text-center rem1-5 fonts-700"><%= @recipe.name %></p>
-        <p class="text-center rem1-3">Ratings & reviews for: </p>
+      <div class="fonts-family color-fonts mt-5">
         <p class="text-center pb-4 rem1-2"><%= @recipe.content %> </p>
+        <p class="text-center rem1-3">Rating & recenzii: </p>
         <%= render 'partials/reviews_new_form' %>
       </div>
       <%= render 'partials/reviews_index' %>
