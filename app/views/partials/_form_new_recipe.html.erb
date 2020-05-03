@@ -11,6 +11,9 @@
         <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată', label_html: { class: 'color-fonts fonts-700 rem1-3' } %>
         <%= f.input :content, label: 'Descrierea rețetei', label_html: { class: 'color-fonts fonts-700 mt-2 rem1-3' } %>
         <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-block button-default button-rounded'}, class: 'rem1-3' %>
+        <%= f.input :price_cents, label: 'Prețul în bani' %>
+        <%= f.input :kg, label: 'Se vinde la kg?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
+        <%= f.input :buc, label: 'Se vinde la bucată?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
         
         <% if  @recipe.id%>
           <%= f.button :submit, value: 'Modifică rețeta', class: 'btn button-default btn-block mt-5 button-rounded' %>

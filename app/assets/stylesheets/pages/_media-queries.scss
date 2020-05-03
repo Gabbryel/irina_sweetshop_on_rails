@@ -1,4 +1,16 @@
-@media(max-width: 500px) {
+@media(max-width: 1200px) {
+  
+}
+@media(max-width: 992px) {
+  
+}
+
+@media(max-width: 768px) {
+  
+}
+
+
+@media(max-width: 576px) {
   .cakemodel-container {
     min-width: 290px;
   }
@@ -7,5 +19,11 @@
   }
   .first-margin-bottom {
     width: 20px;
+  }
+  .show-recipe_photo {
+    img {
+      width: 80%;
+      min-width: 272px;
+    }
   }
 }

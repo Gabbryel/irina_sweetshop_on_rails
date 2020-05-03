@@ -24,6 +24,7 @@ gem 'letter_opener', group: :development
 gem 'friendly_id', '~> 5.2.4'
 gem 'minimist'
 gem 'money-rails'
+gem 'stripe'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
