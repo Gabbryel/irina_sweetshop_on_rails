@@ -18,6 +18,10 @@
   background-color: white;
 }
 
+.card-container:hover {
+  box-shadow: 5px 5px 7px lightgrey;
+}
+
 @media (min-width: 1500px) {
   .cards-container {
     top: 150px;
