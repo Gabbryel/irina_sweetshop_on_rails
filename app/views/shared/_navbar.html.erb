@@ -7,7 +7,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav fonts-family rem1-3">
+    <ul class="navbar-nav align-items-center fonts-family rem1-3">
       <li class="nav-item active">
         <a href='#' class="nav-link color-fonts text-center fonts-700" data-toggle="modal" data-target="#exampleModalLong">
           Covid-19
@@ -31,6 +31,12 @@
           <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center fonts-family color-fonts fonts-700" %>
           <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center fonts-family color-fonts fonts-700" %>
         </div>
+      </li>
+
+      <li class="nav-item active">
+        <%= link_to cart_path do %>
+          <i class="fab fa-opencart nav-link color-fonts text-center fonts-700"></i>
+        <% end %>
       </li>
       
       <li class="nav-item dropdown">

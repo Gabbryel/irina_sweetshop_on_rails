@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+  include MetaTagsConcern
+  
   protect_from_forgery with: :exception
   before_action :authenticate_user!, except: %i[index show]
 
-  include Pundit
-  include MetaTagsConcern
 
   # Pundit: white-list approach.
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
