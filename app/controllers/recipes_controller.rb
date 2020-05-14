@@ -24,6 +24,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @item = Item.new
     @review = Review.new
     @reviews = @recipe.reviews.all
     @page_title = "Rețeta de #{ @recipe.name } || Cofetăria Irina - Bacău"
@@ -51,7 +52,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :content, :photo, :kg, :buc, :price_cents)
+    params.require(:recipe).permit(:name, :content, :photo, :kg_buc, :price_cents)
   end
 
   def set_category

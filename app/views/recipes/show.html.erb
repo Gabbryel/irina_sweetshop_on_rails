@@ -7,14 +7,22 @@
         <%= cl_image_tag @recipe.photo.key %>
         <div class="recipe-price-holder-show d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700">
           <p class="recipe-price-show text-center m-0 p-0"><%= humanized_money_with_symbol(@recipe.price) %></p>
-          <p class="p-0 m-0 rem1-2 fonts-family"><%= @recipe.kg ? 'kg' : 'buc' %></p>
+          <p class="p-0 m-0 rem1-2 fonts-family"><%= @recipe.kg_buc %></p>
         </div>
       </div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="col-10 col-md-6 color-fonts mt-5">
-      <%= link_to 'Comandă acum!', root_path, class: 'btn btn-lg button-default btn-block button-rounded mb-5' %>
+      <%= simple_form_for @item do |f| %>
+      <%= f.input :quantity %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :name, :value => @recipe.name %>
+      <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
+      <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
+      <%= f.submit %>
+      <% end %>
+      <%= link_to 'Vreau să comand', new_item_path, class: 'btn btn-lg button-default btn-block button-rounded mb-5' %>
       <p class="text-center pb-4 rem1-2 show-recipe_content"><%= @recipe.content %></p>
     </div>
   </div>
@@ -22,7 +30,7 @@
     
   </div>
   <div class="row justify-content-center">
-    <div class="col-11 col-md-4 color-fonts">
+    <div class="col-10 col-md-6 color-fonts">
       <p class="text-center rem1-3">Rating & recenzii: </p>
       <%= render 'partials/reviews_new_form' %>
       <%= render 'partials/reviews_index' %>

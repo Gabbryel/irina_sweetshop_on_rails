@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[create]
   end
 
+  resources :items
+
+  resource :cart, only: %i[show]
+
 
   devise_for :users
   root to: 'pages#home'

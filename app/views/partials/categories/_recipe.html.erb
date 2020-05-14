@@ -10,7 +10,7 @@
             </div>
             <div class="recipe-price-holder d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700">
               <p class="recipe-price  text-center  m-0 p-0"><%= humanized_money_with_symbol(recipe.price) %></p>
-              <p class="p-0 m-0 rem1-2 fonts-family"><%= recipe.kg ? 'kg' : 'buc' %></p>
+              <p class="p-0 m-0 rem1-2 fonts-family"><%= recipe.kg_buc %></p>
             </div>
 
           

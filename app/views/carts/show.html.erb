@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-11 mt-5 pt-5 rem1 mx-3 color-fonts fonts-family">
+      <table class="mt-5">
+        <h1 class='mt-5 text-center fonts-family fonts-700'>Coșul dvs.</h1>
+        <tr>
+          <th class="px-3 rem1-3">Id</th>
+          <th class="px-3 rem1-3">Produs</th>
+          <th class="px-3 rem1-3">Pret</th>
+          <th class="px-3 rem1-3">Cantitate</th>
+          <th></th>
+          <th class="px-3 rem1-3">Total</th>
+        </tr>
+
+        <% @items.each do |i| %>
+        <tr class="rem1">
+          <td class="px-3"><%= i.id %></td>
+          <td class="px-3"><%= i.name %></td>
+          <td class="px-3"><%= humanized_money_with_symbol(i.price) %></td>
+          <div class="cart-update-items rem1">
+            <%= simple_form_for i do |f| %>
+              <td class="px-3"><%= f.input :quantity, label: false %></td>
+              <td class="px-3"><%= f.button :submit %>
+              </td>
+            <% end %>
+          </div>
+          <td class="px-3"><%= i.total %> lei </td>
+          <td class="px-3"><%= link_to item_path(i), method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+
+      </table>
+      <h3 class="px-3 my-5 rem1-5"><%= link_to "Plătește #{@cart.grand_total} lei", root_path, class: 'btn btn-lg button-default btn-block button-rounded mb-5 fonts-family fonts-700 px-4 py-2' %></h3>
+      </div>
+  </div>
+</div>
