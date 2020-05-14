@@ -8,8 +8,8 @@
 .card-container {
   position: relative;
   height: 450px;
-  max-width: 430px;
-  min-width: 336px;
+  max-width: 390px;
+  min-width: 310px;
   overflow: hidden;
   box-shadow: 2px 2px 7px lightgrey;
   border-radius: 20px;
@@ -67,4 +67,11 @@
 .category-index-crud-buttons {
   bottom: 10px;
   left: 10px;
+}
+
+.card-name {
+  font-family: 'Baloo 2', cursive;
+  text-shadow: 1px 1px .3px $shadow-color;
+  font-weight: 800;
+  font-size: 2.5rem;
 }
