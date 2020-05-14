@@ -5,7 +5,8 @@ a {
 }
 
 .fonts-family {
-  font-family: 'Life Savers';
+  // font-family: 'Life Savers';
+  font-family: 'Baloo 2', cursive;
 }
 
 .fonts-family-text {
@@ -62,4 +63,14 @@ a {
 
 .border-bottom-custom {
   border-bottom: 1px solid $official-color;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px .3px $shadow-color;
+}
+
+.generic-border {
+  border: 1px solid $official-color;
+  border-radius: 10px;
+  box-shadow: 2px 2px 7px $shadow-color;
 }

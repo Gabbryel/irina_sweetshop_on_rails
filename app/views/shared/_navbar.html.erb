@@ -7,35 +7,35 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav align-items-center fonts-family rem1-3">
+    <ul class="navbar-nav align-items-center fonts-family rem1-5">
       <li class="nav-item active">
-        <a href='#' class="nav-link color-fonts text-center fonts-700" data-toggle="modal" data-target="#exampleModalLong">
+        <a href='#' class="nav-link color-fonts text-center text-shadow" data-toggle="modal" data-target="#exampleModalLong">
           Covid-19
         </a>
       </li>
       <li class="nav-item active">
-        <%= link_to "Categorii", categories_path, class: "nav-link color-fonts text-center fonts-700" %>
+        <%= link_to "Categorii", categories_path, class: "nav-link color-fonts text-center text-shadow" %>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-center fonts-700" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
+        <a class="nav-link dropdown-toggle color-fonts text-shadow text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
-            <%= link_to cat.name, category_path(cat), class: "dropdown-item text-center fonts-family color-fonts fonts-700" %>
+            <%= link_to cat.name, category_path(cat), class: "dropdown-item text-center fonts-family color-fonts rem1-3" %>
           <% end %>
         </div>
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-center fonts-700" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
+        <a class="nav-link dropdown-toggle color-fonts text-shadow text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
         <div class="dropdown-menu dropdown-menu-custom_links brown-background" aria-labelledby="navbarDropdownMenuLink">
-          <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center fonts-family color-fonts fonts-700" %>
-          <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center fonts-family color-fonts fonts-700" %>
+          <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center fonts-family color-fonts rem1-3" %>
+          <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center fonts-family color-fonts rem1-3" %>
         </div>
       </li>
 
       <li class="nav-item active">
         <%= link_to cart_path do %>
-          <i class="fab fa-opencart nav-link color-fonts text-center fonts-700"></i>
+          <i class="fab fa-opencart nav-link color-fonts text-shadow text-center"></i>
         <% end %>
       </li>
       
@@ -43,14 +43,17 @@
         <a class="nav-link dropdown-toggle color-fonts" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
         <div class="dropdown-menu dropdown-menu-custom brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% if user_signed_in? %>
+            <% if current_user.admin %>
+              <div class="dropdown-item">
+                <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center color-fonts" %>
+              </div>
+            <% end %>
+
           <div class="dropdown-item">
-            <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center color-fonts fonts-700" %>
-          </div>
-          <div class="dropdown-item">
-            <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center color-fonts fonts-700" %>
+            <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center color-fonts" %>
           </div>
         <div class="dropdown-item">
-          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center color-fonts fonts-700" %>
+          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center color-fonts" %>
         </div>
       <% else %>
         <div class="dropdown-item">
