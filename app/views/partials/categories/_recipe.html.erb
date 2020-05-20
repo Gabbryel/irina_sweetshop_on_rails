@@ -2,7 +2,7 @@
   <%= link_to recipe_path(recipe) do %>
           <div class= "col-11 col-md-5 mx-md-3 col-xl-4 mx-xl-5 card-container">
             <%= cl_image_tag recipe.photo.key, alt: recipe.name,class: 'card-image' %> <br>
-            <h4 class='text-center pt-1 card-name font-titles color-fonts'><%= "#{recipe.name}" %></h4>
+            <p class='text-center pt-1 card-name font-titles color-fonts'><%= "#{recipe.name}" %></p>
             <div class='recipe-card_rating-total'>
               <p class='text-center fonts-family color-fonts'><%= "#{recipe.overall_rating.to_f.round(2)}"%> <%= '⭐️' * recipe.overall_rating.to_i %> <%= recipe.no_of_ratings %> </p>
             </div>

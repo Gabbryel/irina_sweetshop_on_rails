@@ -15,22 +15,6 @@
     border-radius: 10px;
     box-shadow: 0.1px 1px 10px lightgray;
     }
-    
-    .recipe-price-holder-show {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, .8);
-    }
-
-    .recipe-price-show {
-      border-bottom: 1px solid $official-color;
-      font-size: 1.3rem;
-      text-shadow: 3px 1px 4px white;
-    }
 }
 
 .recipe-reviews-index {

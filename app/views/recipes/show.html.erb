@@ -1,17 +1,17 @@
 <div class="container font-family py-5 mb-5">
   <div class="row justify-content-center align-items-center my-5">
-    <div class="col-10 col-md-5 mt-5">
+    <div class="col-10 col-md-5 mr-md-3 mt-5">
       <%= render 'partials/back_buttons' %>
       <div class="show-recipe_photo mt-5">
         <%= cl_image_tag @recipe.photo.key %>
-        <div class="recipe-price-holder-show d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700">
-          <p class="recipe-price-show text-center m-0 p-0"><%= humanized_money_with_symbol(@recipe.price) %></p>
+        <div class="recipe-price-holder d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700 recipe-price-text_shadow">
+          <p class="recipe-price text-center m-0 p-0"><%= humanized_money_with_symbol(@recipe.price) %></p>
           <p class="p-0 m-0 rem1-2 fonts-family"><%= @recipe.kg_buc %></p>
         </div>
       </div>
     </div>
     <div class="col-10 col-md-5 color-fonts mt-5">
-      <h1 class="font-titles fonts-700 text-center"><%= @recipe.name %></h1>
+      <h1 class="font-titles fonts-700 text-center card-name"><%= @recipe.name %></h1>
       <p class="text-center pb-4 rem1-2 show-recipe_content"><%= @recipe.content %></p>
       
       <div class="p-0 create-item">

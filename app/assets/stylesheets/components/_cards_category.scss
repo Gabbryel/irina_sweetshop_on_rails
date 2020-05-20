@@ -36,11 +36,6 @@
   }
 }
 
-
-
-
-
-
 .card-content {
   font-size: .7rem;
   padding: 0 1rem;
@@ -68,5 +63,5 @@
 
 .card-name {
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: calc(1.8vh + 1rem);
 }
