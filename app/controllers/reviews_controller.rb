@@ -13,13 +13,13 @@ class ReviewsController < ApplicationController
     @review.user = current_user
       if @review.save
         if @recipe
-          redirect_to recipe_path(params[:recipe_id])
+          redirect_to recipe_path(@recipe)
         elsif @cakemodel
           redirect_to cakemodel_path(params[:cakemodel_id])
         end
       else
         if @recipe
-          render 'recipes/show'
+          render 'recipes/show', notice: "Review not saved!"
         elsif @cakemodel
           render 'cakemodels/show'
         end

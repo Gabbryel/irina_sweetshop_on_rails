@@ -1,11 +1,11 @@
-<div class="container-fluid cards-container d-flex flex-column py-5 mb-5 fonts-family">
+<div class="container-fluid cards-container d-flex flex-column py-5 mb-5">
   <div class="row justify-content-around my-5 mx-4">
     <%=render @categories %>
   </div>
   <div class="row justify-content-center mb-5">
     <div class="col-10 col-md-4 col-lg-3">
       <% if policy(Category).new? %>
-        <%= link_to 'Categorie nouă', new_category_path, class: 'btn button-default button-rounded btn-block fonts-family rem1-5' %>
+        <%= link_to 'Categorie nouă', new_category_path, class: 'btn button-default button-rounded btn-block font-family rem1-5' %>
       <% end %>
     </div>
   </div>

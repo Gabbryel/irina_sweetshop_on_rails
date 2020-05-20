@@ -1,8 +1,7 @@
-<div class="container fonts-family py-5 mb-5">
-  <div class="row justify-content-center mt-5">
-    <div class="col-11 col-md-11 mt-5">
+<div class="container font-family py-5 mb-5">
+  <div class="row justify-content-center align-items-center my-5">
+    <div class="col-10 col-md-5 mt-5">
       <%= render 'partials/back_buttons' %>
-      <h2 class="text-center fonts-family color-fonts fonts-700 pt-5"><%= @recipe.name %></h2>
       <div class="show-recipe_photo mt-5">
         <%= cl_image_tag @recipe.photo.key %>
         <div class="recipe-price-holder-show d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700">
@@ -11,34 +10,31 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-10 col-md-6 color-fonts mt-5">
-      <%= simple_form_for @item do |f| %>
-      <%= f.input :quantity %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.hidden_field :name, :value => @recipe.name %>
-      <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
-      <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
-      <%= f.submit %>
-      <% end %>
-      <%= link_to 'Vreau să comand', new_item_path, class: 'btn btn-lg button-default btn-block button-rounded mb-5' %>
+    <div class="col-10 col-md-5 color-fonts mt-5">
+      <h1 class="font-titles fonts-700 text-center"><%= @recipe.name %></h1>
       <p class="text-center pb-4 rem1-2 show-recipe_content"><%= @recipe.content %></p>
+      
+      <div class="p-0 create-item">
+        <%= simple_form_for @item do |f| %>
+        <%= f.input :quantity, label: "Alege cantitatea" %>
+        <% if current_user %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        <% end %>
+        <%= f.hidden_field :name, :value => @recipe.name %>
+        <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
+        <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
+        <%= f.submit "Adaugă în coș", class: 'btn button-default btn-block button-rounded mb-5 button-width-30' %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="row justify-content-center">
-    
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-10 col-md-6 color-fonts">
-      <p class="text-center rem1-3">Rating & recenzii: </p>
+  <div class="row justify-content-center align-items-start mt-5">
+    <h2 class="text-center col-10 mb-5 font-titles color-fonts fonts-700">Rating & recenzii </h2>
+    <div class="col-10 col-md-5 color-fonts">
       <%= render 'partials/reviews_new_form' %>
-      <%= render 'partials/reviews_index' %>
     </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-11 col-12 my-5">
-      <%= render 'partials/back_buttons' %>
+    <div class="col-10 col-md-5 color-fonts">
+      <%= render 'partials/reviews_index' %>
     </div>
   </div>
 </div>

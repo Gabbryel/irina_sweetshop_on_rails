@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   min-width: 300px;
-  max-width: 380px;
+  max-width: 330px;
   margin: 0 auto;
   
   img {
@@ -33,3 +33,11 @@
     }
 }
 
+.recipe-reviews-index {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.create-item .form-control {
+  width: 30%;
+}

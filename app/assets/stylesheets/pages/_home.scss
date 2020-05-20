@@ -7,15 +7,16 @@ body {
 
 .home-page {
   position: absolute;
-  height: 80vh;
+  top: 7vh;
   width: 100vw;
 }
 
+
 .btn-homepage {
-  top: 70vh;
-  width: 90%;
+  top: 65vh;
+  width: 70%;
   max-height: 7vh;
-  left: 5%;
+  left: 15%;
 }
 
 .punch-line-1, .punch-line-2 {
@@ -27,7 +28,6 @@ body {
   top: 17vh;
   left: 10vw;
   color: $official-color;
-  font-size: 1rem;
 }
 
 .fa-cookie-bite,
@@ -118,7 +118,8 @@ body {
   }
   
   .home-page {
-    height: 100vh;
+    top: 0;
+    height: 97vh;
     background: asset-url('praj3.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -148,8 +149,8 @@ body {
     display: inline;
     position: absolute;
     color: $official-color;
-    font-family: 'Life Savers';
-    font-weight: 700;
+    // font-family: 'Life Savers';
+    // font-weight: 700;
   }
 }
 

@@ -1,16 +1,16 @@
 <% if @category.has_recipe && @category.has_models%>
-  <div class="category-recipes-index row justify-content-around pb-5 mb-5 active-section-index">
+  <div class="category-recipes-index row justify-content-center pb-5 mb-5 active-section-index">
     <%= render 'partials/categories/recipe' %>
   </div>
-  <div class="category-models-index row justify-content-around pb-5 mb-5 inactive-section-index">
+  <div class="category-models-index row justify-content-center pb-5 mb-5 inactive-section-index">
     <%= render 'partials/categories/cakemodel' %>
   </div>
 <% elsif @category.has_models %>
-  <div class="category-models-index row justify-content-around pb-5 mb-5 active-section-index">
+  <div class="category-models-index row justify-content-center pb-5 mb-5 active-section-index">
     <%= render 'partials/categories/cakemodel' %>
   </div>
   <% elsif @category.has_recipe %>
-  <div class="category-recipes-index row justify-content-around pb-5 mb-5 active-section-index">
+  <div class="category-recipes-index row justify-content-center pb-5 mb-5 active-section-index">
     <%= render 'partials/categories/recipe' %>
   </div>
 <% end  %>

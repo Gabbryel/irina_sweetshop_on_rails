@@ -1,91 +1,39 @@
-.recipe-cards_container {
-  position: relative;
-  top: 11vh;
-  .recipe-cards_title {
-    font-family: 'Life Savers';
-    color: $official-color;
-  }
-  a {
-    font-family: 'Life Savers';
-  }
-}
+      .recipe-card_rating-total {
+        position: absolute;
+        top: 427px;
+        width: 100%;
+        font-size: .7rem;
+          .font-stars {
+            font-size: 1px;
+            text-shadow: 2px 2px 2px lightgrey;
+          }
+      }
 
-.recipe-card_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 2px 2px 7px lightgrey;
-  border-radius: 20px;
-  margin: 20px 0;
-  padding: 0;
-  height: 460px;
-  min-width: 290px;
-  max-width: 330px;
-    .recipe-card_image {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      object-fit: cover;
-      object-position: top;
-      height: 360px;
-    }
-    .recipe-card_name {
-      position: absolute;
-      font-family: 'Life Savers';
-      top: 360px;
-      width: 100%;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-    .recipe-card_rating-total {
-      position: absolute;
-      top: 390px;
-      width: 100%;
-      font-size: .6rem;
-        .font-stars {
-          font-size: 5px;
-          text-shadow: 2px 2px 2px lightgrey;
-        }
-    }
+      .recipe-price-holder {
+        position: absolute;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        top: 10px;
+        right: 10px;
+        box-shadow: .2px .2px 1px $official-color;
+      }
 
-    .recipe-price-holder {
-      position: absolute;
-      height: 90px;
-      width: 90px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, .8);
-      top: 10px;
-      right: 5px;
-      box-shadow: .2px .2px 1px $official-color;
-    }
+      .recipe-price {
+        font-size: 1.3rem;
+        border-bottom: 1px solid $official-color;
+      }
+      
+      .recipe-price-text_shadow {
+        text-shadow: 1px .5px .5px $official-color;
+       }
 
-    .recipe-price {
-      font-size: 1.6rem;
-      border-bottom: 1px solid $official-color;
-    }
-
-    .recipe-card_describe-card {
-      position: absolute;
-      overflow: hidden;
-      height: 120px;
-      width: 100%;
-      top: 410px;
-      color: black;
-      border-top: 1px solid  $official-color;
-        p {
-          font-size: .8rem;
-          font-family: 'Life Savers';
-        }
-    }
-
-  }
       .recipe-card_admin-links {
         position: absolute;
         top: 10px;
         left: 20px;
-        background-color: rgba(255, 255, 255, .5);
+        background-color: rgb(255, 255, 255);
         padding: 1px 7px;
         border-radius: 10px;
         font-size: 16px;
@@ -93,12 +41,3 @@
             color: lightgray;
           }
       }
-
-@media (max-width: 500px) {
-  .recipe-card_container {
-    min-width: 290px;
-  }
-  .font-section {
-    font-size: 1rem !important;
-  }
-}
