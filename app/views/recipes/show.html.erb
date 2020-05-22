@@ -24,7 +24,7 @@
         <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
         <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
         <% if user_signed_in? %>
-         <%= f.submit "Adaugă în coș", class: 'btn button-default btn-block button-rounded mb-5 button-width-30' %>
+         <%= f.submit "Adaugă în coș", class: 'btn button-default button-rounded mb-5 d-inline' %>
         <% else %>
           <p class="rem1">Comanda online  nu este încă disponibilă!</p>
         <% end %>
