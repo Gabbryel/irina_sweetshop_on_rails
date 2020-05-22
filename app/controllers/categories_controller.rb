@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @recipes = @category.recipes
+    @recipes = @category.recipes.order("name ASC")
     @cakemodels = @category.cakemodels
     @page_title = "Rețete de #{@category.name.downcase} ・ Cofetăria Irina"
     @page_main_title = @category.name

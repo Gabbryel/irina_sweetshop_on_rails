@@ -5,7 +5,7 @@
         <h1 class='mt-5 font-family'>Coșul dvs. </h1>
         <tr class="text-left rem1-1">
           <th>Produs</th>
-          <th>Pret</th>
+          <th>Preț</th>
           <th>Cantitate</th>
           <th></th>
           <th>Total</th>
@@ -19,7 +19,7 @@
           </div>
           <div class="cart-update-items rem1">
             <%= simple_form_for i do |f| %>
-              <td class="pl-1"><%= f.input :quantity, label: false %></td>
+              <td class="pl-1 quantity-input"><%= f.input :quantity, label: false %></td>
               <td class="pl-1"><%= f.button :button do %>
                 <i class="fas fa-sync-alt color-fonts"></i>
               <% end %>
@@ -36,7 +36,7 @@
         <% end %>
 
       </table>
-      <h3 class="my-5 rem1-3"><%= link_to "Sumar comandă (#{@cart.grand_total} lei)", root_path, class: 'btn btn-lg button-default button-rounded mb-5 font-family fonts-700 px-4 py-2' %></h3>
+      <h3 class="my-5"><%= link_to "Sumar comandă (#{@cart.grand_total} lei)", root_path, class: 'btn btn-lg button-default button-rounded mb-5 font-family px-4 py-2 rem1' %></h3>
       </div>
   </div>
 </div>
