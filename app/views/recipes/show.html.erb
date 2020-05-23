@@ -13,9 +13,11 @@
     <div class="col-10 col-md-5 color-fonts text-left mt-5">
       <h1 class="font-titles fonts-700 card-name"><%= @recipe.name %></h1>
       <p class="pb-2 rem1-2 show-recipe_content"><%= @recipe.content %></p>
-      <p class="rem1 mb-1">Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată. Modelele deosebite și accesoriile presupun costuri suplimentare.</p>
-      <p class="rem1 mb-1">Model la cerere fără accesorii modelate: 65 lei/kg</p>
-      <p class="rem1">Model la cerere cu accesorii modelate: 80 lei/kg</p>
+      <p class="rem1 mb-1">Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
+      design <span class='standard'>standard <i class="fas fa-hand-point-left"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "standard-design") %></span>.</p>
+      
+      <p class="rem1 mb-1">Model la cerere: 65 lei/kg</p>
+      <p class="rem1">Model la cerere cu accesorii deosebite: 80 lei/kg</p>
       <div class="p-0 create-item">
         <%= simple_form_for @item do |f| %>
         <%= f.input :quantity, label: "Alege cantitatea" %>

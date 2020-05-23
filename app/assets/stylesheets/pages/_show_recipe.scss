@@ -25,3 +25,19 @@
 .create-item .form-control {
   width: 30%;
 }
+.standard {
+  position: relative;
+  color: black;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.standard-design {
+  opacity: .9;
+  width: 100px;
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 0;
+}
