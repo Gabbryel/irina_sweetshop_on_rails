@@ -1,8 +1,8 @@
 <% @page_title = 'Cont nou Cofetăria Irina Bacău' %>
-<div class="container signup color-fonts">
-  <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-6 top-margin">
-      <p class="text-center">Formular de înscriere</p>
+<div class="container-fluid pt-5 color-fonts">
+  <div class="row justify-content-center pt-5">
+    <div class="col-10 col-md-4 font-family pt-5">
+      <p class="text-center pt-5">Formular de înscriere</p>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= f.error_notification %>
           <div class="form-inputs">
@@ -21,17 +21,11 @@
                         input_html: { autocomplete: "new-password" },
                         label: "Confirmă parola" %>
           </div>
-        <div class="form-actions">
-          <%= f.button :submit, "Trimite", class: "btn btn-block button-rounded button-default" %>
+        <div class="form-actions d-flex flex-column align-items-center mt-5">
+          <%= f.button :submit, "Înregistrare", class: "btn button-rounded button-default" %> <br>
+          <%= render "devise/shared/links" %>
         </div>
       <% end %>
-      
     </div>
   </div>
-      <div class="row position-relative justify-content-center top-margin">
-        <div class="col-10 col-md-8 col-lg-6">
-          <h6 class="text-center fonts-family">sau</h6>
-            <%= render "devise/shared/links" %>
-        </div>
-      </div>
 </div>
