@@ -10,13 +10,11 @@
 .first-margin-bottom {
   width: 50px;
   border-bottom: 1px solid $official-color;
-  opacity: .5;
 }
 
 .last-margin-bottom {
   border-bottom: 1px solid $official-color;
   flex-grow: 1;
-  opacity: .5;
 }
 
 .active-section-btn {
@@ -27,7 +25,6 @@
 
 .inactive-section-btn {
   border-bottom: 1px solid $official-color;
-  opacity: .5;
 }
 
 .active-section-index {
@@ -39,8 +36,10 @@
 }
 
 .category-recipes-index, .category-models-index {
+  height: 80vh;
+  overflow: scroll;
   position: relative;
-  top: 40px;
+  top: 25px;
 }
 
 .category-show-buttons-hover:hover {

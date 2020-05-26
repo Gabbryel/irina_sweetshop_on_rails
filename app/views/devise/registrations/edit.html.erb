@@ -1,14 +1,14 @@
 <% @page_title = 'Editare cont - Cofetăria Irina Bacău' %>
 <div class="container edit-user-container account-edit fonts-family color-fonts">
   <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-6">
-      <h4 class="text-center fonts-family mb-4">Editează contul: <%= current_user.email %></h4>
+    <div class="col-10 col-md-8 col-lg-6 font-family">
+      <h4 class="text-center mb-4 font-family">Editează contul: <%= current_user.email %></h4>
       
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
       
         <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true, label: "Adresa de email" %>
+          <%= f.input :email, required: true, autofocus: true, label: "Adresa de email", class: 'rem1-2' %>
       
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -18,7 +18,7 @@
                       hint: "*lasă spațiul gol dacă nu vrei să modifici",
                       required: false,
                       input_html: { autocomplete: "new-password" },
-                      input_html: { class: 'rem1'},  
+                      input_html: { class: 'rem1-2'},  
                       label: "Parola nouă" %>
           <%= f.input :password_confirmation,
                       required: false,
@@ -40,14 +40,14 @@
     </div>
   </div>
 
-  <div class="row cancel-account_container mt-5">
+  <div class="row cancel-account_container font-family mt-5">
     <div class="col">
       <p class="text-center rem1-3">Vrei să ne părăsești?   <%= link_to "Șterge contul!!!", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-sm button-default button-rounded fonts-family color-fonts my-3" %></p>
     </div>
   </div>
   <div class="row">
     <div class="col-10 col-md-8 col-lg-6">
-      <%= link_to "Înapoi", :back, class: 'btn btn-sm button-default button-rounded fonts-family color-fonts my-3'  %>
+      <%= link_to "Înapoi", :back, class: 'btn btn-sm button-default button-rounded font-family color-fonts my-3'  %>
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="col-10 col-md-5 color-fonts text-left mt-5">
-      <h1 class="font-titles fonts-700 card-name"><%= @recipe.name %></h1>
+      <h1 class="font-titles fonts-700 card-name mt-5"><%= @recipe.name %></h1>
       <p class="pb-2 rem1-2 show-recipe_content"><%= @recipe.content %></p>
   <% if @recipe.category.name.downcase == 'torturi' %>
       <p class="rem1 mb-1">Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
@@ -23,6 +23,7 @@
       <div class="p-0 create-item">
         <%= simple_form_for @item do |f| %>
         <%= f.input :quantity, label: "Alege cantitatea" %>
+
         <% if current_user %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
         <% end %>

@@ -1,4 +1,4 @@
-  <% @recipes.each do |recipe| %>
+    <% @recipes.each do |recipe| %>
   <%= link_to recipe_path(recipe) do %>
           <div class= "col-11 col-md-5 mx-md-3 col-xl-4 mx-xl-5 card-container">
             <%= cl_image_tag recipe.photo.key, alt: recipe.name,class: 'card-image' %> <br>
@@ -26,6 +26,7 @@
             </div>
           </div>
   <% end %>
+  
 
   <div class="container-fluid">
     <div class="row justify-content-center">
