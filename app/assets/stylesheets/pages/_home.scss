@@ -28,6 +28,8 @@ body {
   top: 17vh;
   left: 10vw;
   color: $official-color;
+  font-weight: 500;
+  font-size: calc(20vh + 20vw);
 }
 
 .fa-cookie-bite,
@@ -52,6 +54,17 @@ body {
   position: fixed;
   top: 40vh;
   right: .5vw;
+}
+
+.counter {
+  position: absolute;
+  opacity: .00001;
+  bottom: 3vh;
+  left: 3vw;
+  z-index: 10;
+  &:hover {
+    opacity: .1;
+  }
 }
 
 // .circle {
