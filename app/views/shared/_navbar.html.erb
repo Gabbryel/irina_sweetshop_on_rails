@@ -1,25 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lewagon font-titles">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lewagon p-0">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png", alt: 'Cofetăria Irina Bacău' %>
-    <% end %>
+  <% end %>
     <div class="navbar-title d-flex align-items-center">
       <p class="text-center m-0 fonts-700"><%= @page_main_title %></p>
     </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-birthday-cake navbar-custom"></i>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav align-items-center rem1-5">
       <li class="nav-item active">
-        <a href='#' class="nav-link color-fonts text-center text-shadow" data-toggle="modal" data-target="#exampleModalLong">
+        <a href='#' class="nav-link color-fonts text-center" data-toggle="modal" data-target="#exampleModalLong">
           Covid-19
         </a>
       </li>
       <li class="nav-item active">
-        <%= link_to "Categorii", categories_path, class: "nav-link color-fonts text-center text-shadow" %>
+        <%= link_to "Categorii", categories_path, class: "nav-link color-fonts text-center" %>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-shadow text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
         <div class="dropdown-menu brown-background" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
             <%= link_to cat.name, category_path(cat), class: "dropdown-item text-center color-fonts rem1-3" %>
@@ -28,7 +29,7 @@
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle color-fonts text-shadow text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
+        <a class="nav-link dropdown-toggle color-fonts text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
         <div class="dropdown-menu dropdown-menu-custom_links brown-background" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center color-fonts rem1-3" %>
           <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center color-fonts rem1-3" %>
@@ -38,7 +39,7 @@
       <li class="nav-item active">
         <%if user_signed_in? && current_user.admin  %>
         <%= link_to cart_path do %>
-          <i class="fab fa-opencart nav-link color-fonts text-shadow text-center"></i>
+          <i class="fab fa-opencart nav-link color-fonts text-center"></i>
         <% end %>
         <% end %>
       </li>

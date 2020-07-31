@@ -4,14 +4,24 @@
   width: 100%;
   background: $navbar-background !important;
   z-index: 100;
+  height: calc(4rem + 2vh);
+  font-family: $font-one;
+  font-weight: 300;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  ul {
+    background-color: $navbar-background;
+  }
+}
+
+.navbar-brand {
+  height: 100%;
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 70px;
+  height: 100%;
 }
 
 .nav-link_custom {
@@ -23,12 +33,6 @@
   font-size: 40px;
 }
 
-.navbar-brand {
-  img {
-    width: 40px;
-  }
-}
-
 
 .dropdown-menu {
   border: none;
@@ -36,6 +40,10 @@
 
 .dropdown-menu-custom {
   left: -150px;
+}
+
+.dropdown-item {
+  font-weight: 300;
 }
 
 .dropdown-menu-custom_links {
@@ -50,4 +58,5 @@
   color: white;
   font-size: 2.5rem;
   align-self: center;
+  letter-spacing: 1.8px;
 }

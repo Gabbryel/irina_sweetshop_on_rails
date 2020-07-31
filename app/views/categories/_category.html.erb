@@ -1,7 +1,7 @@
 <div class="col-11 col-sm-9 col-md-5 mx-md-3 col-xl-4 card-container">
   <%= link_to category_path(category) do %>
     <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
-    <p class='card-name button-default text-center pt-3 animated lightSpeedIn text-shadow font-titles'><%= category.name.upcase %></p>
+    <p class='card-name button-default text-center pt-3 text-shadow font-one font-one-500'><%= category.name.upcase %></p>
   <% end %>
   <div class="category-index-crud-buttons position-absolute">
     <p class='text-center justify-content-around my-2'>
