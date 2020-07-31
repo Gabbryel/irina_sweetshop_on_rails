@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   has_one_attached :photo
   validates :name, presence: true
   validates :content, presence: true
-  validates :photo, presence: true
+  # validates :photo, presence: true
 
   include Reviewable
 

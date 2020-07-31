@@ -1,15 +1,6 @@
 <% content_for (:title) { 'Cofetăria Irina - Bacău, str. Miorița, nr. 10' } %>
-<div class="home-page font-titles">
-  <!-- <div class="circle">
-    <%= image_tag("praj3sm.png", class: "home-photo") %>
-  </div> 
-  <div class="black-poligon">
-  </div>
-  <div class="brown-poligon">
-  </div>
-  <h1 class="cofetaria font-titles color-fonts">Cofetăria</h1>
-  <h1 class="title-cofetaria font-titles color-fonts">Irina</h1> -->
-<p class='punch-line-1 fonts-700'>Gustul copilăriei ?</p>
+<!-- <div class="home-page font-titles"> -->
+<!-- <p class='punch-line-1 fonts-700'>Gustul copilăriei ?</p>
   <%= link_to "Îl găsești la noi !", categories_path, class: 'btn punch-line-2 rounded-pill px-5 py-2 fonts-700' %>
   <div class='punch-lines font-titles'>
     <p class="text-left ml-4"><i class="fas fa-cookie-bite mr-4"></i>200+ de rețete de prăjituri ?</p> 
@@ -18,15 +9,24 @@
     <p class="text-left ml-4"><i class="fas fa-seedling mr-4"></i>Produse naturale ?</p>
     <p class="text-left ml-4"><i class="fas fa-home mr-4"></i>Produse tradiționale ?</p>
   </div>
-</div>
-<%= link_to "Le găsești aici...", categories_path, class: 'btn position-relative btn-homepage button-default button-rounded font-titles rem1-5' %>
-
-<!-- hitwebcounter Code START -->
-<div class="counter">
-  <!-- Start of CuterCounter Code -->
-<a href="https://www.webfreecounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hmxxaccq&nd=6&style=3" border="0" alt="best free website hit counter"></a>
-<!-- End of CuterCounter Code -->
-<!-- Start of CuterCounter Code -->
-<a href="https://www.webfreecounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hexxaccc&nd=6&style=3" border="0" alt="website counter"></a>
-<!-- End of CuterCounter Code -->
+</div> -->
+<!-- <%= link_to "Le găsești aici...", categories_path, class: 'btn position-relative btn-homepage button-default button-rounded font-titles rem1-5' %> -->
+<div class="container-fluid homepage-main-container">
+  <div class="row homepage-row">
+    <div
+      class="col-12 col-sm-6 my-4 homepage-lines-container color-fonts d-flex justify-content-center align-items-sm-center homepage-col">
+      <div>
+        <p class="text-left ml-2"><i class="fas fa-cookie-bite"></i>200+ de rețete de prăjituri</p>
+        <p class="text-left ml-2"><i class="fas fa-birthday-cake"></i>Sute de modele de torturi </p>
+        <p class="text-left ml-2"><i class="far fa-image"></i></i>Fotografii comestibile</p>
+        <p class="text-left ml-2"><i class="fas fa-seedling"></i>Produse naturale</p>
+        <p class="text-left ml-2"><i class="fas fa-home"></i>Produse tradiționale</p>
+        <p class="text-center text-md-left ml-md-2 mt-3 mt-sm-5">
+          <%= link_to "Deserturile noastre", categories_path, class: "call-to-action" %></p>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 homepage-photo-container homepage-col">
+      <%= image_tag('praj3sm.png') %>
+    </div>
+  </div>
 </div>

@@ -23,10 +23,8 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="main-container">
       <%= yield %>
-        <%= render 'shared/social' %>
-    </div>
+    <%= render 'shared/social' %>
     <%= render 'shared/modal_paste' %>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>

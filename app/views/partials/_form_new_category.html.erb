@@ -7,10 +7,10 @@
         <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Creează o nouă categorie</p>
       <% end %>
       <%= simple_form_for @category do |f| %>
-    <%= f.input :name, label: 'Numele categoriei', placeholder: 'Ex.: Torturi, Prăjituri', label_html: { class: 'color-fonts fonts-700 rem1-3 my-2' } %>
-      <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded my-2' } %>
-      <%= f.input :has_recipe, label: 'Are rețetă?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
-      <%= f.input :has_models, label: 'Are modele de expus?', label_html: { class: 'color-fonts rem1' } %>
+        <%= f.input :name, label: 'Numele categoriei', placeholder: 'Ex.: Torturi, Prăjituri', label_html: { class: 'color-fonts fonts-700 rem1-3 my-2' } %>
+        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded my-2' } %>
+        <%= f.input :has_recipe, label: 'Are rețetă?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
+        <%= f.input :has_models, label: 'Are modele de expus?', label_html: { class: 'color-fonts rem1' } %>
         <% if @category.id %>
           <%= f.button :submit, value: 'Modifică categoria', class: 'btn button-default btn-block button-rounded' %>
         <% else %>
