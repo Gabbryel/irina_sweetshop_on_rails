@@ -18,12 +18,6 @@ function animateCard() {
       })
     })
   }
-
-
-
- 
-
-
   if (cardContainers) {
     mouseEnterFunc()
     mouseOutFunc()

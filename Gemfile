@@ -8,7 +8,7 @@ gem 'devise'
 gem 'pundit'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
-gem "puma", ">= 4.3.3"
+gem "puma"
 gem 'rails', '6.0.2.1'
 gem 'redis'
 gem 'cloudinary', '~> 1.12.0'

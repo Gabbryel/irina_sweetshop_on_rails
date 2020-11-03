@@ -1,18 +1,41 @@
-.about-top-margin {
-  position: relative;
-  margin-bottom: 70px;
-}
-
-.about-img {
-  width: 100%;
-  height: auto;
-}
-
-.about-rounded {
-  border-radius: 10px;
-  box-shadow: 1px 1px 5px darkgrey;
-}
-
-.about-top-margin {
-  top: 150px;
+.about-main-container {
+  display: flex;
+  flex-flow: column;
+  padding: calc(4rem + 4vh) 0 40px;
+  background-color: $light-bkg-color;
+  color: $font-color;
+  font-family: $font-text;
+  font-weight: 100;
+  font-size: 2rem;
+  .about-presentation {
+    padding: 20px 0;
+    .big-title {
+      font-family: $font-title;
+    }
+    .img-pano {
+      width: 100%;
+    }
+    p {
+      padding: 0  3vw;
+      text-indent: 6vw;
+    }
+    p:first-of-type {
+      text-indent: 0;
+    }
+  }
+  @media (min-width: 651px) {
+    padding: calc(4rem + 4vh) 5vw 40px;
+    font-size: 1.5rem;
+    .about-presentation {
+      p {
+        padding: 0;
+      }
+    }
+  }
+  @media (min-width: 901px) {
+    padding: calc(4rem + 4vh) 10vw 40px;
+    .about-presentation {
+      font-size: 1.1rem;
+    }
+  }
 }
