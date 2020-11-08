@@ -61,7 +61,7 @@
             color: inherit;
         }
     }
-    @media (max-width: 2000px) {
+    @media (max-width: 375px) {
         width: 280px;
         height: 400px;
         .card-title {
@@ -69,8 +69,9 @@
             top: 30px;
         }
         .card-image {
-            top: 30px;
+            top: 50px;
             width: 238px;
+            height: 236px;
         }
         .card-brown-square {
             top: 150px;
