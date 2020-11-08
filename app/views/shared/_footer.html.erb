@@ -18,13 +18,15 @@
     <div class="footer-right">
       <p><i class="fas fa-phone-square"></i> 0234-562604</p>
       <p><i class="fas fa-envelope-square"></i> office@irinasweet.ro</p>
-      <p><a href="http://www.ansvsa.ro/"></a> A.N.S.V.S.A.</p>
+      <p>Pentru comenzi: <%= link_to  how_to_order_path do %>
+                          <i class="fas fa-hand-point-right"></i>
+                         <% end %>
+      </p>
       <p><a href="https://anpc.ro/"> A.N.O.P.C.</a></p>
-      <p><%= link_to 'Cum comand?', how_to_order_path %></p> 
       <p><%= link_to 'Despre noi', about_path %></p> 
     </div>
   </div>
   <div class="copyright">
-    <p class='text-center'><span>© IRINA SWEETSHOP S.R.L. 2014 - <%= Date.today().year %></span></p>
+    <p class='text-center mt-3'><span>© IRINA SWEETSHOP S.R.L. 2014 - <%= Date.today().year %></span></p>
   </div>
 </section>

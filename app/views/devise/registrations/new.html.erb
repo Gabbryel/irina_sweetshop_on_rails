@@ -1,31 +1,27 @@
-<% @page_title = 'Cont nou Cofetăria Irina Bacău' %>
-<div class="container-fluid pt-5 color-fonts">
-  <div class="row justify-content-center pt-5">
-    <div class="col-10 col-md-4 font-family pt-5">
-      <p class="text-center pt-5">Formular de înscriere</p>
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
-          <div class="form-inputs">
-            <%= f.input :email,
-                        required: true,
-                        autofocus: true,
-                        input_html: { autocomplete: "email" },
-                        label: 'Adresă de e-mail' %>
-            <%= f.input :password,
-                        required: true,
-                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                        input_html: { autocomplete: "new-password" },
-                        label:  "Parola"%>
-            <%= f.input :password_confirmation,
-                        required: true,
-                        input_html: { autocomplete: "new-password" },
-                        label: "Confirmă parola" %>
-          </div>
-        <div class="form-actions d-flex flex-column align-items-center mt-5">
-          <%= f.button :submit, "Înregistrare", class: "btn button-rounded button-default" %> <br>
-          <%= render "devise/shared/links" %>
-        </div>
-      <% end %>
+<% @page_title = 'Creează un cont nou Cofetăria Irina Bacău' %>
+<div class="devise-main-container">
+  <p class="text-center mb-5">Cont nou</p>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" },
+                    label: 'Adresă de e-mail' %>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password" },
+                    label:  "Parola"%>
+        <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password" },
+                    label: "Confirmă parola" %>
+      </div>
+    <div class="singup-btns d-flex flex-column align-items-center mt-5">
+      <%= f.button :submit, "Creează cont nou", class: 'btn-user-forms' %> <br>
+      <%= render "devise/shared/links" %>
     </div>
-  </div>
+  <% end %>
 </div>

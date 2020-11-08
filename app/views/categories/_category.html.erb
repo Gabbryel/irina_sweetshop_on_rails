@@ -1,22 +1,30 @@
-<div class="col-11 col-sm-9 col-md-5 mx-md-3 col-xl-4 card-container">
-  <%= link_to category_path(category) do %>
-    <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
-    <p class='card-name button-default text-center pt-3 text-shadow font-one font-one-500'><%= category.name.upcase %></p>
-  <% end %>
-  <div class="category-index-crud-buttons position-absolute">
-    <p class='text-center justify-content-around my-2'>
+<%= link_to category_path(category) do %>
+  <div class='card-container'>
+    <div class="card-title">
+      <p><%= category.name.upcase %></p>
+    </div>
+    <div class="card-image">
+      <% if  category.photo.present? %>
+        <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
+      <% else %>
+        <%= image_tag('https://res.cloudinary.com/dqbu9lypc/image/upload/v1590146283/txt5oys3fa14wlw8eq6l3ulu64zu.png') %>
+      <% end %>
+    </div>
+    <div class="card-brown-square"></div>
+    <div class="card-crud">
       <% if policy(category).edit? %>
         <%= link_to edit_category_path(category.id),
-        class: 'button-default button-rounded' do %>
-        <i class="far fa-edit color-fonts rem075"></i>
+        class: '' do %>
+        <i class="far fa-edit"></i>
         <% end %>
       <% end %>
 
       <% if policy(category).destroy? %>
-        <%= link_to category_path(category), class: 'button-default button-rounded', method: :delete do %>
-        <i class="fas fa-trash-alt color-fonts rem075"></i>
+        <%= link_to category_path(category), class: '', method: :delete do %>
+        <i class="fas fa-trash-alt"></i>
         <% end %>
       <% end %>
-    </p>
+    </div>
   </div>
-</div>
+<% end %>
+  

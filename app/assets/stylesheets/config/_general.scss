@@ -57,7 +57,7 @@ table {
 }
 
 html, body {
-	font-family: 'Lato';
+	font-family: $font-title;
 	overflow-y: scroll;
 	font-size: calc(5px + 1vw);
 }

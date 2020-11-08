@@ -1,22 +1,20 @@
-<div class="container fonts-family">
-  <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-6 mt-5 pt-5 new-category">
+    <div class="forms-main-container">
       <% if @category.id %>
-        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Modifică categoria</p>
+        <p class="text-center my-5">Modifică categoria</p>
       <% else %>
-        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Creează o nouă categorie</p>
+        <p class="text-center my-5">Categorie nouă</p>
       <% end %>
       <%= simple_form_for @category do |f| %>
-        <%= f.input :name, label: 'Numele categoriei', placeholder: 'Ex.: Torturi, Prăjituri', label_html: { class: 'color-fonts fonts-700 rem1-3 my-2' } %>
-        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded my-2' } %>
-        <%= f.input :has_recipe, label: 'Are rețetă?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
-        <%= f.input :has_models, label: 'Are modele de expus?', label_html: { class: 'color-fonts rem1' } %>
-        <% if @category.id %>
-          <%= f.button :submit, value: 'Modifică categoria', class: 'btn button-default btn-block button-rounded' %>
-        <% else %>
-          <%= f.button :submit, value: 'Categorie nouă', class: 'btn button-default btn-block button-rounded' %>
-        <% end %>
+        <%= f.input :name, label: 'Numele categoriei', placeholder: 'Ex.: Torturi, Prăjituri', label_html: { class: '' } %>
+        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: '' } %>
+        <%= f.input :has_recipe, label: 'Are rețetă?', label_html: { class: '' }, class: '' %>
+        <%= f.input :has_models, label: 'Are modele de expus?', label_html: { class: '' } %>
+        <div class='d-flex justify-content-center my-5'>
+          <% if @category.id %>
+            <%= f.button :submit, value: 'Modifică categoria', class: 'btn-default' %>
+          <% else %>
+            <%= f.button :submit, value: 'Categorie nouă', class: 'btn-default' %>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  </div>
-</div>

@@ -1,5 +1,38 @@
-.new-category {
-  .form-check-input {
-    margin-top: .7rem;
+.forms-main-container {
+  padding: calc(8vh + 8rem) 5vw 10vh;
+  min-height: 60vh;
+  font-size: 3rem;
+  background-color: $light-bkg-color;
+  color: $font-color;
+  .required, .optional {
+    font-size: 1.5rem;
+    font-weight: 100;
+  }
+  .required {
+    margin-bottom: 10px;;
+  }
+  .form-check {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 0;
+    .form-check-label {
+      margin-left: 3vw;
+    }
+  }
+  @media (min-width: 651px) {
+    padding: calc(8vh + 8rem) 15vw 10vh;
+  }
+  @media (min-width: 901px) {
+    padding: calc(4vh + 4rem) 25vw 10vh;
+    font-size: 2rem;
+    .required, .optional {
+      font-size: 1rem;
+    }
+    .form-check {
+      .form-check-label {
+        margin-left: 0;
+      }
+    }
   }
 }

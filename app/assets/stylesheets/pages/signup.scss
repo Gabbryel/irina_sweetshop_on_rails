@@ -1,0 +1,48 @@
+// css for sign-up, log in, forgot password
+
+.devise-main-container {
+    position: relative;
+    padding: calc(8rem + 8vh) 5vw calc(4rem + 4vh);
+    min-height: 80vh;
+    font-size: 2.5rem;
+    background-color: $light-bkg-color;
+    color: $font-color;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    .required, .optional {
+        font-size: 1.6rem;
+        font-weight: 100;
+        margin-bottom: 1vh;
+    }
+    .form-control {
+        background-color: $font-color;
+        &:focus {
+            background-color: $font-color;
+            border-color: $bkg-color;
+        }
+    }
+    
+    .form-check-label {
+        margin-left: 3vw;
+    }
+    .signup-btns {
+        position: relative;
+        font-size: inherit;
+    }
+    @media (min-width: 651px) {
+        padding: calc(8rem + 8vh) 15vw calc(4rem + 4vh);
+    }
+    @media (min-width: 901px) {
+        padding: calc(8rem + 8vh) 25vw calc(4rem + 4vh);
+        font-size: 2rem;
+        .required, .optional {
+            font-size: 1rem;
+            font-weight: 100;
+            margin-bottom: 1vh;
+        }
+        .form-check-label {
+            margin-left: 0;
+        }
+    }
+}
