@@ -1,41 +1,40 @@
 .card-container {
     position: relative;
     margin: 0 auto 60px;
-    width: 350px;
-    height: 550px;
-    box-shadow: 0 0 25px #eee;
-    background-color: #fff;
+    width: 280px;
+    height: 400px;
+    box-shadow: 0 0 3px #bb8b7a80;
+    background-color: #bb8b7a1a;
+    border-radius: 10px;
     .card-title {
         position: absolute;
         top: 50px;
-        left: -20px;
+        left: 7px;
         background: #1C170C;
         color: #fff;
         font-family: 'Mitr';
-        font-weight: 800;
-        font-size: 44px;
+        font-weight: 600;
+        font-size: 20px;
         border-radius: 10px;
-        transform: rotate(.90turn);
+        transform: rotate(.97turn);
         z-index: 5;
         box-shadow: 2px 2px 3px rgba(0, 0, 0, .3);
         p {
             margin: 0;
-            padding: 0 20px;
+            padding: 7px 30px;
             text-align: center;
-            transform: rotate(.02turn)
+            transform: rotate(.015turn);
         }
     }
     .card-image {
         position: relative;
-        top: 60px;
+        top: 80px;
         margin: 0 auto;
-        height: 320px;
-        width: 300px;
+        height: 200px;
+        width: 220px;
         border-radius: 10px;
         overflow: hidden;
         z-index: 4;
-        //   box-shadow: 2px 2px 3px rgba(0, 0, 0, .3);
-        object-fit: contain;
         img {
             position: absolute;
             width: 100%;
@@ -43,12 +42,12 @@
     }
     .card-brown-square {
         position: absolute;
-        top: 210px;
-        left: 50px;
+        top: 150px;
+        left: 40px;
         background-color: #1C170C;
-        height: 250px;
-        width: 250px;
-        transform: rotate(.125turn);
+        height: 200px;
+        width: 200px;
+        transform: rotate(.160turn);
         border-radius: 10px;
         box-shadow: 3px 3px 15px rgba(0, 0, 0, .2);
     }
@@ -56,31 +55,9 @@
         position: absolute;
         bottom: 10px;
         left: 20px;
-        font-size: 2rem;
+        font-size: 1rem;
         a {
             color: inherit;
         }
-    }
-    @media (max-width: 375px) {
-        width: 280px;
-        height: 400px;
-        .card-title {
-            font-size: 36px;
-            top: 30px;
-        }
-        .card-image {
-            top: 50px;
-            width: 238px;
-            height: 236px;
-        }
-        .card-brown-square {
-            top: 150px;
-            left: 40px;
-            width: 200px;
-            height: 200px;
-        }
-    }
-    @media (min-width: 651px) {
-        margin: 20px;
     }
     }
