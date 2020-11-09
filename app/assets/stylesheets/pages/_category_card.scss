@@ -5,7 +5,7 @@
     height: 400px;
     box-shadow: 0 0 3px #bb8b7a80;
     background-color: #bb8b7a1a;
-    border-radius: 10px;
+    border-radius: 5px;
     .card-title {
         position: absolute;
         top: 50px;
@@ -60,6 +60,26 @@
         font-size: 1rem;
         a {
             color: inherit;
+        }
+    }
+    @media(min-width: 801px) {
+        width: 364px;
+        height: 520px;
+        .card-title {
+            font-size: 26px;
+        }
+        .card-image {
+            width: 260px;
+            height: 286px;
+            img {
+                width: 110%;
+            }
+        }
+        .card-brown-square {
+            height: 260px;
+            width: 260px;
+            left: 50px;
+            top: 180px;
         }
     }
     }
