@@ -1,14 +1,18 @@
 .card-index-main-container {
     position: relative;
     min-height: 80vh;
-    padding: calc(8rem + 8vh) 0;
+    padding: calc(8rem + 8vh) 0 4vh;
     width: 100%;
     @media (min-width: 651px) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
-    .card-index-new-category {
-        position: relative;
-    }
+}
+
+.card-index-new-category {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4vh;
 }
