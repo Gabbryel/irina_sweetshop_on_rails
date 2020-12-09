@@ -1,29 +1,31 @@
 <%= link_to category_path(category) do %>
   <div class='card-container'>
-    <div class="card-title">
-      <p><%= category.name.upcase %></p>
-    </div>
-    <div class="card-image">
-      <% if  category.photo.present? %>
-        <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
-      <% else %>
-        <%= cl_image_tag('https://res.cloudinary.com/dqbu9lypc/image/upload/v1604933091/zxwqwr6910eilodsmegj3xmwfyn4.jpg') %>
-      <% end %>
-    </div>
-    <div class="card-brown-square"></div>
-    <div class="card-crud">
-      <% if policy(category).edit? %>
-        <%= link_to edit_category_path(category.id),
-        class: '' do %>
-        <i class="far fa-edit"></i>
+    <div class="card-bkg-container">
+      <div class="card-title">
+        <p><%= category.name %></p>
+      </div>
+      <div class="card-image">
+        <% if  category.photo.present? %>
+          <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
+        <% else %>
+          <%= cl_image_tag('https://res.cloudinary.com/dqbu9lypc/image/upload/v1604933091/zxwqwr6910eilodsmegj3xmwfyn4.jpg') %>
         <% end %>
-      <% end %>
-
-      <% if policy(category).destroy? %>
-        <%= link_to category_path(category), class: '', method: :delete do %>
-        <i class="fas fa-trash-alt"></i>
+      </div>
+      <div class="card-lgt-brown-square"></div>
+      <div class="card-deep-brown-square"></div>
+      <div class="card-crud">
+        <% if policy(category).edit? %>
+          <%= link_to edit_category_path(category.id), class: '' do %>
+          <i class="far fa-edit"></i>
+          <% end %>
         <% end %>
-      <% end %>
+  
+        <% if policy(category).destroy? %>
+          <%= link_to category_path(category), class: '', method: :delete do %>
+          <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

@@ -2,11 +2,10 @@
     position: relative;
     min-height: 80vh;
     padding: calc(8rem + 8vh) 0 4vh;
-    width: 100%;
     @media (min-width: 651px) {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
+        flex-flow: wrap;
+        justify-content: center;
     }
 }
 
