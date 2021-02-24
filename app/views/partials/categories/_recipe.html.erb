@@ -1,42 +1,43 @@
-<% @recipes.each do |recipe| %>
-  <div class="card-container">
-  <%= link_to recipe_path(recipe), class:'recipe-link-container' do %>
-  <div class="card-image">
-    <% if recipe.photo.present? %>
-    <%= cl_image_tag recipe.photo.key, alt: recipe.name %> <br>
-    <% else %>
-    <%= cl_image_tag ("4792t30n2v5ovn35m550ffa45a24.png"), alt: recipe.name %>
-    <% end %>
-  </div>
-  <div class='card-title'>
-    <p><%= "#{recipe.name}" %></p>
-  </div>
-  <div class='card-rating'>
-    <p class=''><%= "#{recipe.overall_rating.to_f.round(2)}"%>
-      <%= '⭐️' * recipe.overall_rating.to_i %> <%= recipe.no_of_ratings %> </p>
-  </div>
-  <div class="card-price">
-    <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
-  </div>
+<% @recipes.each do |recipe| %> <!--foreach-->
+<div class="card-container">
+  <%= link_to recipe_path(recipe) do %> <!--link to each recipe-->
+      <div class="card-image">
+        <% if recipe.photo.present? %> <!--if begining-->
+        <%= cl_image_tag recipe.photo.key, alt: recipe.name %>
+        <% else %>
+        <%= cl_image_tag ("4792t30n2v5ovn35m550ffa45a24.png"), alt: recipe.name %>
+        <% end %> <!--if end-->
+      </div>
+      <div class='card-title'>
+        <p><%= "#{recipe.name}" %></p>
+      </div>
+      <div class='card-rating'>
+        <p class=''><%= "#{recipe.overall_rating.to_f.round(2)}"%>
+          <%= '⭐️' * recipe.overall_rating.to_i %> <%= recipe.no_of_ratings %> </p>
+      </div>
+      <div class="card-price">
+        <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
+      </div>
   <% end %>
 
-  <% if current_user && current_user.admin%>
-  <div class='card-crud'>
-    <% if policy(recipe).edit? %>
-    <%= link_to edit_category_recipe_path(recipe.category_id, recipe.id) do %>
-    <i class="far fa-edit"></i>
-    <% end %>
-    <% end %>
+<!-- ok -->
+      <% if current_user && current_user.admin%>
+        <div class='card-crud'>
+          <% if policy(recipe).edit? %>
+            <%= link_to edit_category_recipe_path(recipe.category_id, recipe.id) do %>
+            <i class="far fa-edit"></i>
+            <% end %>
+          <% end %>
 
-    <% if policy(recipe).destroy? %>
-    <%= link_to category_recipe_path(recipe.category_id, recipe.id), method: :delete do %>
-    <i class="fas fa-trash-alt"></i>
-    <% end %>
-    <% end %>
-  </div>
-  <% end %>
-</div>
-<% end %>
+        <% if policy(recipe).destroy? %>
+          <%= link_to category_recipe_path(recipe.category_id, recipe.id), method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+<% end %> <!--foreach-->
 
     <div class="container-fluid">
       <div class="row justify-content-center">

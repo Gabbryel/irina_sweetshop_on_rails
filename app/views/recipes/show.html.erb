@@ -3,10 +3,14 @@
     <%= render 'partials/back_buttons' %>
   </div>
   <div class="recipe-show-main">
-      <div class="recipe-show-main-image">
-          <%= cl_image_tag @recipe.photo.key %>
-            <p class="recipe-show-main-price"><%= humanized_money_with_symbol(@recipe.price) %> <span>/<%= @recipe.kg_buc %></span></p>
-      </div>
+    <div class="recipe-show-main-image">
+      <% if @recipe.photo.present? %>
+        <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
+      <% else %>
+        <%= cl_image_tag ("4792t30n2v5ovn35m550ffa45a24.png"), alt: @recipe.name %>
+      <% end %>
+      <p class="recipe-show-main-price"><%= humanized_money_with_symbol(@recipe.price) %> <span>/<%= @recipe.kg_buc %></span></p>
+    </div>
       <div class="recipe-show-main-description">
         <h1><%= @recipe.name %></h1>
         <p class="recipe-show-main-description-product"><%= @recipe.content %></p>
