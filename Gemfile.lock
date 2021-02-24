@@ -292,6 +292,7 @@ DEPENDENCIES
   puma
   pundit
   rails (= 6.0.2.1)
+  rake (~> 13.0, >= 13.0.1)
   redis
   sassc-rails
   simple_form
@@ -303,7 +304,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.6.3p62
 
 BUNDLED WITH
    2.1.2

@@ -1,6 +1,6 @@
 function showStandardDesign() {
   let standard = document.querySelector('.standard')
-  let standardDesign = document.querySelector('.standard-design')
+  let standardDesign = document.querySelector('.recipe-show-std-image')
   
   if (standard) {
     standard.addEventListener('mouseover', () => {

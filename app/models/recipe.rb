@@ -14,7 +14,7 @@ class Recipe < ApplicationRecord
   end
   
   def no_of_ratings
-    ratings.count == 1 ? "(#{ratings.count} recenzie)" : "(#{ratings.count} recenzii)"
+    ratings.count == 1 ? "(#{ratings.count} recenzie)" : "(/#{ratings.count})"
   end
 
   private 
