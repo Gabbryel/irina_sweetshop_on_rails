@@ -1,8 +1,10 @@
-<div class="color-fonts recipe-reviews-index">
+<div class="recipe-reviews-index">
   <% @reviews.each do |rev| %>
-    <p class="rem1"><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
-    <p class="rem1"><%= rev.content %></p>
-    <p class="rem1"><%= "Autor: #{rev.author}" %></p>
-    <p class="rem1 border-bottom-custom pb-3"><%= "Scrisă la: #{rev.created_at}" %></p>
+  <div class="recipe-reviews-card">
+    <p><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
+    <p><%= rev.content %></p>
+    <p><%= "Autor: #{rev.author}" %></p>
+    <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
+  </div>
     <% end %>
 </div>

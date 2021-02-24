@@ -1,118 +1,51 @@
-<div class="container font-family py-5 mb-5">
-  <div class="row justify-content-center align-items-center my-5">
-    <div class="col-10 col-md-5 mr-md-3 mt-5">
-      <%= render 'partials/back_buttons' %>
-      <div class="show-recipe_photo mt-5">
-        <%= cl_image_tag @recipe.photo.key %>
-        <div class="recipe-price-holder d-flex flex-column justify-content-center align-items-center fonts-family color-fonts fonts-700 recipe-price-text_shadow">
-          <p class="recipe-price text-center m-0 p-0"><%= humanized_money_with_symbol(@recipe.price) %></p>
-          <p class="p-0 m-0 rem1-2 fonts-family"><%= @recipe.kg_buc %></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-10 col-md-5 color-fonts text-left mt-5">
-      <h1 class="font-titles fonts-700 card-name mt-5"><%= @recipe.name %></h1>
-      <p class="pb-2 rem1-2 show-recipe_content"><%= @recipe.content %></p>
-  <% if @recipe.category.name.downcase == 'torturi' %>
-      <p class="rem1 mb-1">Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
-      design <span class='standard'>standard <i class="fas fa-hand-point-left"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "standard-design") %></span>.</p>
-      
-      <p class="rem1 mb-1">Model la cerere: 65 lei/kg</p>
-      <p class="rem1">Model la cerere cu accesorii deosebite: 80 lei/kg</p>
-  <% end %>
-      <div class="p-0 create-item">
-        <%= simple_form_for @item do |f| %>
-        <%= f.input :quantity, label: "Alege cantitatea" %>
-
-        <% if current_user %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-        <% end %>
-        <%= f.hidden_field :name, :value => @recipe.name %>
-        <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
-        <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
-        <% if user_signed_in? %>
-         <%= f.submit "Adaugă în coș", class: 'btn button-default button-rounded d-inline' %>
-        <% else %>
-          <p class="rem1">Comanda online  nu este încă disponibilă!</p>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
+<div class="recipe-show-container">
+  <div class="recipe-show-back-btn">
+    <%= render 'partials/back_buttons' %>
   </div>
-  <div class="row justify-content-center align-items-start mt-5">
-    <h2 class="text-center col-10 mb-5 font-titles color-fonts fonts-700">Rating & recenzii </h2>
-    <div class="col-10 col-md-5 color-fonts">
-      <%= render 'partials/reviews_new_form' %>
-    </div>
-    <div class="col-10 col-md-5 color-fonts">
-      <%= render 'partials/reviews_index' %>
+  <div class="recipe-show-main">
+      <div class="recipe-show-main-image">
+          <%= cl_image_tag @recipe.photo.key %>
+            <p class="recipe-show-main-price"><%= humanized_money_with_symbol(@recipe.price) %> <span>/<%= @recipe.kg_buc %></span></p>
+      </div>
+      <div class="recipe-show-main-description">
+        <h1><%= @recipe.name %></h1>
+        <p class="recipe-show-main-description-product"><%= @recipe.content %></p>
+    <% if @recipe.category.name.downcase == 'torturi' %>
+        <p class="">Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
+        design <span class='standard'>standard <i class="fas fa-hand-point-left"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "recipe-show-std-image") %></span>.</p>
+        <p>Prețuri pentru design la cerere, după model furnizat de client:</p>
+        <p class="">Design la cerere simplu: 65 lei/kg</p>
+        <p class="">Design la cerer cu accesorii modelate sau turnate în ciocolată: 80 lei/kg + figurinele.</p>
+    <% end %>
+        <!-- <div class="p-0 create-item">
+          <%= simple_form_for @item do |f| %>
+          <%= f.input :quantity, label: "Alege cantitatea" %>
+
+          <% if current_user %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          <% end %>
+          <%= f.hidden_field :name, :value => @recipe.name %>
+          <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
+          <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
+          <% if user_signed_in? %>
+          <%= f.submit "Adaugă în coș", class: 'btn button-default button-rounded d-inline' %>
+          <% else %>
+            <p class="rem1">Comanda online  nu este încă disponibilă!</p>
+          <% end %>
+          <% end %>
+        </div> -->
+      </div>
+  </div>
+
+  <div class="recipe-show-ratings">
+    <h2>Rating & recenzii </h2>
+    <div class="recipe-show-ratings-container">
+      <div class="recipe-show-ratings-reviews-form">
+        <%= render 'partials/reviews_new_form' %>
+      </div>
+      <div class="recipe-show-ratings-reviews-container">
+        <%= render 'partials/reviews_index' %>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-
-<% content_for(:title) {"Recenzii pentru #{@recipe.name.downcase}"} %>
-<div class="container fonts-family mb-5 pb-5">
-  <div class="row justify-content-center pt-5">
-    <div class="col-10 col-sm-10 col-md-8 mt-5 pt-5">
-      <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm button-default button-rounded' %>
-      <div class="show-recipe_photo">
-        <%= cl_image_tag @recipe.photo.key %>
-      </div>
-      <p class='text-center color-fonts pt-3'><%= @recipe.content %></p>
-    </div>
-  </div>
-  <div class="row justify-content-center pt-5">
-    <div class="col-10 col-sm-10 col-md-8">
-
-      <%= simple_form_for [@recipe, @review] do |f| %> 
-      <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5', label_html: { class: 'form-fonts color-fonts' } %> 
-      <%= f.input :content, label: 'Recenzie (min. 10 / max. 50 car.)', label_html: { class: 'form-fonts color-fonts' } %> 
-      <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn button-default btn-block button-rounded mb-5' %> 
-      <% end %>
-    </div>
-  </div>
-  <div class="row justify-content-center fonts-family">
-    <div class="col-10 col-sm-10 col-md-8">
-        <p class="text-center color-fonts">Ratings & reviews</p>
-
-        <% @recipe.reviews.each do |rev| %>
-        <div class="pt-3 mb-4 border-bottom-custom">
-          <p class="color-fonts rem1-2">Recenzie (id: <%= rev.id %>) - Rating: <%= '⭐️' * rev.rating %><%="(#{rev.rating})" %></p>
-          <p class="color-fonts w-100 rem1"><%= rev.content %></p>
-          <p class="color-fonts rem1">Autor: <%= rev.author %></p>
-        </div>
-        <% end %>
-      <%= link_to 'Înapoi', category_recipes_path(@recipe.category.id), class: 'btn btn-sm button-default button-rounded' %>
-    </div>
-  </div>
-</div> -->

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.0'
+ruby '2.6.3'
 
 gem 'postmark-rails'
 gem 'ostruct'
@@ -30,6 +30,7 @@ gem 'stripe'
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'meta_request'
+  gem 'rake', '~> 13.0', '>= 13.0.1'
 end
 
 group :development, :test do
