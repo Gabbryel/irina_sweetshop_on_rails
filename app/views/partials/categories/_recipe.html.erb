@@ -1,5 +1,5 @@
 <% @recipes.each do |recipe| %>
-<div class="card-container">
+  <div class="card-container">
   <%= link_to recipe_path(recipe), class:'recipe-link-container' do %>
   <div class="card-image">
     <% if recipe.photo.present? %>
@@ -34,8 +34,8 @@
     <% end %>
     <% end %>
   </div>
+  <% end %>
 </div>
-<% end %>
 <% end %>
 
     <div class="container-fluid">
