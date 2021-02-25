@@ -44,16 +44,19 @@
     .copyright-line-2 {
       display: flex;
       justify-content: center;
-      align-items: flex-end;
+      align-items: baseline;
       img {
         margin: 0 .5rem;
         width: 4rem;
       }
-      span {
+      #webdev {
         font-family: 'Frijole'; 
         font-variant: small-caps; 
         font-size: .7rem;
-        margin-left: 5px;
+        margin-left: .5rem;
+      }
+      #rou-flag {
+        width: 2rem;
       }
     }
   }
