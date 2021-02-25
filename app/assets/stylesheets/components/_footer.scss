@@ -35,8 +35,26 @@
     }
   }
   .copyright {
-    span {
-      font-size: 1rem;
+    text-align: center;
+    .copyright-line-1 {
+      span {
+        font-size: 1rem;
+      }
+    }
+    .copyright-line-2 {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      img {
+        margin: 0 10px;
+        width: 5rem;
+      }
+      span {
+        font-family: 'Frijole'; 
+        font-variant: small-caps; 
+        font-size: .7rem;
+        margin-left: 5px;
+      }
     }
   }
 }
