@@ -9,6 +9,7 @@
     @media (min-width: 900px) {
         margin: 2rem 2rem;
     }
+    a {
         .card-image {
             position: relative;
             height: 80%;
@@ -44,15 +45,6 @@
                 color: $font-color;
             }
         }
-        .card-crud {
-            position: absolute;
-            bottom: 5px;
-            left: 20px;
-            a {
-                color: $font-color;
-                font-size: 12px;
-            }
-        }
         .card-price {
             position: absolute;
             bottom: 60px;
@@ -82,5 +74,15 @@
             margin: 0 25%;
             color: $font-color;
             font-size: 12px;
+        }
+    }
+        .card-crud {
+            position: absolute;
+            bottom: 5px;
+            left: 20px;
+            a {
+                color: $font-color;
+                font-size: 12px;
+            }
         }
 }
