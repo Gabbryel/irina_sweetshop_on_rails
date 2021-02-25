@@ -1,5 +1,6 @@
 <div class='card-container'>
   <%= link_to category_path(category) do %>
+  <div class="link-container">
     <div class="card-image">
       <% if category.photo.present? %>
       <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
@@ -10,6 +11,7 @@
     <div class="card-title">
       <p><%= category.name.upcase %></p>
     </div>
+  </div>
     <div class="card-crud">
       <% if policy(category).edit? %>
         <%= link_to edit_category_path(category.id), class: '' do %>

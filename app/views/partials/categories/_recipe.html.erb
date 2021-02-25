@@ -1,6 +1,7 @@
 <% @recipes.each do |recipe| %> <!--foreach-->
 <div class="card-container">
-  <%= link_to recipe_path(recipe) do %> <!--link to each recipe-->
+  <%= link_to recipe_path(recipe) do %>
+    <div class="link-container">
       <div class="card-image">
         <% if recipe.photo.present? %> <!--if begining-->
         <%= cl_image_tag recipe.photo.key, alt: recipe.name %>
@@ -11,14 +12,16 @@
       <div class='card-title'>
         <p><%= "#{recipe.name}" %></p>
       </div>
+      <div class="card-price">
+        <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
+      </div>
+    </div>  
+  <% end %>
+
       <div class='card-rating'>
         <p class=''><%= "#{recipe.overall_rating.to_f.round(2)}"%>
           <%= '⭐️' * recipe.overall_rating.to_i %> <%= recipe.no_of_ratings %> </p>
       </div>
-      <div class="card-price">
-        <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
-      </div>
-  <% end %>
 
 <!-- ok -->
       <% if current_user && current_user.admin%>
