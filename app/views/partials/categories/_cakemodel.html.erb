@@ -1,18 +1,17 @@
 <% @cakemodels.each do |cakemodel| %>
-<%= link_to cakemodel_path(cakemodel) do %>
-<div class="col-11 col-md-5 mx-md-3 col-xl-4 mx-xl-5 card-container rem1-3">
-  <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'card-image' %>
-  <div class="cakemodel-content rem1 color-fonts">
-    <p class='p-0 m-0 text-center fonts-700 card-name font-titles'><%= "Model ##{cakemodel.id}" %>
-    </p>
-    <p class="text-center color-fonts p-0 m-0 rem075">
+<div class="card-container">
+  <%= link_to cakemodel_path(cakemodel) do %>
+    <div class="link-container">
+      <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'card-image' %>
+        <div class='card-title'><p><%= "Model ##{cakemodel.id}" %></p></div>
+      </div>
+      <% end %>
+      
+    <p class="card-rating">
       <%= "#{cakemodel.overall_rating.to_f.round(2)}"%> <%= '⭐️' *
       cakemodel.overall_rating.to_i %> <%= cakemodel.no_of_ratings %>
     </p>
-  </div>
-<% end %>
-
-  <div class='recipe-card_admin-links'>
+  <div class='card-crud'>
     <% if policy(cakemodel).edit? %>
     <%= link_to edit_category_cakemodel_path(cakemodel.category_id, cakemodel.id) do %>
     <i class="far fa-edit color-fonts"></i>
@@ -24,16 +23,13 @@
     <% end %>
     <% end %>
   </div>
+  <% end %>
 </div>
-
-<% end %>
 
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class='col-10 col-md-5 col-lg-5 font-family'>
       <% if policy(Cakemodel).new? %>
-      <%= link_to 'Model nou', new_category_cakemodel_path(@category.id), class: 'btn button-rounded button-default button-new-recipe_setup my-5' %>
+        <%= link_to 'Model nou', new_category_cakemodel_path(@category.id), class: 'btn-default' %>
       <% end %>
-    </div>
   </div>
 </div>
