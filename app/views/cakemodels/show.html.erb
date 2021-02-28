@@ -1,17 +1,27 @@
-<div class="container fonts-family pt-5 pb-5 mb-5">
-  <div class="row justify-content-center mt-5">
-    <div class="col-10 col-md-8 mt-5">
-      <%= render 'partials/back_buttons' %>
-      <div class="show-recipe_photo">
-        <%= cl_image_tag @cakemodel.photo.key %>
-      </div>
-      <div class="fonts-family color-fonts">
-        <p class="text-center rem1-3">Ratings & reviews for: </p>
-        <p class="text-center pb-4 rem1-2"><%= @cakemodel.content %> </p>
-        <%= render 'partials/reviews_new_form' %>
-      </div>
-      <%= render 'partials/reviews_index' %>
-      <%= render 'partials/back_buttons' %>
-    </div>
+<div class="recipe-show-container">
+  <div class="recipe-show-back-btn">
+    <%= render 'partials/back_buttons' %>
   </div>
+  <div class="recipe-show-main">
+      <div class="recipe-show-main-image">
+        <%= cl_image_tag @cakemodel.photo.key, alt: @cakemodel.content %>
+      </div>
+      <div class="recipe-show-main-description">
+        <h1><%= "Model ##{@cakemodel.id}" %></h1>
+        <p><%= @cakemodel.content %> </p>
+      </div>
+    </div>
+    
+    <div class="recipe-show-ratings">
+      <h2>Ratings & reviews </h2>
+      <div class="recipe-show-ratings-container">
+        <div class="recipe-show-ratings-reviews-form">
+          <%= render 'partials/reviews_new_form' %>
+        </div>
+        <div class="recipe-show-ratings-reviews-container">
+          <%= render 'partials/reviews_index' %>
+        </div>
+      </div>
+    </div>
+
 </div>

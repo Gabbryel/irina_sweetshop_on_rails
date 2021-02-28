@@ -58,7 +58,6 @@
       p {
         padding-bottom: 20px;
         font-size: 1.6rem;
-        text-indent: 10px;
       }
       
       .standard {
@@ -86,6 +85,15 @@
     h2 {
       padding: 10px 0;
       font-size: 2.2rem;
+    }
+    .recipe-show-ratings-reviews-form {
+      margin-bottom: 2rem;
+      .select.required, .text.required {
+        font-size: 1.2rem;
+      }
+      #review_rating {
+        font-size: 10px;
+      }
     }
     .recipe-show-ratings-reviews-container {
       text-align: justify;
@@ -116,6 +124,9 @@
 @media (min-width: 900px) {
   .recipe-show-container {
     .recipe-show-main {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
       .recipe-show-main-image {
         width: 30%;
       }
@@ -126,14 +137,26 @@
         }
         p {
           font-size: .7rem;
+          padding: 0;
+        }
+        p:nth-child(2) {
+          font-weight: 700;
+          margin-bottom: 10px;
         }
       }
     }
     .recipe-show-ratings {
       font-size: 1rem;
+      max-width: 1000px;
       h2 {
         margin: 40px 0 50px;
         font-size: inherit;
+      }
+      .recipe-show-ratings-reviews-form {
+        margin-bottom: 0;
+        .select.required, .text.required {
+          font-size: 14px;
+        }
       }
       .recipe-show-ratings-container {
         display: flex;
@@ -148,6 +171,3 @@
     }
   }
 } 
-
-
-

@@ -15,20 +15,20 @@
   .footer-main {
     display: flex;
     justify-content: space-between;
-    font-size: 1.1rem;
+    font-size: 1rem;
     p {
       a {
         color: $font-color;
       }
     }
     .footer-left {
-      width: 65%;
+      width: 68%;
       @media (min-width: 951px) {
         width: 80%;
       }
     }
     .footer-right {
-      width: 35%;
+      width: 32%;
       @media (min-width: 951px) {
         width: 20%;
       }
