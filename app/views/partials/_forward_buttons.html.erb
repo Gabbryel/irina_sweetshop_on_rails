@@ -1,0 +1,5 @@
+<% if @cakemodel %>
+  <%= link_to 'Următorul', @cakemodel_path(@cakemodel.category), class: 'btn-default' %>
+<% elsif @recipe %>
+  <%= link_to 'Următorul', @recipe_path(@recipe.category), class: 'btn-default' %>
+<% end %>

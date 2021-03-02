@@ -1,7 +1,7 @@
 <% if @cakemodel %>
-  <%= link_to 'Înapoi', category_path(@cakemodel.category), class: 'btn btn-sm button-default button-rounded' %>
+  <%= link_to 'Înapoi', category_path(@cakemodel.category), class: 'btn-default' %>
 <% elsif @recipe %>
-  <%= link_to 'Înapoi', category_path(@recipe.category), class: 'btn btn-sm button-default button-rounded' %>
+  <%= link_to 'Înapoi', category_path(@recipe.category), class: 'btn-default' %>
 <% elsif @cakemodels || @recipes %>
-  <%= link_to 'Înapoi', categories_path, class: 'btn btn-sm button-default button-rounded fonts-family color-fonts my-3' %>  
+  <%= link_to 'Înapoi', categories_path, class: 'btn-default' %>  
 <% end %>
