@@ -11,7 +11,7 @@
       <% end %>
       <p class="recipe-show-main-price">
         <% if @recipe.price != 0 %>
-          <%= humanized_money_with_symbol(@recipe.price) %>
+          <%= humanized_money_with_symbol(@recipe.price).downcase %>
           <span>/<%= @recipe.kg_buc %></span>
         <% elsif @recipe.price == 0 %>
         <a href="tel:0040755054002">Info <i class="fas fa-mobile-alt"></i></a>

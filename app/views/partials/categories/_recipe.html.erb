@@ -13,7 +13,11 @@
         <p><%= "#{recipe.name}" %></p>
       </div>
       <div class="card-price">
-        <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
+        <% if recipe.price != 0 %>
+          <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
+        <% elsif recipe.price == 0 %>
+          <p>-,-- lei <span>/<%= recipe.kg_buc %></span></p>
+        <% end %>
       </div>
     </div>  
   <% end %>
