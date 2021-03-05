@@ -55,9 +55,10 @@ table {
 
 html, body {
 	font-family: $font-title;
-	// overflow-y: scroll;
-	// background: asset-url('swetsBkg.jpg');
+	min-height: calc(var(--vh) * 100);
 	background-color: $body-bkg;
+	display: flex;
+	flex-direction: column;
 }
 
 a {
