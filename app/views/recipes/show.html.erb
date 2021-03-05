@@ -9,7 +9,14 @@
       <% else %>
         <%= cl_image_tag ("4792t30n2v5ovn35m550ffa45a24.png"), alt: @recipe.name %>
       <% end %>
-      <p class="recipe-show-main-price"><%= humanized_money_with_symbol(@recipe.price) %> <span>/<%= @recipe.kg_buc %></span></p>
+      <p class="recipe-show-main-price">
+        <% if @recipe.price != 0 %>
+          <%= humanized_money_with_symbol(@recipe.price) %>
+          <span>/<%= @recipe.kg_buc %></span>
+        <% elsif @recipe.price == 0 %>
+        <a href="tel:0040755054002">Info <i class="fas fa-mobile-alt"></i></a>
+        <% end %>
+      </p>
     </div>
       <div class="recipe-show-main-description">
         <h1><%= @recipe.name %></h1>
