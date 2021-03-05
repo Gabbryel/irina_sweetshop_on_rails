@@ -2,6 +2,9 @@
     position: relative;
     min-height: 80vh;
     padding: calc(8rem + 8vh) 0 4vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     @media (min-width: 651px) {
         display: flex;
         flex-flow: wrap;
