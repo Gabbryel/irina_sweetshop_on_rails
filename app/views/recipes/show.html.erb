@@ -15,11 +15,17 @@
         <h1><%= @recipe.name %></h1>
         <p><%= @recipe.content %></p>
     <% if @recipe.category.name.downcase == 'torturi' %>
-        <p>Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
-        design <span class='standard'>standard <i class="fas fa-hand-point-left"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "recipe-show-std-image") %></span>.</p>
-        <p>Prețuri pentru design la cerere, după model furnizat de client:</p>
-        <p>Design la cerere simplu: 70 lei/kg</p>
-        <p>Design la cerere cu accesorii modelate sau turnate în ciocolată: 80 lei/kg + figurinele.</p>
+          <p>Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
+          design <span class='standard'>standard <i class="fas fa-hand-point-left"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "recipe-show-std-image") %></span>.</p>
+          <p>Prețurile pentru design la cerere, după model furnizat de client:</p>
+          <p>Design la cerere simplu: 70 lei/kg</p>
+          <p>Design la cerere cu accesorii modelate sau turnate în ciocolată: 80 lei/kg + figurinele.</p>
+          <% elsif @recipe.category.name.downcase == 'tradiționale' %>
+          <p>Greutatea produsului finit diferă de la un caz la altul.</p>
+          <p>Prețul final al produsului va fi calculat la cântărire.(preț/kg * greutate)</p>
+          <p>Greutatea aproximativă: cozonac (1.3-1.4kg), pască cu brînză (1, 1.2, 1.5kg), pască cu ciocolată (0.9 - 1.1kg),
+            pască cu smântână (0.9-1.1kg).
+          </p>
     <% end %>
         <!-- <div class="p-0 create-item">
           <%= simple_form_for @item do |f| %>
