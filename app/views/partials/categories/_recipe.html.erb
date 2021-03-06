@@ -1,7 +1,7 @@
 <% @recipes.each do |recipe| %> <!--foreach-->
 <div class="card-container">
   <%= link_to recipe_path(recipe) do %>
-    <div class="link-container">
+    <div class="card-link-container">
       <div class="card-image">
         <% if recipe.photo.present? %> <!--if begining-->
         <%= cl_image_tag recipe.photo.key, alt: recipe.name %>

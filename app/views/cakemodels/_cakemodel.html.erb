@@ -1,4 +1,4 @@
-<div class="col-9 col-md-5 col-lg-5 my-5 mx-1 cakemodel-container p-0 fonts-family rem1-3">
+<!-- <div class="col-9 col-md-5 col-lg-5 my-5 mx-1 cakemodel-container p-0 fonts-family rem1-3">
   <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'd-block
   border-bottom' %>
   <p class="text-center color-fonts cakemodel-content py-2 px-2 rem1-2">
@@ -20,4 +20,31 @@
     <i class="fas fa-trash-alt color-fonts"></i>
     <% end %> <% end %>
   </div>
+</div> -->
+
+<div class="card-container">
+  <%= link_to cakemodel_path(cakemodel) do %>
+    <div class="card-link-container">
+      <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'card-image' %>
+        <div class='card-title'><p><%= "Model ##{cakemodel.id}" %></p></div>
+      </div>
+      <% end %>
+      
+    <p class="card-rating">
+      <%= "#{cakemodel.overall_rating.to_f.round(2)}"%> <%= '⭐️' *
+      cakemodel.overall_rating.to_i %> <%= cakemodel.no_of_ratings %>
+    </p>
+  <div class='card-crud'>
+    <% if policy(cakemodel).edit? %>
+      <%= link_to edit_category_cakemodel_path(cakemodel.category_id, cakemodel.id) do %>
+        <i class="far fa-edit color-fonts"></i>
+    <% end %>
+    <% end %>
+    <% if policy(cakemodel).destroy? %>
+      <%= link_to category_cakemodel_path(cakemodel.category_id, cakemodel.id), method: :delete do %>
+        <i class="fas fa-trash-alt color-fonts"></i>
+    <% end %>
+    <% end %>
+  </div>
 </div>
+
