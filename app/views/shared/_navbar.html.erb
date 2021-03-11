@@ -11,11 +11,11 @@
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav align-items-center">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a href='#' class="nav-link text-center" data-toggle="modal" data-target="#exampleModalLong">
           Covid-19
         </a>
-      </li>
+      </li> -->
       <li class="nav-item active">
         <%= link_to "Categorii", categories_path, class: "nav-link text-center" %>
       </li>
@@ -44,6 +44,9 @@
         <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center" %>
           <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center" %>
+          <a href='#' class="dropdown-item text-center" data-toggle="modal" data-target="#exampleModalLong">
+            Covid-19
+          </a>
         </div>
       </li>
 
