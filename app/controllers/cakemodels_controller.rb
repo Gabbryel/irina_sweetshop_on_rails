@@ -12,7 +12,7 @@ class CakemodelsController < ApplicationController
     @cakemodel = authorize Cakemodel.new(cakemodel_params)
     @cakemodel.category = @category
     if @cakemodel.save
-      redirect_to category_path(@category)
+      redirect_to category_cakemodels_path(@category)
       else
         render :new
     end
@@ -35,7 +35,7 @@ class CakemodelsController < ApplicationController
 def update
   @cakemodel.update(cakemodel_params)
   if @cakemodel.update(cakemodel_params)
-    redirect_to category_path(Category.find(params[:category_id]))
+    redirect_to category_cakemodels_path(Category.find(params[:category_id]))
   else
     render :edit
   end
@@ -43,7 +43,7 @@ end
 
 def destroy
   @cakemodel.destroy
-  redirect_to category_path(@category)
+  redirect_to category_cakemodels_path(@category)
 end
 
   private

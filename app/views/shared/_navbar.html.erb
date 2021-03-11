@@ -23,11 +23,22 @@
         <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
-            <%= link_to cat.name, category_path(cat), class: "dropdown-item text-center" %>
+          <% if cat.has_recipe %>
+            <%= link_to cat.name, category_recipes_path(cat), class: "dropdown-item text-center" %>
+          <% end %>
           <% end %>
         </div>
       </li>
-
+      <li class="nav-item dropdown">
+        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <% Category.all.each do |cat| %>
+            <% if cat.has_models %>
+              <%= link_to cat.name, category_cakemodels_path(cat), class: "dropdown-item text-center" %>
+          <% end %>
+          <% end %>
+        </div>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link  text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
         <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
