@@ -4,12 +4,12 @@
   border-radius: 3px;
   padding: 1vh 3vw;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   &:hover {
     color: $hover-color;
   }
   @media (min-width: 901px) {
-    font-size: 14px;
+    font-size: 16px;
     padding: 1vh 3vw;
   }
 }

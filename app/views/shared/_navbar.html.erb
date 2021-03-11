@@ -24,7 +24,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
           <% if cat.has_recipe %>
-            <%= link_to cat.name, category_path(cat), class: "dropdown-item text-center" %>
+            <%= link_to cat.name, category_recipes_path(cat), class: "dropdown-item text-center" %>
           <% end %>
           <% end %>
         </div>

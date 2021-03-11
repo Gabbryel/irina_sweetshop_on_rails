@@ -10,9 +10,6 @@ const showLinks = () => {
             if (links[index].classList.contains('hidden')) {
                 links[index].classList.remove('hidden');
                 titles[index].textContent = '';
-            } else {
-                links[index].classList.add('hidden');
-                titles[index].textContent = title;
             }
         })
     })
