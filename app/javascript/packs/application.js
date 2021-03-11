@@ -9,7 +9,7 @@ import { animateCard } from './category_hover_animation'
 import { showStandardDesign } from './standard_design'
 import { renderSquares, renderSquaresResize } from './homepageJS/squares_render'
 import { vh, vhOnResize } from "./vh";
-
+import { showLinks } from './categoryCardLinks';
 
 
 sections()
@@ -19,4 +19,5 @@ renderSquares()
 renderSquaresResize()
 vh()
 vhOnResize()
+showLinks()
 

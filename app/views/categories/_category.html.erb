@@ -1,29 +1,37 @@
 <div class='card-container'>
-  <%= link_to category_path(category) do %>
-  <div class="link-container">
-    <div class="card-image">
-      <% if category.photo.present? %>
-      <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
-      <% else %>
-      <%= cl_image_tag('https://res.cloudinary.com/dqbu9lypc/image/upload/v1590390961/assjl0urgztvl7g80025in1uejal.png') %>
-      <% end %>
-    </div>
-    <div class="card-title">
-      <p><%= category.name.upcase %></p>
+  <div class="card-link">
+    <div class="card-link-container">
+      <div class="card-image">
+        <% if category.photo.present? %>
+        <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
+        <% else %>
+        <%= cl_image_tag('https://res.cloudinary.com/dqbu9lypc/image/upload/v1590390961/assjl0urgztvl7g80025in1uejal.png') %>
+        <% end %>
+      </div>
+        <p class="card-title"><%= category.name.upcase %></p>
     </div>
   </div>
-    <div class="card-crud">
-      <% if policy(category).edit? %>
-        <%= link_to edit_category_path(category.id), class: '' do %>
-        <i class="far fa-edit"></i>
-        <% end %>
+  <div class="card-paths hidden">
+    <% if category.has_recipe && category.has_models %>
+        <%= link_to 'Rețete', category_recipes_path(category), class: 'card-paths-link'  %>
+        <%= link_to 'Sugestii', category_cakemodels_path(category), class: 'card-paths-link' %>
+      <% elsif category.has_recipe %>
+        <%= link_to 'Rețete', category_path(category), class: 'card-paths-link' %>
+      <% elsif category.has_models %>
+        <%= link_to 'Sugestii', category_cakemodels_path(category), class: 'card-paths-link' %>
       <% end %>
-      <% if policy(category).destroy? %>
-        <%= link_to category_path(category), class: '', method: :delete do %>
-        <i class="fas fa-trash-alt"></i>
-        <% end %>
+  </div>
+  <div class="card-crud">
+    <% if policy(category).edit? %>
+      <%= link_to edit_category_path(category.id), class: '' do %>
+      <i class="far fa-edit"></i>
       <% end %>
-    </div>
+    <% end %>
+    <% if policy(category).destroy? %>
+      <%= link_to category_path(category), class: '', method: :delete do %>
+      <i class="fas fa-trash-alt"></i>
+      <% end %>
     <% end %>
   </div>
+</div>
   
