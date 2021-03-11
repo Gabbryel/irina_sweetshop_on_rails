@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
     @recipe = authorize Recipe.new(recipe_params)
     @recipe.category = @category
     if @recipe.save
-      redirect_to category_path(@category)
+      redirect_to category_recipes_path(@category)
     else
       render :new
     end
@@ -38,7 +38,7 @@ class RecipesController < ApplicationController
   def update
     @recipe.update(recipe_params)
     if @recipe.update(recipe_params)
-      redirect_to category_path(Category.find(params[:category_id]))
+      redirect_to category_recipes_path(Category.find(params[:category_id]))
     else
       render :edit
     end
