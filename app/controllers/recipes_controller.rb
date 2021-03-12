@@ -29,6 +29,7 @@ class RecipesController < ApplicationController
     @reviews = @recipe.reviews.all
     @page_title = "Rețeta de #{ @recipe.name } || Cofetăria Irina - Bacău"
     @seo_keywords = @recipe.content
+    @recipes = policy_scope(Recipe).where(category_id: @recipe.category)
   end
 
   def edit
@@ -46,7 +47,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe.destroy
-    redirect_to category_path(@category)
+    redirect_to category_recipes_path(@category)
   end
 
   private

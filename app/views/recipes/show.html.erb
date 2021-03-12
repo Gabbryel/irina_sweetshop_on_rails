@@ -7,7 +7,7 @@
       <% if @recipe.photo.present? %>
         <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
       <% else %>
-        <%= cl_image_tag ("4792t30n2v5ovn35m550ffa45a24.png"), alt: @recipe.name %>
+        <%= cl_image_tag ("0043_336x240_qtzdxl.png"), alt: @recipe.name %>
       <% end %>
       <p class="recipe-show-main-price">
         <% if @recipe.price != 0 %>
@@ -34,26 +34,39 @@
             pască cu smântână (0.9-1.1kg).
           </p>
     <% end %>
-        <!-- <div class="p-0 create-item">
-          <%= simple_form_for @item do |f| %>
-          <%= f.input :quantity, label: "Alege cantitatea" %>
-
-          <% if current_user %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-          <% end %>
-          <%= f.hidden_field :name, :value => @recipe.name %>
-          <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
-          <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
-          <% if user_signed_in? %>
-          <%= f.submit "Adaugă în coș", class: 'btn button-default button-rounded d-inline' %>
-          <% else %>
-            <p class="rem1">Comanda online  nu este încă disponibilă!</p>
-          <% end %>
-          <% end %>
-        </div> -->
+    <div class="btn-next-prev-container">
+        <% curr_id = @recipes.index(@recipe) %>
+        <% next_id = @recipes[curr_id + 1] %>
+        <% prev_id = @recipes[curr_id - 1] %>
+        
+        <% if prev_id && curr_id > 0 %>
+          <%= link_to "◀︎ #{prev_id.name}", recipe_path(prev_id), class: 'btn-next-prev' %>
+        <% end %>
+        <% if next_id %>
+          <%= link_to "#{next_id.name} ►", recipe_path(next_id), class: 'btn-next-prev' %>
+        <% end %>
       </div>
-  </div>
 
+    
+    <!-- <div class="p-0 create-item">
+      <%= simple_form_for @item do |f| %>
+      <%= f.input :quantity, label: "Alege cantitatea" %>
+      
+      <% if current_user %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <% end %>
+      <%= f.hidden_field :name, :value => @recipe.name %>
+      <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
+      <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
+      <% if user_signed_in? %>
+      <%= f.submit "Adaugă în coș", class: 'btn button-default button-rounded d-inline' %>
+      <% else %>
+      <p class="rem1">Comanda online  nu este încă disponibilă!</p>
+      <% end %>
+      <% end %>
+    </div> -->
+  </div>
+</div>
   <div class="recipe-show-ratings">
     <h2>Rating & recenzii </h2>
     <div class="recipe-show-ratings-container">
