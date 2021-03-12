@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
   end
   
   def index
-    @recipes = policy_scope(Recipe).where(category_id: params[:category_id])order('name ASC')
+    @recipes = policy_scope(Recipe).where(category_id: params[:category_id]).order('name ASC')
     @page_title = "Rețete de #{ Category.find(params[:category_id]).name.downcase }"
   end
 
