@@ -21,3 +21,20 @@
 .btn-products {
   position: relative;
 }
+
+.btn-next-prev-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2em 0;
+  .btn-next-prev {
+    display: relative;
+    color: $font-color;
+    background-color: $light-bkg-color;
+    padding: 2px 15px;
+  }
+  @media (min-width: 900px) {
+    width: 60%;
+  }
+}
