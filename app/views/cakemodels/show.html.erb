@@ -9,18 +9,18 @@
       <div class="recipe-show-main-description">
         <h1><%= "Model ##{@cakemodel.id}" %></h1>
         <p><%= @cakemodel.content %> </p>
-      </div>
-      <div class="btn-next-prev-container">
-        <% curr_id = @cakemodels.index(@cakemodel) %>
-        <% next_id = @cakemodels[curr_id + 1] %>
-        <% prev_id = @cakemodels[curr_id - 1] %>
-        
-        <% if prev_id && curr_id > 0 %>
-          <%= link_to "◀︎ Model ##{prev_id.id}", cakemodel_path(prev_id), class: 'btn-next-prev' %>
-        <% end %>
-        <% if next_id %>
-          <%= link_to "Model ##{next_id.id} ►", cakemodel_path(next_id), class: 'btn-next-prev' %>
-        <% end %>
+        <div class="btn-next-prev-container">
+          <% curr_id = @cakemodels.index(@cakemodel) %>
+          <% next_id = @cakemodels[curr_id + 1] %>
+          <% prev_id = @cakemodels[curr_id - 1] %>
+          
+          <% if prev_id && curr_id > 0 %>
+            <%= link_to "◀︎ Model ##{prev_id.id}", cakemodel_path(prev_id), class: 'btn-next-prev' %>
+          <% end %>
+          <% if next_id %>
+            <%= link_to "Model ##{next_id.id} ►", cakemodel_path(next_id), class: 'btn-next-prev' %>
+          <% end %>
+        </div>
       </div>
     </div>
     

@@ -27,7 +27,7 @@ class CakemodelsController < ApplicationController
     @review = Review.new
     @reviews =  @cakemodel.reviews.all
     @page_title = "Detalii și recenzii pentru #{ Cakemodel.find(params[:id]).content } "
-    @cakemodels = policy_scope(Cakemodel).where(category_id: @cakemodel.category)
+    @cakemodels = policy_scope(Cakemodel).where(category_id: @cakemodel.category).order('id ASC')
   end
 
   def edit

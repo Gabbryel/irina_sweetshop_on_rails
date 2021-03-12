@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
     @reviews = @recipe.reviews.all
     @page_title = "Rețeta de #{ @recipe.name } || Cofetăria Irina - Bacău"
     @seo_keywords = @recipe.content
-    @recipes = policy_scope(Recipe).where(category_id: @recipe.category)
+    @recipes = policy_scope(Recipe).where(category_id: @recipe.category).order('name ASC')
   end
 
   def edit
