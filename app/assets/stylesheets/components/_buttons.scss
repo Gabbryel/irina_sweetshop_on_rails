@@ -32,7 +32,12 @@
     display: relative;
     color: $font-color;
     background-color: $light-bkg-color;
-    padding: 2px 15px;
+    padding: 3px 15px;
+    font-size: 1.3rem;
+    @media (min-width: 900px) {
+      font-size: 14px;
+    }
+    
   }
   @media (min-width: 900px) {
     width: 60%;
