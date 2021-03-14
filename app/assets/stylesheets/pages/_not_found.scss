@@ -1,14 +1,21 @@
 .not-found-container {
    position: relative;
-   margin: auto 0;
-   padding: 10rem 0;
+   margin: auto;
    display: flex;
+   flex-direction: column;
    justify-content: center;
+   align-items: center;
+   height: calc(var(--vh) *70);
+   padding: calc(var(--vh) * 10) 0 0;
    img {
      position: relative;
      width: 80%;
      @media (min-width: 900px) {
       width: 50%;
      }
+   }
+   h1 {
+    padding: 2rem 0;
+    color: $font-color;
    }
 }
