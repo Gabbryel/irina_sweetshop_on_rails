@@ -1,0 +1,14 @@
+.not-found-container {
+   position: relative;
+   margin: auto 0;
+   padding: 10rem 0;
+   display: flex;
+   justify-content: center;
+   img {
+     position: relative;
+     width: 80%;
+     @media (min-width: 900px) {
+      width: 50%;
+     }
+   }
+}
