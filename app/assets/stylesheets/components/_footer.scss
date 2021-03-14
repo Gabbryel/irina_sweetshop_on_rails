@@ -1,22 +1,18 @@
 .footer {
   position: relative;
   font-family: $font-title;
-  font-weight: 100;
+  font-weight: 300;
   width: 100%;
   background-color: $bkg-color;
   color: $font-color;
   padding: 3vh 4vw;
   font-size: .80rem;
-  letter-spacing: .06em;
+  letter-spacing: .03em;
   margin-top: auto;
-  span {
-    font-size: 1.5rem;
-    font-weight: 400;
-  }
   .footer-main {
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
+    font-size: .8rem;
     p {
       a {
         color: $font-color;
@@ -37,10 +33,9 @@
   }
   .copyright {
     text-align: center;
-    .copyright-line-1 {
-      span {
-        font-size: 1rem;
-      }
+    padding-top: 1rem;
+    .copyright-line-1, .copyright-line-2 {
+      font-size: .6rem;
     }
     .copyright-line-2 {
       display: flex;
@@ -48,14 +43,17 @@
       align-items: baseline;
       img {
         margin: 0 .5rem;
-        width: 4rem;
+        width: 3rem;
       }
       #webdev {
         font-family: 'Frijole'; 
         font-variant: small-caps; 
-        font-size: .7rem;
+        font-size: .6rem;
         margin: 0 .5rem;
       }
+    }
+    @media (min-width: 900px) {
+      padding-top: 0;
     }
   }
 }
