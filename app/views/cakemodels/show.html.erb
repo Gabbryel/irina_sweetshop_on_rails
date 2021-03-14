@@ -1,4 +1,7 @@
-<% content_for :meta_image, cl_image_path(@cakemodel.photo.key) %>
+<% if @cakemodel.photo.present? %>
+  <% content_for :meta_image, cl_image_path(@cakemodel.photo.key) %>
+<% end %>
+<% content_for :meta_description, @cakemodel.content %>
 <div class="recipe-show-container">
   <div class="recipe-show-back-btn">
     <!-- <%= render 'partials/back_buttons' %> -->
