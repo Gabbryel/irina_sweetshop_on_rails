@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   get 'how_to_order', to: 'pages#how_to_order'
   get 'about', to: 'pages#about'
   get 'dashboard',  to: 'pages#admin_dashboard'
+  get '*any', via: :all, to: 'errors#not_found'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
