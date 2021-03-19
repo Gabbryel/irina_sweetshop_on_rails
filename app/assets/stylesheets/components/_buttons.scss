@@ -31,9 +31,14 @@
   .btn-next-prev {
     display: relative;
     color: $font-color;
-    background-color: $light-bkg-color;
+    box-shadow: 1px 1px 2px #00000040;
     padding: 3px 15px;
     font-size: 1.3rem;
+    border: 1px solid $font-color;
+    border-radius: 3px;
+    &:active {
+      box-shadow: none;
+    }
     @media (min-width: 900px) {
       font-size: 14px;
     }
