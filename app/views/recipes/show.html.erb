@@ -39,8 +39,10 @@
           <p>Greutatea aproximativă: cozonac (1.3-1.4kg), pască cu brînză (1, 1.2, 1.5kg), pască cu ciocolată (0.9 - 1.1kg),
             pască cu smântână (0.9-1.1kg).
           </p>
+          <% elsif @recipe.category.name.downcase == 'prăjituri' %>
     <% end %>
-    
+          <p>Produsele realizate în laboratorul nostru au în compoziție ingrediente naturale, fără conservanți.</p>
+          <p>De aceea vă rugăm să le păstrați la rece și să le consumați în cel mult 3 zile (prăjituri, torturi, ... ), 5 zile (pască, cozonac, ... )  </p>
     <div class="btn-next-prev-container">
       <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@recipes, @recipe) %>
 
