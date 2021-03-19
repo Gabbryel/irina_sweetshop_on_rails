@@ -144,13 +144,12 @@
         h1 {
           font-size: 2rem;
         }
+        .recipe-show-main-description-text {
+          font-weight: 700;
+        }
         p {
           font-size: .7rem;
           padding: 0;
-        }
-        p:nth-child(2) {
-          font-weight: 700;
-          margin-bottom: 10px;
         }
       }
     }
