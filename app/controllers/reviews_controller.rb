@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
         if @recipe
           render 'recipes/show', notice: "Review not saved!"
         elsif @cakemodel
-          render 'cakemodels/show'
+          render 'cakemodels/show', notice: "Review not saved!"
         end
       end
       authorize @review

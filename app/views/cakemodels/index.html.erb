@@ -1,13 +1,11 @@
-<div class="cards-container">
-  <h3 class='text-center'><%= "Modele de #{Category.find(params[:category_id]).name.downcase}" %>
+<div class="cards-main-container">
+  <h3 class='text-center'><%= "Sugestiile noastre pentru #{Category.find(params[:category_id]).name.downcase}" %>
     <span>(<%= @cakemodels.count %>)</span>
   </h3>
-  <div class="cards-container-index">
     <%= render @cakemodels %>
-  </div>
-  <div class="cards-container-new-recipe">
-    <% if policy(Cakemodel).new? %>
-        <%= link_to 'Model nou', new_category_cakemodel_path(params[:category_id]), class: 'btn-default' %>
-      <% end %>
-  </div>
+</div>
+<div class="card-index-new">
+  <% if policy(Cakemodel).new? %>
+      <%= link_to 'Model nou', new_category_cakemodel_path(params[:category_id]), class: 'btn-default' %>
+    <% end %>
 </div>
