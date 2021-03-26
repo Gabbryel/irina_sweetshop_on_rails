@@ -1,5 +1,6 @@
 .navbar {
   border-bottom: 1px solid black;
+  height: calc(var(--vh) * 10);
 }
 
 .navbar-lewagon {
@@ -8,7 +9,6 @@
   width: 100%;
   background: $light-bkg-color !important;
   z-index: 100;
-  height: calc(4rem + 4vh);
   font-family: $font-title;
   font-weight: 300;
   padding: 0 20px !important;
@@ -19,6 +19,7 @@
   ul {
     background-color: $light-bkg-color;
   }
+  margin-right: 50px;
 }
 
 .navbar-brand {

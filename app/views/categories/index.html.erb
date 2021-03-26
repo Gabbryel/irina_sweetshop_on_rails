@@ -1,7 +1,7 @@
-<div class="card-index-main-container">
+<div class="cards-main-container">
   <%=render @categories %>
 </div>
-<div class="card-index-new-category">
+<div class="card-index-new">
   <% if policy(Category).new? %>
     <%= link_to 'Categorie nouă', new_category_path, class: 'btn-default' %>
   <% end %>

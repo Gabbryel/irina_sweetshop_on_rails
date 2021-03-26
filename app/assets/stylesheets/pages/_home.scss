@@ -2,7 +2,7 @@
     width: 100%;
     position: relative;
     background: $light-bkg-color;
-    padding: calc(4rem + 4vh) 0;
+    padding: calc(var(--vh) * 10) 0;
 }
 
 .hero-section {
