@@ -19,9 +19,9 @@ class ReviewsController < ApplicationController
         end
       else
         if @recipe
-          render 'recipes/show', notice: "Review not saved!"
+          redirect_to recipe_path(@recipe), notice: "Recenzia nu a fost salvată! Completați atât ratingul, cât și textul recenziei. Vă mulțumim!"
         elsif @cakemodel
-          render 'cakemodels/show', notice: "Review not saved!"
+          redirect_to cakemodel_path(params[:cakemodel_id]), notice: "Recenzia nu a fost salvată! Completați atât ratingul, cât și textul recenziei. Vă mulțumim!"
         end
       end
       authorize @review
