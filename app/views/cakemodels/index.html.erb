@@ -1,5 +1,5 @@
 <div class="cards-main-container">
-  <h3 class='text-center'><%= "Sugestiile noastre pentru #{Category.find(params[:category_id]).name.downcase}" %>
+  <h3 class='text-center'><%= "Sugestiile noastre pentru #{Category.find(params[:category_id]).name.upcase}" %>
     <span>(<%= @cakemodels.count %>)</span>
   </h3>
     <%= render @cakemodels %>
