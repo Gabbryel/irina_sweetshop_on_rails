@@ -12,7 +12,9 @@
       </div>
       <div class="recipe-show-main-description">
         <h1><%= "Model ##{@cakemodel.id}" %></h1>
-        <p><%= @cakemodel.content %> </p>
+        <% @cakemodel.content.split('.').each do |line| %>
+          <p class="recipe-show-main-description__text"><%= line %>.</p>
+        <% end %>
         <div class="btn-next-prev-container">
           <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@cakemodels, @cakemodel) %>
           <% if prev_id && curr_id > 0 %>
