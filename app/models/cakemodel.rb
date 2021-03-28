@@ -1,14 +1,11 @@
 class Cakemodel < ApplicationRecord
   belongs_to :category
   has_one_attached :photo
+  validates :name, presence: true
   validates :content, presence: true
   validates :photo, presence: true
   
   include Reviewable
-
-  def name
-    "Model ##{id}"
-  end
 
   def overall_rating
     ratings.count == 0 ? "" : ratings.sum / ratings.count.to_f
