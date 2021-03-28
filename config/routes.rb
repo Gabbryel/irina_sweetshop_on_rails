@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
   resource :cart, only: %i[show]
 
-
   devise_for :users
   root to: 'pages#home'
   get 'how_to_order', to: 'pages#how_to_order'
