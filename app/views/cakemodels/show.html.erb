@@ -11,7 +11,7 @@
         <%= cl_image_tag @cakemodel.photo.key, alt: @cakemodel.content %>
       </div>
       <div class="recipe-show-main-description">
-        <h1><%= "Model ##{@cakemodel.id}" %></h1>
+        <h1><%= "#{@cakemodel.name}" %></h1>
         <% @cakemodel.content.split('.').each do |line| %>
           <p class="recipe-show-main-description__text"><%= line %>.</p>
         <% end %>

@@ -12,6 +12,7 @@
       <p class="text-center fonts-family fonts-700 mb-5 rem1-5">Creează un nou model</p>
       <% end %>
         <%= simple_form_for [@category, @cakemodel] do |f| %>
+        <%= f.input :name, label: 'Nume' %>
         <%= f.input :content, label: 'Conținut', label_html: { class: 'fonts-700 rem1-2' } %>
         <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
 

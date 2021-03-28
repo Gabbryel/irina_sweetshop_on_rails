@@ -26,7 +26,7 @@
   <%= link_to cakemodel_path(cakemodel) do %>
     <div class="card-link-container">
       <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'card-image' %>
-        <div class='card-title'><p><%= "Model ##{cakemodel.id}" %></p></div>
+        <div class='card-title'><p><%= "#{cakemodel.name}" %></p></div>
       </div>
       <% end %>
       
