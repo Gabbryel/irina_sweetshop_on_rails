@@ -24,12 +24,18 @@
 
 .navbar-brand {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-width: 80%;
+    max-height: calc(var(--vh) * 10);
+  }
 }
 
-.navbar-lewagon .navbar-brand img {
-  margin: 15% 0 10% 20%;
-  height: 80%;
-}
+// .navbar-lewagon .navbar-brand img {
+//   margin: 15% 0 10% 20%;
+// }
 
 .nav-link {
   color: $font-color !important;
