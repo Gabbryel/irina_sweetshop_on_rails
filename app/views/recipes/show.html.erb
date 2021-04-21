@@ -47,11 +47,15 @@
       <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@recipes, @recipe) %>
 
       <% if prev_id && curr_id > 0 %>
-        <%= link_to "#{prev_text}", recipe_path(prev_id), class: 'btn-next-prev' %>
+        <%= link_to recipe_path(prev_id), class: 'btn-next-prev' do %>
+          <i class="fas fa-arrow-circle-left"></i> <%= "#{prev_text}" %>
+        <% end %>
       <% end %>
       
       <% if next_id %>
-        <%= link_to "#{next_text}", recipe_path(next_id), class: 'btn-next-prev' %>
+        <%= link_to recipe_path(next_id), class: 'btn-next-prev' do %>
+          <%= "#{next_text}" %> <i class="fas fa-arrow-circle-right"></i>
+        <% end %>
       <% end %>
 
   </div>
