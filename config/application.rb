@@ -13,6 +13,8 @@ module IrinaSweetshopOnRails
           generate.helper false
           generate.test_framework  :test_unit, fixture: false
         end
+
+    config.action_view.embed_authenticity_token_in_remote_forms = true #works even if JS is blocked
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.action_mailer.delivery_method = :letter_opener

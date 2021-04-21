@@ -21,6 +21,8 @@ gem 'webpacker'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener', group: :development
 
+gem 'turbolinks_render' #renders errors in ajax
+
 gem 'friendly_id', '~> 5.2.4'
 gem 'minimist'
 gem 'money-rails'

@@ -31,10 +31,23 @@
       <h2>Ratings & reviews </h2>
       <div class="recipe-show-ratings-container">
         <div class="recipe-show-ratings-reviews-form">
-          <%= render 'partials/reviews_new_form' %>
+          <!-- <%= render 'partials/reviews_new_form' %> -->
+          <%= simple_form_for([ @cakemodel, @review ]) do |f| %>
+            <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5' %>
+            <%= f.input :content, required: true, input_html: { minlength: 10 }, label: 'Recenzie' %>
+            <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn-default' %>
+          <% end %>
         </div>
         <div class="recipe-show-ratings-reviews-container">
-          <%= render 'partials/reviews_index' %>
+          <!-- <%= render 'partials/reviews_index' %> -->
+          <% @cakemodel.reviews.each do |rev| %>
+            <div class="recipe-reviews-card">
+              <p><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
+              <p><%= rev.content %></p>
+              <p><%= "Autor: #{rev.author}" %></p>
+              <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

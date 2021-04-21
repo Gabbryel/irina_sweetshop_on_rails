@@ -15,13 +15,13 @@ class ReviewsController < ApplicationController
         if @recipe
           redirect_to recipe_path(@recipe)
         elsif @cakemodel
-          redirect_to cakemodel_path(params[:cakemodel_id])
+          redirect_to cakemodel_path(@cakemodel)
         end
       else
         if @recipe
           redirect_to recipe_path(@recipe), notice: "Recenzia nu a fost salvată! Completați atât ratingul, cât și textul recenziei. Vă mulțumim!"
         elsif @cakemodel
-          redirect_to cakemodel_path(params[:cakemodel_id]), notice: "Recenzia nu a fost salvată! Completați atât ratingul, cât și textul recenziei. Vă mulțumim!"
+          redirect_to cakemodel_path(@cakemodel), notice: "Recenzia nu a fost salvată! Completați atât ratingul, cât și textul recenziei. Vă mulțumim!"
         end
       end
       authorize @review
