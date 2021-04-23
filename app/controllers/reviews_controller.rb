@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
   
   def create
-    @review = Review.new(review_params)
+    @review = authorize Review.new(review_params)
     if params[:recipe_id]
       @recipe = Recipe.find(params[:recipe_id])
       @review.reviewable = @recipe
@@ -24,12 +24,24 @@ class ReviewsController < ApplicationController
           redirect_to cakemodel_path(@cakemodel), notice: "Recenzia nu a fost salvată! Completați atât ratingul, cât și textul recenziei. Vă mulțumim!"
         end
       end
-      authorize @review
+  end
+
+  def edit
+    @review = authorize Review.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+  end
+
+  def update
+    @review = authorize Review.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    if @review.update(review_params)
+      redirect_to recipe_path(@recipe)
+    end
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:rating, :content)
+    params.require(:review).permit(:rating, :content, :approved)
   end
 end

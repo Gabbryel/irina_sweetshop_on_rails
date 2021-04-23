@@ -9,4 +9,8 @@ class Review < ApplicationRecord
   def author
     self.user.email.split('@').first.capitalize
   end
+
+  def toggle_approve
+    self.approved = !self.approved
+  end
 end

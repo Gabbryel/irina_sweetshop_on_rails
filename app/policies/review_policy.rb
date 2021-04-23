@@ -12,4 +12,16 @@ class ReviewPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def edit?
+    isUserAdm?
+  end
+
+  def update?
+    edit?
+  end
+
+  def isUserAdm?
+    user && user.admin
+  end
 end

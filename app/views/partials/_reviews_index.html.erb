@@ -1,10 +1,32 @@
-<div class="recipe-reviews-index">
-  <% @reviews.each do |rev| %>
-  <div class="recipe-reviews-card">
-    <p><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
-    <p><%= rev.content %></p>
-    <p><%= "Autor: #{rev.author}" %></p>
-    <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
-  </div>
-    <% end %>
-</div>
+<% @reviews.each do |rev| %>
+  <% if rev.approved %> 
+    <div class="recipe-reviews-card">
+      <p><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
+      <p><%= rev.content %></p>
+      <p><%= "Autor: #{rev.author}" %></p>
+      <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
+    </div>
+
+    <% elsif current_user.admin %>
+        <div class="recipe-reviews-card">
+          <p><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
+          <p><%= rev.content %></p>
+          <p><%= "Autor: #{rev.author}" %></p>
+          <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
+          <% if !rev.approved %>
+            <p style="color:red">⚠️ Recenzie care trebuie revizuită!</p>
+            <%= simple_form_for([ @recipe, rev ]) do |f| %>
+              <%= f.input :approved %>
+              <%= f.button :submit, value: 'Update', class: 'btn-default' %>
+            <% end %>
+          <% end %>
+        </div>
+
+    <% elsif rev.user == current_user %>
+      <div class="recipe-reviews-card">
+        <p>Recenzie primită</p>
+        <p>Recenzia ta <%= rev.author %>, scrisă la <%= "#{rev.created_at.to_s.split(' ')[0]}" %> va fi revizuită și dacă corespunde standardelor noastre privind limbajul, va fi publicată!</p>
+        <p>Îți mulțumim!</p>
+      </div>
+  <% end %>
+<% end %>
