@@ -1,0 +1,10 @@
+<p style="color:red">⚠️ Recenzie care trebuie revizuită!</p>
+<p><%= render 'partials/reviews/reviews_delete', rev: rev %></p>
+<span id="recipe-approve-form">
+  <%= simple_form_for([ target, rev ]) do |f| %>
+  <%= f.input :approved, label: 'Aprobi?'%>
+  <%= f.button :submit, value: 'Update status', class: 'btn-default' %>
+  <% end %>
+</span>
+
+<!-- target is imported from review_target_helper -->

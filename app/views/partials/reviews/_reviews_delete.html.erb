@@ -1,0 +1,14 @@
+<% if @recipe %>
+<p class='btn-delete'>
+  <%= link_to recipe_review_path(@recipe, rev), method: :delete do %>
+    <i class="fas fa-trash-alt color-fonts"></i>
+  <% end %>
+</p>
+  
+<% elsif @cakemodel %>
+<p class='btn-delete'>
+  <%= link_to cakemodel_review_path(@cakemodel, rev), method: :delete do %>
+    <i class="fas fa-trash-alt color-fonts"></i>
+  <% end %>
+</p>
+<% end %>

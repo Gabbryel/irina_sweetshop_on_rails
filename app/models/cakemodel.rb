@@ -4,7 +4,7 @@ class Cakemodel < ApplicationRecord
   validates :name, presence: true
   validates :content, presence: true
   validates :photo, presence: true
-  
+  include RatingsConcern
   include Reviewable
 
   def overall_rating
@@ -13,13 +13,5 @@ class Cakemodel < ApplicationRecord
 
   def no_of_ratings
     ratings.count == 1 ? "(#{ratings.count} recenzie)" : "(#{ratings.count} recenzii)"
-  end
-
-  private
-
-  def ratings
-    ratings = []
-    self.reviews.each { |rev| ratings << rev.rating}
-    ratings
   end
 end

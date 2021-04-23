@@ -6,6 +6,7 @@
   # validates :photo, presence: true
 
   include Reviewable
+  include RatingsConcern
 
   monetize :price_cents
   
@@ -17,11 +18,4 @@
     ratings.count == 1 ? "(#{ratings.count})" : "(#{ratings.count})"
   end
 
-  private 
-  
-  def ratings
-    ratings = []
-    self.reviews.each { |rev| ratings << rev.rating }
-    ratings
-  end
 end

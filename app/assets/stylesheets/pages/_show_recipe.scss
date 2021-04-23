@@ -127,6 +127,22 @@
             font-weight: 500;
             margin-bottom: 10px;
           }
+          #recipe-approve-form {
+            .form-check {
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              margin: 10px 0 0 0;
+              padding: 0;
+              .form-check-input {
+                position: relative;
+                margin: 0 10px 0 0;
+              }
+              .optional {
+                font-size: 15px !important;
+              }
+            }
+          }
         }
     }
   }
@@ -138,9 +154,6 @@
       width: 90%;
       max-width: 1000px;
       margin: 0 auto;
-      .recipe-show-main-image {
-        // width: 30%;
-      }
       .recipe-show-main-description {
         margin: 0;
         width: 65%;
