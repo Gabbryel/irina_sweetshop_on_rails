@@ -28,14 +28,25 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = authorize Review.find(params[:id])
-    @recipe = Recipe.find(params[:recipe_id])
+    if params[:recipe_id]
+      @recipe = Recipe.find(params[:recipe_id])
+    elsif params[:cakemodel_id]
+      @cakemodel = Cakemodel.find(params[:cakemodel_id])
+    end
   end
 
   def update
     @review = authorize Review.find(params[:id])
-    @recipe = Recipe.find(params[:recipe_id])
-    if @review.update(review_params)
-      redirect_to recipe_path(@recipe)
+    if params[:recipe_id]
+      @recipe = Recipe.find(params[:recipe_id])
+      if @review.update(review_params)
+        redirect_to recipe_path(@recipe)
+      end
+    elsif params[:cakemodel_id]
+      @cakemodel = Cakemodel.find(params[:cakemodel_id])
+      if @review.update(review_params)
+        redirect_to cakemodel_path(@cakemodel)
+      end
     end
   end
 

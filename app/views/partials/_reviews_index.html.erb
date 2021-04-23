@@ -1,3 +1,9 @@
+<% if @review %>
+  @target = @review
+<% elsif @cakemodel %>
+  @target = @cakemodel
+<% end %>
+
 <% @reviews.each do |rev| %>
   <% if rev.approved %> 
     <div class="recipe-reviews-card">
@@ -15,7 +21,7 @@
           <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
           <% if !rev.approved %>
             <p style="color:red">⚠️ Recenzie care trebuie revizuită!</p>
-            <%= simple_form_for([ @recipe, rev ]) do |f| %>
+            <%= simple_form_for([ @target, rev ]) do |f| %>
               <%= f.input :approved %>
               <%= f.button :submit, value: 'Update', class: 'btn-default' %>
             <% end %>
