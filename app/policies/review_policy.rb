@@ -24,4 +24,8 @@ class ReviewPolicy < ApplicationPolicy
   def isUserAdm?
     user && user.admin
   end
+
+  def destroy?
+    user && user.admin
+  end
 end

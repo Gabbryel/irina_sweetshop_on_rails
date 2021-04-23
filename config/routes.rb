@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     end
   end
   resources :recipes, only: %i[show] do
-    resources :reviews, only: %i[create edit update]
+    resources :reviews, only: %i[create edit update destroy]
   end
   resources :cakemodels, only: %i[show] do
-    resources :reviews, only: %i[create edit update]
+    resources :reviews, only: %i[create edit update destroy]
   end
 
   resources :items
