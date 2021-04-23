@@ -1,11 +1,3 @@
-<% if @recipe %>
-  <% @target = @recipe %>
-<% elsif @cakemodel %>
-  <% @target = @cakemodel %>
-<% end %>
-
-<!-- ***** -->
-
 <% @reviews.each do |rev| %>
   <% if rev.approved %> 
     <div class="recipe-reviews-card">
@@ -14,15 +6,7 @@
       <p><%= "Autor: #{rev.author}" %></p>
       <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
       <% if current_user.admin %>
-        <% if @recipe %>
-          <%= link_to recipe_review_path(@recipe, rev) , method: :delete do %>
-            <i class="fas fa-trash-alt color-fonts"></i>
-          <% end %>
-        <% elsif @cakemodel %>
-          <%= link_to cakemodel_review_path(@cakemodel, rev) , method: :delete do %>
-            <i class="fas fa-trash-alt color-fonts"></i>
-          <% end %>
-        <% end %>
+        <%= render 'partials/reviews/reviews_delete', rev: rev %>
       <% end %>
     </div>
 
@@ -33,11 +17,7 @@
           <p><%= "Autor: #{rev.author}" %></p>
           <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
           <% if !rev.approved %>
-            <p style="color:red">⚠️ Recenzie care trebuie revizuită!</p>
-            <%= simple_form_for([ @target, rev ]) do |f| %>
-              <%= f.input :approved, label: 'Aprobi?'%>
-              <%= f.button :submit, value: 'Update status', class: 'btn-default' %>
-            <% end %>
+            <%= render 'partials/reviews/reviews_approve_form', rev: rev %>
             <% end %>
         </div>
 

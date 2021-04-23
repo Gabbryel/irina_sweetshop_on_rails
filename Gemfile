@@ -33,6 +33,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'meta_request'
   gem 'rake', '~> 13.0', '>= 13.0.1'
+  gem 'rspec'
 end
 
 group :development, :test do
