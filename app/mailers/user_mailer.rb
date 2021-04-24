@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   #
   def welcome
       @user = params[:user] # Instance variable => available in view
-      mail(to: @user.email, subject: 'Bine ați venit!')
+      mail(to: @user.email, subject: 'Bine ai venit pe irinasweet.ro!')
       # This will render a view in `app/views/user_mailer`!
     end
     def notice_to_admin

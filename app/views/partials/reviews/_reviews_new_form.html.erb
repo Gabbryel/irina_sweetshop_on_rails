@@ -6,6 +6,6 @@
 
   <%= simple_form_for([ @target, @review ]) do |f| %>
     <%= f.input :rating, collection: %i[1 2 3 4 5], label: 'Rating de la 1 la 5' %>
-    <%= f.input :content, required: true, input_html: { minlength: 10 }, label: 'Recenzie' %>
+    <%= f.input :content, required: true, input_html: { minlength: 10 }, label: 'Recenzie (min. 10 caractere)' %>
     <%= f.button :submit, value: 'Posteaza recenzia', class: 'btn-default' %>
   <% end %>

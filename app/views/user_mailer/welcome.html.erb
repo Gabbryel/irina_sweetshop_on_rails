@@ -1,5 +1,55 @@
-<p>Welcome to Irina SweetShop, <%= @user.email %>!</p>
-<p><%= link_to 'Mergi la produse', root_url %></p>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #321F28;
+    color: #bb8b7a;
+    font-family: 'Montserrat';
+    padding: 50px 0 0;
+  }
+  .images {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  .images img {
+    width: 30%;
+    height: 30%;
+    border-radius: 4px;
+  }
+  a {
+    color: #bb8b7a;
+    text-decoration: none;
+  }
+  a:hover {
+    color: white;
+  }
+  @media (min-width: 576px) {
+    .images {
+      justify-content: center;
+    }
+    .images img {
+    width: 16%;
+    height: 16%;
+  }
+  }
+</style>
+<body>
+  <h1>Bine ai venit, <%= @user.email.split('@')[0].capitalize %>!</h1>
+  <p>Interesul tău față de produsele noastre ne bucură nespus!</p>
+  <div class="images">
+    <img src="https://res.cloudinary.com/dqbu9lypc/image/upload/v1615881151/2my0rxzuvmx5sws9taahmrpogco8.png" alt="">
+    <img src="https://res.cloudinary.com/dqbu9lypc/image/upload/v1615564754/9eaqelet2g24mlzfxbd6zozig7wv.png" alt="">
+    <img src="https://res.cloudinary.com/dqbu9lypc/image/upload/v1614244275/dwa75bflg3a6w2f8uvz3sw9921lq.png" alt="">
 
-<p>Constantin-Gabriel Ursache</p>
-<p>Founder & owner Irina SweetShop S.R.L.</p>
+  </div>
+  <p><%= link_to '👉 Lasă-te inspirat de produsele noastre', root_url %></p>
+  <p>Ne găsiți în Bacău, str. Miorița, nr. 10.</p>
+  <p>Telefon laborator: 0755054002</p>
+  
+  <p style='margin:0;'>Constantin-Gabriel Ursache</p>
+  <p style='margin:0;'>- Founder & Owner Irina SweetShop S.R.L. -</p>
+  <p style='font-size: 10px;'>Acest site (webapp) este încă în dezvoltare și va include din ce în ce mai multe produse, posibilitatea de a crea o comandă online și multe altele.</p>
+</body>
