@@ -1,4 +1,43 @@
-<div>
-  <h1>New customer!</h1>
-  <p>Un nou utilizator cu email <%= @user.email %> s-a inscris!</p>
-</div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #321F28;
+    color: #bb8b7a;
+    font-family: 'Montserrat';
+    padding: 50px 0 0;
+  }
+  .images {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  .images img {
+    width: 30%;
+    height: 30%;
+    border-radius: 4px;
+  }
+  a {
+    color: #bb8b7a;
+    text-decoration: none;
+  }
+  a:hover {
+    color: white;
+  }
+  @media (min-width: 576px) {
+    .images {
+      justify-content: center;
+    }
+    .images img {
+    width: 16%;
+    height: 16%;
+  }
+  }
+</style>
+<body>
+  <h1>Hey, admin!</h1>
+  <h2>Utilizatorul <%= @user.email.split('@')[0].capitalize %> tocmai s-a înscris!</h2>
+  <p>Până acum ai <%= @users.count %> utlizatori!</p>
+</body>
