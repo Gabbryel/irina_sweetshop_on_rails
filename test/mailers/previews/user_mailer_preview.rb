@@ -6,7 +6,11 @@ class UserMailerPreview < ActionMailer::Preview
     user = User.first
     # This is how you pass value to params[:user] inside mailer definition!
     UserMailer.with(user: user).welcome
-
   end
+
+  def notice_to_admin
+    user = User.first
+    UserMailer.with(user: user).notice_to_admin
+end
 
 end
