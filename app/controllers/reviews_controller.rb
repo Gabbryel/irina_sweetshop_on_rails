@@ -1,3 +1,4 @@
+
 class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_review, only: [:edit, :update, :destroy]
@@ -15,12 +16,12 @@ class ReviewsController < ApplicationController
     @review.user = current_user
       if @review.save
         if @recipe
-          ReviewMailer.with(user: @review.user).new_review.deliver_now
-          ReviewMailer.with(user: @review.user).new_review_to_admin.deliver_now
+          ReviewMailer.with(user: @review.user, review: @review).new_review.deliver_now
+          ReviewMailer.with(user: @review.user, review: @review).new_review_to_admin.deliver_now
           redirect_to recipe_path(@recipe)
         elsif @cakemodel
-          ReviewMailer.with(user: @review.user).new_review.deliver_now
-          ReviewMailer.with(user: @review.user).new_review_to_admin.deliver_now
+          ReviewMailer.with(user: @review.user, review: @review).new_review.deliver_now
+          ReviewMailer.with(user: @review.user, review: @review).new_review_to_admin.deliver_now
           redirect_to cakemodel_path(@cakemodel)
         end
       else
