@@ -5,11 +5,14 @@
       <p><%= rev.content %></p>
       <p><%= "Autor: #{rev.author}" %></p>
       <p><%= "Scrisă la: #{rev.created_at.to_s.split(' ')[0]}" %></p>
-      <% if current_user.admin %>
+      <% if current_user && current_user.admin %>
         <%= render 'partials/reviews/reviews_delete', rev: rev %>
       <% end %>
     </div>
-
+    <% elsif !rev.approved && current_user.nil? %>
+    <div class="recipe-reviews-card">
+      <p style="text-align: center; margin: 0;">O recenzie este în curs de aprobare.</p>
+    </div>
     <% elsif current_user.admin %>
         <div class="recipe-reviews-card">
           <p><%= "Recenzie (id:#{rev.id}) - Rating: #{ "⭐️" * rev.rating} (#{rev.rating})" %></p>
@@ -20,12 +23,12 @@
             <%= render 'partials/reviews/reviews_approve_form', rev: rev %>
             <% end %>
         </div>
-
     <% elsif rev.user == current_user %>
       <div class="recipe-reviews-card">
         <p>Recenzie primită</p>
         <p>Recenzia ta <%= rev.author %>, scrisă la <%= "#{rev.created_at.to_s.split(' ')[0]}" %> va fi revizuită și dacă corespunde standardelor noastre privind limbajul, va fi publicată!</p>
         <p>Îți mulțumim!</p>
       </div>
+      
   <% end %>
 <% end %>
