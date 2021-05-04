@@ -62,8 +62,14 @@
       <% @address = 'recipes' %>
       <p>Produs: <%= @recipe.name %></p>
       <p>Categorie de produs: <%= Category.find { |cat| cat.id == @recipe.category_id }.name %></p>
-      <%= link_to  "https://www.irinasweet.ro/#{@address}/#{@recipe.id}" do %>
-        <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
+      <% if !@recipe.photo.present? %>
+        <%= link_to  "https://www.irinasweet.ro/#{@address}/#{@recipe.id}" do %>
+          <%= cl_image_tag ("0043_336x240_qtzdxl"), alt: @recipe.name %>
+        <% end %>
+      <% elsif @recipe.photo.present? %>
+        <%= link_to  "https://www.irinasweet.ro/#{@address}/#{@recipe.id}" do %>
+          <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
+        <% end %>
       <% end %>
     <% elsif @review.reviewable_type == 'Cakemodel'%>
     <% @cakemodel = Cakemodel.find { |cm| cm.id == @review.reviewable_id}  %>
