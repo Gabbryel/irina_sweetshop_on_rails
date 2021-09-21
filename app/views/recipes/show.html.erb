@@ -11,7 +11,7 @@
       <% if @recipe.photo.present? %>
         <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
       <% else %>
-        <%= cl_image_tag ("0043_336x240_qtzdxl"), alt: @recipe.name %>
+        <%= cl_image_tag (choose_photo), alt: @recipe.name %>
       <% end %>
       <p class="recipe-show-main-price">
         <% if @recipe.price != 0 %>

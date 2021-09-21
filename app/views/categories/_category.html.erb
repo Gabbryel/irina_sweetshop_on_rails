@@ -5,7 +5,7 @@
         <% if category.photo.present? %>
         <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
         <% else %>
-        <%= cl_image_tag('0043_336x240_qtzdxl.png') %>
+        <%= cl_image_tag(choose_photo) %>
         <% end %>
       </div>
         <p class="card-title"><%= category.name.upcase %></p>
