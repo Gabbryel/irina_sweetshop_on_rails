@@ -3,8 +3,7 @@
     height: 470px;
     width: 300px;
     margin: 2rem;
-    box-shadow: 3px 3px 3px 1px #00000020;
-    background-color: #fff;
+    background: $card-gradient;
     border-radius: 4px;
     overflow: hidden;
     &:hover {
@@ -49,7 +48,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-color: #fff;
+                // background-color: $body-bkg;
                 color: $font-color;
                 font-size: 22px;
                 line-height: 1;
