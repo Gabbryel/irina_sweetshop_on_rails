@@ -34,9 +34,6 @@
     <%= render 'shared/flashes' %>
       <%= yield %>
     <!-- <%= render 'shared/social' %> -->
-    <% if Date.today() < Date.new(2022, 4, 23) %>
-      <%= render 'shared/easter_modal_2021' %>
-    <% end %>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>
     <script src="//www.eucookie.eu/public/gdpr-cookie-consent.js" type="text/javascript"></script>

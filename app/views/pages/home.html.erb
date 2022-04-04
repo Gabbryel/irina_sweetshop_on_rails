@@ -1,5 +1,7 @@
 <% content_for (:title) { 'Cofetăria Irina - Bacău, str. Miorița, nr. 10' } %>
-<%= render 'shared/easter_modal_2021' %>
+<% if Date.today() < Date.new(2022, 4, 24) %>
+      <%= render 'shared/easter_modal_2021' %>
+    <% end %>
 <div class="home-main__container">
   <div class="hero-section">
     <%= image_tag(random_photo()) %>
