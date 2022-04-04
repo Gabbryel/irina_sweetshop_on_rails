@@ -34,6 +34,9 @@
     <%= render 'shared/flashes' %>
       <%= yield %>
     <!-- <%= render 'shared/social' %> -->
+    <% if Date.today() < Date.new(2022, 4, 23) %>
+      <%= render 'shared/easter_modal_2021' %>
+    <% end %>
     <%= render 'shared/modal_paste' %>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>
