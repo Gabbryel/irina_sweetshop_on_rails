@@ -3,9 +3,8 @@
     height: 470px;
     width: 300px;
     margin: 2rem;
-    background: $card-gradient;
-    border-radius: 4px;
     overflow: hidden;
+    box-shadow: 5px 5px 6px #2b2424ef;
     &:hover {
         cursor: pointer;
     }
@@ -14,8 +13,10 @@
     }
     .card-link, a {
         display: block;
-        height: 77%;
-        width: 80%;
+        // height: 77%;
+        // width: 80%;
+        height: 100%;
+        width: 100%;
         margin: 0 auto;
         .card-link-container {
             height: 100%;
@@ -25,7 +26,7 @@
                 width: 100%;
                 position: relative;
                 margin: 0 auto;
-                top: 10%;
+                // top: 10%;
                 border-radius: 4px;
                 img {
                     position: absolute;
@@ -39,18 +40,23 @@
                 }
             }
             .card-title {
-                position: relative;
+                // position: relative;
+                position: absolute;
+                z-index: 10;
+                bottom: 0;
+                text-shadow: 0 0 3px #000;
                 letter-spacing: .04em;
                 text-align: center;
-                height: 30%;
+                height: 20%;
                 width: 100%;
                 margin: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 // background-color: $body-bkg;
+                background-color: #2b2424ef;
                 color: $font-color;
-                font-size: 22px;
+                font-size: 28px;
                 line-height: 1;
                 p {
                     font-weight: 300;
@@ -59,12 +65,12 @@
             }
             .card-price {
                 position: absolute;
-                bottom: 120px;
+                top: 20px;
                 right: 0;
                 color: $font-color;
                 height: 50px;
                 width: 110px;
-                background-color: $light-bkg-color;
+                background-color: #2b2424ef;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -87,6 +93,7 @@
         text-align: center;
         width: 100%;
         height: 20%;
+        bottom: 0;
         .card-paths-link {
             display: inline-block;
             position: relative;

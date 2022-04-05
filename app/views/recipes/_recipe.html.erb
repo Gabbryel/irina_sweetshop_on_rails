@@ -21,10 +21,10 @@
     </div>  
   <% end %>
 
-      <div class='card-rating'>
+      <!-- <div class='card-rating'>
         <p class=''><%= "#{recipe.overall_rating.to_f.round(2)}"%>
           <%= '⭐️' * recipe.overall_rating.to_i %> <%= recipe.no_of_ratings %> </p>
-      </div>
+      </div> -->
 
 <!-- ok -->
       <% if current_user && current_user.admin%>

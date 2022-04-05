@@ -59,6 +59,33 @@ html, body {
 	background-color: $body-bkg;
 	display: flex;
 	flex-direction: column;
+	.design-elements {
+		position: absolute;
+		top: 0;
+		left: 0;
+		min-height: 100%;
+		min-width: 100%;
+			#torturi, #cozonac, #pasca, #prajituri {
+				position: fixed;
+				top: -5%;
+				left: 10%;
+				font-size: 12rem;
+				font-weight: 900;
+				color: #aaaaaa15;
+			}
+			#cozonac {
+				top: 25%;
+				left: -30%;
+			}
+			#pasca {
+				top: 55%;
+				left: 50%;
+			}
+			#prajituri {
+				top: 85%;
+				left: 0;
+			}
+	}
 }
 
 a {
