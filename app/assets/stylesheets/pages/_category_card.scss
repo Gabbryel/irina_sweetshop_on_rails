@@ -1,10 +1,13 @@
 .card-container {
     position: relative;
-    height: 470px;
-    width: 300px;
+    // height: 470px;
+    // width: 300px;
+    height: 330px;
+    width: 260px;
     margin: 2rem;
     overflow: hidden;
-    box-shadow: 5px 5px 6px #2b2424ef;
+    box-shadow: 2px 2px 4px #2b242450,
+    -1px -1px 1px #2b242420;
     &:hover {
         cursor: pointer;
     }
@@ -27,16 +30,15 @@
                 position: relative;
                 margin: 0 auto;
                 // top: 10%;
-                border-radius: 4px;
+                background-color: #000;
                 img {
                     position: absolute;
-                    height: 100%;
-                    width: 100%;
-                    top: 0;
-                    left: 0;
+                    height: 80%;
+                    width: 70%;
+                    top: 10%;
+                    left: 15%;
                     object-fit: cover;
                     object-position: center;
-                    border-radius: 4px;
                 }
             }
             .card-title {
@@ -56,7 +58,7 @@
                 // background-color: $body-bkg;
                 background-color: #2b2424ef;
                 color: $font-color;
-                font-size: 28px;
+                font-size: 24px;
                 line-height: 1;
                 p {
                     font-weight: 300;
@@ -114,8 +116,9 @@
     }
     .card-crud {
         position: absolute;
-        bottom: 5px;
-        left: 20px;
+        top: 0;
+        left: 10px;
+        z-index: 11;
         a {
             display: inline;
             color: $font-color;
