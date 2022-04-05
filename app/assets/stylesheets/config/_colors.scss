@@ -1,5 +1,3 @@
-// Define variables for your color scheme
-
 $bkg-color: #000;
 $body-bkg: #cf8c0e20;
 $light-bkg-color: #2b2424;
@@ -11,7 +9,4 @@ $color-lgt-brown: #a05344;
 $color-deep-brown: #734046;
 $color-blacky: #321F28;
 
-
-$card-gradient: linear-gradient( 180deg, rgba(117, 85, 85, .2) 20%,
-#F3E4C630 90%, rgba(117, 85, 85, .1) 98%
-);
+$card-gradient: linear-gradient( 180deg, #755555aa 60%, #75555530 93%, #75555560 98% );
