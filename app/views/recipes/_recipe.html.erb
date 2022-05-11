@@ -1,32 +1,35 @@
-<div class="card-container">
+<div class="card-container card-container-recipes">
   <%= link_to recipe_path(recipe) do %>
-    <div class="card-link-container">
-      <div class="card-image">
+    <div class="card-link-container card-link-container-recipes">
+      <div class="card-image card-image-recipes">
         <% if recipe.photo.present? %> <!--if begining-->
         <%= cl_image_tag recipe.photo.key, alt: recipe.name %>
         <% else %>
         <%= cl_image_tag (choose_photo), alt: recipe.name %>
         <% end %> <!--if end-->
       </div>
-      <div class='card-title'>
-        <p><%= "#{recipe.name}" %></p>
-      </div>
-      <div class="card-price">
-        <% if recipe.price != 0 %>
-          <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
-        <% elsif recipe.price == 0 %>
-          <p>-,-- lei <span>/<%= recipe.kg_buc %></span></p>
-        <% end %>
+      <div class='card-title card-title-recipes'>
+        <div class="card-title-text">
+          <%= "#{recipe.name}" %>
+        </div>
+        <div class='card-rating d-flex justify-content-center align-items-center'>
+            <%= "#{recipe.overall_rating.to_f.round(2)}" if recipe.no_of_ratings.to_i > 0 %>
+            <%= '⭐️' * recipe.overall_rating.to_i %> 
+            <%= recipe.no_of_ratings %> 
+        </div>
+        <!-- <div class="card-price-sec">
+          <% if recipe.price != 0 %>
+            <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
+          <% elsif recipe.price == 0 %>
+            <p>-,-- lei <span>/<%= recipe.kg_buc %></span></p>
+          <% end %>
+        </div> -->
+        <div class="card-recipe-description d-flex justify-content-center align-items-center">
+          <%= card_recipe_description(recipe.content) %>...
+        </div>
       </div>
     </div>  
   <% end %>
-
-      <!-- <div class='card-rating'>
-        <p class=''><%= "#{recipe.overall_rating.to_f.round(2)}"%>
-          <%= '⭐️' * recipe.overall_rating.to_i %> <%= recipe.no_of_ratings %> </p>
-      </div> -->
-
-<!-- ok -->
       <% if current_user && current_user.admin%>
         <div class='card-crud'>
           <% if policy(recipe).edit? %>
