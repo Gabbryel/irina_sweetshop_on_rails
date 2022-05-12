@@ -23,6 +23,8 @@ gem 'letter_opener', group: :development
 
 gem 'turbolinks_render' #renders errors in ajax
 
+
+gem 'mimemagic', '~> 0.3.10'
 gem 'minimist'
 gem 'money-rails'
 gem 'stripe'
