@@ -54,7 +54,7 @@
     .recipe-show-main-description {
       width: 80%;
       margin: 30px auto 0;
-      font-size: 14px;
+      font-size: clamp(12px, 1.5rem, 16px);
       text-align: justify;
       color: $light-bkg-color;
       h1 {
@@ -67,9 +67,7 @@
       }
       p {
         padding-bottom: 20px;
-        font-size: 1.6rem;
       }
-      
       .standard {
           position: relative;
           color: black;
@@ -164,7 +162,6 @@
           font-weight: 700;
         }
         p {
-          font-size: .7rem;
           padding: 0;
         }
       }
