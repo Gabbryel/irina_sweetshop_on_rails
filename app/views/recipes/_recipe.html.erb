@@ -17,19 +17,16 @@
             <%= '⭐️' * recipe.overall_rating.to_i %> 
             <%= recipe.no_of_ratings %> 
         </div>
-        <!-- <div class="card-price-sec">
-          <% if recipe.price != 0 %>
-            <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
-          <% elsif recipe.price == 0 %>
-            <p>-,-- lei <span>/<%= recipe.kg_buc %></span></p>
-          <% end %>
-        </div> -->
-        <!-- <div class="card-recipe-description d-flex justify-content-center align-items-center">
-          <%= card_recipe_description(recipe.content) %>...
-        </div> -->
       </div>
     </div>  
-  <% end %>
+    <% end %>
+    <div class="card-price-sec">
+      <% if recipe.price != 0 %>
+        <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
+      <% elsif recipe.price == 0 %>
+        <p>-,-- lei <span>/<%= recipe.kg_buc %></span></p>
+      <% end %>
+    </div>
       <% if current_user && current_user.admin%>
         <div class='card-crud'>
           <% if policy(recipe).edit? %>

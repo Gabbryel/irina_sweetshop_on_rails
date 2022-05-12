@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.3'
+ruby '2.7.0'
 
 gem 'postmark-rails'
 gem 'ostruct'
@@ -23,7 +23,6 @@ gem 'letter_opener', group: :development
 
 gem 'turbolinks_render' #renders errors in ajax
 
-gem 'friendly_id', '~> 5.2.4'
 gem 'minimist'
 gem 'money-rails'
 gem 'stripe'
