@@ -2,27 +2,29 @@
   <div class="footer-main">
     <div class="footer-left">
       <p>Cofetăria Irina</p>
+      <hr>
       <p>Irina SweetShop S.R.L.</p>
-      <p>Sediu social și punct de lucru:</p>
       <p>Bacău, bd. Unirii, nr. 2, zona sc. F, parter</p>
       <p>O.R.C. J04/70/2014</p>
       <p>Cod fiscal: RO32692627</p>
+      <p><%= link_to 'Despre noi', about_path %></p>
     </div>
+    <hr>
     <div class="footer-right">
       <p><i class="fas fa-phone-square"></i>👩‍🍳 0755-054 002</p>
       <p><i class="fas fa-phone-square"></i>👩🏻‍⚖️ 0755-054 006</p>
       <p><i class="fas fa-envelope-square"></i> office@irinasweet.ro</p>
       <p>Pentru comenzi: <%= link_to  how_to_order_path do %>
                           <i class="fas fa-hand-point-right"></i>
-                         <% end %>
+                        <% end %>
       </p>
+      <hr>
       <p><a href="https://anpc.ro/"> A.N.O.P.C.</a></p>
-      <p><%= link_to 'Despre noi', about_path %></p>
       <p><a href="javascript:cookieConsent.changeConsent();">G.D.R.P. <i class="fas fa-cookie-bite"></i></a></p>
     </div>
   </div>
   <div class="copyright">
     <p class='copyright-line-1'>© IRINA SWEETSHOP S.R.L. 2014 - <%= Date.today().year %></p>
-    <p class='copyright-line-2'>Designed and Built in <%= image_tag('rails.png') %> by <span id='webdev'> Gabriel Ursache</span></p>
+    <p class='copyright-line-2'>Designed and Built in <%= image_tag('rails.png') %> by <span id='webdev'> ULaB</span></p>
   </div>
 </section>
