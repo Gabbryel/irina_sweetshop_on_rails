@@ -47,7 +47,7 @@
         #webdev {
           font-family: 'Frijole'; 
           font-variant: small-caps; 
-          font-size: .6rem;
+          font-size: clamp(10px, 1.5rem, 12px);
           margin: 0 .5rem;
         }
       }
