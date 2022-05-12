@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '3.0.0'
+ruby '2.7.6'
 
 gem 'postmark-rails'
 gem 'ostruct'
