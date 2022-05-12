@@ -1,17 +1,20 @@
 <div class='card-container'>
-  <div class="card-link">
-    <div class="card-link-container">
-      <div class="card-image">
-        <% if category.photo.present? %>
-        <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
-        <% else %>
-        <%= cl_image_tag(choose_photo) %>
-        <% end %>
+  <%= link_to category_recipes_path(category), class: 'card-paths-link' do %>
+    <div class="card-link">
+      <div class="card-link-container">
+        <div class="card-image">
+          <% if category.photo.present? %>
+          <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
+          <% else %>
+          <%= cl_image_tag(choose_photo) %>
+          <% end %>
+        </div>
+          <p class="card-title"><%= category.name.upcase %></p>
+        </div>
       </div>
-        <p class="card-title"><%= category.name.upcase %></p>
-    </div>
-  </div>
-  <div class="card-paths hidden">
+    <% end %>
+
+  <!-- <div class="card-paths hidden">
     <% if category.has_recipe && category.has_models %>
         <%= link_to 'Rețete', category_recipes_path(category), class: 'card-paths-link'  %>
         <%= link_to 'Sugestii', category_cakemodels_path(category), class: 'card-paths-link' %>
@@ -20,7 +23,7 @@
       <% elsif category.has_models %>
         <%= link_to 'Sugestii', category_cakemodels_path(category), class: 'card-paths-link' %>
       <% end %>
-  </div>
+  </div> -->
   <div class="card-crud">
     <% if policy(category).edit? %>
       <%= link_to edit_category_path(category.id), class: '' do %>
