@@ -22,9 +22,17 @@
     <% end %>
     <div class="card-price-sec">
       <% if recipe.price != 0 %>
-        <p><%= humanized_money_with_symbol(recipe.price).downcase %> <span>/<%= recipe.kg_buc %></span></p>
+      <div class="price-design">
+        <span><%= humanized_money_with_symbol(recipe.price).downcase %></span>
+        <hr>
+        <span class="price-design-kg"><%= recipe.kg_buc %></span>
+      </div>
       <% elsif recipe.price == 0 %>
-        <p>-,-- lei <span>/<%= recipe.kg_buc %></span></p>
+      <div class="price-design">
+        <span>-,-- lei</span>
+        <hr>
+        <span class="price-design-kg"><%= recipe.kg_buc %></span>
+      </div>
       <% end %>
     </div>
       <% if current_user && current_user.admin%>

@@ -4,7 +4,6 @@
 <% content_for :meta_description, @recipe.content %>
 <div class="recipe-show-container">
   <div class="recipe-show-back-btn">
-    <!-- <%= render 'partials/back_buttons' %> -->
   </div>
   <div class="recipe-show-main">
     <div class="recipe-show-main-image">
@@ -28,21 +27,27 @@
           <p class="recipe-show-main-description-text"><%= "#{line}." %></p>
         <% end %>
     <% if @recipe.category.name.downcase == 'torturi' %>
+        <div style="font-size: clamp(10px, 1rem, 12px);">
           <p>Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
           design <span class='standard'>standard <i class="fas fa-hand-point-left"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "recipe-show-std-image", alt: 'Tort design standard') %></span>.</p>
           <p>Prețurile pentru design la cerere, după model furnizat de client:</p>
-          <p>Design la cerere simplu: 100 lei/kg</p>
-          <p>Design la cerere cu accesorii modelate sau turnate în ciocolată: 130 lei/kg + figurinele.</p>
+          <p><b>Design la cerere simplu: 100 lei/kg</b></p>
+          <p><b>Design la cerere cu accesorii modelate sau turnate în ciocolată: 130 lei/kg + figurinele.</b></p>
+        </div>
           <% elsif @recipe.category.name.downcase == 'tradiționale' %>
-          <p>Greutatea produsului finit diferă de la un caz la altul.</p>
-          <p>Prețul final al produsului va fi calculat la cântărire.(preț/kg * greutate)</p>
-          <p>Greutatea aproximativă: cozonac (1.3-1.4kg), pască cu brînză (1, 1.2, 1.5kg), pască cu ciocolată (0.9 - 1.1kg),
-            pască cu smântână (0.9-1.1kg).
-          </p>
+          <div style="font-size: clamp(10px, 1rem, 12px);">
+            <p>Greutatea produsului finit diferă de la un caz la altul.</p>
+            <p>Prețul final al produsului va fi calculat la cântărire.(preț/kg * greutate)</p>
+            <p>Greutatea aproximativă: cozonac (1.3-1.4kg), pască cu brînză (1, 1.2, 1.5kg), pască cu ciocolată (0.9 - 1.1kg),
+              pască cu smântână (0.9-1.1kg).
+            </p>
+          </div>
           <% elsif @recipe.category.name.downcase == 'prăjituri' %>
-    <% end %>
-          <p>Produsele realizate în laboratorul nostru au în compoziție ingrediente naturale, fără conservanți.</p>
-          <p>Vă rugăm să le păstrați la rece și să le consumați în cel mult 3 zile (prăjituri, torturi, ... ), 5 zile (pască, cozonac, ... )  </p>
+            <div style="font-size: clamp(10px, 1rem, 12px);">
+            <p>Produsele realizate în laboratorul nostru au în compoziție ingrediente naturale, fără conservanți.</p>
+            <p>Vă rugăm să le păstrați la rece și să le consumați în cel mult 3 zile (prăjituri, torturi, ... ), 5 zile (pască, cozonac, ... )  </p>
+          </div>
+        <% end %>
     <div class="btn-next-prev-container">
       <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@recipes, @recipe) %>
 
