@@ -5,8 +5,7 @@
     margin: 2rem;
     overflow: hidden;
     border-radius: 20px;
-    box-shadow: 2px 2px 4px #2b242450,
-    -1px -1px 1px #2b242420;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     &:hover {
         cursor: pointer;
     }
@@ -26,7 +25,7 @@
                 width: 100%;
                 position: relative;
                 margin: 0 auto;
-                background-color: #000;
+                background-color: $light-yellow-op-20;
                 img {
                     position: absolute;
                     width: 100%;
