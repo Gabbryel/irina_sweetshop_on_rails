@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.6'
+ruby '3'
 
 gem 'postmark-rails'
 gem 'ostruct'
@@ -7,9 +7,9 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'pundit'
 gem 'jbuilder', '~> 2.0'
-gem 'pg', '~> 0.21'
+gem 'pg', '> 0.21'
 gem "puma"
-gem 'rails', '6.0.2.1'
+gem 'rails', '6.1'
 gem 'redis'
 gem 'cloudinary', '~> 1.12.0'
 gem 'autoprefixer-rails'
@@ -28,6 +28,8 @@ gem 'mimemagic', '~> 0.3.10'
 gem 'minimist'
 gem 'money-rails'
 gem 'stripe'
+
+gem 'net-http'
 
 
 group :development do
