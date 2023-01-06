@@ -1,15 +1,19 @@
 module ChoosePhotoHelper
   def choose_photo
     photo = ''
-    rand_number = rand(4).round()
+    rand_number = rand(5).round()
     if rand_number == 0 
-      photo = 'Pngtree_cartoon_birthday_cake_vector_2932706_hyuazx.png'
+      photo = 'cake1_ahspha.png'
     elsif rand_number == 1
-      photo = 'Pngtree_birthday_cake_vector_png_6047355_iks0q3.png'
+      photo = 'cake2_nn5oyb.png'
     elsif rand_number == 2
-      photo = '4792t30n2v5ovn35m550ffa45a24.png'
+      photo = 'cake3_j2nzm7.png'
     elsif rand_number == 3
-      photo = 'Pngtree_pink_birthday_cake_4684912_dbusbm.png'
+      photo = 'cake4_qimuzk.png'
+    elsif rand_number == 4
+      photo = 'cake5_ia6jgz.png'
+    elsif rand_number == 5
+      photo = 'cake6_bwjvb2.png'
     end
     return photo
   end
