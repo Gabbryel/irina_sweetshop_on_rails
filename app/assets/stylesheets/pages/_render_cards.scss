@@ -1,17 +1,14 @@
 .cards-main-container {
     position: relative;
     min-height: 80vh;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1500px;
     margin: 0 auto;
     padding: calc(8rem + 8vh) 0 4vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    @media (min-width: 651px) {
-        display: flex;
-        flex-flow: wrap;
-        justify-content: center;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3vh;
+    justify-items: center;
     h3 {
         display: inline-block;
         width: 100%;
@@ -19,6 +16,7 @@
         font-size: 2rem;
         font-weight: 400;
         padding-bottom: 1em;
+        grid-area: 1 / 1 / 1 / -1;
         span {
         font-size: 14px;
         font-weight: 300;

@@ -2,15 +2,11 @@
     position: relative;
     height: 400px;
     width: 260px;
-    margin: 2rem;
     overflow: hidden;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     &:hover {
         cursor: pointer;
-    }
-    @media (min-width: 900px) {
-        margin: 2rem 2rem;
     }
     .card-link, a {
         height: 100%;
