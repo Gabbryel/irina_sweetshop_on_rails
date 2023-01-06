@@ -4,9 +4,11 @@
       <div class="card-link-container">
         <div class="card-image">
           <% if category.photo.present? %>
-          <%= cl_image_tag category.photo.key, alt: category.name , class: 'card-image'%>
+          <%# binding.pry %>
+          <%#= category.name %>
+          <%= cl_image_tag(category.photo.key, alt: category.name , class: 'card-image')%>
           <% else %>
-          <%= cl_image_tag(choose_photo) %>
+          <%#= cl_image_tag(choose_photo) %>
           <% end %>
         </div>
           <p class="card-title"><%= category.name.upcase %></p>

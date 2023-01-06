@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.6'
+ruby '3.0.5'
 
 gem 'postmark-rails'
 gem 'ostruct'
@@ -7,11 +7,11 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'pundit'
 gem 'jbuilder', '~> 2.0'
-gem 'pg', '~> 0.21'
+gem 'pg', '> 0.21'
 gem "puma"
-gem 'rails', '6.0.2.1'
+gem 'rails', '6.1'
 gem 'redis'
-gem 'cloudinary', '~> 1.12.0'
+gem 'cloudinary'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 6.1.1'
 gem 'sassc-rails'
@@ -29,6 +29,8 @@ gem 'minimist'
 gem 'money-rails'
 gem 'stripe'
 
+gem 'net-http'
+# gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
