@@ -7,14 +7,14 @@
     padding: calc(8rem + 8vh) 0 4vh;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3vh;
+    gap: 7vh 2vh;
     justify-items: center;
     h3 {
         display: inline-block;
         width: 100%;
         color: $font-color;
-        font-size: 2rem;
-        font-weight: 400;
+        font-size: 4rem;
+        font-weight: 900;
         padding-bottom: 1em;
         grid-area: 1 / 1 / 1 / -1;
         span {
