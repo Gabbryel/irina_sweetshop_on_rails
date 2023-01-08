@@ -37,3 +37,5 @@ yarn-debug.log*
 *.swp
 .DS_Store
 .env*
+copy_dbase.sh
+latest.dump*

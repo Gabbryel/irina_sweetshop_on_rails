@@ -15,7 +15,9 @@
   end
   
   def no_of_ratings
-    ratings.count == 1 ? "(#{ratings.count})" : "Fără recenzii, scrie tu una!"
+    ratings.count == 0 ? "Fără recenzii, scrie tu una!" :
+    ratings.count == 1 ? "#{ratings.count} recenzie" :
+    "#{ratings.count} recenzii"
   end
 
 end

@@ -1,21 +1,24 @@
-<div class="card-container card-container-recipes">
+<div class="card-container-recipes">
   <%= link_to recipe_path(recipe) do %>
-    <div class="card-link-container card-link-container-recipes">
-      <div class="card-image card-image-recipes">
+    <div class="card-link-container-recipes">
+      <div class="card-image-recipes">
         <% if recipe.photo.present? %> <!--if begining-->
-        <%= cl_image_tag recipe.photo.key, alt: recipe.name %>
+          <%= cl_image_tag recipe.photo.key, alt: recipe.name %>
         <% else %>
-        <%= cl_image_tag (choose_photo), alt: recipe.name %>
+          <%= cl_image_tag (choose_photo), alt: recipe.name %>
         <% end %> <!--if end-->
       </div>
-      <div class='card-title card-title-recipes'>
+      <div class='card-title-recipes'>
         <div class="card-title-text">
           <%= "#{recipe.name}" %>
         </div>
+        <div class="card-description">
+          <span><%= card_recipe_description(recipe.content) %>... Mai multe informații!</span>
+        </div>
         <div class='card-rating d-flex justify-content-center align-items-center'>
-            <%= "#{recipe.overall_rating.to_f.round(2)}" if recipe.no_of_ratings.to_i > 0 %>
-            <%= '⭐️' * recipe.overall_rating.to_i %> 
-            <%= recipe.no_of_ratings %> 
+            <%= "Scor #{recipe.overall_rating.to_f.round(2)} din" if recipe.no_of_ratings.to_i > 0 %>
+            <%= recipe.no_of_ratings %>
+            <%= '☆' * recipe.overall_rating.to_i %>
         </div>
       </div>
     </div>  
@@ -23,7 +26,10 @@
     <div class="card-price-sec">
       <% if recipe.price != 0 %>
       <div class="price-design">
-        <span><%= humanized_money_with_symbol(recipe.price).downcase %></span>
+        <span><% humanized_money_with_symbol(recipe.price).split(Regexp.union([',', ' '])).each do |el| %>
+            <span><%= el.downcase %></span>
+          <% end %>
+        </span>
         <hr>
         <span class="price-design-kg"><%= recipe.kg_buc %></span>
       </div>

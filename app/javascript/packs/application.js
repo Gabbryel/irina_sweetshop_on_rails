@@ -11,6 +11,7 @@ import { renderSquares, renderSquaresResize } from './homepageJS/squares_render'
 import { vh, vhOnResize } from "./vh";
 // import { showLinks } from './categoryCardLinks';
 import easterModal from './homepageJS/easterModal';
+import renderDisclaimerModal from './homepageJS/disclaimerModal';
 
 
 sections()
@@ -22,4 +23,5 @@ vh()
 vhOnResize()
 // showLinks()
 easterModal()
+renderDisclaimerModal()
 
