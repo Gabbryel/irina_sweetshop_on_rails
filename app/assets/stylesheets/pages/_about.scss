@@ -8,7 +8,7 @@
   font-weight: 100;
   font-size: 2rem;
   .about-presentation {
-    padding: 20px 0;
+    padding: 20px 10px;
     .big-title {
       font-family: $font-title;
     }
@@ -25,7 +25,8 @@
   }
   .about-disclaimer {
     text-align: justify;
-    font-size: 22px;
+    font-size: clamp(1rem, 20px, 1.5rem);
+    padding: 10px;
     p {
       margin-bottom: 15px;
     }
