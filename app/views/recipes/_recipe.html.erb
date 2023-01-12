@@ -13,7 +13,7 @@
           <%= "#{recipe.name}" %>
         </div>
         <div class="card-description">
-          <span><%= card_recipe_description(recipe.content) %>... Mai multe informații!</span>
+          <span><%= card_recipe_description(recipe.content) %>... <i class="fa-solid fa-circle-info"></i></span>
         </div>
         <div class='card-rating d-flex justify-content-center align-items-center'>
             <%= "Scor #{recipe.overall_rating.to_f.round(2)} din" if recipe.no_of_ratings.to_i > 0 %>

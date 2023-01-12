@@ -2,7 +2,8 @@
   padding: calc(8vh + 8rem) 5vw 10vh;
   min-height: 60vh;
   font-size: 3rem;
-  background-color: $light-bkg-color;
+  background-color: none;
+  z-index: 100;
   color: $font-color;
   .required, .optional {
     font-size: 1.5rem;
