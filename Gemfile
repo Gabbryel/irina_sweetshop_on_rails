@@ -28,6 +28,7 @@ gem 'mimemagic', '~> 0.3.10'
 gem 'minimist'
 gem 'money-rails'
 gem 'stripe'
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
 gem 'net-http'
 # gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"

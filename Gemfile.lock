@@ -142,6 +142,7 @@ GEM
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
+    mini_magick (4.12.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
     minimist (0.6.0)
@@ -331,6 +332,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   meta_request
   mimemagic (~> 0.3.10)
+  mini_magick (~> 4.5, >= 4.5.1)
   minimist
   money-rails
   net-http

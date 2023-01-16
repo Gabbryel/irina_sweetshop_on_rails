@@ -5,7 +5,8 @@
         <% if recipe.photo.present? %> <!--if begining-->
           <%= cl_image_tag recipe.photo.key, alt: recipe.name %>
         <% else %>
-          <%= cl_image_tag (choose_photo), alt: recipe.name %>
+          <%= cl_image_tag (choose_photo), alt: recipe.name, class: 'card-image__no-image' %>
+          <p class="card-image__no-image-text">Fără imagine</p>
         <% end %> <!--if end-->
       </div>
       <div class='card-title-recipes'>

@@ -205,10 +205,22 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-image: image-url('IMG_3102.png');
+                background-color: #000000ee;
                 img {
                     position: relative;
                     width: 100%;
+                }
+                .card-image__no-image {
+                    filter: blur(4px);
+                }
+                .card-image__no-image-text {
+                    position: absolute;
+                    color: #000;
+                    background-color: #ffffffaa;
+                    transform: rotate(-30deg);
+                    padding: 5px 20px;
+                    font-family: 'Montserrat';
+                    font-size: 18px;
                 }
             }
             .card-title-recipes {

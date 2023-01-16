@@ -1,8 +1,6 @@
 <div class="cards-main-container">
-  <h3 class='text-center'><%= "#{Category.find(params[:category_id]).name.upcase}" %> 
-    <span>(<%= @recipes.count %>)</span>
-  </h3>
-    <%= render @recipes %>
+  <h3 class='text-center'><%= "#{Category.find(params[:category_id]).name.upcase}" %></h3>
+  <%= render @recipes %>
 </div>
 <div class="card-index-new">
   <% if policy(Recipe).new? %>
