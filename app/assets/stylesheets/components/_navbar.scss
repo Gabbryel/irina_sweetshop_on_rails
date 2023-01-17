@@ -1,6 +1,7 @@
 .navbar {
   border-bottom: 1px solid black;
   height: calc(var(--vh) * 10);
+  min-height: 65px;
 }
 
 .navbar-lewagon {
@@ -43,7 +44,7 @@
 
 .navbar-custom {
   color: $font-color;
-  font-size: 40px;
+  font-size: calc(var(--vh) * 6);;
 }
 
 
