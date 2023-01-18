@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :how_to_order, :about]
 
   def home
+    @recipes = Recipe.all.where(favored: true).sample(8)
   end
 
   def recepies

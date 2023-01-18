@@ -4,71 +4,8 @@
 <% end %>
 <%= render 'shared/disclaimer_modal' %>
 <div class="home-main__container">
-  <div class="hero-section">
-    <%= image_tag(random_photo()) %>
-    <div>
-      <%= link_to categories_path, class: 'hero-section__button' do %>
-        <span>Deserturile</span></br>
-        <span>noastre</span>
-       <% end %>
-    </div>
-  </div>
-  <div class="squares-menu">
-    <%= link_to do %>
-      <div class="square">
-        <p class='home-fontawsome'><i class="fas fa-cookie-bite"></i></p>
-        <p>200+ de rețete</p> <p>de prăjituri</p>
-      </div>
-    <% end %>
-    <%= link_to do %>
-      <div class="square">
-        <p class='home-fontawsome'><i class="fas fa-birthday-cake"></i></p>
-        <p>Sute de modele</p><p>de torturi</p>
-      </div>
-    <% end %>
-    <%= link_to do %>
-      <div class="square">
-      <p class='home-fontawsome'><i class="far fa-image"></i></p>
-      <p>Fotografii</p> <p>comestibile</p>
-      </div>
-    <% end %>
-    <%= link_to do %>
-      <div class="square">
-      <p class='home-fontawsome'><i class="fas fa-seedling"></i></p>
-      <p>Produse</p><p>naturale</p>
-      </div>
-    <% end %>
-    <%= link_to do %>
-      <div class="square">
-      <p class='home-fontawsome'><i class="fas fa-home"></i></p>
-      <p>Produse</p> <p>tradiționale</p>
-      </div>
-    <% end %>
-    <%= link_to do %>
-      <div class="square">
-      <p class='home-fontawsome'><i class="fa-solid fa-champagne-glasses"></i></p>
-      <p>Candy</p><p>bar</p>
-      </div>
-    <% end %>
-  </div>
-  <div class="info">
-    <div class="info-header">
-      <hr>
-      <p>Noutăți și alte detalii despre</p>
-      <hr>
-    </div>
-    <p>Cofetăria Irina?</p>
-    <div class="info-contact">
-      <a href="tel:0040755054002"><i class="fas fa-mobile-alt"></i></a>
-      <a href="https://api.whatsapp.com/send?phone=0040755054002&text=Bună ziua! Vă rog să-mi spuneți..."><i class="fab fa-whatsapp-square"></i></a>
-      <a href="mailto:irina.sweetshop@gmail.com?Subject=Cerere%20ofertă" target="_top"><i class="fas fa-envelope"></i></a>
-      <a href="https://www.facebook.com/cofetariebacau" target="_blank"><i class="fab fa-facebook-square"></i></a>
-      <a href="https://goo.gl/maps/QZUaRqKmzaRJCjiA8" target="_blank"><i class="fas fa-map-marked-alt"></i></a>
-    </div>
-    <div class="info-questions">
-      <p>Ai mânca ceva dulce, dar nu știi ce?</p>
-      <p>Ai o aniversare și nu te-ai decis ce tort să faci?</p>
-      <p><%= link_to "Inspiră-te!", categories_path, class: 'info-action-button' %></p>
-    </div>
-  </div>
+  <%= render partial: 'partials/homepage/hero_section' %>
+  <%= render partial: 'partials/homepage/squares' %>
+  <%= render partial: 'partials/homepage/samples' %>
+  <%= render partial: 'partials/homepage/info' %>
 </div>

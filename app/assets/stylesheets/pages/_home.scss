@@ -17,10 +17,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media (min-width: 768px) {
+        min-height: calc(var(--vh) * 50);
+    }
+    @media (min-width: 1000px) {
+        min-height: calc(var(--vh) * 65);
+    }
     img {
         position: relative;
         width: 70%;
         height: auto;
+        @media (min-width: 651px) {
+            width: 55%;
+        }
+        @media (min-width: 901px) {
+            width: 35%;
+        }
     }
     .hero-section__button {
         display: inline-block;
@@ -28,23 +40,16 @@
         font-size: 4rem;
         text-align: center;
         color: $font-color;
-        font-weight: 600;
+        font-weight: 900;
         margin: 0 auto;
         padding: 0 30px;
         border-radius: 30px;
         line-height: .9;
     }
-    @media (min-width: 651px) {
-        img {
-            width: 55%;
-        }
-    }
+    
     @media (min-width: 901px) {
         flex-flow: row-reverse;
         justify-content: space-evenly;
-        img {
-            width: 25%;
-        }
     }
 }
 
@@ -106,13 +111,51 @@
     }
 }
 
+.home-page__samples {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: calc(var(--vh) * 40);
+    padding: calc(var(--vh) * 10) calc(var(--vh) * 5);
+    text-align: center;
+    color: $font-color;
+    background-color: $light-yellow;
+    h2 {
+        font-size: clamp(40px, 3rem, 80px);
+        font-weight: 900;
+        margin: 50px 0 100px 0;
+        color: $light-bkg-color;
+    }
+    .samples-index {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        margin: 0 auto;
+        gap: 50px;
+        z-index: 10;
+        .card-container-recipes {
+            justify-self: center;
+            background-color: $light-yellow;
+        }
+    }
+    .samples-wave {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        opacity: .6;
+    }
+}
+
 .info {
     position: relative;
     background-color: $light-bkg-color;
     font-family: $font-title;
     color: $font-color;
     text-align: center;
-    font-size: 1.9rem;
+    font-size: clamp(16px, 2rem, 36px);
     padding: 8vh 10px 0;
     p {
         margin-bottom: 5px;
@@ -174,7 +217,7 @@
         }
         .info-questions {
             .info-action-button {
-                font-size: 2rem;
+                font-size: clamp(16px, 2rem, 36px);
             }
         }
     }
