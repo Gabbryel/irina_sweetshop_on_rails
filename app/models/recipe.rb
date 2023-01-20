@@ -4,11 +4,16 @@
   validates :name, presence: true
   validates :content, presence: true
   # validates :photo, presence: true
-
+  after_save :slugify, unless: :check_slug
   include Reviewable
   include RatingsConcern
+  include SlugHelper
 
   monetize :price_cents
+  
+  def to_param
+    "#{slug}"
+  end
   
   def overall_rating
     ratings.count == 0 ? "" : ratings.sum / ratings.count.to_f

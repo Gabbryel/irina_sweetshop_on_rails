@@ -1,11 +1,12 @@
 <div class="cards-main-container">
-  <h3 class='text-center'><%= "Sugestiile noastre pentru #{Category.find(params[:category_id]).name.upcase}" %>
+  <h3 class='text-center'><%= "#{@category.name.upcase}" %>
     <span>(<%= @cakemodels.count %>)</span>
+    <span></span>
   </h3>
     <%= render @cakemodels %>
 </div>
 <div class="card-index-new">
   <% if policy(Cakemodel).new? %>
-      <%= link_to 'Model nou', new_category_cakemodel_path(params[:category_id]), class: 'btn-default' %>
+      <%= link_to 'Model nou', new_category_cakemodel_path(@category), class: 'btn-default' %>
     <% end %>
 </div>

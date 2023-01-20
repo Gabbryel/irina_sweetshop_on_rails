@@ -28,7 +28,7 @@
   </div> -->
   <div class="card-crud">
     <% if policy(category).edit? %>
-      <%= link_to edit_category_path(category.id), class: '' do %>
+      <%= link_to edit_category_path(category), class: '' do %>
       <i class="far fa-edit"></i>
       <% end %>
     <% end %>

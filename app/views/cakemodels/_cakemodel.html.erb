@@ -1,47 +1,35 @@
-<!-- <div class="col-9 col-md-5 col-lg-5 my-5 mx-1 cakemodel-container p-0 fonts-family rem1-3">
-  <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.content, class: 'd-block
-  border-bottom' %>
-  <p class="text-center color-fonts cakemodel-content py-2 px-2 rem1-2">
-    <%= cakemodel.content %>
-  </p>
-  <p class="text-center color-fonts cakemodel-rating rem1">
-    <%= "#{cakemodel.overall_rating.to_f.round(2)}"%> <%= '⭐️' *
-    cakemodel.overall_rating.to_i %> <%= cakemodel.no_of_ratings %>
-  </p>
-  <%= link_to 'Detalii', cakemodel_path(cakemodel.id), class: 'btn btn-block
-  text-center position-absolute button-review-setup button-default px-2 py-1'%>
-  <div class="recipe-card_admin-links position-absolute rem1">
-    <% if policy(cakemodel).edit? %> 
-    <%= link_to edit_category_cakemodel_path(cakemodel.category_id, cakemodel.id) do %>
-      <i class="far fa-edit color-fonts ml-4"></i>
-    <% end %> 
-    <%= link_to category_cakemodel_path(cakemodel.category_id,
-    cakemodel.id), method: :delete do %>
-    <i class="fas fa-trash-alt color-fonts"></i>
-    <% end %> <% end %>
-  </div>
-</div> -->
-
-<div class="card-container">
+<div class="card-container-recipes">
   <%= link_to cakemodel_path(cakemodel) do %>
-    <div class="card-link-container">
-      <%= cl_image_tag(cakemodel.photo.key, alt: cakemodel.content, class: 'card-image') %>
-        <div class='card-title'><p><%= "#{cakemodel.name}" %></p></div>
+    <div class="card-link-container-recipes">
+
+      <div class="card-image-recipes">
+        <% if cakemodel.photo.present? %> <!--if begining-->
+          <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.name %>
+        <% else %>
+          <%= cl_image_tag ('4792t30n2v5ovn35m550ffa45a24.png'), alt: cakemodel.name, class: 'card-image__no-image' %>
+          <p class="card-image__no-image-text">Fără imagine</p>
+        <% end %> 
       </div>
-      <% end %>
-      
-    <p class="card-rating">
-      <%= "#{cakemodel.overall_rating.to_f.round(2)}"%> <%= '⭐️' *
-      cakemodel.overall_rating.to_i %> <%= cakemodel.no_of_ratings %>
-    </p>
+
+        <div class='card-title-recipes'>
+          <div class="card-title-text">
+            <p><%= "#{cakemodel.name}" %></p>
+          </div>
+          <div class="card-description">
+              <span><%= card_recipe_description(cakemodel.content) %>... <i class="fa-solid fa-circle-info"></i></span>
+            </div>
+            <div class="card-rating"></div>
+        </div>
+      </div>
+  <% end %>
   <div class='card-crud'>
     <% if policy(cakemodel).edit? %>
-      <%= link_to edit_category_cakemodel_path(cakemodel.category_id, cakemodel.id) do %>
+      <%= link_to edit_category_cakemodel_path(@category, cakemodel) do %>
         <i class="far fa-edit color-fonts"></i>
     <% end %>
     <% end %>
     <% if policy(cakemodel).destroy? %>
-      <%= link_to category_cakemodel_path(cakemodel.category_id, cakemodel.id), method: :delete do %>
+      <%= link_to category_cakemodel_path(@category, cakemodel), method: :delete do %>
         <i class="fas fa-trash-alt color-fonts"></i>
     <% end %>
     <% end %>

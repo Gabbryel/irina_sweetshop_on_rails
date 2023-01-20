@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_18_184817) do
+ActiveRecord::Schema.define(version: 2023_01_20_132737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2023_01_18_184817) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.string "slug"
     t.index ["category_id"], name: "index_cakemodels_on_category_id"
   end
 
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 2023_01_18_184817) do
     t.string "kg_buc"
     t.boolean "favored", default: false
     t.boolean "publish", default: false
+    t.string "slug"
     t.index ["category_id"], name: "index_recipes_on_category_id"
   end
 
