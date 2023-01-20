@@ -1,6 +1,6 @@
 class CakemodelsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
-  before_action :set_category, only: %i[new create edit destroy index show]
+  before_action :set_category, only: %i[new create edit update destroy index show]
   before_action :set_cakemodel, only: %i[ show edit update destroy]
   def new
     @cakemodel = Cakemodel.new
@@ -37,7 +37,7 @@ class CakemodelsController < ApplicationController
 def update
   @cakemodel.update(cakemodel_params)
   if @cakemodel.update(cakemodel_params)
-    redirect_to category_cakemodels_path(Category.find(@category))
+    redirect_to category_cakemodels_path(@category)
   else
     render :edit
   end
