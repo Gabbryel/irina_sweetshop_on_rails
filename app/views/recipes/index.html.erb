@@ -1,5 +1,5 @@
 <div class="cards-main-container">
-  <h3 class='text-center'><%= "#{Category.find(params[:category_id]).name.upcase}" %></h3>
+  <h3 class='text-center'><%= "#{Category.find_by(slug: params[:category_id]).name.upcase}" %></h3>
   <%= render @recipes %>
 </div>
 <div class="card-index-new">

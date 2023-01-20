@@ -1,6 +1,6 @@
 class CakemodelsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
-  before_action :set_category, only: %i[new create edit destroy]
+  before_action :set_category, only: %i[new create edit destroy index show]
   before_action :set_cakemodel, only: %i[ show edit update destroy]
   def new
     @cakemodel = Cakemodel.new
@@ -19,15 +19,16 @@ class CakemodelsController < ApplicationController
   end
 
   def index
-    @cakemodels = policy_scope(Cakemodel).where(category_id: params[:category_id] )
-    @page_title = "Modele de #{ Category.find(params[:category_id]).name.downcase } || Cofetăria Irina - Bacau"
+    @cakemodels = policy_scope(Cakemodel).where(category_id: @category )
+    @page_title = "Modele de #{ @category.name.downcase } || Cofetăria Irina - Bacau"
   end
   
   def show
     @review = Review.new
     @reviews =  @cakemodel.reviews.all.order('id DESC')
-    @page_title = "Detalii și recenzii pentru #{ Cakemodel.find(params[:id]).content } "
-    @cakemodels = policy_scope(Cakemodel).where(category_id: @cakemodel.category).order('id ASC')
+    @category = Category.find(@cakemodel.category_id)
+    @page_title = "Detalii și recenzii pentru #{ @cakemodel.content } "
+    @cakemodels = policy_scope(Cakemodel).where(category_id: @category).order('id ASC')
   end
 
   def edit
@@ -36,7 +37,7 @@ class CakemodelsController < ApplicationController
 def update
   @cakemodel.update(cakemodel_params)
   if @cakemodel.update(cakemodel_params)
-    redirect_to category_cakemodels_path(Category.find(params[:category_id]))
+    redirect_to category_cakemodels_path(Category.find(@category))
   else
     render :edit
   end
@@ -54,11 +55,11 @@ end
   end
 
   def set_category
-    @category = Category.find(params[:category_id])
+    @category = Category.find_by(slug: params[:category_id])
   end
 
   def set_cakemodel
-    @cakemodel = Cakemodel.find(params[:id])
+    @cakemodel = Cakemodel.find_by(slug: params[:id])
     authorize @cakemodel
   end
 end

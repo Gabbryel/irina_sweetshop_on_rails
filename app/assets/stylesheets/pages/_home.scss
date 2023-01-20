@@ -21,7 +21,7 @@
         min-height: calc(var(--vh) * 50);
     }
     @media (min-width: 1000px) {
-        min-height: calc(var(--vh) * 65);
+        min-height: calc(var(--vh) * 68);
     }
     img {
         position: relative;
@@ -125,6 +125,7 @@
         font-weight: 900;
         margin: 50px 0 100px 0;
         color: $light-bkg-color;
+        text-shadow: 0.13vh 0.13vh 4px $light-bkg-color;
     }
     .samples-index {
         position: relative;
