@@ -3,11 +3,11 @@
 <% end %>
 <% content_for :meta_description, @cakemodel.content %>
 <div class="recipe-show-container">
-  <div class="recipe-show-back-btn">
-  </div>
   <div class="recipe-show-main">
-      <div class="recipe-show-main-image">
-        <%= cl_image_tag @cakemodel.photo.key, alt: @cakemodel.content %>
+      <div class="card-container-recipes">
+        <div class="card-image-recipes">
+          <%= cl_image_tag @cakemodel.photo.key, alt: @cakemodel.content %>
+        </div>
       </div>
       <div class="recipe-show-main-description">
         <h1><%= "#{@cakemodel.name}" %></h1>
