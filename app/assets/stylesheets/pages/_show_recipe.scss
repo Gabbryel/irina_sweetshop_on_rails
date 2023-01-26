@@ -17,53 +17,71 @@
     width: 100%;
     margin: 0 auto;
     padding-top: 5rem;
-    .recipe-show-main-image {
+    justify-content: center;
+    .card-container-recipes {
       position: relative;
-      width: 240px;
-      height: 336px;
-      margin: 0 auto;
-      // box-shadow: 1px 1px 2px 2px #00000010;
-      background-color: #00000007;
+      background-color: $light-bkg-color;
       overflow: hidden;
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        // object-fit: cover;
-        width: 100%;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      .card-image-recipes {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        img {
+          position: relative;
+          top: 0;
+          left: 0;
+          width: 100%;
+        }
+        .card-image__no-image {
+          filter: blur(4px);
+        }
+      .card-image__no-image-text {
+          position: absolute;
+          color: #000;
+          background-color: #ffffffaa;
+          transform: rotate(-30deg);
+          padding: 5px 20px;
+          font-family: 'Montserrat';
+          font-size: 18px;
+          width: 80%;
+          text-align: center;
+          margin-left: 10%;
       }
-      .recipe-show-main-price {
-        position: absolute;
-        right: 0;
-        bottom: 5%;
-        text-align: center;
-        padding: .3rem 1rem;
-        font-size: 24px;
-        color: $font-color;
-        font-weight: 700;
-        background-color: $light-bkg-color;
-        span {
-          font-size: .6em;
-          font-weight: 200;
-        }
-        a {
-          color: inherit;
-        }
       }
     }
     .recipe-show-main-description {
       width: 80%;
       margin: 30px auto 0;
-      font-size: clamp(12px, 1.5rem, 16px);
+      font-size: clamp(16px, 1.5rem, 20px);
       text-align: justify;
       color: $light-bkg-color;
+      .recipe-show-main-price {
+        color: $light-bkg-color;
+        font-family: $font-text;
+        font-size: 24px;
+        font-weight: 700;
+        margin: 20px 0;
+      }
+      .recipe-show-main__disclaimer {
+        font-size: clamp(12px, 1rem, 14px);
+        a {
+          color: inherit;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
       h1 {
         text-align: center;
-        font-size: 3.5rem;
+        font-size: clamp(20px, 3.5rem, 48px);
         color: $font-color;
         font-weight: 900;
-        letter-spacing: .1em;
         padding-bottom: 30px;
+        font-family: $font-text;
       }
       p {
         padding-bottom: 20px;
@@ -73,6 +91,7 @@
           color: black;
           &:hover {
             cursor: help;
+            text-decoration: underline;
           }
         }
       .recipe-show-std-image {
@@ -152,15 +171,10 @@
       width: 90%;
       max-width: 1000px;
       margin: 0 auto;
+      gap: 50px;
       .recipe-show-main-description {
         margin: 0;
         width: 65%;
-        h1 {
-          font-size: 2rem;
-        }
-        .recipe-show-main-description-text {
-          font-weight: 700;
-        }
         p {
           padding: 0;
         }

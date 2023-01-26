@@ -6,36 +6,47 @@
   <div class="recipe-show-back-btn">
   </div>
   <div class="recipe-show-main">
-    <div class="recipe-show-main-image">
-      <% if @recipe.photo.present? %>
-        <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
-      <% else %>
-        <%= cl_image_tag (choose_photo), alt: @recipe.name %>
+    <div class="card-container-recipes">
+      <div class="card-image-recipes">
+        <% if @recipe.photo.present? %>
+          <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
+        <% else %>
+        <%= cl_image_tag ('4792t30n2v5ovn35m550ffa45a24.png'), alt: @recipe.name, class: 'card-image__no-image' %>
+        <p class="card-image__no-image-text">Fără imagine</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="recipe-show-main-description">
+      <h1><%= @recipe.name %></h1>
+
+      <% @recipe.content.split('.') do |line| %>
+        <p class="recipe-show-main-description-text"><%= "#{line}." %></p>
       <% end %>
-      <p class="recipe-show-main-price">
+
+      <div class="recipe-show-main-price ">
         <% if @recipe.price != 0 %>
+        <span>Preț: </span>
           <%= humanized_money_with_symbol(@recipe.price).downcase %>
           <span>/<%= @recipe.kg_buc %></span>
         <% elsif @recipe.price == 0 %>
         <a href="tel:0040755054002">Info <i class="fas fa-mobile-alt"></i></a>
         <% end %>
-      </p>
-    </div>
-      <div class="recipe-show-main-description">
-        <h1><%= @recipe.name %></h1>
-        <% @recipe.content.split('.') do |line| %>
-          <p class="recipe-show-main-description-text"><%= "#{line}." %></p>
-        <% end %>
+      </div>
+
+
     <% if @recipe.category.name.downcase == 'torturi' %>
-        <div style="font-size: clamp(10px, 1rem, 12px);">
-          <p>Imaginile sunt cu titlu de prezentare. Prețul per kg se referă strict la rețeta prezentată, 
-          design <span class='standard'>standard <i class="fas fa-hand-point-left"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "recipe-show-std-image", alt: 'Tort design standard') %></span>.</p>
-          <p>Prețurile pentru design la cerere, după model furnizat de client:</p>
+        <div class="recipe-show-main__disclaimer">
+          <p>Imaginile sunt cu titlu de prezentare. <br>Prețul per kg se referă strict la rețeta prezentată,  <span class='standard'>design standard. <i class="fa-solid fa-computer-mouse"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "recipe-show-std-image", alt: 'Tort design standard') %></span><br>
+            
+            <%= link_to "Sugestii de prezentare cu simulare de preț", category_cakemodels_path(@recipe.category) %>
+            <i class="fa-solid fa-computer-mouse"></i></p>
+          <hr>
+          <p><b>Prețurile pentru design la cerere, după model furnizat de client:</b></p>
           <p><b>Design la cerere simplu: 110 lei/kg</b></p>
           <p><b>Design la cerere cu accesorii modelate sau turnate în ciocolată: 130 lei/kg + figurinele.</b></p>
         </div>
           <% elsif @recipe.category.name.downcase == 'tradiționale' %>
-          <div style="font-size: clamp(10px, 1rem, 12px);">
+          <div class="recipe-show-main__disclaimer">
             <p>Greutatea produsului finit diferă de la un caz la altul.</p>
             <p>Prețul final al produsului va fi calculat la cântărire.(preț/kg * greutate)</p>
             <p>Greutatea aproximativă: cozonac (1.3-1.4kg), pască cu brînză (1, 1.2, 1.5kg), pască cu ciocolată (0.9 - 1.1kg),
@@ -43,7 +54,7 @@
             </p>
           </div>
           <% elsif @recipe.category.name.downcase == 'prăjituri' %>
-            <div style="font-size: clamp(10px, 1rem, 12px);">
+            <div class="recipe-show-main__disclaimer">
             <p>Produsele realizate în laboratorul nostru au în compoziție ingrediente naturale, fără conservanți.</p>
             <p>Vă rugăm să le păstrați la rece și să le consumați în cel mult 3 zile (prăjituri, torturi, ... ), 5 zile (pască, cozonac, ... )  </p>
           </div>
