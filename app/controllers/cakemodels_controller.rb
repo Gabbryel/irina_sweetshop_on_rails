@@ -26,7 +26,7 @@ class CakemodelsController < ApplicationController
   def show
     @review = Review.new
     @reviews =  @cakemodel.reviews.all.order('id DESC')
-    @category = Category.find(@cakemodel.category_id)
+    @category = @cakemodel.category
     @page_title = "Detalii și recenzii pentru #{ @cakemodel.content } "
     @cakemodels = policy_scope(Cakemodel).where(category_id: @category).order('id ASC')
   end
@@ -35,6 +35,7 @@ class CakemodelsController < ApplicationController
     @page_title = 'Modifică sugestie de prezentare || Cofetăria Irina Bacău'
   end
 def update
+  @cakemodel.recipe = Recipe.find(params[:cakemodel][:recipe])
   @cakemodel.update(cakemodel_params)
   if @cakemodel.update(cakemodel_params)
     redirect_to category_cakemodels_path(@category)
@@ -51,7 +52,7 @@ end
   private
 
   def cakemodel_params
-    params.require(:cakemodel).permit(:name, :content, :photo)
+    params.require(:cakemodel).permit(:name, :photo, :design)
   end
 
   def set_category

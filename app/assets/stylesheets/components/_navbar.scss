@@ -20,7 +20,9 @@
   ul {
     background-color: $light-bkg-color;
   }
-  margin-right: 50px;
+  @media (min-width: 992px) {
+    margin-right: 50px;
+  }
 }
 
 .navbar-brand {

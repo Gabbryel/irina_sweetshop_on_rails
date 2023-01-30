@@ -14,6 +14,20 @@
         <% @cakemodel.content.split('.').each do |line| %>
           <p class="recipe-show-main-description__text"><%= line %>.</p>
         <% end %>
+        <p>Model pe baza rețetei <b><%= @recipe.name %></b> cu preț/kg de <%= @recipe.price %> lei</p>
+        <p>Tip design: <%= @cakemodel.design %> <%= @cakemodel.design ==  'design standard' ? '+ 0 lei/kg' : @cakemodel.design ==  'design client simplu' ? '+10 lei/kg' : @cakemodel.design ==  'design client complex' ? '+30 lei/kg' : nil %></p>
+        <p>Greutate model afișat <%= @cakemodel.weight %> kg</p>
+        <p>Preț total pentru modelul afișat:
+          <% if @cakemodel.design == 'design standard' %>
+            <%= @cakemodel.weight * @recipe.price %> lei
+          <% elsif @cakemodel.design == 'design client simplu' %>
+            <%= @cakemodel.weight * 110 %>
+          <% elsif @cakemodel.design == 'design client complex' %>
+            <%= @cakemodel.weight * 130 %>
+          <% end %>
+          lei
+        </p>
+        
         <div class="btn-next-prev-container">
           <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@cakemodels, @cakemodel) %>
           <% if prev_id && curr_id > 0 %>
