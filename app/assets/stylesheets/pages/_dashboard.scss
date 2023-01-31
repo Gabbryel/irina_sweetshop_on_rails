@@ -1,0 +1,18 @@
+.dashboard-container {
+  position: relative;
+  top: 15vh;
+  z-index: 10;
+}
+.dashboard-design__index {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10vh;
+}
+.design-card {
+  position: relative;
+  border: 1px solid #aaa;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+}

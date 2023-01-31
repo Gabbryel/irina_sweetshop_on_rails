@@ -5,6 +5,7 @@ class CakemodelsController < ApplicationController
   def new
     @cakemodel = Cakemodel.new
     authorize @cakemodel
+    @designs = Design.all.order(price_cents: :asc)
     @page_title = 'Sugestie de prezentare nouă || Cofetăria Irina Bacău'
   end
 
