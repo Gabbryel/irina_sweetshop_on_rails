@@ -1,11 +1,11 @@
 .recipe-show-container {
   position: relative;
-  margin: 0 auto;
   width: 100%;
+  margin: auto auto;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  padding: 9rem 0 5rem;
+  padding: 20vh 0 10rem;;
   .recipe-show-back-btn {
     justify-self: start;
     margin-left: 50px

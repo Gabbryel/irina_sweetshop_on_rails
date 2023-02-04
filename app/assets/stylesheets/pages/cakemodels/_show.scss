@@ -1,0 +1,75 @@
+.cakemodel-show-main {
+  margin: calc(var(--vh) * 10) auto 0 !important;
+  display: flex;
+  align-items: center;
+}
+.cakemodel-content {
+  position: relative;
+}
+
+.additional-photos {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin: 0 30px;
+}
+
+.cakemodel__additional-photo {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  .cakemodel__additional-photo__crud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: $light-bkg-color;
+  }
+  img {
+    border-radius: 10px;
+    width: 100%;
+  }
+}
+
+.cakemodel-admin-tools {
+  position: relative;
+  color: #fff;
+  background-color: $bkg-color-op-90;
+  padding: 30px;
+  border-radius: $border-radius;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 30px;
+  h2 {
+    margin-bottom: 50px;
+    flex-basis: 100%;
+  }
+  p {
+    margin: 30px 0;
+  }
+  .simple_form {
+    position: relative;
+    border: 1px solid;
+    width: 300px;
+    padding: 30px;
+    border-radius: 5px;
+    .optional {
+      font-size: unset;
+      margin-bottom: 1rem;
+    }
+    .form-control-file {
+      font-size: 10px !important;
+    }
+    .input {
+      font-size: unset;
+    }
+  }
+}

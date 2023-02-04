@@ -1,0 +1,5 @@
+<%= simple_form_for([@cakemodel, @model_component]) do |f| %>
+  <%= f.input :rid, collection: @recipes, prompt: "Alege rețeta!", label: false %>
+  <%= f.input :weight %>
+  <%= f.submit "Adaugă rețetă acestui model" %>
+<% end %>

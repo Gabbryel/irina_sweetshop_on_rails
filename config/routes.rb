@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'model_components/new'
+  get 'model_components/create'
+  get 'model_components/destroy'
   resources :designs
   resources :categories do
     resources :recipes, except: %i[show]
@@ -11,6 +14,8 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[create edit update destroy]
   end
   resources :cakemodels, only: %i[show] do
+    resources :model_images, only: %i[new create destroy]
+    resources :model_components, only: %i[new create destroy]
     resources :reviews, only: %i[create edit update destroy]
   end
 

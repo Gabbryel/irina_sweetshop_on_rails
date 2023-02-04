@@ -14,7 +14,7 @@
       </div>
           <%= simple_form_for [@category, @cakemodel] do |f| %>
           <%= f.input :name, label: false, placeholder: 'Nume model'  %>
-          <%= f.input :design, collection: @designs %>
+          <%= f.input :design_id, collection: @designs, prompt: 'Alege designul', label: false %>
           <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
     
           <% if @cakemodel.id %>

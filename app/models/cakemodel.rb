@@ -1,16 +1,16 @@
 class Cakemodel < ApplicationRecord
   belongs_to :category
-  belongs_to :recipe
   has_one_attached :photo
   validates :name, presence: true
-  # validates :content, presence: true
-  # validates :photo, presence: true
   after_save :slugify, unless: :check_slug
+  has_many :model_images, dependent: :destroy
+  has_many :model_components, dependent: :destroy
+  belongs_to :design
   include RatingsConcern
   include Reviewable
   include SlugHelper
 
-  self.ignored_columns = ["content", "recipe_id", "weight"]
+  # self.ignored_columns = ["design_id"]
 
   def to_param
     "#{slug}"

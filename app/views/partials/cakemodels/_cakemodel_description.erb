@@ -1,0 +1,18 @@
+<div class="cakemodel-content">
+  <p>Model pe baza <%= recipe_text(@cakemodel) %>
+    <% if recipe_count(@cakemodel) == 0 %>
+      <p>Acest model nu are încă rețete atașate!</p>
+    <% elsif recipe_count(@cakemodel) == 1 %>
+      <b><%= link_to recipe_path(Recipe.find(one_comp(@cakemodel).rid).slug) do %>
+        <%= one_comp(@cakemodel).recipe_name %>
+        <% end %></b>
+      cu greutatea de <%= one_comp(@cakemodel).weight %> kg și un preț de <%= one_comp(@cakemodel).recipe_price %> de lei/kg.
+    <% elsif recipe_count(@cakemodel) > 1 %>
+        <p>De rezolvat cînd sunt mai multe componente.</p>
+    <% end %>
+  </p>
+  <p>Tip design: <%= @design.name %> (+ <%= humanized_money_with_symbol(@design.price) %>/kg)</p>
+  <p>Preț total pentru modelul afișat: <%= one_comp(@cakemodel) ? price_one_comp(@cakemodel).round(2) : '--,--' %> lei</p>
+  <p>Fotografiile sunt reale, iar produsul finit va corespunde acestei descrieri.</p>
+  <p><b>Orice modificare a rețetei, a greutății sau a designului poate duce la modificarea prețului.</b></p>
+</div>

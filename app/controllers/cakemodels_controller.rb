@@ -3,19 +3,21 @@ class CakemodelsController < ApplicationController
   before_action :set_category, only: %i[new create edit update destroy index show]
   before_action :set_cakemodel, only: %i[ show edit update destroy]
   def new
-    @cakemodel = Cakemodel.new
-    authorize @cakemodel
-    @designs = Design.all.order(price_cents: :asc)
+    @cakemodel = authorize Cakemodel.new
+    @designs = Design.all
     @page_title = 'Sugestie de prezentare nouă || Cofetăria Irina Bacău'
   end
 
   def create
     @cakemodel = authorize Cakemodel.new(cakemodel_params)
+    @designs = Design.all
     @cakemodel.category = @category
-    if @cakemodel.save
+    @cakemodel.design = Design.find(params[:cakemodel][:design_id])
+    if @cakemodel.save!
       redirect_to category_cakemodels_path(@category)
       else
         render :new
+        flash.alert = 'Ceva nu a mers...'
     end
   end
 
@@ -28,15 +30,19 @@ class CakemodelsController < ApplicationController
     @review = Review.new
     @reviews =  @cakemodel.reviews.all.order('id DESC')
     @category = @cakemodel.category
-    @page_title = "Detalii și recenzii pentru #{ @cakemodel.content } "
+    @design = @cakemodel.design
+    @page_title = "Detalii și recenzii pentru #{ @cakemodel.name } "
     @cakemodels = policy_scope(Cakemodel).where(category_id: @category).order('id ASC')
+    @model_image = ModelImage.new()
+    @model_component = ModelComponent.new()
+    @recipes = Recipe.all.order(name: :asc)
   end
 
   def edit
     @page_title = 'Modifică sugestie de prezentare || Cofetăria Irina Bacău'
+    @designs = Design.all
   end
 def update
-  @cakemodel.recipe = Recipe.find(params[:cakemodel][:recipe])
   @cakemodel.update(cakemodel_params)
   if @cakemodel.update(cakemodel_params)
     redirect_to category_cakemodels_path(@category)
@@ -53,7 +59,7 @@ end
   private
 
   def cakemodel_params
-    params.require(:cakemodel).permit(:name, :photo, :design)
+    params.require(:cakemodel).permit(:name, :photo, :design_id)
   end
 
   def set_category
@@ -61,7 +67,6 @@ end
   end
 
   def set_cakemodel
-    @cakemodel = Cakemodel.find_by(slug: params[:id])
-    authorize @cakemodel
+    @cakemodel = authorize Cakemodel.find_by(slug: params[:id])
   end
 end
