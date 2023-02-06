@@ -4,9 +4,9 @@
 
       <div class="card-image-recipes">
         <% if cakemodel.photo.present? %> <!--if begining-->
-          <%= cl_image_tag cakemodel.photo.key, alt: cakemodel.name %>
+          <%= cl_image_tag(cakemodel.photo.key, alt: cakemodel.name, fetch_format: :auto, width: 500, crop: :scale) %>
         <% else %>
-          <%= cl_image_tag ('4792t30n2v5ovn35m550ffa45a24.png'), alt: cakemodel.name, class: 'card-image__no-image' %>
+          <%= cl_image_tag('4792t30n2v5ovn35m550ffa45a24.png', alt: cakemodel.name, class: 'card-image__no-image', fetch_format: :auto, width: 500, crop: :scale) %>
           <p class="card-image__no-image-text">Fără imagine</p>
         <% end %> 
       </div>

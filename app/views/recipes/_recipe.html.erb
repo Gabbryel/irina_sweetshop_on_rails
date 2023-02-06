@@ -3,9 +3,9 @@
     <div class="card-link-container-recipes">
       <div class="card-image-recipes">
         <% if recipe.photo.present? %> <!--if begining-->
-          <%= cl_image_tag recipe.photo.key, alt: recipe.name %>
+          <%= cl_image_tag(recipe.photo.key, alt: recipe.name, fetch_format: :auto, width: 500, crop: :scale) %>
         <% else %>
-          <%= cl_image_tag ('4792t30n2v5ovn35m550ffa45a24.png'), alt: recipe.name, class: 'card-image__no-image' %>
+          <%= cl_image_tag('4792t30n2v5ovn35m550ffa45a24.png', alt: recipe.name, class: 'card-image__no-image', fetch_format: :auto, width: 500, crop: :scale) %>
           <p class="card-image__no-image-text">Fără imagine</p>
         <% end %> <!--if end-->
       </div>

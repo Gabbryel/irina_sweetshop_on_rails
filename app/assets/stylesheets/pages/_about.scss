@@ -1,50 +1,30 @@
 .about-main-container {
   display: flex;
   flex-flow: column;
-  padding: calc(4rem + 4vh) 0 40px;
-  background-color: $light-bkg-color;
-  color: $font-color;
-  font-family: $font-title;
-  font-weight: 100;
-  font-size: 2rem;
-  .about-presentation {
+  padding: calc(var(--vh) * 20) 0 40px;
+  color: $light-bkg-color;
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: clamp(16px, 1.5rem, 20px);
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1400px;
+  text-align: justify;
+  .about-presentation, .about-disclaimer {
+    font-size: clamp(1rem, 20px, 1.5rem);
     padding: 20px 10px;
     .big-title {
       font-family: $font-title;
+      font-weight: 800;
     }
     .img-pano {
       width: 100%;
     }
     p {
       padding: 0  3vw;
-      text-indent: 6vw;
+      text-indent: 1vw;
     }
-    p:first-of-type {
-      text-indent: 0;
-    }
-  }
-  .about-disclaimer {
-    text-align: justify;
-    font-size: clamp(1rem, 20px, 1.5rem);
-    padding: 10px;
-    p {
-      margin-bottom: 15px;
-    }
-  }
-  @media (min-width: 651px) {
-    padding: calc(4rem + 4vh) 5vw 40px;
-    font-size: 1.5rem;
-    .about-presentation {
-      p {
-        padding: 0;
-      }
-    }
-  }
-  @media (min-width: 901px) {
-    padding: calc(4rem + 4vh) 15vw 40px;
-    .about-presentation {
-      font-size: 1.1rem;
-    }
+    
   }
 }
 

@@ -6,7 +6,7 @@
   <div class="recipe-show-main">
     <div class="card-container-recipes">
       <div class="card-image-recipes cakemodel-card-image">
-        <%= cl_image_tag @cakemodel.photo.key, alt: @cakemodel.name %>
+        <%= cl_image_tag(@cakemodel.photo.key, alt: @cakemodel.name, fetch_format: :auto, width: 500, crop: :scale) %>
       </div>
     </div>
     <div class="recipe-show-main-description">
