@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <% @categories.each do |c| %>
       <div class="col-sm-5 col-md-5 col-lg-3 card-container">
-      <%= cl_image_tag(c.photo.key, class: 'card-image', fetch_format: :auto, width: 500, crop: :scale)%>
+      <%= cl_image_tag(c.photo.key, class: 'card-image', fetch_format: :webp, width: 500, crop: :scale)%>
       <div class="card-category_name">
         <p class='card-title'><%=  c.name %></p>
       </div>

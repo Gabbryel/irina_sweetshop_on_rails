@@ -4,7 +4,7 @@
       <div class="card-link-container">
         <div class="card-image">
           <% if category.photo.present? %>
-          <%= cl_image_tag(category.photo.key, alt: category.name, class: 'card-image', fetch_format: :auto, width: 600, crop: :scale, width: 500, crop: :scale) %>
+          <%= cl_image_tag(category.photo.key, alt: category.name, class: 'card-image', fetch_format: :webp, width: 600, crop: :scale, width: 500, crop: :scale) %>
           <% end %>
         </div>
           <p class="card-title"><%= category.name %></p>

@@ -12,15 +12,11 @@ module CakemodelShowHelper
   end
 
   def total_weight(cm)
-    components(cm).map { |el| el.weight }.sum
-  end
-
-  def one_comp(cm)
-    components(cm)[0]
+    components(cm) ? components(cm).map { |el| el.weight }.sum : '0'
   end
 
   def recipes_price(cm)
-    components(cm).map { |el| el.recipe_price * el.weight}.sum
+    components(cm).count > 0 ? components(cm).map { |el| el.recipe.price * el.weight}.sum : '0'
   end
 
   def design_price(cm)
@@ -28,6 +24,6 @@ module CakemodelShowHelper
   end
 
   def total_price(cm)
-    recipes_price(cm) + design_price(cm)
+    recipes_price(cm).to_f + design_price(cm)
   end
 end

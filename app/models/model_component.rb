@@ -1,18 +1,8 @@
 class ModelComponent < ApplicationRecord
   belongs_to :cakemodel
-  after_save :set_recipe_dependant, unless: :verify_recipe
+  belongs_to :recipe
+  # after_save :set_recipe_dependant, unless: :verify_recipe
 
-  def recipe
-    Recipe.find(self.rid)
-  end
+  # self.ignored_columns = ["recipe_id"]
 
-  def set_recipe_dependant
-    self.recipe_name = recipe.name
-    self.recipe_price = recipe.price
-    self.save
-  end
-
-  def verify_recipe
-    self.recipe_name == recipe.name
-  end
 end

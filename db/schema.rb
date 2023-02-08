@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_04_191228) do
+ActiveRecord::Schema.define(version: 2023_02_08_060754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,10 +97,9 @@ ActiveRecord::Schema.define(version: 2023_02_04_191228) do
     t.bigint "cakemodel_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "rid"
-    t.string "recipe_name"
-    t.float "recipe_price"
+    t.bigint "recipe_id", null: false
     t.index ["cakemodel_id"], name: "index_model_components_on_cakemodel_id"
+    t.index ["recipe_id"], name: "index_model_components_on_recipe_id"
   end
 
   create_table "model_images", force: :cascade do |t|
@@ -158,6 +157,7 @@ ActiveRecord::Schema.define(version: 2023_02_04_191228) do
   add_foreign_key "items", "carts"
   add_foreign_key "items", "users"
   add_foreign_key "model_components", "cakemodels"
+  add_foreign_key "model_components", "recipes"
   add_foreign_key "model_images", "cakemodels"
   add_foreign_key "recipes", "categories"
   add_foreign_key "reviews", "users"

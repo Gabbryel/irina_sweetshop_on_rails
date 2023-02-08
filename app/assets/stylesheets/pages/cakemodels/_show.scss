@@ -5,6 +5,26 @@
 }
 .cakemodel-content {
   position: relative;
+  p {
+    padding: 0 !important;
+  }
+  a {
+    color: $font-color;
+    font-family: $font-text;
+    &:hover {
+      color: $hover-color;
+    }
+  }
+  .cakemodel-content__recipe-additional {
+    font-size: .8rem;
+    line-height: .7;
+  }
+  .cakemodel-content__details {
+    position: relative;
+    p {
+      font-size: 1.1rem;
+    }
+  }
 }
 
 .additional-photos {
@@ -25,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-self: center;
+  background-color: $light-bkg-color;
   .cakemodel__additional-photo__crud {
     position: absolute;
     top: 10px;
