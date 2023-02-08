@@ -1,0 +1,8 @@
+<div class="dashboard-designs__new">
+  <h4><%= @design.id.present? ? 'Modifică design' : 'Design nou'%></h4>
+  <%= simple_form_for @design do |f| %>
+    <%= f.input :name, label: false %>
+    <%= f.input :price_cents, label: false %>
+    <%= f.submit 'Transmite'%>
+  <% end %>
+</div>

@@ -1,15 +1,13 @@
 .order-main-container {
     position: relative;
     padding: calc(7rem + 7vh) 7vw 4vh;
-    color: $font-color;
-    background-color: $light-bkg-color;
-    font-size: 1.7rem;
-    font-weight: 100;
-    font-family: $font-title;
-    @media (min-width: 951px) {
-        padding: calc(7rem + 7vh) 15vw 4vh;
-        font-size: 1.1rem;
-    }
+    color: $light-bkg-color;
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-family: "Montserrat";
+    width: 90%;
+    max-width: 1400px;
+    margin: auto auto;
     p {
         margin-bottom: 15px;
     }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_20_132737) do
+ActiveRecord::Schema.define(version: 2023_02_08_060754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,13 +44,14 @@ ActiveRecord::Schema.define(version: 2023_01_20_132737) do
   end
 
   create_table "cakemodels", force: :cascade do |t|
-    t.text "content"
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "slug"
+    t.bigint "design_id", null: false
     t.index ["category_id"], name: "index_cakemodels_on_category_id"
+    t.index ["design_id"], name: "index_cakemodels_on_design_id"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -70,6 +71,13 @@ ActiveRecord::Schema.define(version: 2023_01_20_132737) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
+  create_table "designs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "price_cents", default: 0, null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "cart_id", null: false
@@ -82,6 +90,23 @@ ActiveRecord::Schema.define(version: 2023_01_20_132737) do
     t.integer "total_cents", default: 0, null: false
     t.index ["cart_id"], name: "index_items_on_cart_id"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "model_components", force: :cascade do |t|
+    t.float "weight"
+    t.bigint "cakemodel_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "recipe_id", null: false
+    t.index ["cakemodel_id"], name: "index_model_components_on_cakemodel_id"
+    t.index ["recipe_id"], name: "index_model_components_on_recipe_id"
+  end
+
+  create_table "model_images", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cakemodel_id", null: false
+    t.index ["cakemodel_id"], name: "index_model_images_on_cakemodel_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -127,9 +152,13 @@ ActiveRecord::Schema.define(version: 2023_01_20_132737) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cakemodels", "categories"
+  add_foreign_key "cakemodels", "designs"
   add_foreign_key "carts", "users"
   add_foreign_key "items", "carts"
   add_foreign_key "items", "users"
+  add_foreign_key "model_components", "cakemodels"
+  add_foreign_key "model_components", "recipes"
+  add_foreign_key "model_images", "cakemodels"
   add_foreign_key "recipes", "categories"
   add_foreign_key "reviews", "users"
 end

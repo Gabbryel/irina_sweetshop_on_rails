@@ -20,7 +20,7 @@
     @media (min-width: 768px) {
         min-height: calc(var(--vh) * 50);
     }
-    @media (min-width: 1000px) {
+    @media (min-width: 1100px) {
         min-height: calc(var(--vh) * 68);
     }
     img {
@@ -30,14 +30,14 @@
         @media (min-width: 651px) {
             width: 55%;
         }
-        @media (min-width: 901px) {
+        @media (min-width: 1025px) {
             width: 35%;
         }
     }
     .hero-section__button {
         display: inline-block;
         font-family: $font-title;
-        font-size: 4rem;
+        font-size: clamp(30px, 7rem, 11vw);
         text-align: center;
         color: $font-color;
         font-weight: 900;
@@ -47,7 +47,7 @@
         line-height: .9;
     }
     
-    @media (min-width: 901px) {
+    @media (min-width: 1100px) {
         flex-flow: row-reverse;
         justify-content: space-evenly;
     }
@@ -76,38 +76,39 @@
         padding: 20px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
         letter-spacing: .01em;
         p {
             color: $font-color;
-            font-size: 1.5rem;
+            font-size: clamp(16px, 1.6rem, 28px);
             text-align: center;
             margin: 0;
             line-height: 1.2;
         }
         .home-fontawsome {
-            font-size: 6rem;
+            font-size: clamp(30px, 7rem, 5vw);
         }
-    }
-    @media (min-width: 651px) {
-        .square {
-            width: 33.33vw;
-            height: 27vw;
+        @media (min-width: 651px) {
+                width: 33.33vw;
+                height: 27vw;
         }
-    }
-
-    @media (min-width: 901px) {
-        .square {
-            width: 16.66vw;
-            height: 13vw;
+    
+        @media (min-width: 901px) {
+                width: 16.66vw;
+                height: 13vw;
+        }
+        @media (min-width: 901px) and (max-width: 1099px) {
             p {
-                font-size: 1rem;
-            }
-            .home-fontawsome {
-                font-size: 3rem;
+                font-size: clamp(13px, 1.6rem, 14px);
             }
         }
+        @media (min-width: 1100px) and (max-width: 1462px) {
+            p {
+                font-size: clamp(16px, 1.6rem, 18px);
+            }
+        }
+
     }
 }
 
@@ -204,7 +205,8 @@
     @media (min-width: 651px) {
         .info-contact {
             width: 50%;
-            margin: 0 25%;
+            max-width: 800px;
+            margin: 0 auto;
             font-size: 3rem;
         }
     }
@@ -226,4 +228,6 @@
 
 .modal-body-text {
     font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    padding: 3rem 2rem !important;
 }

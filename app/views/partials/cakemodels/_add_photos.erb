@@ -1,0 +1,10 @@
+<div class="additional-photos">
+  <% @cakemodel.model_images.each do |img| %>
+    <div class="cakemodel__additional-photo">
+      <%= cl_image_tag(img.photo.key, fetch_format: :webp, width: 500, crop: :scale) %>
+      <% if isUserAdmin? %>
+        <%= link_to "/cakemodels/#{@cakemodel.slug}/model_images/#{img.id}", method: :delete, class: 'cakemodel__additional-photo__crud' do %><i class="fa-solid fa-trash-can"></i><%end%>
+      <% end %>
+    </div>
+  <% end %>
+</div>

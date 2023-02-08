@@ -1,0 +1,9 @@
+<div class="btn-next-prev-container">
+  <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@cakemodels, @cakemodel) %>
+  <% if prev_id && curr_id > 0 %>
+  <%= link_to "#{prev_text}", cakemodel_path(prev_id), class: 'btn-next-prev' %>
+  <% end %>
+  <% if next_id %>
+  <%= link_to "#{next_text}", cakemodel_path(next_id), class: 'btn-next-prev' %>
+  <% end %>
+</div>

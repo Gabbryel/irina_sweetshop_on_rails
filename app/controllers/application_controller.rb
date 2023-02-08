@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Pundit
+  include Pundit::Authorization
   include MetaTagsConcern
   
   protect_from_forgery with: :exception

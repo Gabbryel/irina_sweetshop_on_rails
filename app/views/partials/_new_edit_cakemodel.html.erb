@@ -1,28 +1,27 @@
-<% if @cakemodel.id %>
+  <% if @cakemodel.id %>
   <%= content_for(:title) {"Modifică sugestie de prezentare - Cofetăria Irina Bacău"} %>
-<% else %>
+  <% else %>
   <%= content_for(:title) {"Sugestie de prezentare nouă - Cofetăria Irina Bacău"} %>
-<% end %>
-<div class="container fonts-family color-fonts pt-5">
-  <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-6 mt-5 pt-5">
-      <% if @cakemodel.id %>
-        <p class="text-center fonts-family fonts-700 mb-5 rem1-5">Modifică model</p>
-      <% else %>
-      <p class="text-center fonts-family fonts-700 mb-5 rem1-5">Creează un nou model</p>
-      <% end %>
-        <%= simple_form_for [@category, @cakemodel] do |f| %>
-        <%= f.input :name, label: 'Nume' %>
-        <%= f.input :content, label: 'Conținut', label_html: { class: 'fonts-700 rem1-2' } %>
-        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
-
+  <% end %>
+  <div class="cakemodel-form__page">
+    <div class="cakemodel-form">
+      <div class="cakemodel-form__title">
         <% if @cakemodel.id %>
-          <%= f.button :submit, value: 'Modifică model', class: 'btn button-default btn-block button-rounded mt-5' %>
+          <h1>Modifică sugestie</h1>
         <% else %>
-          <%= f.button :submit, value: 'Model nou', class: 'btn button-default btn-block button-rounded mt-5' %>
+          <h1>Sugestie nouă</h1>
         <% end %>
-
-      <% end %>
+      </div>
+          <%= simple_form_for [@category, @cakemodel] do |f| %>
+          <%= f.input :name, label: false, placeholder: 'Nume model'  %>
+          <%= f.input :design_id, collection: @designs, prompt: 'Alege designul', label: false %>
+          <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
+    
+          <% if @cakemodel.id %>
+            <%= f.button :submit, value: 'Modifică model', class: 'btn button-default btn-block button-rounded mt-5' %>
+          <% else %>
+            <%= f.button :submit, value: 'Model nou', class: 'btn button-default btn-light button-rounded mt-5' %>
+          <% end %>
+        <% end %>
     </div>
   </div>
-</div>

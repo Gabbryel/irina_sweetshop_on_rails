@@ -5,8 +5,12 @@
 // Define fonts for body and headers
 $font-title: 'Montserrat';
 $font-text: 'Atma';
+// :root {
+//     font-size: calc(5px + 1vw) !important;
+// }
+
 :root {
-    font-size: calc(5px + 1vw) !important;
+    font-size: calc(3px + var(--vh) * 1) !important;
 }
 // To use a font file (.woff) uncomment following lines
 // @font-face {

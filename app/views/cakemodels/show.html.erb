@@ -1,40 +1,27 @@
 <% if @cakemodel.photo.present? %>
   <% content_for :meta_image, cl_image_path(@cakemodel.photo.key) %>
 <% end %>
-<% content_for :meta_description, @cakemodel.content %>
+<% content_for :meta_description, @cakemodel.name %>
 <div class="recipe-show-container">
   <div class="recipe-show-main">
-      <div class="card-container-recipes">
-        <div class="card-image-recipes">
-          <%= cl_image_tag @cakemodel.photo.key, alt: @cakemodel.content %>
-        </div>
-      </div>
-      <div class="recipe-show-main-description">
-        <h1><%= "#{@cakemodel.name}" %></h1>
-        <% @cakemodel.content.split('.').each do |line| %>
-          <p class="recipe-show-main-description__text"><%= line %>.</p>
-        <% end %>
-        <div class="btn-next-prev-container">
-          <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@cakemodels, @cakemodel) %>
-          <% if prev_id && curr_id > 0 %>
-            <%= link_to "#{prev_text}", cakemodel_path(prev_id), class: 'btn-next-prev' %>
-          <% end %>
-          <% if next_id %>
-            <%= link_to "#{next_text}", cakemodel_path(next_id), class: 'btn-next-prev' %>
-          <% end %>
-        </div>
+    <div class="card-container-recipes">
+      <div class="card-image-recipes cakemodel-card-image">
+        <%= cl_image_tag(@cakemodel.photo.key, alt: @cakemodel.name, fetch_format: :webp, width: 500, crop: :scale) %>
       </div>
     </div>
-    <div class="recipe-show-ratings">
-      <h2>Ratings & reviews </h2>
-      <div class="recipe-show-ratings-container">
-        <div class="recipe-show-ratings-reviews-form">
-          <%= render 'partials/reviews/reviews_new_form' %>
-        </div>
-        <div class="recipe-show-ratings-reviews-container">
-            <%= render 'partials/reviews/reviews_index' %>
-        </div>
-      </div>
+    <div class="recipe-show-main-description">
+      <h1><%= "#{@cakemodel.name}" %></h1>
+      <%= render partial: 'partials/cakemodels/cakemodel_description' %>
+      <%= render partial: 'partials/cakemodels/next_prev_section' %>
     </div>
-
+    <%= render partial: 'partials/cakemodels/add_photos' %>
+  </div>
+  <%= render partial: 'partials/cakemodels/ratings' %>
+  <% if isUserAdmin? %>
+    <div class="cakemodel-admin-tools">
+      <h2>Admin tools</h2>
+      <%= render partial: 'partials/cakemodels/add_photos_form' %>
+      <%= render partial: 'partials/cakemodels/add_recipes_form' %>
+    </div>
+  <% end %>
 </div>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'model_components/new'
+  get 'model_components/create'
+  get 'model_components/destroy'
+  resources :designs
   resources :categories do
     resources :recipes, except: %i[show]
     resources :cakemodels, except: %i[show]
@@ -10,6 +14,8 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[create edit update destroy]
   end
   resources :cakemodels, only: %i[show] do
+    resources :model_images, only: %i[new create destroy]
+    resources :model_components, only: %i[new create destroy]
     resources :reviews, only: %i[create edit update destroy]
   end
 
@@ -22,6 +28,7 @@ Rails.application.routes.draw do
   get 'how_to_order', to: 'pages#how_to_order'
   get 'about', to: 'pages#about'
   get 'dashboard',  to: 'pages#admin_dashboard'
+  get 'dashboard/designs', to: 'designs#index'
   get '*any', via: :all, to: 'errors#not_found'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

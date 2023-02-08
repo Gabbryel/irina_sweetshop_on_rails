@@ -7,10 +7,10 @@ class ReviewsController < ApplicationController
   def create
     @review = authorize Review.new(review_params)
     if params[:recipe_id]
-      @recipe = Recipe.find(params[:recipe_id])
+      @recipe = Recipe.find_by(slug: params[:recipe_id])
       @review.reviewable = @recipe
     elsif params[:cakemodel_id]
-      @cakemodel = Cakemodel.find(params[:cakemodel_id])
+      @cakemodel = Cakemodel.find_by(slug: params[:cakemodel_id])
       @review.reviewable = @cakemodel
     end
     @review.user = current_user
@@ -38,12 +38,12 @@ class ReviewsController < ApplicationController
 
   def update
     if params[:recipe_id]
-      @recipe = Recipe.find(params[:recipe_id])
+      @recipe = Recipe.find_by(slug: params[:recipe_id])
       if @review.update(review_params)
         redirect_to recipe_path(@recipe)
       end
     elsif params[:cakemodel_id]
-      @cakemodel = Cakemodel.find(params[:cakemodel_id])
+      @cakemodel = Cakemodel.find_by(slug: params[:cakemodel_id])
       if @review.update(review_params)
         redirect_to cakemodel_path(@cakemodel)
       end
@@ -53,10 +53,10 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     if params[:recipe_id]
-      @recipe = Recipe.find(params[:recipe_id])
+      @recipe = Recipe.find_by(slug: params[:recipe_id])
       redirect_to recipe_path(@recipe)
     elsif params[:cakemodel_id]
-      @cakemodel = Cakemodel.find(params[:cakemodel_id])
+      @cakemodel = Cakemodel.find_by(slug: params[:cakemodel_id])
       redirect_to cakemodel_path(@cakemodel)
     end
   end

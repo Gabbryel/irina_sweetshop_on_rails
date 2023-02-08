@@ -65,11 +65,11 @@
       <p>Categorie de produs: <%= Category.find { |cat| cat.id == @recipe.category_id }.name %></p>
       <% if !@recipe.photo.present? %>
         <%= link_to  "https://www.irinasweet.ro/#{@address}/#{@recipe.id}" do %>
-          <%= cl_image_tag ("0043_336x240_qtzdxl"), alt: @recipe.name %>
+          <%= cl_image_tag("0043_336x240_qtzdxl", alt: @recipe.name, fetch_format: :webp, width: 500, crop: :scale) %>
         <% end %>
       <% elsif @recipe.photo.present? %>
         <%= link_to  "https://www.irinasweet.ro/#{@address}/#{@recipe.id}" do %>
-          <%= cl_image_tag @recipe.photo.key, alt: @recipe.name %>
+          <%= cl_image_tag(@recipe.photo.key, alt: @recipe.name, fetch_format: :webp, width: 500, crop: :scale) %>
         <% end %>
       <% end %>
     <% elsif @review.reviewable_type == 'Cakemodel'%>
