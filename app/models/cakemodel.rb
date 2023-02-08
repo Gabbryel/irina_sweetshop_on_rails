@@ -3,8 +3,8 @@ class Cakemodel < ApplicationRecord
   has_one_attached :photo
   validates :name, presence: true
   after_save :slugify, unless: :check_slug
-  has_many :model_images, dependent: :destroy
-  has_many :model_components, dependent: :destroy
+  # has_many :model_images, dependent: :destroy
+  # has_many :model_components, dependent: :destroy
   belongs_to :design
   include RatingsConcern
   include Reviewable
