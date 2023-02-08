@@ -1,18 +1,17 @@
 <div class="cakemodel-content">
-  <!-- <p>Model pe baza <%= recipe_text(@cakemodel) %>: -->
     <% if recipe_count(@cakemodel) == 0 %>
       <p>Acest model nu are încă rețete atașate!</p>
     <% else %>
     <% components(@cakemodel).each do |cm| %>
-      <p><b>
+      <p>
         <%= link_to recipe_path(cm.recipe) do %>
-          <%= cm.recipe.name %>
+          <b><%= cm.recipe.name %></b>
           <% if isUserAdmin? %>
             <%= link_to cakemodel_model_component_path(@cakemodel, cm), method: :delete do %>
             <i class="fas fa-trash-alt"></i>
             <% end %>
           <% end %>
-        <%end %></b>
+        <%end %>
         <p class="cakemodel-content__recipe-additional">(<%= cm.weight %>kg - <%= cm.recipe.price %> de lei/kg)</p>
         </p>
     <% end %>
@@ -23,6 +22,6 @@
     <p>Tip design: <%= @design.name %> (+ <%= humanized_money_with_symbol(@design.price) %>/kg)</p>
     <p><b>Greutate totală a modelului afișat: <%= total_weight(@cakemodel).round(2) %> kg. Preț total pentru modelul afișat: <u><%= total_price(@cakemodel) ? total_price(@cakemodel).round(2) : '--,--' %> lei</u>.</p></b>
     <p>Fotografiile sunt reale, iar produsul finit va corespunde acestei descrieri.</p>
-    <p><b>Orice modificare a rețetei, a proporțiilor, a greutății sau a designului (acolo unde este cazul) poate duce la modificarea prețului.</b></p>
+    <p><b>Orice modificare a rețetei, a proporțiilor, a gramajului sau a designului (acolo unde este cazul) poate duce la modificarea prețului.</b></p>
   </div>
 </div>
