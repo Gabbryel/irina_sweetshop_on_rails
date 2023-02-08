@@ -7,12 +7,17 @@
   position: relative;
   p {
     padding: 0 !important;
+    font-size: clamp(16px, 1.5rem, 24px);
   }
   a {
     color: $font-color;
     font-family: $font-text;
     &:hover {
       color: $hover-color;
+    }
+    .fa-trash-alt {
+      font-weight: 100;
+      font-size: .9rem;
     }
   }
   .cakemodel-content__recipe-additional {
