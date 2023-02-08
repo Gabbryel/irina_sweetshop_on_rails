@@ -10,7 +10,7 @@ class Cakemodel < ApplicationRecord
   include Reviewable
   include SlugHelper
 
-  # self.ignored_columns = ["design_id"]
+  self.ignored_columns = ["recipe_id"]
 
   def to_param
     "#{slug}"
