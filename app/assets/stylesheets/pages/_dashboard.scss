@@ -2,12 +2,14 @@
   position: relative;
   top: 15vh;
   z-index: 10;
+  min-height: inherit;
 }
 .dashboard-design__index {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin: 10vh 0;
 }
 .design-card {
   position: relative;

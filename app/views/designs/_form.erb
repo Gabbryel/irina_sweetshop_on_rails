@@ -3,6 +3,7 @@
   <%= simple_form_for @design do |f| %>
     <%= f.input :name, label: false %>
     <%= f.input :price_cents, label: false %>
+    <%= f.association :category, label: false, prompt: "Alege categoria" %>
     <%= f.submit 'Transmite'%>
   <% end %>
 </div>

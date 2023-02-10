@@ -1,6 +1,7 @@
 <% if isUserAdmin? %>
   <div class="design-card">
     <p><%= design.name %></p>
+    <p><%= design.category.name if design.category %></p>
     <p><%= humanized_money_with_symbol(design.price) %></p>
     <p><%= link_to 'edit', edit_design_path(design) %> <%= link_to 'del', design_path(design), method: :delete %></p>
   </div>

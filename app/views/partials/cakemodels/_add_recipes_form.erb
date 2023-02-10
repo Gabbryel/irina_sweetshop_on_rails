@@ -1,5 +1,7 @@
 <%= simple_form_for([@cakemodel, @model_component]) do |f| %>
-  <%= f.association :recipe, collection: @recipes, prompt: "Alege rețeta!", label: false %>
-  <%= f.input :weight %>
-  <%= f.submit "Adaugă rețetă acestui model" %>
+<% if @cakemodel %>
+  <%= f.association :recipe, collection: Recipe.all.where(category_id: @cakemodel.category_id), prompt: "Alege rețeta!", label: false %>
+<% end %>
+  <%= f.input :weight, label: false, placeholder: 'Gramaj' %>
+  <%= f.submit "Adaugă rețetă acestui model", id: 'submit' %>
 <% end %>

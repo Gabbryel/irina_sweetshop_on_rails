@@ -8,10 +8,12 @@ class ModelComponentsController < ApplicationController
   def create
     @model_component = authorize ModelComponent.create(model_components_params)
     @model_component.cakemodel = @cakemodel
-    @recipe = Recipe.find(params[:model_component][:recipe_id])
-    @model_component.recipe = @recipe
-    if @model_component.save!
-      redirect_to cakemodel_path(@cakemodel)
+    if @model_component.save
+      @model_component.recipe = Recipe.find(params[:model_component][:recipe_id])
+      @model_component.save
+      redirect_to cakemodel_path(@cakemodel), notice: "Rețeta a fost adăugată!"
+    else
+      redirect_to cakemodel_path(@cakemodel), notice: "Rețeta nu a fost salvată!"
     end
   end
 
@@ -25,7 +27,7 @@ class ModelComponentsController < ApplicationController
   private
 
   def model_components_params
-    params.require(:model_component).permit(:weight, :recipe)
+    params.require(:model_component).permit(:weight, :recipe_id)
   end
 
   def set_cakemodel

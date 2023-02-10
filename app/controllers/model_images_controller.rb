@@ -8,12 +8,11 @@ class ModelImagesController < ApplicationController
 
   def create
     @model_image = authorize ModelImage.create(model_images_params)
-    @model_image.cakemodel = @cakemodel
+    @model_image.cakemodel = @cakemodel if @model_image
     if @model_image.save
-      redirect_to cakemodel_path(@cakemodel)
+      redirect_to cakemodel_path(@cakemodel), notice: "Imagine adăugată!"
     else
-      redirect_to cakemodel_path(@cakemodel)
-      flash.alert = 'Nu am reușit!'
+      redirect_to cakemodel_path(@cakemodel), notice: "Imagine nu a fost adăugată!"
     end
   end
 
