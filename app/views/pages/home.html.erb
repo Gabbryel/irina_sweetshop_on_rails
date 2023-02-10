@@ -5,7 +5,13 @@
 <%= render 'shared/disclaimer_modal' %>
 <div class="home-main__container">
   <%= render partial: 'partials/homepage/hero_section' %>
-  <%= render partial: 'partials/homepage/squares' %>
+  <div class="hero-wave__container">
+    <%= image_tag('hero-wave.svg', class: 'hero-wave') %>
+  </div>
+  <%#= render partial: 'partials/homepage/squares' %>
   <%= render partial: 'partials/homepage/samples' %>
+  <!-- <div class="samples-wave__container">
+    <%#= image_tag('sample-wave.svg') %>
+  </div> -->
   <%= render partial: 'partials/homepage/info' %>
 </div>

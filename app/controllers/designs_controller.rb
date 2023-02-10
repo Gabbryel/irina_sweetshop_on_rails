@@ -6,7 +6,8 @@ class DesignsController < ApplicationController
 
   def create
     @design = authorize Design.create(design_params)
-    if @design.save
+    @design.category = Category.find(params[:design][:category_id])
+    if @design.save!
       redirect_to '/dashboard/designs'
     else
       render :new
@@ -17,6 +18,7 @@ class DesignsController < ApplicationController
   end
 
   def update
+    @design.category = Category.find(params[:design][:category_id])
     if @design.update(design_params)
       redirect_to '/dashboard/designs'
     end
@@ -36,7 +38,7 @@ class DesignsController < ApplicationController
   private
 
   def design_params
-    params.require(:design).permit(:name, :price_cents)
+    params.require(:design).permit(:name, :price_cents, :design_id)
   end
 
   def set_design

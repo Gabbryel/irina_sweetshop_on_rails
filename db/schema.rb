@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_08_060754) do
+ActiveRecord::Schema.define(version: 2023_02_08_182256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2023_02_08_060754) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "slug"
-    t.bigint "design_id", null: false
+    t.bigint "design_id"
     t.index ["category_id"], name: "index_cakemodels_on_category_id"
     t.index ["design_id"], name: "index_cakemodels_on_design_id"
   end
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2023_02_08_060754) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price_cents", default: 0, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_designs_on_category_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -97,7 +99,7 @@ ActiveRecord::Schema.define(version: 2023_02_08_060754) do
     t.bigint "cakemodel_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "recipe_id", null: false
+    t.bigint "recipe_id"
     t.index ["cakemodel_id"], name: "index_model_components_on_cakemodel_id"
     t.index ["recipe_id"], name: "index_model_components_on_recipe_id"
   end
@@ -105,7 +107,7 @@ ActiveRecord::Schema.define(version: 2023_02_08_060754) do
   create_table "model_images", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "cakemodel_id", null: false
+    t.bigint "cakemodel_id"
     t.index ["cakemodel_id"], name: "index_model_images_on_cakemodel_id"
   end
 
@@ -154,6 +156,7 @@ ActiveRecord::Schema.define(version: 2023_02_08_060754) do
   add_foreign_key "cakemodels", "categories"
   add_foreign_key "cakemodels", "designs"
   add_foreign_key "carts", "users"
+  add_foreign_key "designs", "categories"
   add_foreign_key "items", "carts"
   add_foreign_key "items", "users"
   add_foreign_key "model_components", "cakemodels"

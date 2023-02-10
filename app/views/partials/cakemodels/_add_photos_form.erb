@@ -1,6 +1,6 @@
 <% if isUserAdmin? %>
   <%= simple_form_for([@cakemodel, @model_image]) do |f| %>
     <%= f.input :photo, label: 'Alege o fotografie' %>
-    <%= f.submit 'Adaugă fotografie'%>
+    <%= f.submit 'Adaugă fotografie' %>
   <% end %>
 <% end %>
