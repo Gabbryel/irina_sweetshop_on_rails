@@ -19,6 +19,10 @@
     }
     .img-pano {
       width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      display: block;
     }
     p {
       padding: 0  3vw;
