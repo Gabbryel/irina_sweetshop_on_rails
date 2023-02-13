@@ -59,7 +59,7 @@ end
   private
 
   def cakemodel_params
-    params.require(:cakemodel).permit(:name, :photo, :design_id)
+    params.require(:cakemodel).permit(:name, :photo, :design_id, :content)
   end
 
   def set_category

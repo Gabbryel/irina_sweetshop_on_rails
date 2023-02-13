@@ -14,9 +14,9 @@
       </div>
           <%= simple_form_for [@category, @cakemodel] do |f| %>
           <%= f.input :name, label: false, placeholder: 'Nume model'  %>
+          <%= f.rich_text_area :content, label: false, placeholder: 'dacă acest model are anumite particularități...' %>
           <%= f.input :design_id, collection: @designs, prompt: 'Alege designul', label: false %>
           <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
-    
           <% if @cakemodel.id %>
             <%= f.button :submit, value: 'Modifică model', class: 'btn button-default btn-block button-rounded mt-5' %>
           <% else %>
