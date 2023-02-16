@@ -61,7 +61,6 @@ class RecipesController < ApplicationController
   end
 
   def set_recipe
-    @recipe = Recipe.find_by(slug: params[:id])
-    authorize @recipe
+    @recipe = authorize Recipe.find_by(slug: params[:id])
   end
 end
