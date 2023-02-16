@@ -8,7 +8,7 @@
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  background: $light-bkg-color !important;
+  background: $bkg-color !important;
   z-index: 100;
   font-family: $font-title;
   font-weight: 300;
@@ -18,7 +18,7 @@
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
   ul {
-    background-color: $light-bkg-color;
+    background-color: $bkg-color;
   }
 }
 

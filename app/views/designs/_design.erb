@@ -1,5 +1,5 @@
 <% if isUserAdmin? %>
-  <div class="design-card">
+  <div class="dashboard-card">
     <p><%= design.name %></p>
     <p><%= design.category.name if design.category %></p>
     <p><%= humanized_money_with_symbol(design.price) %></p>

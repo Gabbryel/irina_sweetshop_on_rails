@@ -11,7 +11,8 @@
       </div>
       <div class='card-title-recipes'>
         <div class="card-title-text">
-          <%= "#{recipe.name}" %>
+          <h2><%= "#{recipe.name}" %>
+          <% if recipe.vegan %><i class="fa-solid fa-carrot"></i><%else%><i class="fa-solid fa-egg"></i><% end %></h2>
         </div>
         <div class="card-description">
           <span><%= card_recipe_description(recipe.content) %>... <i class="fa-solid fa-circle-info"></i></span>

@@ -22,7 +22,7 @@ class CakemodelsController < ApplicationController
   end
 
   def index
-    @cakemodels = policy_scope(Cakemodel).where(category_id: @category )
+    @cakemodels = policy_scope(Cakemodel).where(category_id: @category).order(:id)
     @page_title = "Modele de #{ @category.name.downcase } || Cofetăria Irina - Bacau"
   end
   
@@ -59,7 +59,7 @@ end
   private
 
   def cakemodel_params
-    params.require(:cakemodel).permit(:name, :photo, :design_id)
+    params.require(:cakemodel).permit(:name, :photo, :design_id, :content)
   end
 
   def set_category

@@ -17,6 +17,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1;
     @media (min-width: 768px) {
         min-height: calc(var(--vh) * 50);
     }
@@ -46,6 +47,11 @@
         padding: 0 30px;
         border-radius: 30px;
         line-height: .9;
+        h1 {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+        }
     }
     @media (min-width: 1100px) {
         flex-flow: row-reverse;
@@ -58,13 +64,14 @@
     top: -10px;
     width: 100%;
     overflow: hidden;
+    background-color: $light-yellow;
     // @media (min-width: 768px) {
     //     top: -20px;
     // }
     .hero-wave {
         position: relative;
         width: 200%;
-        filter: drop-shadow(16px 12px 11px #00000090);
+        filter: drop-shadow(16px 12px 8px #00000070);
         @media (min-width: 768px) {
             width: 100%;
         }
@@ -138,14 +145,8 @@
     padding: 0 calc(var(--vh) * 5) calc(var(--vh) * 10);
     text-align: center;
     color: $font-color;
-    // background-color: $light-yellow;
-    h2 {
-        font-size: clamp(40px, 3rem, 80px);
-        font-weight: 900;
-        margin: 50px 0 100px 0;
-        color: $light-bkg-color;
-        text-shadow: 0.13vh 0.13vh 4px $light-bkg-color;
-    }
+    background-color: $light-yellow;
+    z-index: 1;
     .samples-index {
         position: relative;
         width: 100%;
@@ -160,6 +161,14 @@
             background-color: $light-yellow;
         }
     }
+}
+
+.h2 {
+    font-size: clamp(40px, 5rem, calc(2vh + 3vw));
+    font-weight: 900;
+    margin: 50px 0 100px 0;
+    color: $light-bkg-color;
+    // text-shadow: 0.13vh 0.13vh 4px $light-bkg-color;
 }
 
 .info {
@@ -177,12 +186,12 @@
     a {
         color: $font-color;
     }
-    .sample-wave {
+    .info-wave {
         position: absolute;
         top: -1px;
         left: 0;
         width: 200%;
-        filter: drop-shadow(16px 12px 11px #000000);
+        filter: drop-shadow(10px 10px 7px #111a);
         @media (min-width: 1024px) {
             width: 150%;
         }
@@ -194,6 +203,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 15vh 0 0;
         hr {
             margin: 0;
             margin-bottom: 5px;
@@ -256,3 +266,88 @@
     font-size: 1.5rem !important;
     padding: 3rem 2rem !important;
 }
+
+
+
+.home-features {
+    position: relative;
+    padding: 30vh 0;
+    background-color: $bkg-color;
+    text-align: center;
+}
+
+.sample-wave {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    filter: drop-shadow(5px 5px 10px #000000aa);
+    width: 200%;
+    @media (min-width: 1024px) {
+        width: 150%;
+    }
+    @media (min-width: 1200px) {
+        width: 100%;
+    }
+    }
+
+.blocks {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    margin: 100px auto;
+    @media (min-width: 660px) {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+  
+  .block-1 {
+    $length: 100vw;
+    $max: 300px;
+    width: $length;
+    max-width: $max;
+    height: calc(#{$length} * 1);
+    max-height: $max;
+    margin: 0 auto;
+    color: #fff;
+    font-family: "Montserrat";
+    font-weight: 800;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        font-size: 4rem;
+        font-weight: 900;
+        text-align: center;
+    }
+    @media (min-width: 660px) {
+      margin: unset;
+    }
+    @media (min-width: 900px) {
+      $max: 400px;
+      max-width: $max;
+      max-height: $max;
+    }
+    @media (min-width: 1200px) {
+      $max: 600px;
+      max-width: $max;
+      max-height: $max;
+    }
+  }
+
+  .block-2 {
+    position: relative;
+    width: 70vw;
+  }
+
+  .bkg-image, .bkg-image__1 {
+    background-image: url("https://res.cloudinary.com/dqbu9lypc/image/upload/v1675860891/69qjbp9mgnsms8raxwpcw114hbik.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bkg-image__1 {
+    background-image: url("https://res.cloudinary.com/dqbu9lypc/image/upload/v1676218506/jordane-mathieu-2Io2FzN1jOw-unsplash_bvttwt.jpg");
+  }

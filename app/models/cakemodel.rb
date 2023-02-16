@@ -1,11 +1,14 @@
 class Cakemodel < ApplicationRecord
-  belongs_to :category
   has_one_attached :photo
-  validates :name, presence: true
-  after_save :slugify, unless: :check_slug
   has_many :model_images, dependent: :destroy
   has_many :model_components, dependent: :destroy
+  has_rich_text :content
+  belongs_to :category
   belongs_to :design
+
+  validates :name, presence: true
+
+  after_save :slugify, unless: :check_slug
   include RatingsConcern
   include Reviewable
   include SlugHelper

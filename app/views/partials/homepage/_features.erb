@@ -1,0 +1,23 @@
+<div class="home-features">
+  <%= image_tag('sample-wave', class: 'sample-wave') %>
+  <div class="blocks">
+<% if @features.count > 0 %>
+  <% @features.each_with_index do |f, i| %>
+    <div class="block-1 block-text">
+      <h2><%= f.title %></h2>
+      <p><%= f.content %></p>
+    </div>
+    <div class="block-2 block-photo">
+      <%= cl_image_tag(f.photo.key) %>
+    </div>
+  <% end %>
+<% end %>
+
+
+    <!-- <div class="block-1 bkg-color">
+      <h2>Cele mai multe rețete</h2>
+      <p>de cofetărie românească</p>
+      </div>
+    <div class="block-2 bkg-image"></div>
+  </div> -->
+</div>
