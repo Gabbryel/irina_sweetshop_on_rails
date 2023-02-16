@@ -4,14 +4,14 @@
   z-index: 10;
   min-height: inherit;
 }
-.dashboard-design__index {
+.dashboard-index {
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
   margin: 10vh 0;
 }
-.design-card {
+.dashboard-card {
   position: relative;
   border: 1px solid #aaa;
   padding: 20px;

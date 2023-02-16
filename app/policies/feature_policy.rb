@@ -1,4 +1,4 @@
-class ReviewPolicy < ApplicationPolicy
+class FeaturePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,11 +6,11 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def new?
-    create?
+    isUserAdm?
   end
 
   def create?
-    true
+    isUserAdm?
   end
 
   def edit?
@@ -18,14 +18,15 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def update?
-    edit?
+    isUserAdm?
+  end
+
+  
+  def destroy?
+    isUserAdm?
   end
 
   def isUserAdm?
-    user && user.admin
-  end
-
-  def destroy?
     user && user.admin
   end
 end

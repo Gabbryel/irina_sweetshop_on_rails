@@ -239,6 +239,11 @@
                     font-weight: 700;
                     letter-spacing: -.02em;
                     padding: 0 10px;
+                    h2 {
+                        font-size: inherit;
+                        font-weight: inherit;
+                        font-family: inherit;
+                    }
                 }
                 .card-description {
                     position: relative;

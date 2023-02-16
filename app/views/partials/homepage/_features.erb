@@ -1,24 +1,23 @@
 <div class="home-features">
   <%= image_tag('sample-wave', class: 'sample-wave') %>
-  <h2 class="h2">De ce cofetăria Irina?</h2>
   <div class="blocks">
-    <div class="block-1 bkg-color"><h2>Sute de rețete</h2></div>
-    <div class="block-1 bkg-image"></div>
-  </div>
-  <div class="blocks">
-    <div class="block-1 bkg-image__1"></div>
-    <div class="block-1 bkg-color"><h2>Torturi de neuitat</h2></div>
-  </div>
-  <div class="blocks">
-    <div class="block-1 bkg-color"><h2>Materii prime de calitate, preparare de la zero</h2></div>
-    <div class="block-1 bkg-image"></div>
-  </div>
-  <div class="blocks">
-    <div class="block-1 bkg-image"></div>
-    <div class="block-1 bkg-color"><h2>Produse tradiționale</h2></div>
-  </div>
-  <div class="blocks">
-    <div class="block-1 bkg-color"><h2>Fotografii comestibile pe coală de zahăr</h2></div>
-    <div class="block-1 bkg-image"></div>
-  </div>
+<% if @features.count > 0 %>
+  <% @features.each_with_index do |f, i| %>
+    <div class="block-1 block-text">
+      <h2><%= f.title %></h2>
+      <p><%= f.content %></p>
+    </div>
+    <div class="block-2 block-photo">
+      <%= cl_image_tag(f.photo.key) %>
+    </div>
+  <% end %>
+<% end %>
+
+
+    <!-- <div class="block-1 bkg-color">
+      <h2>Cele mai multe rețete</h2>
+      <p>de cofetărie românească</p>
+      </div>
+    <div class="block-2 bkg-image"></div>
+  </div> -->
 </div>

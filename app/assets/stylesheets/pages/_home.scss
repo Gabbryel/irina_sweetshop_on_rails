@@ -191,7 +191,7 @@
         top: -1px;
         left: 0;
         width: 200%;
-        filter: drop-shadow(16px 12px 11px #000000);
+        filter: drop-shadow(10px 10px 7px #111a);
         @media (min-width: 1024px) {
             width: 150%;
         }
@@ -203,6 +203,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 15vh 0 0;
         hr {
             margin: 0;
             margin-bottom: 5px;
@@ -271,7 +272,7 @@
 .home-features {
     position: relative;
     padding: 30vh 0;
-    background-color: $white;
+    background-color: $bkg-color;
     text-align: center;
 }
 
@@ -279,7 +280,7 @@
     position: absolute;
     top: -1px;
     left: 0;
-    filter: drop-shadow(5px 5px 10px #00000020);
+    filter: drop-shadow(5px 5px 10px #000000aa);
     width: 200%;
     @media (min-width: 1024px) {
         width: 150%;
@@ -293,8 +294,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 90vw;
-    margin: 0 auto;
+    width: 60vw;
+    margin: 100px auto;
     @media (min-width: 660px) {
       flex-direction: row;
       justify-content: center;
@@ -302,7 +303,7 @@
   }
   
   .block-1 {
-    $length: 90vw;
+    $length: 100vw;
     $max: 300px;
     width: $length;
     max-width: $max;
@@ -335,10 +336,12 @@
       max-height: $max;
     }
   }
-  
-  .bkg-color {
-    background-color: #2b2424;
+
+  .block-2 {
+    position: relative;
+    width: 70vw;
   }
+
   .bkg-image, .bkg-image__1 {
     background-image: url("https://res.cloudinary.com/dqbu9lypc/image/upload/v1675860891/69qjbp9mgnsms8raxwpcw114hbik.jpg");
     background-repeat: no-repeat;

@@ -1,0 +1,9 @@
+<div class="custom-form">
+  <h4><%= @feature.id.present? ? 'Modifică feature' : 'Feature nou'%></h4>
+  <%= simple_form_for @feature do |f| %>
+    <%= f.input :title, label: false %>
+    <%= f.input :content, label: false %>
+    <%= f.input :photo, label: false %>
+    <%= f.submit 'Transmite'%>
+  <% end %>
+</div>

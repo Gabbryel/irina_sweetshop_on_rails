@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @recipes = Recipe.all.where(favored: true).sample(8)
+    @features = Feature.all
   end
 
   def recepies
