@@ -43,7 +43,7 @@
 
 .navbar-custom {
   color: $font-color;
-  font-size: calc(var(--vh) * 4);
+  font-size: clamp(13px, 3rem, 10vw);
 }
 
 

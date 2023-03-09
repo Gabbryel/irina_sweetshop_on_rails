@@ -1,23 +1,16 @@
 <div class="home-features">
   <%= image_tag('sample-wave', class: 'sample-wave') %>
-  <div class="blocks">
-<% if @features.count > 0 %>
+
+  <% if @features.count > 0 %>
   <% @features.each_with_index do |f, i| %>
-    <div class="block-1 block-text">
+  <div class="block">
+    <div class="block-1 <%#= i.even? ? 'order-1' : 'order-2' %>">
       <h2><%= f.title %></h2>
       <p><%= f.content %></p>
     </div>
-    <div class="block-2 block-photo">
-      <%= cl_image_tag(f.photo.key) %>
-    </div>
+    <div class="block-2 <%#= i.even? ? 'order-2' : 'order-1' %>"><%= cl_image_tag(f.photo.key, fetch_format: :webp, width: 900, crop: :scale) %></div>
+  </div>
+    <% end %>
   <% end %>
-<% end %>
 
-
-    <!-- <div class="block-1 bkg-color">
-      <h2>Cele mai multe rețete</h2>
-      <p>de cofetărie românească</p>
-      </div>
-    <div class="block-2 bkg-image"></div>
-  </div> -->
 </div>

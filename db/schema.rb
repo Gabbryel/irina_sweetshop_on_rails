@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_16_061655) do
+ActiveRecord::Schema.define(version: 2023_03_08_120822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(version: 2023_02_16_061655) do
     t.boolean "publish", default: false
     t.string "slug"
     t.boolean "vegan"
+    t.float "energetic_value"
+    t.float "fats"
+    t.float "fatty_acids"
+    t.float "carbohydrates"
+    t.float "sugars"
+    t.float "proteins"
+    t.float "salt"
+    t.float "weight", default: 0.0
     t.index ["category_id"], name: "index_recipes_on_category_id"
   end
 

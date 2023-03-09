@@ -11,51 +11,60 @@
     }
     position: relative;
     display: flex;
-    padding: 4vh 20px 6vh;
+    padding: calc(var(--vh) * 30) 20px calc(var(--vh) * 30);
     width: 100vw;
     background-color: $bkg-color;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1;
+    gap: calc(var(--vh) * 5);
     @media (min-width: 768px) {
         min-height: calc(var(--vh) * 50);
     }
     @media (min-width: 1100px) {
         min-height: calc(var(--vh) * 68);
-        padding: 4vh 20px 0;
+        padding: 21vh 20px 12vh;
     }
     img {
         position: relative;
-        width: 70%;
+        width: 100%;
         height: auto;
-        @media (min-width: 651px) {
-            width: 55%;
-        }
-        @media (min-width: 1025px) {
-            width: 35%;
+        @media (min-width: 1100px) {
+            width: 50%;
         }
     }
     .hero-section__button {
         display: inline-block;
-        font-family: $font-title;
-        font-size: clamp(30px, 7rem, 11vw);
+        font-family: "Montserrat";
+        font-size: clamp(34px, 7vw, 90px);
         text-align: center;
-        color: $font-color;
+        color: #bb8b7a;
         font-weight: 900;
-        margin: 0 auto;
-        padding: 0 30px;
-        border-radius: 30px;
-        line-height: .9;
         h1 {
             font-family: inherit;
             font-size: inherit;
             font-weight: inherit;
         }
     }
-    @media (min-width: 1100px) {
-        flex-flow: row-reverse;
-        justify-content: space-evenly;
+    .fa-circle-chevron-down {
+        position: absolute;
+        color: #fff;
+        font-size: calc(var(--vh) * 4);
+        bottom: 20px;
+        right: 20px;
+        animation: arrow-animation 1.2s infinite;
+    }
+    @keyframes arrow-animation {
+        0% {
+            opacity: .3;
+            bottom: 20vh;
+        } 80% {
+            opacity: .05;
+        } 100% {
+            opacity: 0;
+            bottom: 10vh;
+        }
     }
 }
 
@@ -271,9 +280,13 @@
 
 .home-features {
     position: relative;
-    padding: 30vh 0;
-    background-color: $bkg-color;
+    padding: 10vh 0;
+    background-color: #000;
     text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
 }
 
 .sample-wave {
@@ -290,64 +303,55 @@
     }
     }
 
-.blocks {
+.block {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 60vw;
-    margin: 100px auto;
-    @media (min-width: 660px) {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-  
+    width: 100vw;
+    margin: 0 auto;
+    gap: 25px;
+}
+
   .block-1 {
-    $length: 100vw;
-    $max: 300px;
-    width: $length;
-    max-width: $max;
-    height: calc(#{$length} * 1);
-    max-height: $max;
+    width: 100%;
+    height: 20vw;
     margin: 0 auto;
     color: #fff;
     font-family: "Montserrat";
-    font-weight: 800;
-    font-size: 24px;
+    font-weight: 300;
+    font-size: clamp(16px, 1.5rem, 20px);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 5%;
+    order: 2;
     h2 {
-        font-size: 4rem;
+        font-size: clamp(20px, 2rem, 28px);
         font-weight: 900;
         text-align: center;
-    }
-    @media (min-width: 660px) {
-      margin: unset;
-    }
-    @media (min-width: 900px) {
-      $max: 400px;
-      max-width: $max;
-      max-height: $max;
-    }
-    @media (min-width: 1200px) {
-      $max: 600px;
-      max-width: $max;
-      max-height: $max;
+        margin-bottom: 10px;
     }
   }
 
   .block-2 {
     position: relative;
-    width: 70vw;
+    width: 100%;
+    height: max-content;
+    max-height: 50vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 90%;
+    }
   }
 
-  .bkg-image, .bkg-image__1 {
-    background-image: url("https://res.cloudinary.com/dqbu9lypc/image/upload/v1675860891/69qjbp9mgnsms8raxwpcw114hbik.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+  .order-1 {
+    order: 1;
+  }
+  .order-2 {
+    order: 2;
   }
 
-  .bkg-image__1 {
-    background-image: url("https://res.cloudinary.com/dqbu9lypc/image/upload/v1676218506/jordane-mathieu-2Io2FzN1jOw-unsplash_bvttwt.jpg");
-  }

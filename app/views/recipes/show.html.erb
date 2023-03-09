@@ -20,6 +20,17 @@
       <% @recipe.content.split('.') do |line| %>
         <p class="recipe-show-main-description-text"><%= "#{line}." %></p>
       <% end %>
+        <% if @recipe.kg_buc == 'buc' %>
+          <span>Greutate: <%= @recipe.weight %>g</span>
+        <% end %>
+      <div class="recipe-nutritional-declaration">
+        <% if @recipe.energetic_value %>
+          <p><b>Declarație nutrițională /100g de produs</b> valoare energetică: <%= @recipe.energetic_value %>kcal, grăsimi: <%= @recipe.fats %>g, acizi grași saturați: <%= @recipe.fatty_acids %>g, glucide: <%= @recipe.carbohydrates %>g, zaharuri: <%= @recipe.sugars %>g, proteine: <%= @recipe.proteins %>g, sare: <%= @recipe.salt %>g</p>
+        <% end %>
+        <% if @recipe.energetic_value && @recipe.weight != 0 %>
+          <p><b>Declarație nutrițională /buc </b> valoare energetică: <%= (@recipe.energetic_value / 100) * @recipe.weight %>kcal, grăsimi: <%= (@recipe.fats / 100) * @recipe.weight %>g, acizi grași saturați: <%= @recipe.fatty_acids / 100 * @recipe.weight %>g, glucide: <%= @recipe.carbohydrates / 100 * @recipe.weight %>g, zaharuri: <%= @recipe.sugars / 100 * @recipe.weight %>g, proteine: <%= @recipe.proteins / 100 * @recipe.weight %>g, sare: <%= @recipe.salt / 100 * @recipe.weight %>g</p>
+        <% end %>
+      </div>
 
       <div class="recipe-show-main-price ">
         <% if @recipe.price != 0 %>
