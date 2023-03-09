@@ -18,11 +18,12 @@
       <h1><%= @recipe.name %></h1>
 
       <% @recipe.content.split('.') do |line| %>
-        <p class="recipe-show-main-description-text"><%= "#{line}." %></p>
-      <% end %>
+        <p class="recipe-show-main-description-text"><%= "#{line}." %>
         <% if @recipe.kg_buc == 'buc' %>
           <span>Greutate: <%= @recipe.weight %>g</span>
         <% end %>
+        </p>
+      <% end %>
       <div class="recipe-nutritional-declaration">
         <% if @recipe.energetic_value %>
           <p><b>Declarație nutrițională /100g de produs</b> valoare energetică: <%= @recipe.energetic_value %>kcal, grăsimi: <%= @recipe.fats %>g, acizi grași saturați: <%= @recipe.fatty_acids %>g, glucide: <%= @recipe.carbohydrates %>g, zaharuri: <%= @recipe.sugars %>g, proteine: <%= @recipe.proteins %>g, sare: <%= @recipe.salt %>g</p>

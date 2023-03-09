@@ -59,6 +59,9 @@
       font-size: clamp(16px, 1.5rem, 20px);
       text-align: justify;
       color: $light-bkg-color;
+      .recipe-show-main-description-text {
+        font-size: 16px;
+      }
       .recipe-show-main-price {
         color: $light-bkg-color;
         font-family: $font-text;
