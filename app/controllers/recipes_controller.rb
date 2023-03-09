@@ -53,7 +53,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :content, :photo, :kg_buc, :price_cents, :publish, :favored, :slug, :vegan)
+    params.require(:recipe).permit(:name, :content, :photo, :kg_buc, :price_cents, :publish, :favored, :slug, :vegan, :energetic_value, :fats, :fatty_acids, :carbohydrates, :sugars, :proteins, :salt, :weight)
   end
 
   def set_category
