@@ -9,11 +9,14 @@
 
       <%= simple_form_for [@category, @recipe] do |f| %>
         <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată', label_html: { class: 'color-fonts fonts-700 rem1-3' } %>
-        <%= f.input :content, label: 'Descrierea rețetei', label_html: { class: 'color-fonts fonts-700 mt-2 rem1-3' } %>
-        <%= f.input :weight, label: 'Greutate' %>
-        <%= f.input :vegan %>
-        <%= f.input :publish, label: 'Se publică?' %>
-        <%= f.input :favored, label: 'Produs recomandat?' %>
+        <%= f.input :content, label: 'Descrierea rețetei', label_html: { class: 'small-font' } %>
+        <%= f.input :ingredients, label: 'Ingrediente', label_html: { class: 'small-font' } %>
+        <div class="recipe-options">
+          <%= f.input :weight, label: 'Greutate', label_html: { class: 'small-font' } %>
+          <%= f.input :vegan %>
+          <%= f.input :publish, label: 'Public?' %>
+          <%= f.input :favored, label: 'Recomandat?' %>
+        </div>
         <div class="nutritional-declaration">
           <%= f.input :energetic_value, label: false, placeholder: 'Val. energetică' %>
           <%= f.input :fats, label: false, placeholder: 'grăsimi' %>
