@@ -1,0 +1,39 @@
+.valori-nutritionale-container {
+  padding: 0 0 4vh;
+  top: calc(8rem + 8vh);
+}
+
+.nutritional-values-index {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  width: 100%;
+  gap: 50px;
+  h2 {
+    font-size: 24px;
+  }
+}
+
+.nutritional-values-index__category {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.nutritional-values-index__recipe {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  h4 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 13px;
+  }
+}
+

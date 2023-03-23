@@ -1,0 +1,22 @@
+<div class="cards-main-container valori-nutritionale-container">
+  <div class="nutritional-values-index">
+    <% @categories.where(has_recipe: :true).sort_by { |c| -c.recipes.count }.each do |c| %>
+    <div class="nutritional-values-index__category">
+      <h2><%= c.name %></h2>
+      <% c.recipes.order(:name).each do |r| %>
+      <div class="nutritional-values-index__recipe" id="<%=r.slug%>">
+        <h4><%= link_to r.name, recipe_path(r) %></h4>
+        <p><b>Ingrediente:</b></p>
+        <p><%= r.ingredients %></p>
+        <p><b>Valori nutriționale:</b></p>
+        <% if r.energetic_value %>
+          <p><span>valoare energetică: <%= r.energetic_value %>kcal</span>, <span>grăsimi: <%= r.fats %>g</span>, <span>acizi grași saturați: <%= r.fatty_acids %>g</span>, <span> glucide: <%= r.carbohydrates %>g</span>, <span>zaharuri: <%= r.sugars %>g</span>, <span>proteine: <%= r.proteins %>g</span>, <span>sare: <%= r.salt %>g</span></p>
+        <% else %>
+          <p>---</p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

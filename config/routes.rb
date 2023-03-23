@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'how_to_order', to: 'pages#how_to_order'
   get 'about', to: 'pages#about'
+  get 'valori-nutritionale', to: 'pages#valori_nutritionale'
   get 'dashboard',  to: 'pages#admin_dashboard'
   get 'dashboard/designs', to: 'designs#index'
   get 'dashboard/features', to: 'features#index'
