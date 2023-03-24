@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :how_to_order, :about]
+  skip_before_action :authenticate_user!, only: [:home, :how_to_order, :about, :valori_nutritionale]
 
   def home
     @recipes = Recipe.all.where(favored: true).sample(8)
@@ -15,6 +15,11 @@ class PagesController < ApplicationController
 
   def about
     @page_main_title = 'Despre noi'
+  end
+
+  def valori_nutritionale
+    @page_main_title = 'Valori nutriționale'
+    @categories = Category.all.order(:name)
   end
 
   def admin_dashboard
