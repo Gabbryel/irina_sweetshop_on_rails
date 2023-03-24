@@ -1,5 +1,5 @@
 .valori-nutritionale-container {
-  padding: 0 0 4vh;
+  padding: 2vh 0 4vh;
   top: calc(8rem + 8vh);
 }
 
@@ -7,6 +7,7 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: masonry;
   width: 100%;
   gap: 50px;
   h2 {
@@ -34,6 +35,10 @@
   }
   p {
     font-size: 13px;
+  }
+  #link-to-nutri-val {
+    font-size: 14px;
+    font-weight: 500;
   }
 }
 
