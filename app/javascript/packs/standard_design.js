@@ -1,3 +1,4 @@
+// shows standard design on bdays cake
 function showStandardDesign() {
   let standard = document.querySelector('.standard')
   let standardDesign = document.querySelector('.recipe-show-std-image')
