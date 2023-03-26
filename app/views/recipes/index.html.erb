@@ -1,9 +1,9 @@
 <div class="cards-main-container">
   <h3 class='text-center'><%= "#{Category.find_by(slug: params[:category_id]).name.upcase}" %></h3>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
-  </button>
-  <%= render partial: 'modal' %>
+  </button> -->
+  <!-- <%= render partial: 'modal' %> -->
   <%= render @recipes %>
 </div>
 <div class="card-index-new">

@@ -24,7 +24,7 @@
         <% end %>
         </p>
       <% end %>
-      <p id="link-to-nutri-val"><%= link_to 'Apasă aici pentru valori nutriționale și ingrediente', valori_nutritionale_path(anchor: @recipe.slug)  %></p>
+      <p id="link-to-nutri-val"><%= link_to 'Apasă aici pentru valori nutriționale și ingrediente', valori_nutritionale_path(anchor: @recipe.slug, id_color: "#{@recipe.slug}")  %></p>
      
 
       <div class="recipe-show-main-price ">

@@ -4,7 +4,7 @@
     <div class="nutritional-values-index__category">
       <h2><%= c.name %></h2>
       <% c.recipes.order(:name).each do |r| %>
-      <div class="nutritional-values-index__recipe">
+      <div class="nutritional-values-index__recipe <%= params[:id_color] == r.slug ? 'recipe-border' : nil %>">
         <span id="<%=r.slug%>" class="anchor-positioning"></span>
         <h4><%= link_to r.name, recipe_path(r) %></h4>
         <p><b>Ingrediente:</b></p>
