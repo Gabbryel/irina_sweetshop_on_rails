@@ -185,7 +185,7 @@
     font-family: $font-title;
     color: $font-color;
     text-align: center;
-    font-size: clamp(1vh, 1.6rem, calc(1.3vh + 1vw));
+    font-size: unquote("clamp(1vh, 1.6rem, calc(1.3vh + 1vw))");
     padding: 17vh 0 10vh;
     overflow: hidden;
     p {
