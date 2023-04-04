@@ -56,7 +56,7 @@ end
     @category = @category.nil? ? Category.find_by(slug: params[:recipe][:category_id]) : @category
     respond_to do |format|
       if @recipe.update(recipe_params)
-        page = (@recipes.index(@recipe.slug) / Pagy::DEFAULT[:items]).ceil
+        page = (@recipes.index(@recipe.slug) / Pagy::DEFAULT[:items]).next
         format.html { redirect_to retete_path(page: page, anchor: @recipe.slug, notice: 'Rețetă modificată') }
         format.json { render :show, status: :updated, location: @recipe }
       else
