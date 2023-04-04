@@ -1,7 +1,9 @@
+@import "application.css.scss";
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+// @import "font-awesome";
 
-// External libraries
-@import "bootstrap/scss/bootstrap";
-@import "font-awesome";
+
 
 
 // Graphical variables
@@ -12,6 +14,7 @@
 
 
 // Your CSS partials
+@import "actiontext";
 @import "components/index";
 @import "pages/index";
 @import "dashboard/index";

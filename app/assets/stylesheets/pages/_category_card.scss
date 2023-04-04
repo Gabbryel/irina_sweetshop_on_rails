@@ -3,7 +3,7 @@
     height: 400px;
     width: 260px;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: $border-radius;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     &:hover {
         cursor: pointer;
@@ -48,8 +48,6 @@
                 color: $light-bkg-color;
                 background-color: #fff;
                 font-size: clamp(22px, 2.4rem, 32px);
-                /* line-height: 1.1; */
-                /* border-radius: 0 0 20px 20px; */
                 font-family: 'Atma';
                 font-weight: 700;
             }

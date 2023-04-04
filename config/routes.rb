@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'pages#home'
+  get 'retete', to: 'recipes#admin_recipes'
   get 'how_to_order', to: 'pages#how_to_order'
   get 'about', to: 'pages#about'
   get 'valori-nutritionale', to: 'pages#valori_nutritionale'

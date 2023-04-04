@@ -1,44 +1,34 @@
-<div class="container fonts-family">
-  <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-6 mt-5 pt-5">
-      <% if  @recipe.id%>
-        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Modifică rețeta</p>
-      <% else %>
-        <p class="text-center color-fonts mt-5 mb-4 fonts-700 rem1-5">Adaugă o rețetă</p>
-      <% end %>
-
-      <%= simple_form_for [@category, @recipe] do |f| %>
-        <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată', label_html: { class: 'color-fonts fonts-700 rem1-3' } %>
-        <%= f.input :content, label: 'Descrierea rețetei', label_html: { class: 'small-font' } %>
-        <%= f.input :ingredients, label: 'Ingrediente', label_html: { class: 'small-font' } %>
-        <div class="recipe-options">
-          <%= f.input :weight, label: 'Greutate', label_html: { class: 'small-font' } %>
-          <%= f.input :vegan %>
-          <%= f.input :publish, label: 'Public?' %>
-          <%= f.input :favored, label: 'Recomandat?' %>
-        </div>
-        <div class="nutritional-declaration">
-          <%= f.input :energetic_value, label: false, placeholder: 'Val. energetică' %>
-          <%= f.input :fats, label: false, placeholder: 'grăsimi' %>
-          <%= f.input :fatty_acids, label: false, placeholder: 'acizi grași saturați' %>
-          <%= f.input :carbohydrates, label: false, placeholder: 'glucide' %>
-          <%= f.input :sugars, label: false, placeholder: 'zaharuri' %>
-          <%= f.input :proteins, label: false, placeholder: 'proteine' %>
-          <%= f.input :salt, label: false, placeholder: 'sare' %>
-        </div>
-        <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-block button-default button-rounded'}, class: 'rem1-3' %>
-        <div class="d-flex justify-content-between">
-          <%= f.input :price_cents, label: 'Prețul în bani' %>
-          <%= f.input :kg_buc, collection: ['kg', 'buc'],label: 'Se vinde la kg sau buc. ?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
-        </div>
-
-        <% if  @recipe.id%>
-          <%= f.button :submit, value: 'Modifică rețeta', class: 'btn button-default btn-block mt-5 button-rounded' %>
-        <% else %>
-          <%= f.button :submit, value: 'Adaugă o rețetă', class: 'btn button-default btn-block mt-5 button-rounded' %>
+<div class="form-container">
+      <div class="form-form">
+        <%= simple_form_for([category, recipe], url: "#{recipe.id ? category_recipe_path(recipe.category, recipe) : category_recipes_path(Category.find_by(slug: params[:category_id]))}", id: (recipe.id ? dom_id(recipe) : dom_id(Recipe.new))) do |f| %>
+          <%= f.input :name, label: 'Numele rețetei', placeholder: 'Ex.: Boema, Tort cu ciocolată', label_html: { class: 'color-fonts fonts-700 rem1-3' } %>
+          <%= f.input :content, label: 'Descrierea rețetei', placeholder: 'Descrierea rețetei' %>
+          <%= f.input :ingredients, label: 'Ingrediente' %>
+          <div class="recipe-options">
+            <%= f.input :weight, label: 'Greutate în grame' %>
+            <%= f.input :vegan %>
+            <%= f.input :publish, label: 'Public?' %>
+            <%= f.input :favored, label: 'Recomandat?' %>
+          </div>
+          <div class="nutritional-declaration">
+            <%= f.input :energetic_value, label: false, placeholder: 'Val. energetică' %>
+            <%= f.input :fats, label: false, placeholder: 'grăsimi' %>
+            <%= f.input :fatty_acids, label: false, placeholder: 'acizi grași saturați' %>
+            <%= f.input :carbohydrates, label: false, placeholder: 'glucide' %>
+            <%= f.input :sugars, label: false, placeholder: 'zaharuri' %>
+            <%= f.input :proteins, label: false, placeholder: 'proteine' %>
+            <%= f.input :salt, label: false, placeholder: 'sare' %>
+          </div>
+          <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: {class: 'btn btn-block button-default button-rounded'}, class: 'rem1-3' %>
+          <div class="d-flex justify-content-between">
+            <%= f.input :price_cents, label: 'Prețul în bani' %>
+            <%= f.input :kg_buc, collection: ['kg', 'buc'], prompt: 'Alege', label: 'Se vinde la kg sau buc. ?', label_html: { class: 'color-fonts rem1' }, class: 'rem1-3' %>
+          </div>
+          <% if recipe.id %>
+            <%= f.button :submit, value: 'Modifică rețeta', class: 'btn btn-default', data: { turbo: false } %>
+          <% else %>
+            <%= f.button :submit, value: 'Adaugă o rețetă', class: 'btn btn-default', data: { turbo: false } %>
+          <% end %>
         <% end %>
-
-      <% end %>
-    </div>
-  </div>
+      </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="card-container-recipes">
+<div class="card-container-recipes" id="<%= recipe.slug %>">
   <%= link_to recipe_path(recipe) do %>
     <div class="card-link-container-recipes">
       <div class="card-image-recipes">
@@ -11,7 +11,8 @@
       </div>
       <div class='card-title-recipes'>
         <div class="card-title-text">
-          <h2><%= "#{recipe.name}" %>
+          <h2><%= recipe.name %>
+          <% if recipe.energetic_value && current_page?(controller: 'recipes', action: 'admin_recipes') %><i class="fa-brands fa-nutritionix"></i><% end %>
           <% if recipe.vegan %><i class="fa-solid fa-carrot"></i><% end %></h2>
         </div>
         <div class="card-description">
@@ -43,19 +44,11 @@
       </div>
       <% end %>
     </div>
-      <% if current_user && current_user.admin%>
-        <div class='card-crud'>
-          <% if policy(recipe).edit? %>
-            <%= link_to edit_category_recipe_path(recipe.category, recipe) do %>
-            <i class="far fa-edit"></i>
-            <% end %>
-          <% end %>
-
-        <% if policy(recipe).destroy? %>
-          <%= link_to category_recipe_path(recipe.category, recipe), method: :delete, data: {confirm: 'Vrei să ștergi acest produs?'} do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        <% end %>
+    <% if policy(recipe).edit? && policy(recipe).destroy? %>
+      <div class='card-crud'>
+        <%= link_to "#", data: { bs_toggle: "modal", bs_target: "#edit#{recipe.slug}"} do %><i class="far fa-edit"></i><% end %>
+        <%= render partial: 'recipes/modal', locals: { new: false,  modal_id: "edit#{recipe.slug}", recipe: recipe } %>
+        <%= link_to category_recipe_path(recipe.category, recipe), method: :delete, data: {confirm: 'Vrei să ștergi acest produs?'} do %><i class="fas fa-trash-alt"></i><% end %>
       </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>

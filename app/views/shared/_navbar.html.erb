@@ -5,14 +5,14 @@
     <div class="navbar-title d-flex align-items-center">
       <p class="text-center m-0"><%= @page_main_title %></p>
     </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-birthday-cake navbar-custom"></i>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav align-items-center">
       <!-- <li class="nav-item active">
-        <a href='#' class="nav-link text-center" data-toggle="modal" data-target="#exampleModalLong">
+        <a href='#' class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
           Covid-19
         </a>
       </li> -->
@@ -20,7 +20,7 @@
         <%= link_to "Categorii", categories_path, class: "nav-link text-center" %>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
+        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
           <% if cat.has_recipe %>
@@ -30,7 +30,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii</a>
+        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <% Category.all.each do |cat| %>
             <% if cat.has_models %>
@@ -40,14 +40,11 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link  text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
+        <a class="nav-link  text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
         <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center" %>
           <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center" %>
           <%= link_to 'Valori nutriționale', valori_nutritionale_path, class: "dropdown-item text-center" %>
-          <!-- <a href='#' class="dropdown-item text-center" data-toggle="modal" data-target="#exampleModalLong">
-            Covid-19
-          </a> -->
         </div>
       </li>
 
@@ -60,10 +57,13 @@
       </li>
       
       <li class="nav-item dropdown">
-        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
         <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
           <% if user_signed_in? %>
             <% if current_user.admin %>
+            <div class="dropdown-item">
+              <%= link_to "Admin rețete", retete_path, class: "dropdown-item text-center" %>
+            </div>
               <div class="dropdown-item">
                 <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center" %>
               </div>

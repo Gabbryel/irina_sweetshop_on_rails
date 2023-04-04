@@ -1,13 +1,8 @@
 <div class="cards-main-container">
   <h3 class='text-center'><%= "#{Category.find_by(slug: params[:category_id]).name.upcase}" %></h3>
-  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button> -->
-  <!-- <%= render partial: 'modal' %> -->
-  <%= render @recipes %>
-</div>
-<div class="card-index-new">
   <% if policy(Recipe).new? %>
-    <%= link_to 'Rețetă nouă', new_category_recipe_path, class: 'btn-default' %>
+    <%= link_to "#", data: {bs_toggle: "modal", bs_target: "#newRecipeModal"}, class: 'btn-default' do %><span>Rețetă nouă</span><% end %>
   <% end %>
+  <%= render partial: 'modal', locals: { new: true, bs_toggle: "modal", modal_id: "newRecipeModal", recipe: @recipe } %>
+  <%= render @recipes %>
 </div>

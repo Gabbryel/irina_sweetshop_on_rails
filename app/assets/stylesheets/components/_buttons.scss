@@ -1,16 +1,11 @@
 .btn-default {
-  background-color: $bkg-color;
-  color: $font-color;
-  border-radius: 3px;
+  border-radius: $border-radius;
   padding: 1vh 3vw;
-  font-size: 14px;
+  font-size: inherit;
   font-weight: 400;
+  border: 1px solid $font-color;
   &:hover {
-    color: $hover-color;
-  }
-  @media (min-width: 901px) {
-    font-size: 16px;
-    padding: 1vh 3vw;
+    border: 1px solid $font-color;
   }
 }
 
@@ -35,7 +30,7 @@
     padding: 3px 15px;
     font-size: 1.3rem;
     border: 1px solid $font-color;
-    border-radius: 3px;
+    border-radius: $border-radius;
     &:active {
       box-shadow: none;
     }

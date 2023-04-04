@@ -1,3 +1,22 @@
+.form-container {
+  position: relative;
+}
+
+.form-form {
+  position: relative;
+}
+
+.simple_form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  .required, .optional {
+    font-size: inherit;
+  }
+}
+
 .form-control {
   border-color: $official-color;
   border-radius: 5px;
@@ -26,8 +45,5 @@
   gap: 10px;
   grid-template-columns: 40% 15% 15% 10%;
   align-content: center;
-  align-items: center;
-  .optional {
-    font-size: 14px;
-  }
+  align-items: end;
 }

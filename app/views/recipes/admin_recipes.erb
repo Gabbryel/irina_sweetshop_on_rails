@@ -1,0 +1,6 @@
+<div class="cards-main-container">
+    <%== pagy_bootstrap_nav(@pagy) %>
+    <h3 class='text-center'>Administrare rețete(<%= @recipes.count %>)</h3>
+    <%= render @recipes %>
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
