@@ -1,6 +1,6 @@
 .navbar {
   border-bottom: 1px solid black;
-  height: calc(var(--vh) * 10);
+  height: unquote("calc(var(--vh) * 10)");
   min-height: 65px;
 }
 
@@ -29,7 +29,7 @@
   align-items: center;
   img {
     max-width: 80%;
-    max-height: calc(var(--vh) * 10);
+    max-height: unquote("calc(var(--vh) * 10)");
   }
 }
 

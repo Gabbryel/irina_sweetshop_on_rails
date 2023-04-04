@@ -5,8 +5,8 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   height: calc(var(--vh) *70);
-   padding: calc(var(--vh) * 10) 0 0;
+   height: unquote("calc(var(--vh) *70)");
+   padding: unquote("calc(var(--vh) * 10) 0 0");
    img {
      position: relative;
      width: 80%;

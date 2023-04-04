@@ -1,7 +1,7 @@
 .about-main-container {
   display: flex;
   flex-flow: column;
-  padding: calc(var(--vh) * 20) 0 40px;
+  padding: unquote("calc(var(--vh) * 20) 0 40px");
   color: $light-bkg-color;
   font-family: "Montserrat";
   font-weight: 400;

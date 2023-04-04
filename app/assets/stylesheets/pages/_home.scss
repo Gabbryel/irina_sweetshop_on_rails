@@ -2,7 +2,7 @@
     width: 100%;
     position: relative;
     // background: $light-bkg-color;
-    padding: calc(var(--vh) * 10) 0 0;
+    padding: unquote("calc(var(--vh) * 10) 0 0");
 }
 
 .hero-section {
@@ -11,19 +11,19 @@
     }
     position: relative;
     display: flex;
-    padding: calc(var(--vh) * 30) 20px calc(var(--vh) * 30);
+    padding: unquote("calc(var(--vh) * 30) 20px calc(var(--vh) * 30)");
     width: 100vw;
     background-color: $bkg-color;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1;
-    gap: calc(var(--vh) * 5);
+    gap: unquote("calc(var(--vh) * 5)");
     @media (min-width: 768px) {
-        min-height: calc(var(--vh) * 50);
+        min-height: unquote("calc(var(--vh) * 50)");
     }
     @media (min-width: 1100px) {
-        min-height: calc(var(--vh) * 68);
+        min-height: unquote("calc(var(--vh) * 68)");
         padding: 21vh 20px 12vh;
     }
     img {
@@ -50,7 +50,7 @@
     .fa-circle-chevron-down {
         position: absolute;
         color: #fff;
-        font-size: calc(var(--vh) * 4);
+        font-size: unquote("calc(var(--vh) * 4)");
         bottom: 20px;
         right: 20px;
         animation: arrow-animation 1.2s infinite;
@@ -150,8 +150,8 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    min-height: calc(var(--vh) * 40);
-    padding: 0 calc(var(--vh) * 5) calc(var(--vh) * 10);
+    min-height: unquote("calc(var(--vh) * 40)");
+    padding: unquote("0 calc(var(--vh) * 5) calc(var(--vh) * 10)");
     text-align: center;
     color: $font-color;
     background-color: $light-yellow;
@@ -173,8 +173,7 @@
 }
 
 .h2 {
-    // font-size: clamp(40px, 5rem, calc((var(--vh) * 2) + 3vw));
-    font-size: clamp(40px, 5rem, 5vw);
+    font-size: unquote("clamp(40px, 5rem, calc((var(--vh) * 2) + 3vw))");
     font-weight: 900;
     margin: 50px 0 100px 0;
     color: $light-bkg-color;
