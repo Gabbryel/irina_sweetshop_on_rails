@@ -173,7 +173,8 @@
 }
 
 .h2 {
-    font-size: clamp(40px, 5rem, calc((var(--vh) * 2) + 3vw));
+    // font-size: clamp(40px, 5rem, calc((var(--vh) * 2) + 3vw));
+    font-size: clamp(40px, 5rem, 5vw);
     font-weight: 900;
     margin: 50px 0 100px 0;
     color: $light-bkg-color;

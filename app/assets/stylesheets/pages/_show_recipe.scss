@@ -7,7 +7,7 @@
   flex-direction: column;
   padding: 20vh 0 10rem;;
   .recipe-show-back-btn {
-    justify-self: start;
+    justify-self: flex-start;
     margin-left: 50px
   }
   .recipe-show-main {
@@ -157,7 +157,7 @@
           #recipe-approve-form {
             .form-check {
               display: flex;
-              justify-content: start;
+              justify-content: flex-start;
               align-items: center;
               margin: 10px 0 0 0;
               padding: 0;
