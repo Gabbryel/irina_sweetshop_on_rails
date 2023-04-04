@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = policy_scope(Category).order('id ASC')
+    @categories = policy_scope(Category).order('id ASC').includes([photo_attachment: :blob])
     @page_title = 'Categorii de produse || Cofetăria Irina - Bacau'
   end
 

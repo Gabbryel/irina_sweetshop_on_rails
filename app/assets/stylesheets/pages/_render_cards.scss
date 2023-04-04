@@ -26,11 +26,7 @@
         font-weight: 300;
         }
     }
-}
-
-.card-index-new {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 4vh;
+    a {
+        grid-area: 2/1/2/-1;
+    }
 }

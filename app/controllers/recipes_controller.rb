@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_category
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: %i[show edit update destroy]
   
   def new
     @recipe = authorize Recipe.new
@@ -11,16 +11,28 @@ class RecipesController < ApplicationController
   def create
     @recipe = authorize Recipe.new(recipe_params)
     @recipe.category = @category
-    if @recipe.save
-      redirect_to category_recipes_path(@category)
-    else
-      render :new
-    end
+    respond_to do |format|
+      if @recipe.save
+        format.html { redirect_to retete_path(anchor: @recipe.slug, notice: 'Rețetă adaugată') }
+        format.json { render :show, status: created, location: @recipe}
+      else
+        format.turbo_stream
+        format.html { render :new }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
   end
+end
   
   def index
-    @recipes = policy_scope(Recipe).where(category_id: @category, publish: true).order('name ASC')
+    @recipes = policy_scope(Recipe).where(category_id: @category, publish: true).order('name ASC').includes([{photo_attachment: :blob}, :reviews])
     @page_title = "Rețete de #{ @category.name.downcase }"
+    @recipe = authorize Recipe.new
+  end
+
+  def admin_recipes
+    @pagy, @recipes = pagy(policy_scope(Recipe).order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+    @recipe = authorize Recipe.new
+
   end
 
   def show
@@ -33,15 +45,25 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = @recipe.nil? ? Recipe.find_by(slug: params[:recipe][:id]) : @recipe
+    @category = @category.nil? ? Category.find_by(slug: params[:recipe][:category_id]) : @category
     @page_title = 'Modifică rețeta - Cofetăria Irina - Bacău'
   end
 
   def update
-    @recipe.update(recipe_params)
-    if @recipe.update(recipe_params)
-      redirect_to category_recipes_path(@category)
-    else
-      render :edit
+    @recipes = Recipe.all.order(:slug).pluck(:slug)
+    @recipe = @recipe.nil? ? Recipe.find_by(slug: params[:recipe][:id]) : @recipe
+    @category = @category.nil? ? Category.find_by(slug: params[:recipe][:category_id]) : @category
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        page = (@recipes.index(@recipe.slug) / Pagy::DEFAULT[:items]).ceil
+        format.html { redirect_to retete_path(page: page, anchor: @recipe.slug, notice: 'Rețetă modificată') }
+        format.json { render :show, status: :updated, location: @recipe }
+      else
+        format.turbo_stream
+        format.html { render :edit }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
     end
   end
 

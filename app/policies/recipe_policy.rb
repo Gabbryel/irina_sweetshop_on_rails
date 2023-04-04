@@ -28,6 +28,10 @@ class RecipePolicy < ApplicationPolicy
     isUserAdm?
   end
 
+  def admin_recipes?
+    isUserAdm?
+  end
+
   private 
 
   def isUserAdm?

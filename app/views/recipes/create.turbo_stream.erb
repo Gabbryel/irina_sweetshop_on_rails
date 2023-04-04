@@ -1,0 +1,2 @@
+<%= turbo_stream.replace 'new_recipe', partial: 'form' %>
+<%= turbo_stream.append 'flash', partial: 'shared/flashes', locals: { notice: notice, alert: alert, message: 'Membru adăugat' } %>

@@ -1,0 +1,18 @@
+.pagy-bootstrap-nav {
+  grid-column: 1 / -1;
+  .pagination {
+    --bs-pagination-color: $bkg-color;
+  }
+  .page-link.active, .active > .page-link {
+    z-index: 3;
+    color: $light-yellow;
+    background-color: $light-bkg-color;
+    border-color: $light-bkg-color;
+  }
+  .page-link:hover {
+    z-index: 2;
+    color: $light-yellow;
+    background-color: $light-bkg-color;
+    border-color: $light-bkg-color;
+  }
+}

@@ -39,3 +39,5 @@ yarn-debug.log*
 .env*
 copy_dbase.sh
 latest.dump*
+/app/assets/builds/*
+!/app/assets/builds/.keep
