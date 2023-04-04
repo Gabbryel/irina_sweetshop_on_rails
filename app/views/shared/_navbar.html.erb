@@ -73,7 +73,7 @@
             <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center" %>
           </div>
         <div class="dropdown-item">
-          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path, method: :delete, class: "dropdown-item text-center" %>
+          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path,  data: { turbo_method: :delete }, class: "dropdown-item text-center" %>
         </div>
       <% else %>
         <div class="dropdown-item">
