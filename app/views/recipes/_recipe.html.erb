@@ -44,7 +44,7 @@
       </div>
       <% end %>
     </div>
-    <% if policy(recipe).edit? && policy(recipe).destroy? %>
+    <% if policy(recipe).edit? && policy(recipe).destroy? && current_page?(controller: 'recipes', action: 'admin_recipes')%>
       <div class='card-crud'>
         <%= link_to "#", data: { bs_toggle: "modal", bs_target: "#edit#{recipe.slug}"} do %><i class="far fa-edit"></i><% end %>
         <%= render partial: 'recipes/modal', locals: { new: false,  modal_id: "edit#{recipe.slug}", recipe: recipe } %>
