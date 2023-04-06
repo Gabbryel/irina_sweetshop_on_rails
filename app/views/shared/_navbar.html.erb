@@ -41,20 +41,20 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link  text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
-        <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center" %>
           <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center" %>
           <%= link_to 'Valori nutriționale', valori_nutritionale_path, class: "dropdown-item text-center" %>
         </div>
       </li>
 
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <%if user_signed_in? && current_user.admin  %>
         <%= link_to cart_path do %>
           <i class="fab fa-opencart nav-link text-center"></i>
         <% end %>
         <% end %>
-      </li>
+      </li> -->
       
       <li class="nav-item dropdown">
         <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i></a>

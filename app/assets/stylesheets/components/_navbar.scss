@@ -52,21 +52,18 @@
   background-color: $font-color;
 }
 
-.dropdown-menu-custom {
-  left: -150px;
+.dropdown-menu[data-bs-popper] {
+  right: -35px !important;
+  left: unset !important;
 }
 
 .dropdown-item {
   font-weight: 300;
   background-color: $font-color;
-  font-size: 1.5rem !important;
+  font-size: clamp(16px, .9rem, 20px) !important;;
   color: $light-bkg-color !important;
   padding: 0 10px;
   margin-bottom: 5px;
-  @media (min-width: 901px) {
-    font-size: 1rem !important;
-    padding: 0;
-  }
 }
 
 .dropdown-menu-custom_links {
