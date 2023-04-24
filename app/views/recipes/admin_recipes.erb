@@ -1,8 +1,13 @@
 <div class="cards-main-container">
-  <%= form_with model: @recipe do |form| %>
-  <%= form.text_field :title %>
-  <%= form.submit %>
-<% end %>
+  <div class="cards-filter">
+    <%= simple_form_for :search, url: retete_path, method: 'GET' do |f| %>
+      <%= f.submit 'Toate rețetele', class: "btn-default btn-select #{params[:search].nil? ? 'btn-active' : nil }" %>
+    <% end %>
+    <%= simple_form_for :search, url: retete_path, method: 'GET' do |f| %>
+      <%= f.hidden_field :favored, value: true %>
+      <%= f.submit 'Rețete recomandate', class: "btn-default btn-select #{params[:search] ? 'btn-active' : nil }" %>
+    <% end %>
+  </div>
     <%== pagy_bootstrap_nav(@pagy) %>
     <h3 class='text-center'>Administrare rețete(<%= @recipes.count %>)</h3>
     <%= render @recipes %>

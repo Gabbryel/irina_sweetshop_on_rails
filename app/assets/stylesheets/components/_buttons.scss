@@ -4,9 +4,6 @@
   font-size: inherit;
   font-weight: 400;
   border: 1px solid $font-color;
-  &:hover {
-    border: 1px solid $font-color;
-  }
 }
 
 .btn-user-forms {
@@ -51,4 +48,14 @@
   a {
     color: $font-color;
     }
+}
+
+.btn-active {
+  color: white;
+  background: #bb8b7a;
+}
+
+.btn-select {
+  padding: 0.2vh 0.4vw;
+  font-size: 12px;
 }
