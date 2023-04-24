@@ -204,6 +204,13 @@
                 justify-content: center;
                 align-items: center;
                 background-color: $light-bkg-color;
+                .favored-recipe {
+                    position: absolute;
+                    color: $heart-color;
+                    top: 58px;
+                    left: 8px;
+                    z-index: 2;
+                }
                 img {
                     position: relative;
                     width: 100%;

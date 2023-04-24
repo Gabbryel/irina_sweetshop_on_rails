@@ -12,6 +12,10 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 7vh 2vh;
     justify-items: center;
+    .cards-filter {
+        display: flex;
+        gap: 10px;
+    }
     h3 {
         font-family: $font-text;
         display: inline-block;

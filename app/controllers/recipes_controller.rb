@@ -30,7 +30,11 @@ end
   end
 
   def admin_recipes
-    @pagy, @recipes = pagy(policy_scope(Recipe).order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+    if params[:search].nil? || params[:search][:favored].empty?
+      @pagy, @recipes = pagy(policy_scope(Recipe).order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+    else
+      @pagy, @recipes = pagy(policy_scope(Recipe).where(favored: params[:search][:favored]).order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+    end
     @recipe = authorize Recipe.new
 
   end
