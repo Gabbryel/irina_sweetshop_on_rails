@@ -28,13 +28,15 @@
       .card-image-recipes {
         position: relative;
         height: 100%;
+        width: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
         img {
           position: relative;
           top: 0;
           left: 0;
-          width: 100%;
+          height: 100%;
         }
         .card-image__no-image {
           filter: blur(4px);
