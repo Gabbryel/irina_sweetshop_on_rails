@@ -11,7 +11,7 @@
     }
     position: relative;
     display: flex;
-    padding: unquote("calc(var(--vh) * 30) 20px calc(var(--vh) * 30)");
+    padding: unquote("calc(var(--vh) * 25) 20px calc(var(--vh) * 14)");
     width: 100vw;
     background-color: $bkg-color;
     flex-direction: column;
@@ -24,7 +24,7 @@
     }
     @media (min-width: 1100px) {
         min-height: unquote("calc(var(--vh) * 68)");
-        padding: 21vh 20px 12vh;
+        padding: 17dvh 20px 2dvh;
     }
     img {
         position: relative;
