@@ -70,7 +70,7 @@
 
 .hero-wave__container {
     position: relative;
-    top: -10px;
+    top: -1px;
     width: 100%;
     overflow: hidden;
     background-color: $light-yellow;
@@ -169,6 +169,15 @@
             justify-self: center;
             background-color: $light-yellow;
         }
+    }
+}
+
+.home-page__categories {
+    padding: 15rem 0;
+    .categories-index {
+        grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+        gap: 2.5rem;
+        justify-items: center;
     }
 }
 
