@@ -1,16 +1,7 @@
-<div class='card-container'>
+<div class='card-container' style="background-image: url('<%= cl_image_path(category.photo.key) %>');" data-controller="general" data-general-target="container" data-action="mouseenter->general#show mouseleave->general#hide">
   <% cat_link = category.has_models && !category.has_recipe ? category_cakemodels_path(category) : category_recipes_path(category) %>
   <%= link_to cat_link, class: 'card-paths-link' do %>
-    <div class="card-link">
-      <div class="card-link-container">
-        <div class="card-image">
-          <% if category.photo.present? %>
-          <%= cl_image_tag(category.photo.key, alt: category.name, class: 'card-image', fetch_format: :webp, width: 600, crop: :scale) %>
-          <% end %>
-        </div>
-          <p class="card-title"><%= category.name %></p>
-        </div>
-      </div>
+    <h3 data-general-target="title" class="card-title-h3"><%= category.name %></h3>
     <% end %>
   <div class="card-crud">
     <% if policy(category).edit? %>
@@ -25,4 +16,3 @@
     <% end %>
   </div>
 </div>
-  

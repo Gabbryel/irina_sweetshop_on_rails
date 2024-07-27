@@ -70,7 +70,7 @@
 
 .hero-wave__container {
     position: relative;
-    top: -10px;
+    top: -1px;
     width: 100%;
     overflow: hidden;
     background-color: $light-yellow;
@@ -156,6 +156,7 @@
     color: $font-color;
     background-color: $light-yellow;
     z-index: 1;
+    top: -3px;
     .samples-index {
         position: relative;
         width: 100%;
@@ -169,6 +170,15 @@
             justify-self: center;
             background-color: $light-yellow;
         }
+    }
+}
+
+.home-page__categories {
+    padding: 15rem 0;
+    .categories-index {
+        grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+        gap: 2.5rem;
+        justify-items: center;
     }
 }
 
@@ -188,6 +198,7 @@
     font-size: unquote("clamp(1vh, 1.6rem, calc(1.3vh + 1vw))");
     padding: 17vh 0 10vh;
     overflow: hidden;
+    top: -4px;
     p {
         margin-bottom: 5px;
     }
