@@ -3,13 +3,16 @@
     min-height: 80vh;
     width: 100%;
     max-width: 80%;
-    @media(min-width: 1500px) {
-        max-width: 1300px;
+    @media(min-width: 1200px) {
+        max-width: 1500px;
     }
     margin: 0 auto;
     padding: calc(8rem + 8vh) 0 4vh;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    @media (min-width: 1300px) {
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
+    }
     gap: 7vh 2vh;
     justify-items: center;
     .cards-filter {
