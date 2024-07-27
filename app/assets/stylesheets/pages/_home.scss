@@ -156,6 +156,7 @@
     color: $font-color;
     background-color: $light-yellow;
     z-index: 1;
+    top: -3px;
     .samples-index {
         position: relative;
         width: 100%;
@@ -197,6 +198,7 @@
     font-size: unquote("clamp(1vh, 1.6rem, calc(1.3vh + 1vw))");
     padding: 17vh 0 10vh;
     overflow: hidden;
+    top: -4px;
     p {
         margin-bottom: 5px;
     }

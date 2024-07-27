@@ -20,7 +20,7 @@
         z-index: 100;
         align-items: flex-end;
         justify-content: center;
-        h3 {
+        .card-title-h3 {
             font-size: 3rem;
             color: #fff;
             font-weight: 300;
@@ -33,6 +33,8 @@
             transition-timing-function: ease-in-out;
             transition-property: opacity;
             transition-duration: 1s;
+            text-align: center;
+            font-family: inherit;
         }
     }
     
