@@ -7,7 +7,7 @@
         max-width: 1500px;
     }
     margin: 0 auto;
-    padding: calc(8rem + 8vh) 0 4vh;
+    padding: calc(14rem + 10vh) 0 14rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     @media (min-width: 1300px) {
