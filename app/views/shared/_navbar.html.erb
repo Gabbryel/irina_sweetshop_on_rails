@@ -1,89 +1,93 @@
-<nav class="navbar navbar-expand-lg navbar-light navbar-lewagon p-0">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "logo_sm.png", alt: 'Cofetăria Irina Bacău' %>
-  <% end %>
-    <div class="navbar-title d-flex align-items-center">
-      <p class="text-center m-0"><%= @page_main_title %></p>
-    </div>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-birthday-cake navbar-custom"></i>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav align-items-center">
-      <!-- <li class="nav-item active">
-        <a href='#' class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
-          Covid-19
-        </a>
-      </li> -->
-      <li class="nav-item active">
-        <%= link_to "Categorii", categories_path, class: "nav-link text-center" %>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <% Category.all.each do |cat| %>
-          <% if cat.has_recipe %>
-            <%= link_to cat.name, category_recipes_path(cat), class: "dropdown-item text-center" %>
-          <% end %>
-          <% end %>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <% Category.all.each do |cat| %>
-            <% if cat.has_models %>
-              <%= link_to cat.name, category_cakemodels_path(cat), class: "dropdown-item text-center" %>
-          <% end %>
-          <% end %>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link  text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center" %>
-          <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center" %>
-          <%= link_to 'Valori nutriționale', valori_nutritionale_path, class: "dropdown-item text-center" %>
-        </div>
-      </li>
-
-      <!-- <li class="nav-item active">
-        <%if user_signed_in? && current_user.admin  %>
-        <%= link_to cart_path do %>
-          <i class="fab fa-opencart nav-link text-center"></i>
-        <% end %>
-        <% end %>
-      </li> -->
-      
-      <li class="nav-item dropdown">
-        <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
-        <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
-          <% if user_signed_in? %>
-            <% if current_user.admin %>
-            <div class="dropdown-item">
-              <%= link_to "Admin rețete", retete_path, class: "dropdown-item text-center" %>
-            </div>
-              <div class="dropdown-item">
-                <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center" %>
-              </div>
+<div class="navbar navbar-expand-lg navbar-light navbar-lewagon p-0">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-lewagon p-0">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo-white.png", alt: 'Cofetăria Irina Bacău' %>
+    <% end %>
+      <div class="navbar-title d-flex align-items-center">
+        <p class="text-center m-0"><%= @page_main_title %></p>
+      </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-birthday-cake navbar-custom"></i>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav align-items-center">
+        <!-- <li class="nav-item active">
+          <a href='#' class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
+            Covid-19
+          </a>
+        </li> -->
+        <li class="nav-item active">
+          <%= link_to "Categorii", categories_path, class: "nav-link text-center" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% Category.all.each do |cat| %>
+            <% if cat.has_recipe %>
+              <%= link_to cat.name, category_recipes_path(cat), class: "dropdown-item text-center" %>
             <% end %>
-
-          <div class="dropdown-item">
-            <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center" %>
+            <% end %>
           </div>
-        <div class="dropdown-item">
-          <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path,  data: { turbo_method: :delete }, class: "dropdown-item text-center" %>
-        </div>
-      <% else %>
-        <div class="dropdown-item">
-          <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center" %>
-        </div>
-      <% end %>
-        </div>
-      </li>
-      
-    </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% Category.all.each do |cat| %>
+              <% if cat.has_models %>
+                <%= link_to cat.name, category_cakemodels_path(cat), class: "dropdown-item text-center" %>
+            <% end %>
+            <% end %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link  text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'Cum comand?', how_to_order_path, class: "dropdown-item text-center" %>
+            <%= link_to 'Despre noi', about_path, class: "dropdown-item text-center" %>
+            <%= link_to 'Valori nutriționale', valori_nutritionale_path, class: "dropdown-item text-center" %>
+          </div>
+        </li>
+  
+        <!-- <li class="nav-item active">
+          <%if user_signed_in? && current_user.admin  %>
+          <%= link_to cart_path do %>
+            <i class="fab fa-opencart nav-link text-center"></i>
+          <% end %>
+          <% end %>
+        </li> -->
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
+          <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
+            <% if user_signed_in? %>
+              <% if current_user.admin %>
+              <div class="dropdown-item">
+                <%= link_to "Admin rețete", retete_path, class: "dropdown-item text-center" %>
+              </div>
+                <div class="dropdown-item">
+                  <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center" %>
+                </div>
+              <% end %>
+  
+            <div class="dropdown-item">
+              <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center" %>
+            </div>
+          <div class="dropdown-item">
+            <%= link_to "Log out, #{current_user.name_from_mail}", destroy_user_session_path,  data: { turbo_method: :delete }, class: "dropdown-item text-center" %>
+          </div>
+        <% else %>
+          <div class="dropdown-item">
+            <%= link_to "Login", new_user_session_path, class: "dropdown-item text-center" %>
+          </div>
+        <% end %>
+          </div>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+  <div class="navbar-wave">
+    <img class="hero-wave" src="https://res.cloudinary.com/dqbu9lypc/image/upload/v1726129402/wave-haikei-green_h0f63s.svg">
   </div>
-
-</nav>
+</div>

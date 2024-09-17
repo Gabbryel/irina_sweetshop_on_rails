@@ -3,16 +3,12 @@
     font-family: $font-title;
     font-weight: 300;
     width: 100%;
-    background-color: $light-bkg-color;
-    color: $font-color;
+    background-color: $eggplant;
+    color: $all-white;
     padding: 3vh 4vw;
     font-size: clamp(14px, 1.5rem, 20px);
     letter-spacing: .03em;
     margin-top: auto;
-    top: -4px;
-    a {
-      color: $font-color;
-    }
     .footer-main {
       display: flex;
       flex-direction: column;
@@ -46,14 +42,11 @@
           width: 4rem;
         }
         #webdev {
-          font-family: 'Frijole'; 
-          font-variant: small-caps; 
+          font-family: 'Frijole';
+          font-variant: small-caps;
           font-size: clamp(10px, 1.5rem, 12px);
           margin: 0 .5rem;
         }
-      }
-      .copyright-line-3 {
-        font-size: .5vh;
       }
     }
 }
@@ -69,7 +62,7 @@
       }
       p {
         a {
-          color: $font-color;
+          color: inherit;
         }
       }
       .footer-left {
@@ -89,7 +82,7 @@
       text-align: center;
       padding-top: 1rem;
       .copyright-line-1, .copyright-line-2 {
-        font-size: .6rem;
+        font-size: 1rem;
       }
       .copyright-line-2 {
         display: flex;
@@ -100,15 +93,30 @@
           width: 3rem;
         }
         #webdev {
-          font-family: 'Frijole'; 
-          font-variant: small-caps; 
-          font-size: .6rem;
+          font-family: $font-web;
+          font-size: 1.2rem;
           margin: 0 .5rem;
+          font-weight: 900;
         }
       }
       @media (min-width: 900px) {
         padding-top: 0;
       }
     }
+  }
+}
+
+.footer-wave {
+  position: inherit;
+  width: 100%;
+  background-color: $eggplant;
+  margin: 7rem 0 0 0;
+  img {
+    width: 200%;
+    @media(min-width: 756px) {
+      width: 100%;
+    }
+    filter: drop-shadow(4px 12px 4px #0002);
+
   }
 }
