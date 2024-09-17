@@ -26,8 +26,12 @@
   }
   .cakemodel-content__details {
     position: relative;
+    font-size: clamp(18px, 1.2rem, 28px);
+    ul {
+      font-size: 1em;
+    }
     p {
-      font-size: 1.1rem;
+      font-size: .8em;
     }
   }
 }
