@@ -21,7 +21,7 @@
     }
   }
   .cakemodel-content__recipe-additional {
-    font-size: .8rem;
+    font-size: clamp(18px, 1.2rem, 28px);
     line-height: .7;
   }
   .cakemodel-content__details {
