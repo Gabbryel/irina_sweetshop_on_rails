@@ -52,6 +52,7 @@ def update
 end
 
 def destroy
+  puts 'destroy works ************'
   @cakemodel.destroy
   redirect_to category_cakemodels_path(@category)
 end

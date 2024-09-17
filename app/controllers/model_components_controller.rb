@@ -19,9 +19,8 @@ class ModelComponentsController < ApplicationController
 
   def destroy
     @model_component = authorize ModelComponent.find(params[:id])
-    if @model_component.destroy
-      redirect_to cakemodel_path(@cakemodel)
-    end
+    @model_component.destroy
+    redirect_to cakemodel_path(@cakemodel)
   end
 
   private

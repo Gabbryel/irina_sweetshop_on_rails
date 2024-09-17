@@ -14,7 +14,7 @@
         <% end %>
       <% end %>
       <% if policy(category).destroy? %>
-        <%= link_to category_path(category), class: '', method: :delete do %>
+        <%= link_to category_path(category), class: '', data: { turbo_method: :delete, turbo_confirm: "Ești sigur că vrei să-l ștergi pe ?"} do %>
         <i class="fas fa-trash-alt"></i>
         <% end %>
       <% end %>

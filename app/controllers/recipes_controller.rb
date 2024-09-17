@@ -72,8 +72,13 @@ end
   end
 
   def destroy
-    @recipe.destroy
-    redirect_to category_recipes_path(@category)
+    if @recipe.destroy
+      respond_to do |format|
+        format.html { redirect_to category_recipes_path(@category), notice: "Ai șters cu succes!" }
+      end
+    else
+      redirect_to recipe_path(@recipe), notice: "Se pare că această specialitate medicală are extra-vieți! Mai încearcă încă o dată ștergerea!"
+    end
   end
 
   private

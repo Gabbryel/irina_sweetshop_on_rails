@@ -29,7 +29,7 @@
     <% end %>
     <% end %>
     <% if policy(cakemodel).destroy? %>
-      <%= link_to category_cakemodel_path(@category, cakemodel), method: :delete do %>
+      <%= link_to category_cakemodel_path(@category, cakemodel), data: { turbo_method: :delete, turbo_confirm: "Ești sigur că vrei să-l ștergi pe ?"} do %>
         <i class="fas fa-trash-alt color-fonts"></i>
     <% end %>
     <% end %>

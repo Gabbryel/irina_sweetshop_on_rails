@@ -7,8 +7,8 @@
         <%= link_to recipe_path(cm.recipe) do %>
           <b><%= cm.recipe.name %></b>
           <% if isUserAdmin? %>
-            <%= link_to cakemodel_model_component_path(@cakemodel, cm), method: :delete do %>
-            <i class="fas fa-trash-alt"></i>
+            <%= link_to cakemodel_model_component_path(@cakemodel, cm), data: { turbo_method: :delete, turbo_confirm: "Ești sigur că vrei să-l ștergi pe ?"} do %>
+              <i class="fas fa-trash-alt"></i>
             <% end %>
           <% end %>
         <%end %>
