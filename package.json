@@ -12,7 +12,7 @@
     "@rails/webpacker": "5.4.4",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
-    "esbuild": "^0.15.17",
+    "esbuild": "^0.23.1",
     "esbuild-rails": "^1.0.4",
     "jquery": "^3.6.4",
     "or": "^0.2.0",
@@ -23,7 +23,7 @@
   },
   "version": "0.1.0",
   "scripts": {
-    "build": "node esbuild.config.js",
-    "build:css": "sass ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build": "node esbuild.config.mjs",
+    "build:css": "sass ./app/assets/stylesheets/application.scss --no-source-map --load-path=node_modules"
   }
 }

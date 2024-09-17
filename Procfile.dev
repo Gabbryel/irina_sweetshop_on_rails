@@ -1,2 +1,3 @@
-web: unset PORT && bin/rails server
-js: yarn build --watch reload
+web: bin/rails server -p 3006
+js: yarn build --watch
+sass application.scss

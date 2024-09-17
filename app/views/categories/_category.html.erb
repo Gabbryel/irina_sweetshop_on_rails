@@ -1,18 +1,43 @@
-<div class='card-container' style="background-image: url('<%= cl_image_path(category.photo.key) %>');" data-controller="general" data-general-target="container" data-action="mouseenter->general#show mouseleave->general#hide">
+<div class="category-card">
+  <div class='category-card__photo' style="background-image: url('<%= cl_image_path(category.photo.key) %>');"></div>
+  <div class="category-card__info">
+    <h2><%= category.name %></h2>
+    <p><%= category.description %></p>
+    <% cat_link = category.has_models && !category.has_recipe ? category_cakemodels_path(category) : category_recipes_path(category) %>
+    <%= link_to 'Vezi rețete', cat_link, class: 'category-card__button' %>
+  </div>
+  <% if policy(category).edit? || policy(category).destroy? %>
+    <div class="card-crud">
+      <% if policy(category).edit? %>
+        <%= link_to edit_category_path(category), class: '' do %>
+        <i class="far fa-edit"></i>
+        <% end %>
+      <% end %>
+      <% if policy(category).destroy? %>
+        <%= link_to category_path(category), class: '', method: :delete do %>
+        <i class="fas fa-trash-alt"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- former card -->
+
+
+<!-- <div class='card-container' style="background-image: url('<%= cl_image_path(category.photo.key) %>');" data-controller="general" data-general-target="container" data-action="mouseenter->general#show mouseleave->general#hide">
   <% cat_link = category.has_models && !category.has_recipe ? category_cakemodels_path(category) : category_recipes_path(category) %>
   <%= link_to cat_link, class: 'card-paths-link' do %>
     <h3 data-general-target="title" class="card-title-h3"><%= category.name %></h3>
     <% end %>
-  <div class="card-crud">
-    <% if policy(category).edit? %>
-      <%= link_to edit_category_path(category), class: '' do %>
-      <i class="far fa-edit"></i>
-      <% end %>
-    <% end %>
-    <% if policy(category).destroy? %>
-      <%= link_to category_path(category), class: '', method: :delete do %>
-      <i class="fas fa-trash-alt"></i>
-      <% end %>
-    <% end %>
-  </div>
-</div>
+</div> -->

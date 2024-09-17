@@ -41,3 +41,5 @@ copy_dbase.sh
 latest.dump*
 /app/assets/builds/*
 !/app/assets/builds/.keep
+owner.sh
+copy_db.sh

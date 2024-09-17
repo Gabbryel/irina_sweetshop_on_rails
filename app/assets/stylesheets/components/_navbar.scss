@@ -1,6 +1,6 @@
+
 .navbar {
-  border-bottom: 1px solid black;
-  height: unquote("calc(var(--vh) * 10)");
+  height: unquote("calc(var(--vh) * 8.5)");
   min-height: 65px;
 }
 
@@ -8,17 +8,17 @@
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  background: $bkg-color !important;
+  background: $jungle-green !important;
   z-index: 100;
-  font-family: $font-title;
+  // font-family: $font-title;
   font-weight: 300;
-  padding: 0 20px !important;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
   ul {
-    background-color: $bkg-color;
+    background: $jungle-green !important;
+    padding-right: 2rem;
   }
 }
 
@@ -28,8 +28,9 @@
   justify-content: center;
   align-items: center;
   img {
-    max-width: 80%;
-    max-height: unquote("calc(var(--vh) * 10)");
+    max-width: 70%;
+    max-height: unquote("calc(var(--vh) * 9)");
+    z-index: 1;
   }
 }
 
@@ -38,18 +39,18 @@
 // }
 
 .nav-link {
-  color: $font-color !important;
+  color: $all-white !important;
 }
 
 .navbar-custom {
-  color: $font-color;
+  color: $all-white;
   font-size: clamp(13px, 3rem, 10vw);
 }
 
 
 .dropdown-menu {
   border: none;
-  background-color: $font-color;
+  background-color: $all-white;
 }
 
 .dropdown-menu[data-bs-popper] {
@@ -59,23 +60,27 @@
 
 .dropdown-item {
   font-weight: 300;
-  background-color: $font-color;
+  background-color: $all-white;
   font-size: clamp(16px, .9rem, 20px) !important;;
   color: $light-bkg-color !important;
   padding: 0 10px;
   margin-bottom: 5px;
+  &:hover {
+    color: $jungle-green !important;
+    font-weight: 500;
+  }
 }
 
 .dropdown-menu-custom_links {
   left: -80px;
 }
 .dropdown-item:hover {
-  background-color: $font-color;
+  background-color: $all-white;
 }
 
 .navbar-title {
   height: 100%;
-  color: $font-color;
+  color: $all-white;
   font-size: clamp(14px, 3rem, 5vw);
   font-weight: 800;
   align-self: center;
@@ -84,12 +89,26 @@
 
 .nav-item {
   a {
-    color: $font-color;
+    color: $all-white;
     font-size: 2rem;
   }
   @media (min-width: 901px) {
     a {
       font-size: 1.3rem;
     }
+  }
+}
+
+.navbar-wave {
+  position: absolute;
+  top: 8vh;
+  background: #00000000;
+  width: 200%;
+  @media(min-width: 1200px) {
+    width: 100%;
+  }
+  filter: drop-shadow(2px 5px 6px #00000070);
+  img {
+    width: 100%;
   }
 }

@@ -7,6 +7,7 @@
       <%= simple_form_for @category do |f| %>
         <%= f.input :name, label: 'Numele categoriei', placeholder: 'Ex.: Torturi, Prăjituri', label_html: { class: '' } %>
         <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: '' } %>
+        <%= f.input :description, label: 'Descriere' %>
         <%= f.input :has_recipe, label: 'Are rețetă?', label_html: { class: '' }, class: '' %>
         <%= f.input :has_models, label: 'Are modele de expus?', label_html: { class: '' } %>
         <div class='d-flex justify-content-center my-5'>
