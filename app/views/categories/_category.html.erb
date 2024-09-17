@@ -4,7 +4,7 @@
     <h2><%= category.name %></h2>
     <p><%= category.description %></p>
     <% cat_link = category.has_models && !category.has_recipe ? category_cakemodels_path(category) : category_recipes_path(category) %>
-    <%= link_to 'Vezi rețete', cat_link, class: 'category-card__button' %>
+    <%= link_to 'Vezi mai multe', cat_link, class: 'category-card__button' %>
   </div>
   <% if policy(category).edit? || policy(category).destroy? %>
     <div class="card-crud">
