@@ -12,31 +12,40 @@
   }
   .recipe-show-main {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     position: relative;
-    width: 100%;
     margin: 0 auto;
     padding-top: 5rem;
     justify-content: center;
-    .card-container-recipes {
+    align-items: center;
+    .cakemodel-photos-section {
       position: relative;
-      background-color: $light-bkg-color;
       overflow: hidden;
-      height: 300px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 2rem;
+      width: 260px;
+      order: 2;
+      @media(min-width: 1000px) {
+        order: 1;
+      }
       .card-image-recipes {
         position: relative;
-        height: 100%;
-        width: 100%;
+        width: 260px;
+        height: 390px;
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: 10px;
+        overflow: hidden;
+        align-self: center;
         img {
           position: relative;
           top: 0;
           left: 0;
           height: 100%;
+          object-fit: cover;
+          object-position: center;
         }
         .card-image__no-image {
           filter: blur(4px);
@@ -52,15 +61,45 @@
           width: 80%;
           text-align: center;
           margin-left: 10%;
+        }
       }
+      .additional-photos {
+        position: relative;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 260px;
+        .cakemodel__additional-photo {
+          position: relative;
+          width: 120px;
+          height: 130px;
+          overflow: hidden;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+        }
       }
     }
     .recipe-show-main-description {
-      width: 80%;
+      width: 100%;
       margin: 30px auto 0;
       font-size: clamp(16px, 1.5rem, 20px);
       text-align: justify;
       color: $eggplant;
+      .cakemodel-content {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 10px;
+        align-items: stretch;
+        padding: 0 3rem;
+        @media (min-width: 1000px) {
+          padding: 0;
+        }
+      }
       #link-to-nutri-val {
         font-size: 12px;
         font-weight: 500;
@@ -179,8 +218,8 @@
 @media (min-width: 900px) {
   .recipe-show-container {
     .recipe-show-main {
+      flex-direction: row;
       width: 90%;
-      max-width: 1000px;
       margin: 0 auto;
       gap: 50px;
       .recipe-show-main-description {

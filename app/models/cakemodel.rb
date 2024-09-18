@@ -7,6 +7,7 @@ class Cakemodel < ApplicationRecord
   belongs_to :design
 
   validates :name, presence: true
+  validates :photo, presence: true
 
   after_save :slugify, unless: :check_slug
   include RatingsConcern

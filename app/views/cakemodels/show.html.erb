@@ -4,24 +4,24 @@
 <% content_for :meta_description, @cakemodel.name %>
 <div class="recipe-show-container">
   <div class="recipe-show-main">
-    <div class="card-container-recipes">
+    <div class="cakemodel-photos-section">
       <div class="card-image-recipes cakemodel-card-image">
         <%= cl_image_tag(@cakemodel.photo.key, alt: @cakemodel.name, fetch_format: :webp, width: 500, crop: :scale) %>
       </div>
+      <%= render partial: 'partials/cakemodels/photos_library' %>
     </div>
     <div class="recipe-show-main-description">
       <h1><%= "#{@cakemodel.name}" %></h1>
       <%= render partial: 'partials/cakemodels/cakemodel_description' %>
       <%= render partial: 'partials/cakemodels/next_prev_section' %>
     </div>
-    <%= render partial: 'partials/cakemodels/add_photos' %>
   </div>
-  <%= render partial: 'partials/cakemodels/ratings' %>
+  <%#= render partial: 'partials/cakemodels/ratings' %>
   <% if isUserAdmin? %>
     <div class="cakemodel-admin-tools">
       <h2>Admin tools</h2>
-      <%= render partial: 'partials/cakemodels/add_photos_form' %>
-      <%= render partial: 'partials/cakemodels/add_recipes_form' %>
+      <%#= render partial: 'partials/cakemodels/add_photos_form' %>
+      <%#= render partial: 'partials/cakemodels/add_recipes_form' %>
     </div>
   <% end %>
 </div>
