@@ -60,7 +60,7 @@
       margin: 30px auto 0;
       font-size: clamp(16px, 1.5rem, 20px);
       text-align: justify;
-      color: $light-bkg-color;
+      color: $eggplant;
       #link-to-nutri-val {
         font-size: 12px;
         font-weight: 500;
@@ -90,10 +90,9 @@
       h1 {
         text-align: center;
         font-size: clamp(20px, 3.5rem, 48px);
-        color: $font-color;
+        color: inherit;
         font-weight: 900;
         padding-bottom: 30px;
-        font-family: $font-text;
       }
       p {
         padding-bottom: 20px;

@@ -2,6 +2,7 @@
     <% if recipe_count(@cakemodel) == 0 %>
       <p>Acest model nu are încă rețete atașate!</p>
     <% else %>
+    <p>Conținut:</p>
     <% components(@cakemodel).each do |cm| %>
       <p>
         <%= link_to recipe_path(cm.recipe) do %>
@@ -21,8 +22,9 @@
   <div class="cakemodel-content__details">
     <ul>
       <li>Design: <%= @design.name %> (+ <%= humanized_money_with_symbol(@design.price) %>/kg)</li>
-      <li>Greutate totală a modelului afișat: <%= total_weight(@cakemodel).round(2) %> kg. Preț total pentru modelul afișat: <u><%= total_price(@cakemodel) ? total_price(@cakemodel).round(2) : '--,--' %> lei</u>.</li>
       <li><%= @cakemodel.content %></li>
+      <br>
+      <li>Greutate totală a modelului afișat: <%= total_weight(@cakemodel).round(2) %> kg. Preț total pentru modelul afișat: <u><%= total_price(@cakemodel) ? total_price(@cakemodel).round(2) : '--,--' %> lei</u>.</li>
     </ul>
     <hr>
     <p>Fotografiile sunt reale, iar produsul finit va corespunde acestei descrieri.</p>

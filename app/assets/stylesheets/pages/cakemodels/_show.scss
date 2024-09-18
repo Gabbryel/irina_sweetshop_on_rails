@@ -10,18 +10,17 @@
     font-size: clamp(16px, 1.5rem, 24px);
   }
   a {
-    color: $font-color;
-    font-family: $font-text;
+    color: inherit;
     &:hover {
-      color: $hover-color;
+      color: $brown-van-dyke;
     }
-    .fa-trash-alt {
+    .fa-trash-can {
       font-weight: 100;
-      font-size: .9rem;
+      font-size: .7rem;
     }
   }
   .cakemodel-content__recipe-additional {
-    font-size: clamp(18px, 1.2rem, 28px);
+    font-size: clamp(16px, 1rem, 24px);
     line-height: .7;
   }
   .cakemodel-content__details {
