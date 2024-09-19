@@ -23,10 +23,11 @@
         font-family: $font-text;
         display: inline-block;
         width: 100%;
-        color: $light-bkg-color;
+        color: $eggplant;
         font-size: 4rem;
         font-weight: 900;
         padding-bottom: 1em;
+        text-shadow: 1px 1px 3px;
         grid-area: 1 / 1 / 1 / -1;
         span {
         font-size: 14px;
