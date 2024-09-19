@@ -87,6 +87,9 @@
       font-size: clamp(16px, 1.5rem, 20px);
       text-align: justify;
       color: $eggplant;
+      @media(min-width: 1000px) {
+        order: 2;
+      }
       .cakemodel-content {
         position: relative;
         overflow: hidden;
