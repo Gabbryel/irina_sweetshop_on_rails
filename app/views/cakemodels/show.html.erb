@@ -13,9 +13,9 @@
     <div class="recipe-show-main-description">
       <h1><%= "#{@cakemodel.name}" %></h1>
       <%= render partial: 'partials/cakemodels/cakemodel_description' %>
-      <%= render partial: 'partials/cakemodels/next_prev_section' %>
     </div>
   </div>
+  <%= render partial: 'partials/cakemodels/next_prev_section' %>
   <%#= render partial: 'partials/cakemodels/ratings' %>
   <% if isUserAdmin? %>
     <div class="cakemodel-admin-tools">

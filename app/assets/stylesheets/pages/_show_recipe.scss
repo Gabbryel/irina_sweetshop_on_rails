@@ -18,6 +18,32 @@
     padding-top: 5rem;
     justify-content: center;
     align-items: center;
+    .card-container-recipes {
+      position: relative;
+      width: 260px;
+      height: 420px;
+      border-radius: 20px;
+      overflow: hidden;
+      font-family: "Atma";
+      box-shadow: 2px 2px 15px #00000020, -2px -2px 15px #00000020;
+      .card-image-recipes {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $eggplant;
+        img {
+          position: relative;
+          object-fit: cover;
+          object-position: center;
+          height: 100%;
+        }
+      }
+    }
     .cakemodel-photos-section {
       position: relative;
       overflow: hidden;
@@ -96,7 +122,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: .4rem;
         padding: 10px;
         align-items: stretch;
         padding: 0 3rem;
