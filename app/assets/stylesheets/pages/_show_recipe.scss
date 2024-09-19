@@ -26,8 +26,8 @@
       gap: 2rem;
       width: 260px;
       order: 2;
-      align-self: flex-start;
       @media(min-width: 1000px) {
+        align-self: flex-start;
         order: 1;
       }
       .card-image-recipes {
