@@ -43,3 +43,5 @@ latest.dump*
 !/app/assets/builds/.keep
 owner.sh
 copy_db.sh
+
+.google
