@@ -12,6 +12,10 @@ class RecipePolicy < ApplicationPolicy
     true
   end
 
+  def search?
+    true
+  end
+  
   def new?
     create?
   end
