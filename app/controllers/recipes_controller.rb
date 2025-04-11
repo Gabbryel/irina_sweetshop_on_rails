@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show search]
   before_action :set_category
   before_action :set_recipe, only: %i[show edit update destroy]
   
@@ -25,18 +25,29 @@ end
   
   def index
     @recipes = policy_scope(Recipe).where(category_id: @category, publish: true).order('name ASC').includes([{photo_attachment: :blob}, :reviews])
-    @page_title = "Rețete de #{ @category.name.downcase }"
+    # @page_title = "Rețete de #{ @category.name.downcase }"
     @recipe = authorize Recipe.new
   end
 
+  def search
+    skip_authorization
+    if params[:search].present?
+      @pagy, @recipes = pagy(policy_scope(Recipe).where("name ILIKE ?", "%#{params[:search][:search_for]}%").order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+    end
+  end
+
   def admin_recipes
-    if params[:search].nil? || params[:search][:favored].empty?
+
+    if params[:search].nil?
       @pagy, @recipes = pagy(policy_scope(Recipe).order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
     else
-      @pagy, @recipes = pagy(policy_scope(Recipe).where(favored: params[:search][:favored]).order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+      if params[:search][:favored].present?
+        @pagy, @recipes = pagy(policy_scope(Recipe).where(favored: params[:search][:favored]).order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+      elsif params[:search][:search_for].present?
+        @pagy, @recipes = pagy(policy_scope(Recipe).where("name ILIKE ?", "%#{params[:search][:search_for]}%").order(:slug).includes([:photo_attachment, :reviews]).includes([{photo_attachment: :blob}, :reviews, :category]))
+      end
     end
     @recipe = authorize Recipe.new
-
   end
 
   def show

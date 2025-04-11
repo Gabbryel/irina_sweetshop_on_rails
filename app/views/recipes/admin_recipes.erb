@@ -7,6 +7,10 @@
       <%= f.hidden_field :favored, value: true %>
       <%= f.submit 'Rețete recomandate', class: "btn-default btn-select #{params[:search] ? 'btn-active' : nil }" %>
     <% end %>
+    <%= simple_form_for :search, url: retete_path, method: 'GET' do |f| %>
+      <%= f.input :search_for, label: false %>
+      <%= f.submit 'Caută', class: "btn-default btn-select #{params[:search] ? 'btn-active' : nil }" %>
+    <% end %>
   </div>
     <%== pagy_bootstrap_nav(@pagy) %>
     <h3 class='text-center'>Rețete(<%= @recipes.count %>)</h3>

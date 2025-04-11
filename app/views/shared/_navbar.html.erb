@@ -12,11 +12,14 @@
   
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav align-items-center">
-        <!-- <li class="nav-item active">
-          <a href='#' class="nav-link text-center" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
-            Covid-19
-          </a>
-        </li> -->
+        <li class="">
+          <%= simple_form_for :search, url: cautare_retete_path, method: 'GET' do |f| %>
+          <div class="d-flex gap-2">
+            <%= f.input :search_for, label: false, placeholder: 'Caută rețetă' %>
+            <%= f.submit 'Caută', class: "btn btn-dark" %>
+          </div>
+          <% end %>
+        </li>
         <li class="nav-item active">
           <%= link_to "Categorii", categories_path, class: "nav-link text-center" %>
         </li>
