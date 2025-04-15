@@ -151,6 +151,8 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
     min-height: unquote("calc(var(--vh) * 40)");
     padding: unquote("0 calc(var(--vh) * 5) calc(var(--vh) * 10)");
     text-align: center;

@@ -95,7 +95,7 @@ end
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :content, :photo, :kg_buc, :price_cents, :publish, :favored, :slug, :vegan, :energetic_value, :fats, :fatty_acids, :carbohydrates, :sugars, :proteins, :salt, :weight, :ingredients)
+    params.require(:recipe).permit(:name, :content, :photo, :kg_buc, :price_cents, :publish, :favored, :position, :slug, :vegan, :energetic_value, :fats, :fatty_acids, :carbohydrates, :sugars, :proteins, :salt, :weight, :ingredients)
   end
 
   def set_category

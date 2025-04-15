@@ -9,6 +9,7 @@
             <%= f.input :vegan %>
             <%= f.input :publish, label: 'Public?' %>
             <%= f.input :favored, label: 'Recomandat?' %>
+            <%= f.input :position, collection: 1..8 %>
           </div>
           <div class="nutritional-declaration">
             <%= f.input :energetic_value, label: false, placeholder: 'Val. energetică' %>
