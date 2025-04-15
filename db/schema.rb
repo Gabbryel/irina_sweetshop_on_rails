@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_17_073140) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_15_062649) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -58,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_17_073140) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "slug"
-    t.bigint "design_id", null: false
+    t.bigint "design_id"
     t.index ["category_id"], name: "index_cakemodels_on_category_id"
     t.index ["design_id"], name: "index_cakemodels_on_design_id"
   end
@@ -116,7 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_17_073140) do
     t.bigint "cakemodel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "recipe_id", null: false
+    t.bigint "recipe_id"
     t.index ["cakemodel_id"], name: "index_model_components_on_cakemodel_id"
     t.index ["recipe_id"], name: "index_model_components_on_recipe_id"
   end
@@ -124,7 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_17_073140) do
   create_table "model_images", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "cakemodel_id", null: false
+    t.bigint "cakemodel_id"
     t.index ["cakemodel_id"], name: "index_model_images_on_cakemodel_id"
   end
 
@@ -149,6 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_17_073140) do
     t.float "salt"
     t.float "weight", default: 0.0
     t.string "ingredients", default: "---"
+    t.integer "position", default: 9
     t.index ["category_id"], name: "index_recipes_on_category_id"
   end
 
