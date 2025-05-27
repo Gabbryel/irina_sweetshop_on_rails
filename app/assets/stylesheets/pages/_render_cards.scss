@@ -2,17 +2,17 @@
     position: relative;
     min-height: 80vh;
     width: 100%;
-    max-width: 80%;
+    max-width: 100%;
+    @media(min-width: 768px) {
+        max-width: 90%;
+    }
     @media(min-width: 1200px) {
-        max-width: 1500px;
+        max-width: 110rem;
     }
     margin: 0 auto;
     padding: calc(14rem + 10vh) 0 14rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    @media (min-width: 1300px) {
-        grid-template-columns: repeat(3, minmax(300px, 1fr));
-    }
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 7vh 2vh;
     justify-items: center;
     .cards-filter {

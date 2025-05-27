@@ -1,0 +1,20 @@
+<% no_photo_s = ["no-photo_xymghw.webp", "no-photo_a_rcwsdh.webp"] %>
+<div class="col text-center d-flex flex-column overflow-hidden rounded-3 position-relative bg-light m-3 p-0" style="width: 30rem; height: 40rem;">
+  <div class="recipe-photo h-90 w-100 overflow-hidden">
+    <% if recipe.photo.present? %>
+      <%= cl_image_tag(recipe.photo.key, alt: recipe.name, fetch_format: :webp, width: 500, crop: :scale, class: 'h-100 w-100 object-fit-cover object-position-center') %>
+    <% else %>
+      <%= cl_image_tag(no_photo_s.sample, alt: recipe.name, class: 'h-100 w-100 object-fit-cover object-position-center', fetch_format: :webp, width: 500, crop: :scale) %>
+      <div class="absolute">Imagine generică</div>
+    <% end %>
+  </div>
+  <div class="recipe-name d-flex justify-content-between h-10 text-center p-2 fs-4 align-items-center w-100">
+    <h2 class="fs-4 font-playfair"><%= recipe.name %></h2>
+    <p class="fs-5"><%= recipe.price %><span class="fs-6"> lei/<%= recipe.kg_buc == 'kg' ? 'kg' : 'buc' %></span></p>
+  </div>
+  <div class="recipe-description h-10 px-2 d-flex justify-content-end w-100">
+    <%= link_to recipe_path(recipe) do %>
+      <span class="badge rounded-pill text-bg-secondary fs-6">Citește despre rețetă</span>
+    <% end %>
+  </div>
+</div>
