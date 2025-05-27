@@ -1,3 +1,5 @@
+<% images = ['no-photo_xymghw.webp', 'no-photo_a_rcwsdh.webp', 'jsrnrkphctyr3juntbku2yjmvdcr.webp', 'v1745928510/idee-tort-2_ei3yzy.webp', 'idee-tort-3_q4vczw.webp', 'idee-tort-1_vbl6kb.webp', 'idee-tort_sklqis.jpg'] %>
+  
 <div class="card-container-recipes" id="<%= recipe.slug %>">
   <%= link_to recipe_path(recipe) do %>
     <div class="card-link-container-recipes">
@@ -14,7 +16,7 @@
         <% if recipe.photo.present? %>
           <%= cl_image_tag(recipe.photo.key, alt: recipe.name, fetch_format: :webp, width: 500, crop: :scale) %>
         <% else %>
-          <%= cl_image_tag('4792t30n2v5ovn35m550ffa45a24.png', alt: recipe.name, class: 'card-image__no-image', fetch_format: :webp, width: 500, crop: :scale) %>
+          <%= cl_image_tag(images.sample, alt: recipe.name, class: 'card-image__no-image', fetch_format: :webp, width: 500, crop: :scale) %>
           <p class="card-image__no-image-text">Fără imagine</p>
         <% end %> <!--if end-->
       </div>
@@ -27,11 +29,11 @@
         <div class="card-description">
           <span><%= card_recipe_description(recipe.content) %>... <i class="fa-solid fa-circle-info"></i></span>
         </div>
-        <div class='card-rating d-flex justify-content-center align-items-center'>
+        <!-- <div class='card-rating d-flex justify-content-center align-items-center'>
             <%= "Scor #{recipe.overall_rating.to_f.round(2)} din" if recipe.no_of_ratings.to_i > 0 %>
             <%= recipe.no_of_ratings %>
             <%= '☆' * recipe.overall_rating.to_i %>
-        </div>
+        </div> -->
       </div>
     </div>  
     <% end %>

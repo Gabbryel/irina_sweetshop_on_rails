@@ -54,9 +54,8 @@ table {
 }
 
 html, body {
-	font-family: $font-title;
 	min-height: unquote("calc(var(--vh) * 100)");
-	background-color: $body-bkg;
+	// background-color: $body-bkg;
 	display: flex;
 	flex-direction: column;
 	.design-elements {

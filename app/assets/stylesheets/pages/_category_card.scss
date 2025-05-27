@@ -67,8 +67,8 @@
 
 .card-container-recipes {
     position: relative;
-    width: 260px;
-    height: 420px;
+    width: 30rem;
+    height: 40rem;
     border-radius: 20px;
     overflow: hidden;
     font-family: $font-text;
@@ -142,12 +142,13 @@
             height: 100%;
             .card-image-recipes {
                 width: 100%;
-                height: 270px;
+                height: 28rem;
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-color: $eggplant;
+                // background-color: $eggplant;
+                background-color: antiquewhite;
                 .favored-recipe {
                     position: absolute;
                     color: $heart-color;
@@ -161,7 +162,7 @@
                     object-fit: cover;
                 }
                 .card-image__no-image {
-                    filter: blur(4px);
+                    filter: blur(10px);
                 }
                 .card-image__no-image-text {
                     position: absolute;
@@ -174,18 +175,18 @@
                 }
             }
             .card-title-recipes {
-                height: 150px;
+                height: 12rem;
                 text-align: center;
                 color: $eggplant;
                 .card-title-text {
                     position: relative;
-                    height: 70px;
+                    height: 8rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border-bottom: 1px solid #2b2424;
                     line-height: 1;
-                    font-size: 22px;
+                    font-size: 2rem;
                     font-weight: 700;
                     letter-spacing: -.02em;
                     padding: 0 10px;
@@ -197,21 +198,21 @@
                 }
                 .card-description {
                     position: relative;
-                    font-size: 14px;
-                    height: 45px;
+                    font-size: 1.2rem;
+                    height: 4rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     padding: 0 10px;
                 }
-                .card-rating {
-                    position: relative;
-                    font-size: 14px;
-                    color: $light-yellow;
-                    background: $eggplant;
-                    padding: 10px 0;
-                    height: 35px;
-                }
+                // .card-rating {
+                //     position: relative;
+                //     font-size: 1.2rem;
+                //     color: $light-yellow;
+                //     background: $eggplant;
+                //     padding: 10px 0;
+                //     height: 3rem;
+                // }
             }
         }
     }

@@ -73,7 +73,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    background-color: $light-yellow;
+    // background-color: $light-yellow;
     // @media (min-width: 768px) {
     //     top: -20px;
     // }
@@ -151,25 +151,21 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width: 1300px;
+    max-width: 110rem;
     margin: 0 auto;
     min-height: unquote("calc(var(--vh) * 40)");
     padding: unquote("0 calc(var(--vh) * 5) calc(var(--vh) * 10)");
     text-align: center;
-    background-color: $light-yellow;
+    // background-color: $light-yellow;
     z-index: 1;
     .samples-index {
         position: relative;
         width: 100%;
-        max-width: 1500px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
         justify-content: center;
-        @media (min-width: 1300px) {
-            grid-template-columns: repeat(4, minmax(260px, 1fr));
-        }
         margin: 0 auto;
-        gap: 50px;
+        gap: 3rem;
         z-index: 10;
         .card-container-recipes {
             justify-self: center;

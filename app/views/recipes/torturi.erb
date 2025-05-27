@@ -1,0 +1,17 @@
+<div class="container" 
+     style="margin: 10rem auto; font-family: 'Atma'; z-index: 11;">
+  <div class="b-day_recipes d-grid gap-1 my-5">
+    <% Recipe.where(category_id: 1).order(name: :asc).each do |recipe| %>
+    <div class="recipe p-4" id="<%= dom_id recipe %>" style="width: 100dvw; max-width: 1000px; margin: auto;">
+      <div class="recipe_price d-grid fs-3 fw-bold" style="grid-template-columns: 70% 30%;">
+        <span style="grid-area: 1/1/1/2;"><%= recipe.name %></span>
+        <span class="fs-4" style="grid-area: 1/2/1/3; justify-self: end;"><%= recipe.price %> lei/<%= recipe.kg_buc == 'kg' ? 'kg' : 'buc' %></span>
+      </div>
+      <div class="fs-5 d-grid" style="grid-template-columns: 50% 30% 20%;">
+        <p class="grid-area: 1/1/1/2;"><%= recipe.content %></p>
+      </div>
+      
+    </div>
+    <% end %>
+  </div>
+</div>
