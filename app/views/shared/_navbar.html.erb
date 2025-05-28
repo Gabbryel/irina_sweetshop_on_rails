@@ -68,6 +68,9 @@
             <% if user_signed_in? %>
               <% if current_user.admin %>
               <div class="dropdown-item">
+                <%= link_to "Modifică prețuri", preturi_path, class: "dropdown-item text-center" %>
+              </div>
+              <div class="dropdown-item">
                 <%= link_to "Admin rețete", retete_path, class: "dropdown-item text-center" %>
               </div>
                 <div class="dropdown-item">

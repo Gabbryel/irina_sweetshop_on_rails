@@ -36,6 +36,10 @@ class RecipePolicy < ApplicationPolicy
     isUserAdm?
   end
 
+  def update_prices?
+    isUserAdm?   
+  end
+
   private 
 
   def isUserAdm?

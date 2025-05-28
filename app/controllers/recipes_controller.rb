@@ -60,6 +60,7 @@ end
   end
 
   def edit
+    binding.pry
     @recipe = @recipe.nil? ? Recipe.find_by(slug: params[:recipe][:id]) : @recipe
     @category = @category.nil? ? Category.find_by(slug: params[:recipe][:category_id]) : @category
     @page_title = 'Modifică rețeta - Cofetăria Irina - Bacău'
@@ -80,6 +81,13 @@ end
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
+    # binding.pry
+  end
+
+  def update_prices
+    @categories = policy_scope(Category).order(:slug)
+    @recipes = policy_scope(Recipe).order(:slug)
+    authorize Recipe
   end
 
   def destroy
