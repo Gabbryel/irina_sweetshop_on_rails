@@ -1,0 +1,14 @@
+<div class="container mt-10 mb-5">
+  <% @categories.each do |c| %>
+    <h2 class="mt-5"><%= c.name %></h2>
+    <div class="d-flex flex-wrap flex-row justify-content-between gap-3">
+    <% c.recipes.sort{ |x, y| x.slug <=> y.slug}.each do |r| %>
+      <%= simple_form_for([c, r]) do |f| %>
+      <h5 class="mt-4 mb-3"><%= r.name %></h2>
+        <%= f.input :price_cents, label: 'Prețul în bani' %>
+        <%= f.button :submit %>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
+</div>
