@@ -14,7 +14,7 @@ class Cart < ApplicationRecord
   MAX_DELIVERY_WINDOW_DAYS = 30
 
   STATUS_LABELS = {
-    "no_status" => "Fără status",
+    "no_status" => "Pending · Neplătită",
     "seen" => "Văzută",
     "in_production" => "În producție",
     "ready" => "Gata de livrare",
@@ -98,9 +98,9 @@ class Cart < ApplicationRecord
   end
 
   def register_checkout_session!(session_id:, payment_intent: nil)
-        update!(stripe_checkout_session_id: session_id,
-          stripe_payment_intent_id: payment_intent,
-          status: STATUSES[:in_production])
+    update!(stripe_checkout_session_id: session_id,
+      stripe_payment_intent_id: payment_intent,
+      status: STATUSES[:no_status])
   end
 
   def customer_name
@@ -118,6 +118,8 @@ class Cart < ApplicationRecord
 
   def status_badge_variant
     case status
+    when STATUSES[:no_status]
+      'info'
     # Orange for current/active statuses
     when STATUSES[:seen], STATUSES[:in_production], STATUSES[:ready]
       'warning'

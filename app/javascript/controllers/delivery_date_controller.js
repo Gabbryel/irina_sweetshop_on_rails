@@ -14,11 +14,17 @@ export default class extends Controller {
     if (!this.hasInputTarget) return;
 
     const disabled = this.parseBlockedAsIso();
+    const defaultDate = this.inputTarget.value || null;
 
     this.picker = flatpickr(this.inputTarget, {
       dateFormat: "Y-m-d",
+      altInput: true,
+      altFormat: "d.m.Y",
+      allowInput: true,
+      disableMobile: true,
       minDate: this.hasMinDateValue ? this.minDateValue : null,
       maxDate: this.hasMaxDateValue ? this.maxDateValue : null,
+      defaultDate,
       disable: disabled,
       onChange: this.handleChange.bind(this),
     });

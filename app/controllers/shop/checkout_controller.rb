@@ -179,7 +179,7 @@ module Shop
       end
 
       unless stripe_session.payment_status == 'paid'
-          cart.update(status: Cart::STATUSES[:seen]) if cart.status != Cart::STATUSES[:delivered]
+          cart.update(status: Cart::STATUSES[:no_status]) if cart.status != Cart::STATUSES[:delivered]
         redirect_to shop_cart_path, alert: 'Plata nu a fost finalizată. Te-am redirecționat înapoi la coș.'
         return
       end
@@ -203,7 +203,7 @@ module Shop
     end
 
     def cancel
-      @cart.update(status: Cart::STATUSES[:seen]) if @cart.status != Cart::STATUSES[:completed]
+      @cart.update(status: Cart::STATUSES[:no_status]) if @cart.status != Cart::STATUSES[:completed]
 
       respond_to do |format|
         format.html { redirect_to shop_cart_path, alert: 'Plata a fost anulată. Puteți încerca din nou.' }
