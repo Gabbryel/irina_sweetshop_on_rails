@@ -29,7 +29,25 @@
                 </div>
               </div>
 
-              <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'auth-form' }) do |f| %>
+              <% flash_message = flash[:alert] || flash[:error] || flash[:notice] %>
+              <% if flash_message.present? %>
+                <div class="alert <%= flash[:alert] || flash[:error] ? 'alert-danger' : 'alert-info' %>" role="alert">
+                  <%= flash_message %>
+                </div>
+              <% end %>
+
+              <% if resource.errors.any? %>
+                <div class="alert alert-danger" role="alert">
+                  <p class="fw-semibold mb-2">Te rugăm să corectezi următoarele:</p>
+                  <ul class="mb-0">
+                    <% resource.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'auth-form', data: { turbo: false } }) do |f| %>
                 <%= f.error_notification %>
 
                 <div class="mb-4">

@@ -187,12 +187,14 @@
                          data-delivery-date-disabled-dates-value="<%= formatted_disabled_dates.to_json %>"
                          data-delivery-date-min-date-value="<%= delivery_min_iso || Date.current.iso8601 %>">
                     <%= f.label :delivery_date, 'Data livrării', class: 'form-label fw-semibold' %>
-                    <%= f.date_field :delivery_date,
+                    <%= f.text_field :delivery_date,
                                      name: 'checkout[delivery_date]',
                                      value: delivery_date_value,
-                                     min: delivery_min_iso || Date.current.iso8601,
                                      class: 'form-control',
                                      id: 'checkout_delivery_date',
+                                     autocomplete: 'off',
+                                     inputmode: 'numeric',
+                                     placeholder: 'ZZ.LL.AAAA',
                                      data: { delivery_date_target: 'input' } %>
                     <small class="form-text text-muted">
                       Prima dată disponibilă este <strong><%= delivery_min_iso ? I18n.l(@delivery_min_date) : I18n.l(Date.current + 1.day) %></strong> în funcție de restricțiile rețetelor din coș. Pentru urgențe contactați-ne telefonic.
