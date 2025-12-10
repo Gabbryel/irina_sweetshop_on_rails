@@ -53,8 +53,7 @@ class Cart < ApplicationRecord
       session.delete(:cart_token)
     end
 
-    current_cart ||= create!(user: user)
-    current_cart.update!(guest_token: nil) if current_cart.guest_token.present?
+    current_cart.update!(guest_token: nil) if current_cart&.guest_token.present?
     current_cart
   end
 
