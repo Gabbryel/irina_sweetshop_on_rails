@@ -184,7 +184,7 @@ module Shop
         return
       end
 
-        cart.update!(status: Cart::STATUSES[:delivered])
+        cart.update!(status: Cart::STATUSES[:no_status])
       # If the order was placed by a guest without email, expose a printable confirmation for the customer
       guest_flow = cart.guest_no_email?
       send_completion_emails(cart)
