@@ -12,11 +12,21 @@
         </tr>
 
         <% @items.each do |i| %>
-        <tr class="rem1">
-          <div>
-            <td class="pr-1"><%= i.name %></td>
-            <td class="pr-1"><%= i.price %></td>
-          </div>
+        <tr class="rem1 align-middle">
+          <td class="pr-1">
+            <div class="fw-semibold"><%= i.name %></div>
+            <% if i.item_extras.reload.any? %>
+              <ul class="list-unstyled mb-0 small text-muted mt-1 extras-list">
+                <% i.item_extras.each do |ie| %>
+                  <li class="d-flex justify-content-between">
+                    <span class="text-primary">+ <%= ie.name %></span>
+                    <span class="text-muted"><%= Money.new(ie.price_cents, Money.default_currency).format %></span>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </td>
+          <td class="pr-1"><%= i.price.format %></td>
           <div class="cart-update-items rem1">
             <%= simple_form_for i do |f| %>
               <td class="pl-1 quantity-input"><%= f.input :quantity, label: false %></td>
@@ -26,7 +36,7 @@
               </td>
             <% end %>
           </div>
-          <td class="px-1"><%= i.total %></td>
+          <td class="px-1"><%= i.total.format %></td>
           <td class="px-1">
             <%= link_to item_path(i), method: :delete do %>
               <i class="fas fa-trash-alt"></i>
@@ -36,7 +46,7 @@
         <% end %>
 
       </table>
-      <h3 class="my-5"><%= link_to "Sumar comandă (#{@cart.grand_total} lei)", root_path, class: 'btn btn-lg button-default button-rounded mb-5 font-family px-4 py-2 rem1' %></h3>
+      <h3 class="my-5"><%= link_to "Sumar comandă (#{@cart.total_money.format})", root_path, class: 'btn btn-lg button-default button-rounded mb-5 font-family px-4 py-2 rem1' %></h3>
       </div>
   </div>
 </div>

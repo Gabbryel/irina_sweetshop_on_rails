@@ -1,53 +1,75 @@
 <% @page_title = 'Editare cont - Cofetăria Irina Bacău' %>
-<div class="container edit-user-container account-edit fonts-family color-fonts">
+
+<div class="container account-edit-page margin-top-20dvh">
   <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-6 font-family">
-      <h4 class="text-center mb-4 font-family">Editează contul: <%= current_user.email %></h4>
-      
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= f.error_notification %>
-      
-        <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true, label: "Adresa de email", class: 'rem1-2' %>
-      
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <div class="col-12 col-lg-10">
+      <div class="card shadow-sm border-0 account-edit-card">
+        <div class="card-body p-4 p-md-5">
+          <div class="d-flex justify-content-between flex-wrap gap-2 mb-3">
+            <div>
+              <span class="badge bg-dark text-uppercase">Setări cont</span>
+              <h1 class="h4 mt-2 mb-0">Editează contul</h1>
+              <p class="text-muted mb-0">Autentificat ca <strong><%= current_user.email %></strong></p>
+            </div>
+            <div class="text-end small text-muted">
+              <div><i class="fa-regular fa-shield"></i> Siguranță cont</div>
+            </div>
+          </div>
+
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'row g-3' }) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="col-12 col-md-6">
+              <%= f.input :email, required: true, autofocus: true, label: "Adresa de email", input_html: { class: 'form-control' } %>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p class="text-warning small mt-1">Aștepți confirmarea pentru: <%= resource.unconfirmed_email %></p>
+              <% end %>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.input :password,
+                          hint: "Lasă gol dacă nu vrei să modifici",
+                          required: false,
+                          label: "Parola nouă",
+                          input_html: { autocomplete: "new-password", class: 'form-control' } %>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.input :password_confirmation,
+                          required: false,
+                          label: "Confirmă parola nouă",
+                          input_html: { autocomplete: "new-password", class: 'form-control' } %>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.input :current_password,
+                          hint: "Necesar pentru a salva modificările",
+                          required: true,
+                          label: "Parola curentă",
+                          input_html: { autocomplete: "current-password", class: 'form-control' } %>
+            </div>
+
+            <div class="col-12 d-flex justify-content-between flex-wrap gap-2 mt-2">
+              <%= link_to 'Înapoi', :back, class: 'btn btn-outline-secondary' %>
+              <%= f.button :submit, "Salvează modificările", class: "btn btn-dark" %>
+            </div>
           <% end %>
-      
-          <%= f.input :password,
-                      hint: "*lasă spațiul gol dacă nu vrei să modifici",
-                      required: false,
-                      input_html: { autocomplete: "new-password" },
-                      input_html: { class: 'rem1-2'},  
-                      label: "Parola nouă" %>
-          <%= f.input :password_confirmation,
-                      required: false,
-                      input_html: { autocomplete: "new-password" },
-                      label: "Confirmă parola nouă" %>
-          <%= f.input :current_password,
-                      hint: "*avem nevoie de parola existentă",
-                      required: true,
-                      input_html: { autocomplete: "current-password" },
-                      label: "Parola veche" %>
         </div>
-      
-        <div class="form-actions d-flex justify-content-center">
-          <%= f.button :submit, "Salvează modificările", class: "btn btn-sm button-default button-rounded fonts-family color-fonts my-3" %>
-        </div>
-      <% end %>
-      
-      
+      </div>
     </div>
   </div>
 
-  <div class="row cancel-account_container font-family mt-5">
-    <div class="col">
-      <p class="text-center rem1-3">Vrei să ne părăsești?   <%= link_to "Șterge contul!!!", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-sm button-default button-rounded fonts-family color-fonts my-3" %></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 col-md-8 col-lg-6">
-      <%= link_to "Înapoi", :back, class: 'btn btn-sm button-default button-rounded font-family color-fonts my-3'  %>
+  <div class="row justify-content-center mt-4">
+    <div class="col-12 col-lg-10">
+      <div class="card border-0 shadow-sm bg-light">
+        <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+          <div>
+            <h2 class="h6 mb-1 text-danger">Șterge contul</h2>
+            <p class="text-muted small mb-0">Această acțiune este definitivă. Toate datele asociate contului vor fi eliminate.</p>
+          </div>
+          <%= link_to "Șterge contul", registration_path(resource_name), data: { confirm: "Ești sigur că vrei să ștergi contul?" }, method: :delete, class: "btn btn-outline-danger" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

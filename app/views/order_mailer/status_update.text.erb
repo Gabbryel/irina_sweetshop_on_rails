@@ -1,0 +1,8 @@
+Statusul comenzii tale #<%= @order.id %> a fost actualizat la <%= @order.status_label %>.
+
+Total: <%= @order.total_money.format %>
+Data livrării/ridicării: <%= @order.delivery_date.present? ? l(@order.delivery_date) : 'n/a' %>
+Metodă: <%= @order.method_of_delivery.presence || '-' %>
+
+Îți mulțumim,
+Echipa Irina Sweet

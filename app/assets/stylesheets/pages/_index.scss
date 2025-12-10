@@ -13,7 +13,9 @@
 @import "login";
 @import "signup";
 @import "account_edit";
+@import "account_dashboard";
 @import "cakemodel_form";
+@import "dashboard_nav";
 // @import "index_cakemodel";
 @import "form_new_recipe";
 @import "category_show";
@@ -21,10 +23,14 @@
 @import "order";
 @import "animate";
 @import "show_cart";
+@import "shop_cart";
+@import "floating_cart";
 @import "recipe_card";
+@import "online_orders";
 @import "not_found";
 @import "_easter_modal_2021";
 @import "dashboard";
+@import "dashboard_delivery_dates";
 @import "cakemodels/index";
 @import "nutritional_values";
 

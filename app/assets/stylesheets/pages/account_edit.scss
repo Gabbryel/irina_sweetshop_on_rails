@@ -1,11 +1,20 @@
-.edit-user-container {
+.account-edit-page {
   position: relative;
-  padding-top: 20vh;
-  padding-bottom: 15vh;
-  .required {
-    font-size: 1.2rem;
-  }
+  margin-top: 20dvh;
+  padding-top: 2rem;
+  padding-bottom: 12vh;
 }
-.optional {
-  font-size: 1.2rem;
+
+.account-edit-card {
+  border-radius: 16px;
+}
+
+.account-edit-page .form-control {
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.account-edit-page .hint {
+  font-size: 0.85rem;
+  color: #6c757d;
 }

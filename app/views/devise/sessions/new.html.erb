@@ -1,20 +1,85 @@
-<% @page_title = 'Login cont Cofetăria irina' %>
-<div class="devise-main-container">
-  <div>
-    <p class='text-center mt-5'>Intră în cont:</p>
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs rem1-3">
-        <%= f.input :email, required: false, autofocus: true, label: 'e-mail', input_html: { autocomplete: "email" }, label_html: { class: 'rem1-3' } %>
-        <%= f.input :password, required: false, label: 'parola', input_html: { autocomplete: "current-password" } %>
-        <%= f.input :remember_me, label: 'Vreau să rămân logat!', as: :boolean if devise_mapping.rememberable? %>
+<% @page_title = 'Autentificare | Cofetăria Irina' %>
+
+<div class="auth-layout container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="row g-4 auth-wrapper">
+        <div class="col-12 col-lg-5">
+          <div class="auth-hero p-4 p-lg-5 h-100 rounded-4">
+            <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-3">Bun venit</span>
+            <h1 class="h3 fw-bold mb-3">Intră în cont și comandă rapid</h1>
+            <p class="text-muted mb-4">Accesează istoricul comenzilor, reia coșuri și primește notificări despre starea livrării.</p>
+            <ul class="list-unstyled mb-0 auth-perks">
+              <li><i class="fa-solid fa-check text-success me-2"></i>Finalizezi mai repede comenzile</li>
+              <li><i class="fa-solid fa-check text-success me-2"></i>Vezi preferințele salvate</li>
+              <li><i class="fa-solid fa-check text-success me-2"></i>Primești alerte despre livrare</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <div class="card border-0 shadow-lg auth-card rounded-4">
+            <div class="card-body p-4 p-lg-5">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted mb-1 small">Autentificare</p>
+                  <h2 class="h4 fw-bold mb-0">Intră în contul tău</h2>
+                </div>
+                <div class="auth-avatar d-inline-flex align-items-center justify-content-center rounded-circle">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+              </div>
+
+              <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'auth-form' }) do |f| %>
+                <div class="mb-3">
+                  <%= f.input :email,
+                              required: true,
+                              autofocus: true,
+                              label: 'Adresă de email',
+                              input_html: { autocomplete: "email", class: 'form-control form-control-lg' },
+                              label_html: { class: 'form-label fw-semibold' } %>
+                </div>
+
+                <div class="mb-3">
+                  <div class="position-relative" data-controller="password-visibility">
+                    <%= f.input :password,
+                                required: true,
+                                label: 'Parolă',
+                                input_html: { autocomplete: "current-password", class: 'form-control form-control-lg', data: { password_visibility_target: 'input' } },
+                                label_html: { class: 'form-label fw-semibold' } %>
+                    <button type="button"
+                            class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 d-inline-flex align-items-center justify-content-center"
+                            style="width: 40px; height: 40px; border-radius: 999px;"
+                            data-action="password-visibility#toggle"
+                            data-password-visibility-target="toggle">
+                      <i class="fa-solid fa-eye" data-password-visibility-target="icon"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <% if devise_mapping.rememberable? %>
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="form-check">
+                      <%= f.check_box :remember_me, class: 'form-check-input' %>
+                      <%= f.label :remember_me, 'Ține-mă minte', class: 'form-check-label' %>
+                    </div>
+                    <%= link_to 'Ai uitat parola?', new_password_path(resource_name), class: 'small text-decoration-none fw-semibold' %>
+                  </div>
+                <% end %>
+
+                <div class="d-grid">
+                  <%= f.button :submit, 'Intră în cont', class: 'btn btn-primary btn-lg shadow-sm' %>
+                </div>
+              <% end %>
+
+              <div class="auth-links text-center mt-4">
+                <p class="mb-2 text-muted">Nu ai cont?</p>
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    
-      <div class='d-flex justify-content-center my-5'>
-        <%= f.button :submit, "Intră în cont", class: 'btn-default btn-user-forms text-center' %>
-      </div>
-    <% end %>
-  </div>
-  <div class='mt-1 d-flex flex-column align-items-center justify-content-center'>
-    <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>

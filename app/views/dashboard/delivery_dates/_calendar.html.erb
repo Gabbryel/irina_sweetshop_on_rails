@@ -1,0 +1,50 @@
+<% day_names = %w[Lu Ma Mi Jo Vi Sâ Du] %>
+<% calendar_start = start_date.beginning_of_week(:monday) %>
+<% calendar_end = end_date.end_of_week(:sunday) %>
+<% today = Date.current %>
+
+<div class="delivery-calendar__legend">
+  <span class="delivery-calendar__legend-dot is-available"></span>
+  <span class="delivery-calendar__legend-text">Disponibil</span>
+  <span class="delivery-calendar__legend-dot is-blocked ms-4"></span>
+  <span class="delivery-calendar__legend-text">Indisponibil</span>
+  <span class="delivery-calendar__legend-dot is-locked ms-4"></span>
+  <span class="delivery-calendar__legend-text">Blocat după <%= max_window_days %> de zile</span>
+</div>
+
+<div class="delivery-calendar__grid">
+  <% day_names.each do |name| %>
+    <div class="delivery-calendar__weekday"><%= name %></div>
+  <% end %>
+
+  <% current_date = calendar_start %>
+  <% while current_date <= calendar_end %>
+    <% offset = (current_date - today).to_i %>
+    <% locked = offset > max_window_days %>
+    <% outside_range = current_date < start_date || current_date > end_date %>
+    <% blocked = blocked_dates.include?(current_date) || locked %>
+    <% label = current_date.day %>
+
+    <% if outside_range %>
+      <div class="delivery-calendar__day is-outside"><span><%= label %></span></div>
+    <% else %>
+      <%= form_with url: toggle_dashboard_delivery_dates_path,
+                    method: :post,
+                    data: { turbo_frame: "delivery-calendar-frame" },
+                    html: { class: "delivery-calendar__form" } do |form| %>
+        <%= form.hidden_field :blocked_on, value: current_date.iso8601 %>
+        <%= form.button type: :submit,
+                        class: [
+                          "delivery-calendar__day",
+                          (blocked ? "is-blocked" : nil),
+                          (locked ? "is-locked" : nil)
+                        ].compact.join(" "),
+                        disabled: locked do %>
+          <span><%= label %></span>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% current_date += 1.day %>
+  <% end %>
+</div>

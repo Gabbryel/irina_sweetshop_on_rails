@@ -1,0 +1,147 @@
+<main class="atelier" aria-label="Pagina nouă Cofetăria Irina">
+  <!-- HERO -->
+  <section class="atelier__hero">
+    <div class="atelier__hero__content">
+      <span class="atelier__tag">Atelier de deserturi artizanale · Bacău</span>
+      <h1>Torturi și prăjituri create lent, pentru momente care contează.</h1>
+      <p>Inspirate de natură, coapte în cuptorul propriu și decorate manual. Fiecare desert spune o poveste cu gust autentic și culori domoale.</p>
+      <div class="atelier__cta">
+        <%= link_to 'Descoperă colecția', categories_path, class: 'atelier__button atelier__button--primary' %>
+        <%= link_to 'Procesul nostru', '#atelier-proces', class: 'atelier__button atelier__button--ghost' %>
+      </div>
+    </div>
+    <div class="atelier__hero__visual">
+      <div class="atelier__hero__image">
+        <%= cl_image_tag('idee-tort-3_q4vczw.webp', fetch_format: :webp, width: 900, crop: :scale, alt: 'Tort artizanal Cofetăria Irina', loading: 'eager', decoding: 'async') %>
+      </div>
+      <div class="atelier__hero__note">
+        <p>„Fiecare tort pleacă din laboratorul nostru însoțit de un buletin de poveste: ingrediente, tehnici și sugestii de servire.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="atelier__story" aria-label="Despre noi">
+    <div class="atelier__story__image">
+      <%= cl_image_tag('idee-tort-1_vbl6kb.webp', fetch_format: :webp, width: 780, crop: :scale, alt: 'Detalii din laboratorul Cofetăria Irina', loading: 'lazy', decoding: 'async') %>
+    </div>
+    <div class="atelier__story__copy">
+      <h2>Deserturile copilăriei reinterpretate cu tehnici moderne.</h2>
+      <p>Din anii ’70, laboratorul Irina păstrează gustul deserturilor românești, completat astăzi de inspirații nordice și japoneze. Folosim ingrediente locale și metode lente de preparare, pentru texturi memorabile și echilibru perfect între dulce și aromă.</p>
+      <ul class="atelier__list">
+        <li><i class="fa-solid fa-lemon" aria-hidden="true"></i> Cremele sunt gătite pe bain-marie, fără premixuri industriale.</li>
+        <li><i class="fa-solid fa-mortar-pestle" aria-hidden="true"></i> Decorurile sunt modelate manual, desert cu desert.</li>
+        <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Fiecare comandă primește timp dedicat pentru testare și finisare.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OFFER HIGHLIGHTS -->
+  <section class="atelier__highlights" aria-label="Ce ne definește">
+    <article>
+      <h3>Ingrediente curate</h3>
+      <p>Unt de fermă, frișcă naturală, ciocolată belgiană, creme din fructe adevărate. Zero premixuri.</p>
+    </article>
+    <article>
+      <h3>Design calm și elegant</h3>
+      <p>Pasteluri, volume diafane și detalii botanice inspirate de sezonul actual.</p>
+    </article>
+    <article>
+      <h3>Consultanță pentru evenimente</h3>
+      <p>Ședințe private de degustare, storyboard pentru candy bar și servicii de styling la locație.</p>
+    </article>
+  </section>
+
+  <!-- FAVORITES -->
+  <% if @recipes.present? %>
+    <section class="atelier__favorites" aria-label="Selecție din meniul actual">
+      <div class="atelier__section-head">
+        <h2>Patru deserturi de sezon</h2>
+        <p>Disponibile în laboratorul nostru în această lună</p>
+      </div>
+      <div class="atelier__card-grid">
+        <% @recipes.each do |r| %>
+          <%= link_to recipe_path(r), class: 'atelier-card', id: "recipe-#{r.slug}" do %>
+            <div class="atelier-card__image">
+              <% if r.photo.present? %>
+                <%= cl_image_tag(r.photo.key, alt: r.name, fetch_format: :webp, width: 520, crop: :fill, loading: 'lazy', decoding: 'async') %>
+              <% else %>
+                <%= cl_image_tag('no-photo_xymghw.webp', alt: r.name, fetch_format: :webp, width: 520, crop: :fill, loading: 'lazy', decoding: 'async') %>
+              <% end %>
+            </div>
+            <div class="atelier-card__body">
+              <h3><%= r.name %></h3>
+              <% unit_value = r.sold_by.presence || r.kg_buc.presence || 'kg' %>
+              <p><%= r.price %> lei / <%= unit_value %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
+  <!-- PROCESS -->
+  <section id="atelier-proces" class="atelier__process" aria-label="Procesul nostru">
+    <div class="atelier__section-head">
+      <h2>Procesul Irina în patru pași atenți</h2>
+    </div>
+    <ol class="atelier__timeline">
+      <li>
+        <span class="step">1</span>
+        <div>
+          <h3>Brief & degustare</h3>
+          <p>Ne întâlnim în laborator, discutăm conceptul și alegem degustarea potrivită evenimentului.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">2</span>
+        <div>
+          <h3>Rețetă personalizată</h3>
+          <p>Stabilim aromele, textura și cromatica. Adaptăm rețeta la preferințe și intoleranțe.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">3</span>
+        <div>
+          <h3>Atelier deschis</h3>
+          <p>În zilele de producție te invităm să vezi live etapele-cheie: glazurare, decor, împachetare.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">4</span>
+        <div>
+          <h3>Livrare & styling</h3>
+          <p>Transport în cutii izoterme, montaj la locație și styling final pentru candy bar.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <% if @testimonials.present? %>
+    <section class="atelier__testimonials" aria-label="Ce spun clienții noștri">
+      <div class="atelier__section-head">
+        <h2>Vocea comunității</h2>
+        <p>Apreciem fiecare mesaj primit după evenimente</p>
+      </div>
+      <div class="atelier__testimonials__grid">
+        <% @testimonials.each do |review| %>
+          <article>
+            <p>“<%= truncate(review.content, length: 180) %>”</p>
+            <footer>— <%= review.author %></footer>
+          </article>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
+  <!-- FINAL CTA -->
+  <section class="atelier__cta" aria-label="Rezervă o discuție">
+    <h2>Planificăm împreună desertul tău semnătură.</h2>
+    <p>Scrie-ne câteva detalii despre eveniment și revenim cu propuneri concrete în maximum 24h.</p>
+    <div class="atelier__cta__actions">
+      <%= link_to 'Trimite un mesaj', 'https://api.whatsapp.com/send?phone=0040755054002&text=Bună!%20Aș%20vrea%20o%20ofertă%20pentru...', class: 'atelier__button atelier__button--primary', target: '_blank', rel: 'noopener' %>
+      <%= link_to 'Vezi portofoliul', categories_path, class: 'atelier__button atelier__button--ghost' %>
+    </div>
+  </section>
+</main>

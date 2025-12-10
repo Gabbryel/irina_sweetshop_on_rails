@@ -2,113 +2,381 @@
   <% content_for :meta_image, cl_image_path(@recipe.photo.key) %>
 <% end %>
 <% content_for :meta_description, @recipe.content %>
-<div class="recipe-show-container">
-  <div class="recipe-show-main">
-    <div class="card-container-recipes">
-      <div class="card-image-recipes">
-        <% if @recipe.photo.present? %>
-          <%= cl_image_tag(@recipe.photo.key, alt: @recipe.name, fetch_format: :webp, width: 500, crop: :scale) %>
-        <% else %>
-          <%= cl_image_tag('4792t30n2v5ovn35m550ffa45a24.png', alt: @recipe.name, class: 'card-image__no-image', fetch_format: :webp, width: 500, crop: :scale) %>
-        <p class="card-image__no-image-text">Fără imagine</p>
-        <% end %>
-      </div>
-    </div>
-    <div class="recipe-show-main-description">
-      <h1><%= @recipe.name %></h1>
 
-      <% @recipe.content.split('.') do |line| %>
-        <p class="recipe-show-main-description-text"><%= "#{line}." %>
-        <% if @recipe.kg_buc == 'buc' %>
-          <span>Greutate: <%= @recipe.weight %>g</span>
-        <% end %>
-        </p>
-      <% end %>
-      <p id="link-to-nutri-val"><%= link_to 'Apasă aici pentru valori nutriționale și ingrediente', valori_nutritionale_path(anchor: @recipe.slug, id_color: "#{@recipe.slug}")  %></p>
-     
+<% content_segments = @recipe.content.to_s.split(/\r?\n/).map(&:strip).reject(&:blank?) %>
+<% hero_paragraph = content_segments.shift %>
+<% additional_copy = content_segments.join("\n\n") %>
+<% ingredients = @recipe.ingredients.to_s.split(/\r?\n|,/).map(&:strip).reject(&:blank?) %>
+<% story_copy = @recipe.story.to_s.strip %>
+<% nutrition_values = {
+     'Valoare energetică (kcal)' => @recipe.energetic_value,
+     'Grăsimi (g)' => @recipe.fats,
+     'Acizi grași saturați (g)' => @recipe.fatty_acids,
+     'Glucide (g)' => @recipe.carbohydrates,
+     'Zaharuri (g)' => @recipe.sugars,
+     'Proteine (g)' => @recipe.proteins,
+     'Sare (g)' => @recipe.salt
+   }.reject { |_, value| value.blank? } %>
+<% has_price_cents = @recipe.price_cents.to_i.positive? %>
+<% base_unit_label = @recipe.kg_buc.presence || 'kg' %>
+<% sale_unit_label = @recipe.sold_by.presence || base_unit_label %>
+<% price_money = humanized_money_with_symbol(@recipe.price) if has_price_cents %>
+<% online_price_cents = @recipe.online_selling_price_cents.to_i %>
+<% weight_quantity = @recipe.weight_quantity_value %>
+<% weight_precision = weight_quantity.positive? && (weight_quantity % 1).zero? ? 0 : 2 %>
 
-      <div class="recipe-show-main-price ">
-        <% if @recipe.price != 0 %>
-        <span>Preț: </span>
-          <%= humanized_money_with_symbol(@recipe.price).downcase %>
-          <span>/<%= @recipe.kg_buc %></span>
-        <% elsif @recipe.price == 0 %>
-        <a href="tel:0040755054002">Info <i class="fas fa-mobile-alt"></i></a>
-        <% end %>
-      </div>
+<% disclaimer_key = case @recipe.category&.name&.downcase
+                   when 'torturi' then :torturi
+                   when 'tradiționale' then :traditionale
+                   when 'prăjituri', 'prajituri' then :prajituri
+                   end %>
 
+<div class="container py-5 recipe-show">
+      <section class="recipe-intro card border-0 shadow-sm mb-5">
+        <div class="card-body recipe-intro-body">
+      <div class="row g-4 align-items-center">
+        <div class="col-xl-6">
+          <div class="recipe-meta mb-4">
+            <span class="badge rounded-pill text-bg-light text-dark">Categorie: <%= @recipe.category&.name %></span>
+            <% if @recipe.favored? %>
+              <span class="badge rounded-pill bg-danger-subtle text-danger-emphasis"><i class="fa-solid fa-heart me-1"></i>Recomandată</span>
+            <% end %>
+            <% if @recipe.vegan? %>
+              <span class="badge rounded-pill bg-success-subtle text-success-emphasis">Vegan</span>
+            <% end %>
+            <% if @recipe.online_order? %>
+              <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis"><i class="fa-solid fa-cart-shopping me-1"></i>Comandă online</span>
+            <% end %>
+          </div>
 
-    <% if @recipe.category.name.downcase == 'torturi' %>
-        <div class="recipe-show-main__disclaimer">
-          <p>Imaginile sunt cu titlu de prezentare. <br>Prețul per kg se referă strict la rețeta prezentată,  <span class='standard'>design standard. <i class="fa-solid fa-computer-mouse"></i><%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: "recipe-show-std-image", alt: 'Tort design standard') %></span><br>
-            
-            <%= link_to "Sugestii de prezentare cu simulare de preț", category_cakemodels_path(@recipe.category) %>
-            <i class="fa-solid fa-computer-mouse"></i></p>
-          <hr>
-          <p><b>Prețurile pentru design la cerere, după model furnizat de client:</b></p>
-          <p><b>Design la cerere simplu: 110 lei/kg</b></p>
-          <p><b>Design la cerere cu accesorii modelate sau turnate în ciocolată: 130 lei/kg + figurinele.</b></p>
+          <h1 class="display-5 fw-bold text-dark mb-3"><%= @recipe.name %></h1>
+          <!-- <p class="text-muted mb-4">Actualizată <%= time_ago_in_words(@recipe.updated_at) %> în urmă</p>
+
+          <% if hero_paragraph.present? %>
+            <p class="lead text-dark mb-4"><%= hero_paragraph %></p>
+          <% end %> -->
+
+          <ul class="recipe-highlights list-unstyled d-flex flex-wrap gap-2 mb-4">
+            <% if @recipe.price_cents.present? %>
+              <li class="highlight-item"><i class="fa-solid fa-money-bills"></i> <b><%= @recipe.price_cents/100.0 %> lei</li></b>
+            <% end %>
+            <% if @recipe.weight.present? %>
+              <li class="highlight-item"><i class="fa-solid fa-weight-scale"></i> <%= @recipe.weight %> g</li>
+            <% end %>
+            <% base_unit = @recipe.kg_buc.presence %>
+            <% if base_unit.present? %>
+              <li class="highlight-item"><i class="fa-solid fa-balance-scale"></i> Preț per <%= base_unit %></li>
+            <% end %>
+            <% sale_unit = @recipe.sold_by.presence %>
+            <% if sale_unit.present? && sale_unit != base_unit %>
+              <li class="highlight-item"><i class="fa-solid fa-tag"></i> Vânzare online per <%= sale_unit %></li>
+            <% end %>
+            <% if @recipe.per_piece_sale? && @recipe.online_selling_weight.present? %>
+              <li class="highlight-item"><i class="fa-solid fa-scale-balanced"></i> <%= number_with_precision(@recipe.online_selling_weight, precision: 2) %> kg / buc</li>
+            <% end %>
+            <% if @recipe.minimal_order.present? %>
+              <li class="highlight-item"><i class="fa-solid fa-layer-group"></i> Comandă minimă: <%= number_with_precision(@recipe.minimal_order, precision: 2) %></li>
+            <% end %>
+            <% if @recipe.supports_online_ordering? %>
+              <li class="highlight-item"><i class="fa-solid fa-bolt"></i> Checkout rapid</li>
+            <% end %>
+            <!-- <% if hero_paragraph.present? %>
+            <p class="lead text-dark mb-4"><%= hero_paragraph %></p>
+          <% end %> -->
+          </ul>
+
+          <% if @recipe.online_order? %>
+            <% is_weight_unit = sale_unit_label.to_s.casecmp('kg').zero? %>
+            <% min_quantity = @recipe.minimal_order.to_f if @recipe.minimal_order.present? %>
+            <% default_min = is_weight_unit ? 0.1 : 1 %>
+            <% quantity_min = if min_quantity && min_quantity.positive?
+                                 is_weight_unit ? min_quantity : min_quantity.ceil
+                               else
+                                 default_min
+                               end %>
+            <% quantity_step = is_weight_unit ? 0.1 : 1 %>
+            <% quantity_default = [quantity_min, default_min].max %>
+            <% quantity_label = is_weight_unit ? 'Cantitate (kg)' : "Cantitate (#{sale_unit_label})" %>
+            <div class="order-card border rounded-4 p-4 mb-4">
+              <%= form_with url: shop_cart_items_path, method: :post, data: { turbo: false }, class: 'row g-3 align-items-end' do |f| %>
+                <div class="col-4">
+                  <%= f.label :quantity, quantity_label, class: 'form-label small text-uppercase fw-semibold text-muted' %>
+                  <%= f.number_field :quantity,
+                                      name: 'cart_item[quantity]',
+                                      value: quantity_default,
+                                      min: quantity_min,
+                                      step: quantity_step,
+                                      class: 'form-control form-control-lg' %>
+                </div>
+                <div class="col-8">
+                  <%= hidden_field_tag :recipe_id, @recipe.id %>
+                  <% if @recipe.has_extras? && @recipe.extras.respond_to?(:available) && @recipe.extras.available.any? %>
+                    
+                  <% end %>
+                  <%= f.submit 'Adaugă în coș', class: 'btn btn-success btn-lg w-100 d-flex align-items-center justify-content-center gap-2' %>
+                </div>
+                <fieldset class="mb-3">
+                      <legend class="fs-6 mb-2">Extrasuri opționale</legend>
+                      <div class="row g-2">
+                        <% @recipe.extras.available.each do |extra| %>
+                          <div class="col-4">
+                            <div class="form-check">
+                              <%= check_box_tag 'cart_item[extra_ids][]', extra.id, false, id: "extra_#{extra.id}", class: 'form-check-input' %>
+                              <%= label_tag "extra_#{extra.id}", class: 'form-check-label' do %>
+                                <strong><%= extra.name %></strong>
+                                <% if extra.price_cents.to_i > 0 %>
+                                  - <%= humanized_money_with_symbol(extra.price) %>
+                                <% end %>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </fieldset>
+              <% end %>
+              <p class="text-muted small mb-0 mt-1">
+                Plata se procesează securizat prin Stripe.
+                <% if price_money %>
+                  Preț per <%= base_unit_label %>: <strong><%= price_money.downcase %></strong>.
+                <% end %>
+                <% if online_price_cents.positive? && weight_quantity.positive? %>
+                  Preț per bucată de minim 1,4 kg (<%= number_with_precision(weight_quantity.to_f, precision: weight_precision) %> g): <strong><%= humanized_money_with_symbol(@recipe.online_selling_price).downcase %></strong>.
+                <% end %>
+              </p>
+            </div>
+          <% else %>
+            <div class="alert alert-warning d-flex gap-3 align-items-start" role="alert">
+              <i class="fa-solid fa-circle-info mt-1"></i>
+              <div>
+                Comanda online nu este disponibilă pentru acest produs. Contactează echipa la <a href="tel:0040755054002">0755 054 002</a> pentru detalii și disponibilitate.
+              </div>
+            </div>
+          <% end %>
+
+          <!-- <div class="d-flex flex-wrap gap-3">
+            <%= link_to valori_nutritionale_path(anchor: @recipe.slug, id_color: @recipe.slug), class: 'btn btn-dark btn-lg' do %>
+              <i class="fa-solid fa-clipboard-list me-2"></i>Valori nutriționale
+            <% end %>
+            <%= link_to 'tel:0040755054002', class: 'btn btn-outline-dark btn-lg' do %>
+              <i class="fa-solid fa-phone me-2"></i>Contact rapid
+            <% end %>
+          </div> -->
         </div>
-          <% elsif @recipe.category.name.downcase == 'tradiționale' %>
-          <div class="recipe-show-main__disclaimer">
-            <p>Greutatea produsului finit diferă de la un caz la altul.</p>
-            <p>Prețul final al produsului va fi calculat la cântărire.(preț/kg * greutate)</p>
-            <p>Greutatea aproximativă: cozonac (1.3-1.4kg), pască cu brînză (1, 1.2, 1.5kg), pască cu ciocolată (0.9 - 1.1kg),
-              pască cu smântână (0.9-1.1kg).
-            </p>
-          </div>
-          <% elsif @recipe.category.name.downcase == 'prăjituri' %>
-            <div class="recipe-show-main__disclaimer">
-            <p>Produsele realizate în laboratorul nostru au în compoziție ingrediente naturale, fără conservanți.</p>
-            <p>Vă rugăm să le păstrați la rece și să le consumați în cel mult 3 zile (prăjituri, torturi, ... ), 5 zile (pască, cozonac, ... )  </p>
-          </div>
-        <% end %>
-    <div class="btn-next-prev-container">
-      <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@recipes, @recipe) %>
 
-      <% if prev_id && curr_id > 0 %>
-        <%= link_to recipe_path(prev_id), class: 'btn-next-prev' do %>
-          <i class="fas fa-arrow-circle-left"></i> <%= "#{prev_text}" %>
-        <% end %>
-      <% end %>
-      
-      <% if next_id %>
-        <%= link_to recipe_path(next_id), class: 'btn-next-prev' do %>
-          <%= "#{next_text}" %> <i class="fas fa-arrow-circle-right"></i>
-        <% end %>
-      <% end %>
-
-  </div>
-
-    
-    <!-- <div class="p-0 create-item">
-      <%= simple_form_for @item do |f| %>
-      <%= f.input :quantity, label: "Alege cantitatea" %>
-      
-      <% if current_user %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <% end %>
-      <%= f.hidden_field :name, :value => @recipe.name %>
-      <%= f.hidden_field :kg_buc, :value => @recipe.kg_buc %>
-      <%= f.hidden_field :price_cents, :value => @recipe.price_cents %>
-      <% if user_signed_in? %>
-      <%= f.submit "Adaugă în coș", class: 'btn button-default button-rounded d-inline' %>
-      <% else %>
-      <p class="rem1">Comanda online  nu este încă disponibilă!</p>
-      <% end %>
-      <% end %>
-    </div> -->
-  </div>
-</div>
-  <!-- <div class="recipe-show-ratings">
-    <h2>Rating & recenzii </h2>
-    <div class="recipe-show-ratings-container">
-      <div class="recipe-show-ratings-reviews-form">
-        <%= render 'partials/reviews/reviews_new_form' %>
-      </div>
-      <div class="recipe-show-ratings-reviews-container">
-        <%= render 'partials/reviews/reviews_index' %>
+        <div class="col-xl-6">
+          <figure class="recipe-media ratio ratio-1x1 rounded-4 overflow-hidden shadow-sm">
+            <% if @recipe.photo.present? %>
+              <%= cl_image_tag(@recipe.photo.key, alt: @recipe.name, fetch_format: :webp, class: 'w-100 h-100', style: 'object-fit: cover;') %>
+            <% else %>
+              <div class="d-flex align-items-center justify-content-center h-100 bg-light">
+                <%= cl_image_tag('4792t30n2v5ovn35m550ffa45a24.png', alt: @recipe.name, class: 'img-fluid opacity-75', style: 'object-fit: contain;', fetch_format: :webp, width: 480, crop: :scale) %>
+              </div>
+            <% end %>
+          </figure>
+        </div>
       </div>
     </div>
-  </div> -->
+  </section>
+
+  <div class="row g-4">
+    <div class="col-xl-7">
+      <% accordion_id = "recipe-accordion-#{@recipe.id}" %>
+      <section class="card border-0 shadow-sm recipe-story">
+        <div class="card-body p-0">
+          <div class="px-4 px-lg-5 py-4 py-lg-5">
+            <div class="row g-4">
+              <div class="col-lg-7">
+                <div class="fs-6 d-flex flex-column gap-4">
+                  <% if story_copy.present? %>
+                    <div>
+                      <h3 class="h6 text-uppercase text-muted mb-3"><%= @recipe.name%></h3>
+                      <% if hero_paragraph.present? %>
+            <p class="lead text-dark mb-4"><%= hero_paragraph %></p>
+          <% end %>
+                    </div>
+                  <% end %>
+
+                 
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="d-flex flex-column gap-3">
+                  <% sale_unit_label = @recipe.sold_by.presence || @recipe.kg_buc.presence || 'kg' %>
+                  <div class="d-flex align-items-start gap-3">
+                    <div class="badge rounded-circle bg-primary-subtle text-primary-emphasis d-inline-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                      <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                    <div>
+                      <p class="text-uppercase text-muted small mb-1">Disponibilitate online</p>
+                      <p class="mb-0 fw-semibold"><%= @recipe.online_order? ? 'Poți comanda direct din site' : 'Disponibil doar în cofetărie' %></p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex align-items-start gap-3">
+                    <div class="badge rounded-circle bg-success-subtle text-success-emphasis d-inline-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                      <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div>
+                      <p class="text-uppercase text-muted small mb-1">Unitate de vânzare</p>
+                      <p class="mb-0 fw-semibold"><%= sale_unit_label %></p>
+                      <% if @recipe.per_piece_sale? && @recipe.online_selling_weight.present? %>
+                        <p class="text-muted small mb-0">Greutate orientativă: <%= number_with_precision(@recipe.online_selling_weight, precision: 2) %> kg / buc</p>
+                      <% elsif @recipe.weight.present? %>
+                        <p class="text-muted small mb-0">Greutate declarată: <%= @recipe.weight %> g</p>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <% if @recipe.minimal_order.present? %>
+                    <div class="d-flex align-items-start gap-3">
+                      <div class="badge rounded-circle bg-warning-subtle text-warning-emphasis d-inline-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                        <i class="fa-solid fa-layer-group"></i>
+                      </div>
+                      <div>
+                        <p class="text-uppercase text-muted small mb-1">Comandă minimă</p>
+                        <p class="mb-0 fw-semibold"><%= number_with_precision(@recipe.minimal_order, precision: 2) %> <%= sale_unit_label %></p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion accordion-flush recipe-accordion mt-4" id="<%= accordion_id %>">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="<%= "#{accordion_id}-overview-heading" %>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<%= "#{accordion_id}-overview" %>" aria-expanded="true" aria-controls="<%= "#{accordion_id}-overview" %>">
+                    Povestea desertului
+                  </button>
+                </h2>
+                <div id="<%= "#{accordion_id}-overview" %>" class="accordion-collapse collapse show" aria-labelledby="<%= "#{accordion_id}-overview-heading" %>" data-bs-parent="#<%= accordion_id %>">
+                  <div class="accordion-body text-muted fs-6">
+                    <%= simple_format(story_copy.presence || additional_copy.presence || hero_paragraph || @recipe.content) %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="<%= "#{accordion_id}-ingredients-heading" %>">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<%= "#{accordion_id}-ingredients" %>" aria-expanded="false" aria-controls="<%= "#{accordion_id}-ingredients" %>">
+                    Ingrediente
+                  </button>
+                </h2>
+                <div id="<%= "#{accordion_id}-ingredients" %>" class="accordion-collapse collapse" aria-labelledby="<%= "#{accordion_id}-ingredients-heading" %>" data-bs-parent="#<%= accordion_id %>">
+                  <div class="accordion-body">
+                    <% if ingredients.any? %>
+                      <ul class="list-unstyled recipe-ingredients-grid mb-0">
+                        <% ingredients.each do |ingredient| %>
+                          <li><i class="fa-solid fa-check text-success me-2"></i><%= ingredient %></li>
+                        <% end %>
+                      </ul>
+                    <% else %>
+                      <p class="text-muted mb-0">Ingredientele nu au fost completate pentru această rețetă.</p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="<%= "#{accordion_id}-nutrition-heading" %>">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<%= "#{accordion_id}-nutrition" %>" aria-expanded="false" aria-controls="<%= "#{accordion_id}-nutrition" %>">
+                    Valori nutriționale
+                  </button>
+                </h2>
+                <div id="<%= "#{accordion_id}-nutrition" %>" class="accordion-collapse collapse" aria-labelledby="<%= "#{accordion_id}-nutrition-heading" %>" data-bs-parent="#<%= accordion_id %>">
+                  <div class="accordion-body">
+                    <% if nutrition_values.any? %>
+                      <%= render 'recipes/nutrition_table', nutrition_values: nutrition_values %>
+                    <% else %>
+                      <p class="text-muted mb-0">Valorile nutriționale nu sunt încă disponibile pentru această rețetă.</p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="<%= "#{accordion_id}-notes-heading" %>">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<%= "#{accordion_id}-notes" %>" aria-expanded="false" aria-controls="<%= "#{accordion_id}-notes" %>">
+                    Note & detalii
+                  </button>
+                </h2>
+                <div id="<%= "#{accordion_id}-notes" %>" class="accordion-collapse collapse" aria-labelledby="<%= "#{accordion_id}-notes-heading" %>" data-bs-parent="#<%= accordion_id %>">
+                  <div class="accordion-body text-muted">
+                    <% if disclaimer_key.present? %>
+                      <% if disclaimer_key == :torturi %>
+                        <p class="mb-2">Imaginile au caracter orientativ. Prețul per kg se referă la rețeta în <strong>design standard</strong>.</p>
+                        <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                          <span class="badge text-bg-light"><i class="fa-solid fa-computer-mouse me-1"></i>Design standard</span>
+                          <%= image_tag('10409605_790474060985349_2211207606953072516_n.png', class: 'recipe-show-std-image', alt: 'Tort design standard') %>
+                        </div>
+                        <p class="mb-2">
+                          <%= link_to 'Vezi inspirația vizuală și calculează designul', category_cakemodels_path(@recipe.category), class: 'link-primary fw-semibold' %>
+                        </p>
+                        <hr>
+                        <ul class="list-unstyled text-muted mb-0">
+                          <li><strong>Design la cerere simplu:</strong> 110 lei/kg</li>
+                          <li><strong>Design la cerere cu accesorii modelate sau turnate în ciocolată:</strong> 130 lei/kg + figurine</li>
+                        </ul>
+                      <% elsif disclaimer_key == :traditionale %>
+                        <p class="mb-2">Greutatea produsului finit poate varia în funcție de preparat.</p>
+                        <p class="mb-2">Prețul final = preț/kg × greutate la livrare.</p>
+                        <p class="mb-0">Estimări: cozonac (1.3 – 1.4 kg), pască cu brânză (1 – 1.5 kg), pască cu ciocolată (0.9 – 1.1 kg), pască cu smântână (0.9 – 1.1 kg).</p>
+                      <% elsif disclaimer_key == :prajituri %>
+                        <p class="mb-2">Produsele sunt pregătite cu ingrediente naturale, fără conservanți.</p>
+                        <p class="mb-0">Recomandare: păstrare la rece și consum în maximum 3 zile (prăjituri, torturi) sau 5 zile (pască, cozonac).</p>
+                      <% end %>
+                    <% else %>
+                      <p class="mb-0">Nu există note suplimentare pentru această categorie.</p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card border-0 shadow-sm mt-4">
+        <div class="card-body">
+          <% curr_id, next_id, prev_id, prev_text, next_text = next_prev(@recipes, @recipe) %>
+          <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center">
+            <% if prev_id && curr_id.positive? %>
+              <%= link_to recipe_path(prev_id), class: 'btn btn-outline-secondary d-inline-flex align-items-center gap-2' do %>
+                <i class="fa-solid fa-arrow-left"></i>
+                <span><%= prev_text %></span>
+              <% end %>
+            <% end %>
+
+            <% if next_id %>
+              <%= link_to recipe_path(next_id), class: 'btn btn-outline-secondary d-inline-flex align-items-center gap-2 ms-auto' do %>
+                <span><%= next_text %></span>
+                <i class="fa-solid fa-arrow-right"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-xl-5">
+      <aside class="recipe-sidebar position-relative">
+        <div class="card border-0 shadow-sm recipe-summary sticky-top" style="top: 88px;">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-4">Contact & suport</h2>
+            <div class="contact-card border rounded-4 p-4 bg-light-subtle">
+              <h3 class="h6 text-uppercase text-muted mb-2">Ai întrebări?</h3>
+              <p class="text-muted small mb-3">Discută cu un consultant pentru recomandări personalizate de cantități, design și livrare.</p>
+              <div class="d-flex flex-column gap-2">
+                <a class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2" href="tel:0040755054002">
+                  <i class="fa-solid fa-phone"></i> 0755 054 002
+                </a>
+                <a class="btn btn-outline-secondary d-flex align-items-center justify-content-center gap-2" href="mailto:comenzi@irinasweet.ro">
+                  <i class="fa-solid fa-envelope"></i> comenzi@irinasweet.ro
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
 </div>

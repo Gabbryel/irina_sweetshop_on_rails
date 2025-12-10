@@ -63,6 +63,14 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "irina_sweetshop_on_rails_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = ActionMailer::Base.smtp_settings
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch('APP_HOST', 'irinasweet.ro'),
+    protocol: ENV.fetch('APP_PROTOCOL', 'https')
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

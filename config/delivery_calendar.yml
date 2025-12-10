@@ -1,0 +1,11 @@
+default: &default
+  disabled_dates: []
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

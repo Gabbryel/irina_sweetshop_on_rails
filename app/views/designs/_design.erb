@@ -1,8 +1,20 @@
-<% if isUserAdmin? %>
-  <div class="dashboard-card">
-    <p><%= design.name %></p>
-    <p><%= design.category.name if design.category %></p>
-    <p><%= humanized_money_with_symbol(design.price) %></p>
-    <p><%= link_to 'edit', edit_design_path(design) %> <%= link_to 'del', design_path(design), method: :delete %></p>
-  </div>
-<% end %>
+<tr>
+  <td class="fw-semibold"><%= design.name %></td>
+  <td>
+    <% if design.category.present? %>
+      <span class="badge bg-secondary-subtle text-secondary-emphasis"><%= design.category.name %></span>
+    <% else %>
+      <span class="text-muted small">Fara categorie</span>
+    <% end %>
+  </td>
+  <td><%= humanized_money_with_symbol(design.price) %></td>
+  <td class="text-muted small"><%= l(design.updated_at, format: :short) %> - <%= time_ago_in_words(design.updated_at) %> in urma</td>
+  <td class="text-end">
+    <div class="btn-group btn-group-sm" role="group">
+      <%= link_to 'Editeaza', edit_design_path(design), class: 'btn btn-outline-secondary' %>
+      <%= button_to 'Sterge', design_path(design), method: :delete,
+                    form: { data: { turbo_confirm: 'Confirmi stergerea designului?' } },
+                    class: 'btn btn-outline-danger' %>
+    </div>
+  </td>
+</tr>

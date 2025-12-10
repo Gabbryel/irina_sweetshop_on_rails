@@ -1,0 +1,113 @@
+<div class="container py-5 dashboard-recipes margin-top-20dvh">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+    <div>
+      <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-2">Administrator</span>
+      <h1 class="h3 mb-0">Administrare rețete</h1>
+      <p class="text-muted small mb-0">Gestionează oferta activă, marchează produsele recomandate și verifică statusul listărilor.</p>
+    </div>
+    <div class="text-md-end">
+      <p class="text-muted small mb-1">Rețete în listă</p>
+      <p class="h4 mb-0"><%= number_with_delimiter(@pagy&.count || 0) %></p>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
+    <% @stats_cards.each do |stat| %>
+      <div class="col">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <p class="text-muted small mb-1"><%= stat[:label] %></p>
+                <p class="h4 mb-0"><%= number_with_delimiter(stat[:value]) %></p>
+              </div>
+              <span class="badge bg-primary-subtle text-primary-emphasis rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i class="<%= stat[:icon] %>"></i>
+              </span>
+            </div>
+            <p class="text-muted small mb-0"><%= stat[:hint] %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-header bg-white border-0 py-3">
+      <h2 class="h6 mb-0">Filtre rapide</h2>
+    </div>
+    <div class="card-body">
+      <div class="d-flex flex-column flex-lg-row gap-3 align-items-lg-end">
+        <%= form_with url: dashboard_recipes_path, method: :get, scope: :search, local: true, html: { class: 'row g-3 flex-grow-1 align-items-end' } do |f| %>
+          <div class="col-12 col-lg-4">
+            <%= f.label :search_for, 'Caută rețete', class: 'form-label small text-uppercase text-muted fw-semibold' %>
+            <%= f.search_field :search_for, value: @search_query, placeholder: 'Ex.: Tort Opera', class: 'form-control', aria: { label: 'Caută rețete' } %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.label :category_id, 'Categorie', class: 'form-label small text-uppercase text-muted fw-semibold' %>
+            <%= f.select :category_id,
+                         options_for_select([['Toate categoriile', '']] + @categories.map { |category| [category.name, category.id] }, @selected_category),
+                         {},
+                         class: 'form-select' %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.label :online_order, 'Disponibilitate online', class: 'form-label small text-uppercase text-muted fw-semibold' %>
+            <%= f.select :online_order,
+                         options_for_select([
+                           ['Online & offline', ''],
+                           ['Disponibile online', 'true'],
+                           ['Offline', 'false']
+                         ],
+                         @online_filter.nil? ? '' : @online_filter.to_s),
+                         {},
+                         class: 'form-select' %>
+          </div>
+          <div class="col-12 col-lg-2">
+            <div class="form-check mb-2">
+              <%= f.check_box :favored, { class: 'form-check-input', include_hidden: false, checked: @filters[:favored] }, 'true', nil %>
+              <%= f.label :favored, 'Doar recomandate', class: 'form-check-label' %>
+            </div>
+            <%= f.submit 'Aplică filtrele', class: 'btn btn-primary w-100' %>
+          </div>
+        <% end %>
+
+        <%= link_to 'Resetează filtrele', dashboard_recipes_path, class: "btn btn-outline-secondary#{@filters.blank? ? ' disabled' : ''}" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <h2 class="h6 mb-0"><%= @current_scope_label %></h2>
+      <span class="badge bg-light text-dark"><%= pluralize(@pagy&.count || 0, 'înregistrare') %></span>
+    </div>
+
+    <% if @recipes.any? %>
+      <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Denumire</th>
+              <th>Preț</th>
+              <th>Status</th>
+              <th>Actualizat</th>
+              <th class="text-end">Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: 'recipe', collection: @recipes, as: :recipe %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer bg-white border-0 py-3">
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </div>
+    <% else %>
+      <div class="card-body">
+        <div class="alert alert-light border text-muted mb-0">
+          Nicio rețetă nu se potrivește cu filtrul curent.
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

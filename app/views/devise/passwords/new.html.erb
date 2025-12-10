@@ -1,24 +1,60 @@
-<div class="devise-main-container">
-  <h2 class="my-5 text-center">Ai uitat parola?</h2>
-  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  
-  <div class="form-inputs">
-    <%= f.input :email,
-                label: 'Introdu adresa ta de e-mail:',
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } 
-    %>
-  </div>
-  <div class="d-flex justify-content-center my-5 justify-content-lg-start">
-    <%= f.button :submit, "Schimbă parola!", class: 'btn-user-forms' %>
-  </div>
-  <% end %>
-  <div class='mt-5 d-flex flex-column align-items-center flex-lg-row justify-content-lg-between'>
-    <%= render "devise/shared/links" %>
-  </div>
+<% @page_title = 'Recuperează parola | Cofetăria Irina' %>
 
+<div class="auth-layout container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="row g-4 auth-wrapper">
+        <div class="col-12 col-lg-5">
+          <div class="auth-hero p-4 p-lg-5 h-100 rounded-4">
+            <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-3">Recuperare</span>
+            <h1 class="h3 fw-bold mb-3">Resetează-ți parola</h1>
+            <p class="text-muted mb-4">Îți vom trimite un link de resetare pe adresa de email asociată contului.</p>
+            <ul class="list-unstyled mb-0 auth-perks">
+              <li><i class="fa-solid fa-check text-success me-2"></i>Proces rapid și sigur</li>
+              <li><i class="fa-solid fa-check text-success me-2"></i>Fără a pierde istoricul comenzilor</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <div class="card border-0 shadow-lg auth-card rounded-4">
+            <div class="card-body p-4 p-lg-5">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted mb-1 small">Recuperare parolă</p>
+                  <h2 class="h4 fw-bold mb-0">Primește link-ul de resetare</h2>
+                </div>
+                <div class="auth-avatar d-inline-flex align-items-center justify-content-center rounded-circle">
+                  <i class="fa-solid fa-key"></i>
+                </div>
+              </div>
+
+              <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'auth-form' }) do |f| %>
+                <%= f.error_notification %>
+
+                <div class="mb-4">
+                  <%= f.input :email,
+                              label: 'Adresă de email',
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "email", class: 'form-control form-control-lg' },
+                              label_html: { class: 'form-label fw-semibold' } %>
+                </div>
+
+                <div class="d-grid">
+                  <%= f.button :submit, 'Trimite link de resetare', class: 'btn btn-primary btn-lg shadow-sm' %>
+                </div>
+              <% end %>
+
+              <div class="auth-links text-center mt-4">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
- 
+
 

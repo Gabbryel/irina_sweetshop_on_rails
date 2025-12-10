@@ -1,0 +1,28 @@
+.dashboard-floating-nav {
+  position: fixed;
+  top: 18vh;
+  right: 18px;
+  z-index: 1030;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(33, 37, 41, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(33, 37, 41, 0.12);
+
+  .btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border-color: rgba(33, 37, 41, 0.1);
+    color: #212529;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(33, 37, 41, 0.08);
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+}

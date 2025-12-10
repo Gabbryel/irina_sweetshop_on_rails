@@ -25,6 +25,9 @@
         <li class="nav-item active">
           <%= link_to "Categorii", categories_path, class: "nav-link text-center" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Comandă online", online_orders_path, class: "nav-link text-center" %>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produse</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -34,6 +37,20 @@
             <% end %>
             <% end %>
           </div>
+        </li>
+        <li class="nav-item">
+          <% cart = current_cart %>
+          <% cart_items_count = cart.present? ? cart.items.count : 0 %>
+          <%= link_to shop_cart_path,
+                      class: "nav-link text-center position-relative",
+                      aria: { label: 'Coșul meu' } do %>
+            <i class="fa-solid fa-basket-shopping"></i>
+            <% if cart_items_count.positive? %>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+                <%= cart_items_count %>
+              </span>
+            <% end %>
+          <% end %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link text-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sugestii</a>
@@ -53,7 +70,6 @@
             <%= link_to 'Valori nutriționale', valori_nutritionale_path, class: "dropdown-item text-center" %>
           </div>
         </li>
-  
         <!-- <li class="nav-item active">
           <%if user_signed_in? && current_user.admin  %>
           <%= link_to cart_path do %>
@@ -71,13 +87,19 @@
                 <%= link_to "Modifică prețuri", preturi_path, class: "dropdown-item text-center" %>
               </div>
               <div class="dropdown-item">
-                <%= link_to "Admin rețete", retete_path, class: "dropdown-item text-center" %>
+                <%= link_to "Admin rețete", dashboard_recipes_path, class: "dropdown-item text-center" %>
+              </div>
+              <div class="dropdown-item">
+                <%= link_to "Zile livrare", dashboard_delivery_dates_path, class: "dropdown-item text-center" %>
               </div>
                 <div class="dropdown-item">
                   <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center" %>
                 </div>
               <% end %>
   
+            <div class="dropdown-item">
+              <%= link_to "Contul meu", account_path, class: "dropdown-item text-center" %>
+            </div>
             <div class="dropdown-item">
               <%= link_to "Modifică cont, #{current_user.name_from_mail}", edit_user_registration_path, class: "dropdown-item text-center" %>
             </div>

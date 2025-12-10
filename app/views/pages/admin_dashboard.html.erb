@@ -1,23 +1,259 @@
-<div class="container dashboard-container">
-  <% if current_user && current_user.admin %>
-    <div class="row justify-content-center">
-      <div class="col-12 mt-5 pt-5 ">
-        <% User.all.each do |u| %>
-          <%= u.email %>
-          <%= u.admin %>
+<div class="container py-5 admin-dashboard margin-top-20dvh">
+  <nav class="dashboard-floating-nav d-none d-md-inline-flex">
+    <a href="#top" class="btn btn-light btn-sm" title="Sus"><i class="fa-solid fa-chevron-up"></i></a>
+    <a href="#stats" class="btn btn-light btn-sm" title="Statistici"><i class="fa-solid fa-chart-line"></i></a>
+    <a href="#quick-links" class="btn btn-light btn-sm" title="Acțiuni rapide"><i class="fa-solid fa-bolt"></i></a>
+    <a href="#orders" class="btn btn-light btn-sm" title="Comenzi"><i class="fa-solid fa-receipt"></i></a>
+    <a href="#reviews" class="btn btn-light btn-sm" title="Recenzii"><i class="fa-solid fa-star"></i></a>
+    <a href="#users-admin" class="btn btn-light btn-sm" title="Utilizatori"><i class="fa-solid fa-users"></i></a>
+  </nav>
+  <div class="row align-items-center mb-5" id="top">
+    <div class="col-lg-8">
+      <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-2">Administrator</span>
+      <h1 class="h3 mb-2">Salut, <%= current_user&.name_from_mail || current_user&.email %></h1>
+      <p class="text-muted mb-0">Monitorizează comenzile, actualizează conținutul și păstrează experiența clienților impecabilă.</p>
+    </div>
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <p class="text-muted small mb-1">Venit luna curentă</p>
+          <p class="h4 mb-0"><%= @revenue_this_month.format %></p>
+          <p class="text-muted small mb-0">Total acumulat: <strong><%= @revenue_all_time.format %></strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3 mb-5" id="stats">
+    <% @stats_cards.each do |stat| %>
+      <div class="col">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <p class="text-muted small mb-1"><%= stat[:label] %></p>
+                <% value = stat[:value] %>
+                <p class="h4 mb-0"><%= value.is_a?(Numeric) ? number_with_delimiter(value) : value %></p>
+              </div>
+              <span class="badge bg-primary-subtle text-primary-emphasis rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i class="<%= stat[:icon] %>"></i>
+              </span>
+            </div>
+            <% hint_value = stat[:hint_value] %>
+            <% hint_label = stat[:hint_label] %>
+            <% hint_text = if hint_label.present?
+                             hint_value.nil? ? hint_label : "#{number_with_delimiter(hint_value)} #{hint_label}"
+                           else
+                             ''
+                           end %>
+            <p class="text-muted small mb-0"><%= hint_text %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row g-4 mb-5" id="quick-links">
+    <div class="col-12">
+      <h2 class="h5 mb-3">Acțiuni rapide</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
+        <% @quick_links.each do |link| %>
+          <div class="col">
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex align-items-start gap-3 mb-3">
+                  <span class="badge bg-primary-subtle text-primary-emphasis rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                    <i class="<%= link[:icon] %>"></i>
+                  </span>
+                  <div>
+                    <h3 class="h6 mb-1"><%= link[:title] %></h3>
+                    <p class="text-muted small mb-0"><%= link[:description] %></p>
+                  </div>
+                </div>
+                <%= link_to 'Deschide secțiunea', link[:path], class: 'btn btn-outline-primary mt-auto align-self-start' %>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <%= User.all.count %>
+  </div>
+
+  <div class="row g-4" id="orders">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+          <h3 class="h6 mb-0">Comenzi recente</h3>
+          <%= link_to 'Vezi toate comenzile', dashboard_orders_path, class: 'btn btn-sm btn-outline-secondary' %>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th>Client</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Creată</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @recent_orders.any? %>
+                <% @recent_orders.each do |order| %>
+                  <tr>
+                    <td class="fw-semibold">#<%= order.id %></td>
+                    <td>
+                      <div><%= order.customer_name %></div>
+                      <div class="text-muted small"><%= order.contact_email || '—' %></div>
+                    </td>
+                    <td>
+                      <span class="badge bg-<%= order.status_badge_variant %>"><%= order.status_label %></span>
+                    </td>
+                    <td class="fw-semibold"><%= order.total_money.format %></td>
+                    <td class="text-muted small"><%= l(order.created_at, format: :short) %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-4">Nu există comenzi recente.</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="design-dashboard">
-      <%= link_to 'designs', '/dashboard/designs' %>
-    </div>
-    <div class="feature-dashboard">
-      <%= link_to 'features', '/dashboard/features' %>
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 mb-4" id="reviews">
+        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+          <h3 class="h6 mb-0">Recenzii în așteptare</h3>
+          <span class="badge bg-warning text-dark"><%= @pending_reviews.size %></span>
+        </div>
+        <div class="list-group list-group-flush">
+          <% if @pending_reviews.any? %>
+            <% @pending_reviews.each do |review| %>
+              <% reviewable = review.reviewable %>
+              <% review_path = case reviewable
+                              when Recipe
+                                recipe_path(reviewable)
+                              when Cakemodel
+                                cakemodel_path(reviewable)
+                              else
+                                nil
+                              end %>
+              <div class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <strong><%= review.author %></strong>
+                    <div class="text-muted small"><%= l(review.created_at, format: :short) %></div>
+                  </div>
+                  <span class="badge bg-warning text-dark"><%= review.rating %>/5</span>
+                </div>
+                <p class="small text-muted mb-2"><%= truncate(review.content, length: 100) %></p>
+                <% if review_path.present? %>
+                  <%= link_to 'Vezi contextul', review_path, class: 'small' %>
+                <% else %>
+                  <span class="text-muted small">Review pentru <%= review.reviewable_type %></span>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="list-group-item text-muted small">Nu există recenzii de aprobat.</div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h3 class="h6">Note interne</h3>
+          <p class="text-muted small mb-0">Folosește secțiunea de comenzi pentru a adăuga notițe interne și a urmări statusul livrărilor. Pentru ajutor rapid, contactează echipa tehnică la <a href="mailto:comenzi@irinasweet.ro">comenzi@irinasweet.ro</a>.</p>
+        </div>
+      </div>
     </div>
   </div>
-  <% end %>
+
+  <div class="row g-4 mt-0" id="users-admin">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+          <h3 class="h6 mb-0">Utilizatori recenți</h3>
+          <%= link_to 'Invită utilizator', new_user_registration_path, class: 'btn btn-sm btn-outline-primary' %>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Acțiuni</th>
+                <th>Comenzi finalizate</th>
+                <th>Creat</th>
+                <th>Ultima activitate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @recent_users.any? %>
+                <% @recent_users.each do |user| %>
+                  <% completed_orders = user.carts.select { |cart| cart.status == Cart::STATUSES[:delivered] } %>
+                  <% last_order = user.carts.max_by(&:updated_at) %>
+                  <% last_activity = last_order&.updated_at || user.created_at %>
+                  <tr>
+                    <td class="fw-semibold"><%= mail_to user.email %></td>
+                    <td>
+                      <% if user.admin? %>
+                        <span class="badge bg-success-subtle text-success-emphasis">Admin</span>
+                      <% else %>
+                        <span class="badge bg-secondary-subtle text-secondary-emphasis">Client</span>
+                      <% end %>
+                    </td>
+                    <td class="text-end">
+                      <div class="btn-group btn-group-sm" role="group" aria-label="User actions">
+                        <%= link_to 'Editează', edit_dashboard_user_path(user), class: 'btn btn-outline-secondary' %>
+                        <% if user != current_user %>
+                          <% if user.admin? %>
+                            <%= button_to 'Retrage admin', toggle_admin_dashboard_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să retragi dreptul de administrator?' }, class: 'btn btn-outline-danger' %>
+                          <% else %>
+                            <%= button_to 'Promovează', toggle_admin_dashboard_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să promovezi utilizatorul la administrator?' }, class: 'btn btn-outline-primary' %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </td>
+                    <td><%= number_with_delimiter(completed_orders.count) %></td>
+                    <td class="text-muted small"><%= l(user.created_at, format: :short) %></td>
+                    <td class="text-muted small"><%= last_activity ? l(last_activity, format: :short) : '—' %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-4">Nu există utilizatori recenți.</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-white border-0 py-3">
+          <h3 class="h6 mb-0">Statistici utilizatori</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% @user_metrics.each do |metric| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span class="text-muted small"><%= metric[:label] %></span>
+              <strong><%= number_with_delimiter(metric[:value]) %></strong>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h3 class="h6">Gestionare acces</h3>
+          <p class="text-muted small mb-3">Administrează conturile de utilizator, promovează la admin sau șterge conturi direct din panoul dedicat.</p>
+          <%= link_to 'Administrare utilizatori', dashboard_admin_users_path, class: 'btn btn-outline-secondary btn-sm' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

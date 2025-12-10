@@ -1,0 +1,67 @@
+<tr id="recipe_<%= recipe.id %>">
+  <td>
+    <div class="fw-semibold d-flex align-items-center gap-2">
+      <%= recipe.name %>
+      <% if recipe.favored? %>
+        <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill">Recomandat</span>
+      <% end %>
+    </div>
+    <div class="text-muted small">
+      <%= recipe.category&.name || 'Categorie neatribuită' %>
+    </div>
+  </td>
+  <td>
+    <% primary_price = recipe.price_cents.to_i.positive? ? humanized_money_with_symbol(recipe.price) : '—' %>
+    <div class="fw-semibold"><%= primary_price %></div>
+    <% if recipe.online_selling_price_cents.to_i.positive? %>
+      <div class="text-muted small">Valoare online: <%= humanized_money_with_symbol(recipe.online_selling_price) %></div>
+    <% end %>
+  </td>
+  <td>
+    <div class="d-flex flex-wrap gap-1">
+      <span class="badge <%= recipe.publish? ? 'bg-success-subtle text-success-emphasis' : 'bg-secondary-subtle text-secondary-emphasis' %>">
+        <%= recipe.publish? ? 'Public' : 'Ascuns' %>
+      </span>
+      <% if recipe.online_order? %>
+        <span class="badge bg-primary-subtle text-primary-emphasis">Online</span>
+      <% end %>
+      <% base_unit = recipe.kg_buc.presence %>
+      <% if base_unit.present? %>
+        <span class="badge bg-info-subtle text-info-emphasis">Bază: <%= base_unit %></span>
+      <% end %>
+      <% sold_unit = recipe.sold_by.presence %>
+      <% if sold_unit.present? %>
+        <span class="badge bg-warning-subtle text-warning-emphasis">Vânzare: <%= sold_unit %></span>
+      <% end %>
+      <% if recipe.per_piece_sale? && recipe.online_selling_weight.present? %>
+        <span class="badge bg-light text-muted">Greutate/buc: <%= number_with_precision(recipe.online_selling_weight, precision: 2) %> kg</span>
+      <% end %>
+      <% if recipe.minimal_order.present? %>
+        <span class="badge bg-light text-muted">Minim: <%= number_with_precision(recipe.minimal_order, precision: 2) %></span>
+      <% end %>
+    </div>
+  </td>
+  <td>
+    <div class="fw-semibold"><%= l(recipe.updated_at, format: :short) %></div>
+    <div class="text-muted small">acum <%= distance_of_time_in_words_to_now(recipe.updated_at) %></div>
+  </td>
+  <td class="text-end">
+    <div class="btn-group btn-group-sm" role="group" aria-label="Acțiuni rețetă">
+      <%= link_to recipe_path(recipe), class: 'btn btn-outline-secondary', title: 'Vezi pagina publică' do %>
+        <i class="fa-solid fa-eye"></i>
+      <% end %>
+      <% if policy(recipe).edit? %>
+        <% modal_id = "editRecipe#{recipe.id}" %>
+        <%= link_to '#', class: 'btn btn-outline-primary', data: { bs_toggle: 'modal', bs_target: "##{modal_id}" }, title: 'Editează rețeta' do %>
+          <i class="fa-solid fa-pen"></i>
+        <% end %>
+        <%= render partial: 'recipes/modal', locals: { new: false, modal_id: modal_id, recipe: recipe, category: recipe.category } %>
+      <% end %>
+      <% if policy(recipe).destroy? %>
+        <%= link_to category_recipe_path(recipe.category, recipe), method: :delete, data: { confirm: 'Vrei să ștergi această rețetă?' }, class: 'btn btn-outline-danger', title: 'Șterge rețeta' do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>

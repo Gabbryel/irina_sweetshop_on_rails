@@ -4,7 +4,7 @@
   <%= link_to recipe_path(recipe) do %>
     <div class="card-link-container-recipes">
       <div class="card-image-recipes">
-        <% if current_page?(controller: 'recipes', action: 'admin_recipes') %>
+        <% if controller_path == 'dashboard/recipes' %>
           <div class="favored-recipe">
             <% if recipe.favored %>
               <i class="fa-solid fa-heart"></i>
@@ -23,7 +23,7 @@
       <div class='card-title-recipes'>
         <div class="card-title-text">
           <h2><%= recipe.name %>
-          <% if recipe.energetic_value && current_page?(controller: 'recipes', action: 'admin_recipes') %><i class="fa-brands fa-nutritionix"></i><% end %>
+          <% if recipe.energetic_value && controller_path == 'dashboard/recipes' %><i class="fa-brands fa-nutritionix"></i><% end %>
           <% if recipe.vegan %><i class="fa-solid fa-carrot"></i><% end %></h2>
         </div>
         <div class="card-description">
@@ -45,20 +45,34 @@
           <% end %>
         </span>
         <hr>
-        <span class="price-design-kg"><%= recipe.kg_buc %></span>
+        <% unit_value = recipe.sold_by.presence || recipe.kg_buc.presence || 'kg' %>
+        <span class="price-design-kg"><%= unit_value %></span>
       </div>
       <% elsif recipe.price == 0 %>
       <div class="price-design">
         <span>-,-- lei</span>
         <hr>
-        <span class="price-design-kg"><%= recipe.kg_buc %></span>
+        <% unit_value = recipe.sold_by.presence || recipe.kg_buc.presence || 'kg' %>
+        <span class="price-design-kg"><%= unit_value %></span>
       </div>
       <% end %>
     </div>
-    <% if policy(recipe).edit? && policy(recipe).destroy? && current_page?(controller: 'recipes', action: 'admin_recipes')%>
+    <% if recipe.supports_online_ordering? %>
+      <% default_quantity = 1 %>
+      <div class="card-add-to-cart">
+        <%= form_with url: shop_cart_items_path, method: :post, data: { turbo: false }, class: 'card-add-to-cart__form d-inline-block' do |f| %>
+          <%= hidden_field_tag :recipe_id, recipe.id %>
+          <%= hidden_field_tag 'cart_item[quantity]', default_quantity %>
+          <button type="submit" class="btn btn-sm btn-outline-primary" title="Adaugă în coș">
+            <i class="fa-solid fa-cart-plus"></i>
+          </button>
+        <% end %>
+      </div>
+    <% end %>
+    <% if policy(recipe).edit? && policy(recipe).destroy? && controller_path == 'dashboard/recipes'%>
       <div class='card-crud'>
         <%= link_to "#", data: { bs_toggle: "modal", bs_target: "#edit#{recipe.slug}"} do %><i class="far fa-edit"></i><% end %>
-        <%= render partial: 'recipes/modal', locals: { new: false,  modal_id: "edit#{recipe.slug}", recipe: recipe } %>
+        <%= render partial: 'recipes/modal', locals: { new: false,  modal_id: "edit#{recipe.slug}", recipe: recipe, category: recipe.category } %>
         <%= link_to category_recipe_path(recipe.category, recipe), method: :delete, data: {confirm: 'Vrei să ștergi acest produs?'} do %><i class="fas fa-trash-alt"></i><% end %>
       </div>
     <% end %>

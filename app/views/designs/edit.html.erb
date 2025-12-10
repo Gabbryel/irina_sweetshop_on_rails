@@ -1,5 +1,14 @@
-<div class="dashboard-container">
-  <div class="design-form">
-    <%= render partial: 'form' %>
+<div class="container py-5 admin-designs">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-0 py-3">
+          <h1 class="h5 mb-0">Editeaza designul</h1>
+        </div>
+        <div class="card-body">
+          <%= render 'form', design: @design, categories: @categories %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

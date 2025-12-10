@@ -1,0 +1,66 @@
+<div class="container py-5" style="margin-top: 20dvh;">
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+      <h1 class="h4 mb-1">Administrare utilizatori</h1>
+      <p class="text-muted small mb-0">Vezi, sortează și gestionează toate conturile de utilizator.</p>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+      <div class="btn-group btn-group-sm" role="group" aria-label="Sort users">
+        <%= link_to 'După dată', dashboard_admin_users_path(sort: 'created_at', direction: @direction == 'asc' && @sort == 'created_at' ? 'desc' : 'asc'), class: "btn btn-outline-secondary #{'active' if @sort == 'created_at'}" %>
+        <%= link_to 'După email', dashboard_admin_users_path(sort: 'email', direction: @direction == 'asc' && @sort == 'email' ? 'desc' : 'asc'), class: "btn btn-outline-secondary #{'active' if @sort == 'email'}" %>
+        <%= link_to 'După rol', dashboard_admin_users_path(sort: 'role', direction: @direction == 'asc' && @sort == 'role' ? 'desc' : 'asc'), class: "btn btn-outline-secondary #{'active' if @sort == 'role'}" %>
+      </div>
+      <%= link_to 'Adaugă utilizator', new_dashboard_admin_user_path, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0">
+    <div class="table-responsive">
+      <table class="table table-sm align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Creat</th>
+            <th class="text-end">Acțiuni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @users.any? %>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="fw-semibold"><%= mail_to user.email %></td>
+                <td>
+                  <% if user.admin? %>
+                    <span class="badge bg-success-subtle text-success-emphasis">Admin</span>
+                  <% else %>
+                    <span class="badge bg-secondary-subtle text-secondary-emphasis">Client</span>
+                  <% end %>
+                </td>
+                <td class="text-muted small"><%= l(user.created_at, format: :short) %></td>
+                <td class="text-end">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="User actions">
+                    <%= link_to 'Vezi', dashboard_admin_user_path(user), class: 'btn btn-outline-secondary' %>
+                    <%= link_to 'Editează', edit_dashboard_admin_user_path(user), class: 'btn btn-outline-secondary' %>
+                    <% if user != current_user %>
+                      <% if user.admin? %>
+                        <%= button_to 'Retrage admin', toggle_admin_dashboard_admin_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să retragi dreptul de administrator?' }, class: 'btn btn-outline-danger' %>
+                      <% else %>
+                        <%= button_to 'Promovează', toggle_admin_dashboard_admin_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să promovezi utilizatorul la administrator?' }, class: 'btn btn-outline-primary' %>
+                      <% end %>
+                      <%= button_to 'Șterge', dashboard_admin_user_path(user), method: :delete, data: { confirm: 'Ești sigur că vrei să ștergi acest utilizator? Această acțiune nu poate fi anulată.' }, class: 'btn btn-outline-danger' %>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="4" class="text-center text-muted py-4">Nu există utilizatori.</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

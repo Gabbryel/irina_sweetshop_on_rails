@@ -1,27 +1,77 @@
-<% @page_title = 'Creează un cont nou Cofetăria Irina Bacău' %>
-<div class="devise-main-container">
-  <p class="text-center mb-5">Cont nou</p>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" },
-                    label: 'Adresă de e-mail' %>
-        <%= f.input :password,
-                    required: true,
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" },
-                    label:  "Parola"%>
-        <%= f.input :password_confirmation,
-                    required: true,
-                    input_html: { autocomplete: "new-password" },
-                    label: "Confirmă parola" %>
+<% @page_title = 'Creează un cont | Cofetăria Irina' %>
+
+<div class="auth-layout container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="row g-4 auth-wrapper">
+        <div class="col-12 col-lg-5">
+          <div class="auth-hero p-4 p-lg-5 h-100 rounded-4">
+            <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-3">Cont nou</span>
+            <h1 class="h3 fw-bold mb-3">Creează-ți contul</h1>
+            <p class="text-muted mb-4">Salvează detaliile de livrare, urmărește comenzile și revino rapid la preferatele tale.</p>
+            <ul class="list-unstyled mb-0 auth-perks">
+              <li><i class="fa-solid fa-check text-success me-2"></i>Finalizare rapidă la checkout</li>
+              <li><i class="fa-solid fa-check text-success me-2"></i>Istoric comenzi și preferințe</li>
+              <li><i class="fa-solid fa-check text-success me-2"></i>Alerte despre livrare</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <div class="card border-0 shadow-lg auth-card rounded-4">
+            <div class="card-body p-4 p-lg-5">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted mb-1 small">Înregistrare</p>
+                  <h2 class="h4 fw-bold mb-0">Completează datele tale</h2>
+                </div>
+                <div class="auth-avatar d-inline-flex align-items-center justify-content-center rounded-circle">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
+              </div>
+
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'auth-form' }) do |f| %>
+                <%= f.error_notification %>
+
+                <div class="mb-3">
+                  <%= f.input :email,
+                              required: true,
+                              autofocus: true,
+                              label: 'Adresă de email',
+                              input_html: { autocomplete: "email", class: 'form-control form-control-lg' },
+                              label_html: { class: 'form-label fw-semibold' } %>
+                </div>
+
+                <div class="mb-3">
+                  <%= f.input :password,
+                              required: true,
+                              label: 'Parolă',
+                              hint: (@minimum_password_length ? "Minim #{@minimum_password_length} caractere" : nil),
+                              input_html: { autocomplete: "new-password", class: 'form-control form-control-lg' },
+                              label_html: { class: 'form-label fw-semibold' } %>
+                </div>
+
+                <div class="mb-4">
+                  <%= f.input :password_confirmation,
+                              required: true,
+                              label: 'Confirmă parola',
+                              input_html: { autocomplete: "new-password", class: 'form-control form-control-lg' },
+                              label_html: { class: 'form-label fw-semibold' } %>
+                </div>
+
+                <div class="d-grid">
+                  <%= f.button :submit, 'Creează cont', class: 'btn btn-primary btn-lg shadow-sm' %>
+                </div>
+              <% end %>
+
+              <div class="auth-links text-center mt-4">
+                <p class="mb-2 text-muted">Ai deja cont?</p>
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    <div class="singup-btns d-flex flex-column align-items-center mt-5">
-      <%= f.button :submit, "Creează cont nou", class: 'btn-user-forms' %> <br>
-      <%= render "devise/shared/links" %>
     </div>
-  <% end %>
+  </div>
 </div>

@@ -1,0 +1,22 @@
+<% cart = current_cart %>
+<% if cart.present? %>
+  <% cart_items = cart.items.to_a %>
+  <% if cart_items.any? %>
+    <% item_count = cart_items.size %>
+    <% items_label = item_count == 1 ? '1 produs' : "#{item_count} produse" %>
+    <% total_money = cart.total_money %>
+    <div class="floating-cart shadow-lg">
+      <%= link_to shop_cart_path, class: 'floating-cart__link d-flex align-items-center gap-3 text-decoration-none' do %>
+        <div class="floating-cart__icon position-relative d-inline-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span class="floating-cart__badge"><%= item_count %></span>
+        </div>
+        <div class="floating-cart__content">
+          <p class="floating-cart__title mb-0">Coșul tău</p>
+          <p class="floating-cart__details mb-0 text-muted small"><%= items_label %> · Total: <strong><%= total_money.format %></strong></p>
+        </div>
+        <span class="floating-cart__cta badge bg-dark-subtle text-dark-emphasis rounded-pill">Vezi</span>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

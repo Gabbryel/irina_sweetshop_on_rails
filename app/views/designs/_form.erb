@@ -1,9 +1,32 @@
-<div class="dashboard-designs__new">
-  <h4><%= @design.id.present? ? 'Modifică design' : 'Design nou'%></h4>
-  <%= simple_form_for @design do |f| %>
-    <%= f.input :name, label: false %>
-    <%= f.input :price_cents, label: false %>
-    <%= f.association :category, label: false, prompt: "Alege categoria" %>
-    <%= f.submit 'Transmite'%>
-  <% end %>
-</div>
+<% design ||= @design %>
+<% categories ||= @categories || Category.order(:name) %>
+
+<%= simple_form_for(design, html: { class: 'design-form' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="mb-3">
+    <%= f.input :name,
+                label: 'Denumire design',
+                placeholder: 'Ex.: Floral, Modern minimal',
+                input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.input :price_cents,
+                label: 'Pret (in bani)',
+                hint: 'Introduce valorile in bani (ex.: 15000 pentru 150 lei)',
+                input_html: { class: 'form-control', min: 0, step: 50, type: 'number' } %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.input :category_id,
+                collection: categories,
+                label: 'Categorie asociata',
+                prompt: 'Selecteaza o categorie',
+                input_html: { class: 'form-select' } %>
+  </div>
+
+  <div class="d-grid">
+    <%= f.button :submit, design.persisted? ? 'Salveaza modificarile' : 'Creeaza designul', class: 'btn btn-primary' %>
+  </div>
+<% end %>

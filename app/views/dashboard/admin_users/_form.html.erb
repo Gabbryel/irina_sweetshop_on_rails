@@ -1,0 +1,29 @@
+<%= form_with(model: [:dashboard, @user], url: form_url, local: true) do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, 'Email' %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+
+  <% if @user.new_record? %>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= f.label :password, 'Parolă' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= f.label :password_confirmation, 'Confirmare parolă' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-check mb-3">
+    <%= f.check_box :admin, class: 'form-check-input', id: 'user_admin' %>
+    <%= f.label :admin, 'Administrator', class: 'form-check-label' %>
+  </div>
+
+  <div class="d-flex gap-2">
+    <%= f.submit 'Salvează', class: 'btn btn-primary' %>
+    <%= link_to 'Înapoi', dashboard_admin_users_path, class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>
