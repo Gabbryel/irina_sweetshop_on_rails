@@ -29,8 +29,24 @@ module CurrentCartConcern
     @current_cart = cart
   end
 
+  def ensure_cart!
+    cart = current_cart
+    return cart if cart.present?
+
+    cart = if current_user.present?
+             Cart.create!(user: current_user)
+           else
+             Cart.create!
+           end
+
+    session[:cart_id] = cart.id
+    session[:cart_token] = cart.guest_token if cart.guest_token.present?
+    session[:cart_last_seen_at] = Time.current.iso8601
+    @current_cart = cart
+  end
+
   def set_cart
-    @cart = current_cart
+    @cart = ensure_cart!
   end
 
   def expire_cart_session_if_stale!
