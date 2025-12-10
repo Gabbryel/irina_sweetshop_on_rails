@@ -1,14 +1,68 @@
-<div class="container mt-10 mb-5">
-  <% @categories.each do |c| %>
-    <h2 class="mt-5"><%= c.name %></h2>
-    <div class="d-flex flex-wrap flex-row justify-content-between gap-3">
-    <% c.recipes.sort{ |x, y| x.slug <=> y.slug}.each do |r| %>
-      <%= simple_form_for([c, r]) do |f| %>
-      <h5 class="mt-4 mb-3"><%= r.name %></h2>
-        <%= f.input :price_cents, label: 'Prețul în bani' %>
-        <%= f.button :submit %>
-      <% end %>
+<div class="container py-5">
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+      <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-2">Administrare</span>
+      <h1 class="h3 mb-0">Actualizează prețurile produselor</h1>
+      <p class="text-muted small mb-0">Modifică sumele dorite și folosește butonul de mai jos pentru a salva totul dintr-o singură acțiune.</p>
+    </div>
+    <%= link_to 'Înapoi la dashboard', dashboard_path, class: 'btn btn-outline-secondary' %>
+  </div>
+
+  <%= form_with url: preturi_path, method: :patch, local: true, data: { turbo: false }, class: 'prices-bulk-form' do |f| %>
+    <% @categories.each do |category| %>
+      <% recipes = Array(@recipes_by_category[category.id.to_s]).sort_by(&:slug) %>
+      <% next if recipes.empty? %>
+
+      <section class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-white border-0 py-3">
+          <h2 class="h5 mb-0"><%= category.name %></h2>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col" style="min-width: 240px;">Produs</th>
+                  <th scope="col" class="text-nowrap">Unitate</th>
+                  <th scope="col" style="width: 200px;">Preț (bani)</th>
+                  <th scope="col" style="width: 220px;">Valoare online (bani)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% recipes.each do |recipe| %>
+                  <%= f.fields_for "recipes[#{recipe.id}]", recipe do |rf| %>
+                    <tr>
+                      <td>
+                        <strong><%= recipe.name %></strong>
+                        <div class="text-muted small">slug: <%= recipe.slug %></div>
+                      </td>
+                      <td class="text-muted text-uppercase small">
+                        <%= recipe.kg_buc.presence || 'kg' %>
+                      </td>
+                      <td>
+                        <%= rf.hidden_field :id %>
+                        <%= rf.label :price_cents, 'Preț total (bani)', class: 'form-label visually-hidden' %>
+                        <%= rf.number_field :price_cents,
+                                            class: 'form-control form-control-sm',
+                                            min: 0,
+                                            step: 1,
+                                            required: true %>
+                      </td>
+                      <td>
+                        <span class="text-muted small"><%= number_with_delimiter(recipe.online_selling_price_cents.to_i) %></span>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     <% end %>
+
+    <div class="d-flex justify-content-end mt-4">
+      <%= submit_tag 'Salvează toate prețurile', class: 'btn btn-primary btn-lg px-4' %>
     </div>
   <% end %>
 </div>

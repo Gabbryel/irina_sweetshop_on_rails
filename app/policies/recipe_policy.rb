@@ -40,6 +40,10 @@ class RecipePolicy < ApplicationPolicy
     isUserAdm?   
   end
 
+  def bulk_update_prices?
+    isUserAdm?
+  end
+
   private 
 
   def isUserAdm?

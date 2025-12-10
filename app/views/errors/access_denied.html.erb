@@ -1,0 +1,28 @@
+<div class="container py-5">
+  <div class="d-flex justify-content-center">
+    <div class="card shadow-sm border-0" style="max-width:760px; width:100%;">
+      <div class="card-body text-center p-5">
+        <div style="width:72px;height:72px;margin:0 auto;border-radius:16px;background:linear-gradient(135deg,#f97316,#fb7185);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,0.08);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </div>
+
+        <h1 class="mt-4 mb-2">Acces interzis</h1>
+        <p class="text-muted mb-3">Nu ai permisiunea necesară pentru a vizualiza această pagină sau a efectua această acțiune.</p>
+        <p class="mb-4 small text-secondary"><%= @policy_error %></p>
+
+        <div class="d-flex justify-content-center gap-2">
+          <% if user_signed_in? && current_user.admin? %>
+            <%= link_to 'Mergi la panou', dashboard_path, class: 'btn btn-primary' %>
+          <% else %>
+            <%= link_to 'Înapoi la homepage', root_path, class: 'btn btn-outline-primary' %>
+            <% if user_signed_in? %>
+              <%= link_to 'Contactă administrator', "mailto:#{OrderMailer::ADMIN_EMAIL}", class: 'btn btn-link' %>
+            <% else %>
+              <%= link_to 'Autentificare', new_user_session_path, class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

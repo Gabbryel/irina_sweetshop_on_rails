@@ -1,0 +1,110 @@
+ro:
+  date:
+    formats:
+      default: "%d %B %Y"
+      long: "%A, %d %B %Y"
+      short: "%d %b"
+    day_names:
+      - luni
+      - marți
+      - miercuri
+      - joi
+      - vineri
+      - sâmbătă
+      - duminică
+    abbr_day_names:
+      - Lu
+      - Ma
+      - Mi
+      - Jo
+      - Vi
+      - Sâ
+      - Du
+    month_names:
+      - ~
+      - ianuarie
+      - februarie
+      - martie
+      - aprilie
+      - mai
+      - iunie
+      - iulie
+      - august
+      - septembrie
+      - octombrie
+      - noiembrie
+      - decembrie
+    abbr_month_names:
+      - ~
+      - ian
+      - feb
+      - mar
+      - apr
+      - mai
+      - iun
+      - iul
+      - aug
+      - sept
+      - oct
+      - nov
+      - dec
+    order:
+      - :day
+      - :month
+      - :year
+  time:
+    formats:
+      default: "%d %B %Y, %H:%M"
+      long: "%A, %d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+    am: "AM"
+    pm: "PM"
+  datetime:
+    distance_in_words:
+      half_a_minute: "jumătate de minut"
+      less_than_x_seconds:
+        one: "mai puțin de o secundă"
+        other: "mai puțin de %{count} secunde"
+      x_seconds:
+        one: "1 secundă"
+        other: "%{count} secunde"
+      less_than_x_minutes:
+        one: "mai puțin de un minut"
+        other: "mai puțin de %{count} minute"
+      x_minutes:
+        one: "1 minut"
+        other: "%{count} minute"
+      about_x_hours:
+        one: "aproximativ o oră"
+        other: "aproximativ %{count} ore"
+      x_days:
+        one: "1 zi"
+        other: "%{count} zile"
+      about_x_months:
+        one: "aproximativ o lună"
+        other: "aproximativ %{count} luni"
+      x_months:
+        one: "1 lună"
+        other: "%{count} luni"
+      about_x_years:
+        one: "aproximativ un an"
+        other: "aproximativ %{count} ani"
+      over_x_years:
+        one: "peste un an"
+        other: "peste %{count} ani"
+      almost_x_years:
+        one: "aproape un an"
+        other: "aproape %{count} ani"
+  number:
+    format:
+      separator: ","
+      delimiter: "."
+    currency:
+      format:
+        format: "%n %u"
+        unit: "lei"
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " și "
+      last_word_connector: " și "

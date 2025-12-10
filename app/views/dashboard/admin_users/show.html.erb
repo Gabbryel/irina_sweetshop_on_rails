@@ -1,0 +1,39 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card p-4">
+        <h1 class="h5 mb-3">Detalii utilizator</h1>
+
+        <dl class="row mb-4">
+          <dt class="col-sm-4">Email</dt>
+          <dd class="col-sm-8"><%= mail_to @user.email %></dd>
+
+          <dt class="col-sm-4">Rol</dt>
+          <dd class="col-sm-8">
+            <% if @user.admin? %>
+              <span class="badge bg-success-subtle text-success-emphasis">Admin</span>
+            <% else %>
+              <span class="badge bg-secondary-subtle text-secondary-emphasis">Client</span>
+            <% end %>
+          </dd>
+
+          <dt class="col-sm-4">Creat</dt>
+          <dd class="col-sm-8 text-muted small"><%= l(@user.created_at, format: :long) %></dd>
+        </dl>
+
+        <div class="d-flex gap-2">
+          <%= link_to 'Editează', edit_dashboard_admin_user_path(@user), class: 'btn btn-primary' %>
+          <% if @user != current_user %>
+            <% if @user.admin? %>
+              <%= button_to 'Retrage admin', toggle_admin_dashboard_admin_user_path(@user), method: :patch, data: { confirm: 'Sigur vrei să retragi dreptul de administrator?' }, class: 'btn btn-outline-danger' %>
+            <% else %>
+              <%= button_to 'Promovează', toggle_admin_dashboard_admin_user_path(@user), method: :patch, data: { confirm: 'Sigur vrei să promovezi utilizatorul la administrator?' }, class: 'btn btn-outline-primary' %>
+            <% end %>
+            <%= button_to 'Șterge', dashboard_admin_user_path(@user), method: :delete, data: { confirm: 'Ești sigur că vrei să ștergi acest utilizator? Această acțiune nu poate fi anulată.' }, class: 'btn btn-outline-danger' %>
+          <% end %>
+          <%= link_to 'Înapoi la listă', dashboard_admin_users_path, class: 'btn btn-outline-secondary ms-auto' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

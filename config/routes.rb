@@ -27,15 +27,51 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'pages#home'
-  get 'retete', to: 'recipes#admin_recipes'
   get 'preturi', to: 'recipes#update_prices'
+  patch 'preturi', to: 'recipes#bulk_update_prices'
   get 'cautare-retete', to: 'recipes#search'
   get 'how_to_order', to: 'pages#how_to_order'
   get 'about', to: 'pages#about'
   get 'valori-nutritionale', to: 'pages#valori_nutritionale'
+  get 'contul-meu', to: 'accounts#show', as: :account
+  get 'comenzi-online', to: 'online_orders#index', as: :online_orders
   get 'dashboard',  to: 'pages#admin_dashboard'
   get 'dashboard/designs', to: 'designs#index'
   get 'dashboard/features', to: 'features#index'
+
+  namespace :dashboard do
+    resources :orders, only: %i[index show update destroy] do
+      post :resend_emails, on: :member
+    end
+    resources :recipes, only: :index
+    resources :delivery_dates, only: :index do
+      collection do
+        post :toggle
+        post :block_range
+      end
+    end
+    resources :users, only: %i[index edit update] do
+      member do
+        patch :toggle_admin
+      end
+    end
+
+    resources :admin_users, controller: 'admin_users' do
+      member do
+        patch :toggle_admin
+      end
+    end
+  end
+
+  namespace :shop do
+    resource :cart, only: :show
+    resources :cart_items, only: %i[create update destroy]
+    post 'checkout', to: 'checkout#create'
+    get 'checkout/success', to: 'checkout#success'
+    get 'checkout/cancel', to: 'checkout#cancel'
+    get 'guest_confirmation/:id/:token', to: 'checkout#guest_confirmation', as: :guest_confirmation
+  end
+
   get '*any', via: :all, to: 'errors#not_found'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

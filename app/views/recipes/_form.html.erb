@@ -1,0 +1,152 @@
+<%# Restore original simple_form layout and add extras nested inputs %>
+
+<div class="form-container">
+  <div class="form-form text-start">
+    <%= simple_form_for(
+          [category, recipe],
+          url: (recipe.id ? category_recipe_path(recipe.category, recipe) : category_recipes_path(Category.find_by(slug: params[:category_id]))),
+          id: (recipe.id ? dom_id(recipe) : dom_id(Recipe.new)),
+          html: { data: { controller: 'recipe-form' } }
+        ) do |f| %>
+      <%= f.input :name,
+                  label: 'Numele rețetei',
+                  placeholder: 'Ex.: Boema, Tort cu ciocolată',
+                  label_html: { class: 'color-fonts fonts-700 rem1-3' } %>
+      <%= f.input :content, label: 'Descrierea rețetei', placeholder: 'Descrierea rețetei' %>
+      <%= f.input :story,
+          as: :text,
+          label: 'Povestea desertului',
+          placeholder: 'Detalii despre inspirație, ocazii de servire și note de degustare',
+          input_html: { rows: 5 } %>
+      <%= f.input :ingredients, label: 'Ingrediente' %>
+
+      <div class="recipe-options">
+        <%= f.input :kg_buc,
+                    label: 'Afișare (preț de bază)',
+                    collection: [['per bucată', 'buc'], ['per kilogram', 'kg']],
+                    include_blank: false,
+                    input_html: { data: { recipe_form_target: 'kg', action: 'change->recipe-form#handleChange' } } %>
+        <%= f.input :sold_by,
+                    label: 'Se vinde online per',
+                    collection: [['per bucată', 'buc'], ['per kilogram', 'kg']],
+                    include_blank: false,
+                    selected: recipe.sold_by.presence || 'kg',
+                    input_html: { data: { recipe_form_target: 'soldBy', action: 'change->recipe-form#handleChange' } } %>
+        <%= f.input :price_cents,
+                    label: 'Prețul de referință (în bani)',
+                    hint: 'Introduce valorile în bani, ex.: 15000 pentru 150 lei' %>
+        <%= f.input :minimal_order,
+                    label: 'Comandă minimă',
+                    hint: 'Opțional, valoare numerică cu 2 zecimale',
+                    input_html: { step: 0.01 } %>
+        <%= f.input :disable_delivery_for_days,
+              label: 'Zile de blocare livrare',
+              hint: 'Număr de zile fără livrare după plasarea comenzii (începând cu ziua următoare)',
+              input_html: { min: 0 } %>
+        <%= f.input :weight, label: 'Greutate produs (gr)' %>
+        <%= f.input :vegan, label: 'Produs de post?' %>
+        <%= f.input :publish, label: 'Publicată?' %>
+      </div>
+
+      <hr>
+      <p class="fs-5">Poziție home page</p>
+      <div class="d-flex flex-wrap gap-3">
+        <%= f.input :favored, label: 'Recomandat?' %>
+        <%= f.input :position, collection: 1..8, hint: 'Poziție home page', label: false %>
+      </div>
+
+      <hr>
+      <p class="fs-5">Setări online</p>
+      <%= f.input :online_order, label: 'Disponibil online?' %>
+      <%= f.input :only_pickup, label: 'Doar ridicare (fără livrare)?' %>
+      <div class="d-flex flex-wrap gap-3">
+        <%= f.input :online_selling_weight,
+                    label: 'Greutate bucată pentru vânzarea online (kg)',
+                    hint: 'Obligatoriu când baza este per kg și vânzarea este la bucată',
+                    input_html: {
+                      step: 0.01,
+                      min: 0.01,
+                      data: { recipe_form_target: 'weight' },
+                      disabled: (!recipe.per_piece_sale?)
+                    } %>
+      </div>
+
+      <hr>
+      <p>Valori nutriționale</p>
+      <div class="nutritional-declaration">
+        <%= f.input :energetic_value, label: false, placeholder: 'Val. energetică' %>
+        <%= f.input :fats, label: false, placeholder: 'grăsimi' %>
+        <%= f.input :fatty_acids, label: false, placeholder: 'acizi grași saturați' %>
+        <%= f.input :carbohydrates, label: false, placeholder: 'glucide' %>
+        <%= f.input :sugars, label: false, placeholder: 'zaharuri' %>
+        <%= f.input :proteins, label: false, placeholder: 'proteine' %>
+        <%= f.input :salt, label: false, placeholder: 'sare' %>
+      </div>
+      <%= f.input :photo,
+                  as: :file,
+                  label: 'Alege fotografia',
+                  label_html: { class: 'btn btn-block button-default button-rounded' },
+                  class: 'rem1-3' %>
+
+      <%# --- Extras fields (minimal additions) --- %>
+      <%= f.input :has_extras, label: 'Are extrasuri?', as: :boolean %>
+
+      <div class="extras-edit" data-controller="nested-extras">
+        <h5 class="mt-3">Extrasuri</h5>
+        <div data-nested-extras-target="list">
+          <%= f.simple_fields_for :extras do |ef| %>
+            <div class="card card-body mb-2 p-2 nested-extra-row">
+              <div class="row g-2 align-items-center">
+                <div class="col-5">
+                  <%= ef.input :name, label: 'Nume', input_html: { class: 'form-control form-control-sm' } %>
+                </div>
+                <div class="col-3">
+                  <%= ef.input :price_cents, label: 'Preț (cenți)', input_html: { class: 'form-control form-control-sm' } %>
+                </div>
+                <div class="col-2">
+                  <%= ef.input :available, label: 'Disponibil' %>
+                </div>
+                <div class="col-2 text-end">
+                  <%= ef.input :_destroy, as: :hidden %>
+                  <button type="button" class="btn btn-sm btn-outline-danger" data-action="nested-extras#removeRow">Șterge</button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="d-flex justify-content-end mb-2 mt-2">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-action="nested-extras#addRow">Adaugă extra</button>
+        </div>
+
+        <template data-nested-extras-target="template">
+          <%= f.simple_fields_for :extras, Extra.new, child_index: 'NEW_RECORD' do |ef| %>
+            <div class="card card-body mb-2 p-2 nested-extra-row">
+              <div class="row g-2 align-items-center">
+                <div class="col-5">
+                  <%= ef.input :name, label: 'Nume', input_html: { class: 'form-control form-control-sm' } %>
+                </div>
+                <div class="col-3">
+                  <%= ef.input :price_cents, label: 'Preț (cenți)', input_html: { class: 'form-control form-control-sm' } %>
+                </div>
+                <div class="col-2">
+                  <%= ef.input :available, label: 'Disponibil' %>
+                </div>
+                <div class="col-2 text-end">
+                  <%= ef.input :_destroy, as: :hidden %>
+                  <button type="button" class="btn btn-sm btn-outline-danger" data-action="nested-extras#removeRow">Șterge</button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </template>
+      </div>
+
+      <% if recipe.id %>
+        <%= f.button :submit, value: 'Modifică rețeta', class: 'btn btn-default', data: { turbo: false } %>
+      <% else %>
+        <%= f.button :submit, value: 'Adaugă o rețetă', class: 'btn btn-default', data: { turbo: false } %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

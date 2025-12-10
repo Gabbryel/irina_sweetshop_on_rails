@@ -1,0 +1,23 @@
+<% show_disclaimer = local_assigns.fetch(:show_disclaimer, true) %>
+
+<div class="table-responsive">
+  <table class="table table-sm align-middle mb-0">
+    <thead class="table-light">
+      <tr>
+        <th>Indicator</th>
+        <th class="text-end">Valoare</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% nutrition_values.each do |label, value| %>
+        <tr>
+          <td><%= label %></td>
+          <td class="text-end"><%= number_with_precision(value, precision: 2, strip_insignificant_zeros: true) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% if show_disclaimer %>
+  <p class="text-muted small mt-3 mb-0">Valorile sunt orientative și pot varia în funcție de lot.</p>
+<% end %>

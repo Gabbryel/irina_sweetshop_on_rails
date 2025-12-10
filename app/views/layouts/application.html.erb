@@ -55,18 +55,12 @@
       <p id="prajituri">PRĂJITURI</p>
     </div>
     <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <div id="flash-messages">
+      <%= render 'shared/flashes' %>
+    </div>
       <%= yield %>
     <!-- <%= render 'shared/social' %> -->
     <%= render 'shared/footer' %>
-    <script src="//www.eucookie.eu/public/gdpr-cookie-consent.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      var cookieConsent = new cookieConsent({
-          clientId: '8955f407-eb22-4c18-8191-1b1c6bcc7b80',
-          language: 'ro',
-          precheck: true
-      });
-      cookieConsent.run();
-    </script>
+    <%= render 'shared/floating_cart' %>
   </body>
 </html>

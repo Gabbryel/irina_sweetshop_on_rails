@@ -10,7 +10,8 @@
   </div>
   <div class="recipe-name d-flex justify-content-between h-10 text-center p-2 fs-4 align-items-center w-100">
     <h2 class="fs-4 font-playfair"><%= recipe.name %></h2>
-    <p class="fs-5"><%= recipe.price %><span class="fs-6"> lei/<%= recipe.kg_buc == 'kg' ? 'kg' : 'buc' %></span></p>
+    <% unit_value = recipe.sold_by.presence || recipe.kg_buc.presence || 'kg' %>
+    <p class="fs-5"><%= recipe.price %><span class="fs-6"> lei/<%= unit_value %></span></p>
   </div>
   <div class="recipe-description h-10 px-2 d-flex justify-content-end w-100">
     <%= link_to recipe_path(recipe) do %>

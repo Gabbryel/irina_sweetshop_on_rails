@@ -1,0 +1,125 @@
+.delivery-calendar__legend {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.delivery-calendar__legend-dot {
+  inline-size: 0.85rem;
+  block-size: 0.85rem;
+  border-radius: 999px;
+  display: inline-block;
+  background-color: #198754;
+}
+
+.delivery-calendar__legend-dot.is-blocked {
+  background-color: #dc3545;
+}
+
+.delivery-calendar__legend-dot.is-locked {
+  background-color: #adb5bd;
+}
+
+.delivery-calendar__legend-text {
+  font-weight: 500;
+}
+
+.delivery-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(2.5rem, 1fr));
+  gap: 0.5rem;
+}
+
+.delivery-calendar__form {
+  display: contents;
+}
+
+.delivery-calendar__weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #adb5bd;
+}
+
+.delivery-calendar__day {
+  position: relative;
+  border: 1px solid rgba(25, 135, 84, 0.2);
+  background-color: rgba(25, 135, 84, 0.08);
+  color: #198754;
+  border-radius: 0.75rem;
+  padding-block: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.delivery-calendar__day:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(25, 135, 84, 0.45);
+}
+
+.delivery-calendar__day:focus-visible {
+  outline: 3px solid rgba(25, 135, 84, 0.35);
+  outline-offset: 2px;
+}
+
+.delivery-calendar__day.is-blocked {
+  background-color: rgba(220, 53, 69, 0.12);
+  border-color: rgba(220, 53, 69, 0.45);
+  color: #dc3545;
+}
+
+.delivery-calendar__day.is-locked {
+  cursor: not-allowed;
+  opacity: 0.65;
+  background-color: rgba(173, 181, 189, 0.15);
+  border-color: rgba(173, 181, 189, 0.55);
+  color: #6c757d;
+}
+
+.delivery-calendar__day.is-outside {
+  text-align: center;
+  color: #ced4da;
+  font-size: 0.95rem;
+  border-radius: 0.75rem;
+  padding-block: 0.85rem;
+}
+
+.delivery-calendar__day.is-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0.25rem;
+  border-radius: inherit;
+  border: 2px solid rgba(33, 37, 41, 0.1);
+  border-top-color: rgba(33, 37, 41, 0.35);
+  animation: delivery-calendar-spinner 0.6s linear infinite;
+}
+
+@keyframes delivery-calendar-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 576px) {
+  .delivery-calendar__grid {
+    grid-template-columns: repeat(7, minmax(2.25rem, 1fr));
+    gap: 0.35rem;
+  }
+
+  .delivery-calendar__day,
+  .delivery-calendar__day.is-outside {
+    padding-block: 0.65rem;
+    font-size: 0.85rem;
+  }
+}

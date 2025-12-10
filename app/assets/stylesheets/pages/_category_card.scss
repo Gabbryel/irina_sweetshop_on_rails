@@ -67,8 +67,8 @@
 
 .card-container-recipes {
     position: relative;
-    width: 30rem;
-    height: 40rem;
+    width: 22.5rem;
+    height: 30rem;
     border-radius: 20px;
     overflow: hidden;
     font-family: $font-text;
@@ -80,8 +80,8 @@
     }
     .card-price-sec {
         position: absolute;
-        height: 75px;
-        width: 75px;
+        height: 56px;
+        width: 56px;
         border-radius: 50%;
         top: 10px;
         right: 10px;
@@ -90,9 +90,9 @@
         color: $light-bkg-color;
         .price-design {
             position: relative;
-            height: 75px;
-            width: 75px;
-            font-size: 18px;
+            height: 56px;
+            width: 56px;
+            font-size: 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -101,30 +101,30 @@
             font-family: 'Atma';
             span {
                 &:nth-child(2) {
-                    font-size: 13px;
+                    font-size: 10px;
                     position: relative;
                     top: -5px;
                 }
                 &:last-child {
-                    font-size: 18px;
+                    font-size: 14px;
                     top: 0;
                 }
             }
             hr {
-                margin: 10px 0;
+                margin: 8px 0;
                 width: 70%;
             }
             .price-design-kg {
-                font-size: 14px;
+                font-size: 11px;
             }
         }
     }
     .card-crud {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 8px;
+        left: 8px;
         a {
-            font-size: 16px;
+            font-size: 12px;
             color: $font-color;
             &:hover {
                 color: #fff;
@@ -142,7 +142,7 @@
             height: 100%;
             .card-image-recipes {
                 width: 100%;
-                height: 28rem;
+                height: 21rem;
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
@@ -152,8 +152,8 @@
                 .favored-recipe {
                     position: absolute;
                     color: $heart-color;
-                    top: 58px;
-                    left: 8px;
+                    top: 44px;
+                    left: 6px;
                     z-index: 2;
                 }
                 img {
@@ -175,18 +175,18 @@
                 }
             }
             .card-title-recipes {
-                height: 12rem;
+                height: 9rem;
                 text-align: center;
                 color: $eggplant;
                 .card-title-text {
                     position: relative;
-                    height: 8rem;
+                    height: 6rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border-bottom: 1px solid #2b2424;
                     line-height: 1;
-                    font-size: 2rem;
+                    font-size: 1.5rem;
                     font-weight: 700;
                     letter-spacing: -.02em;
                     padding: 0 10px;
@@ -198,8 +198,8 @@
                 }
                 .card-description {
                     position: relative;
-                    font-size: 1.2rem;
-                    height: 4rem;
+                    font-size: 0.9rem;
+                    height: 3rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;

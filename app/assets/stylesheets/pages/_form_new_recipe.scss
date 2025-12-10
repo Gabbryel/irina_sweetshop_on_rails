@@ -43,7 +43,7 @@
 .recipe-options {
   display: grid;
   gap: 10px;
-  grid-template-columns: 40% 15% 15% 10%;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   align-content: center;
-  align-items: end;
+  align-items: start;
 }

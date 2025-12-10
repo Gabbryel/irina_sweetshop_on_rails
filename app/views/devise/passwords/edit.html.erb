@@ -1,27 +1,68 @@
-<h2>Change your password</h2>
+<% @page_title = 'Setează parolă nouă | Cofetăria Irina' %>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<div class="auth-layout container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="row g-4 auth-wrapper">
+        <div class="col-12 col-lg-5">
+          <div class="auth-hero p-4 p-lg-5 h-100 rounded-4">
+            <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-3">Parolă nouă</span>
+            <h1 class="h2 fw-bold mb-3">Alege o parolă sigură</h1>
+            <p class="text-muted mb-4">Completează parola nouă și confirmă pentru a-ți securiza contul.</p>
+            <% if @minimum_password_length %>
+              <p class="text-muted small mb-0">Minimum <strong><%= @minimum_password_length %></strong> caractere.</p>
+            <% end %>
+          </div>
+        </div>
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
+        <div class="col-12 col-lg-7">
+          <div class="card border-0 shadow-lg auth-card rounded-4">
+            <div class="card-body p-4 p-lg-5">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted mb-1 small">Resetare parolă</p>
+                  <h2 class="h4 fw-bold mb-0">Setează parola nouă</h2>
+                </div>
+                <div class="auth-avatar d-inline-flex align-items-center justify-content-center rounded-circle">
+                  <i class="fa-solid fa-lock"></i>
+                </div>
+              </div>
 
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "New password",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                label: "Confirm your new password",
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+              <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'auth-form' }) do |f| %>
+                <%= f.error_notification %>
+                <%= f.input :reset_password_token, as: :hidden %>
+                <%= f.full_error :reset_password_token %>
+
+                <div class="mb-3">
+                  <%= f.input :password,
+                              label: 'Parolă nouă',
+                              required: true,
+                              autofocus: true,
+                              hint: (@minimum_password_length ? "Minim #{@minimum_password_length} caractere" : nil),
+                              input_html: { autocomplete: "new-password", class: 'form-control form-control-lg' },
+                              label_html: { class: 'form-label fw-semibold' } %>
+                </div>
+
+                <div class="mb-4">
+                  <%= f.input :password_confirmation,
+                              label: 'Confirmă parola nouă',
+                              required: true,
+                              input_html: { autocomplete: "new-password", class: 'form-control form-control-lg' },
+                              label_html: { class: 'form-label fw-semibold' } %>
+                </div>
+
+                <div class="d-grid">
+                  <%= f.button :submit, 'Salvează parola', class: 'btn btn-primary btn-lg shadow-sm' %>
+                </div>
+              <% end %>
+
+              <div class="auth-links text-center mt-4">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

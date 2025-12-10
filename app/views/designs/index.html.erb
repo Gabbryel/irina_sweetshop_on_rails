@@ -1,10 +1,80 @@
-<div class="container dashboard-container">
-  <h1>Designs</h1>
-  <div class="form-admin">
-    <%= render partial: 'form' %>
+<div class="container py-5 admin-designs">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+    <div>
+      <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-2">Administrator</span>
+      <h1 class="h3 mb-0">Gestionare designuri</h1>
+      <p class="text-muted small mb-0">Adauga, actualizeaza si monitorizeaza designurile disponibile pentru modele personalizate.</p>
+    </div>
+    <div class="text-md-end">
+      <p class="text-muted small mb-1">Designuri active</p>
+      <p class="h4 mb-0"><%= @designs.size %></p>
+    </div>
   </div>
-  <div class="dashboard-design__index">
-    <%= render @designs %>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
+    <% @stats_cards.each do |stat| %>
+      <div class="col">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <p class="text-muted small mb-1"><%= stat[:label] %></p>
+                <% value = stat[:value] %>
+                <p class="h4 mb-0"><%= value.is_a?(Numeric) ? number_with_delimiter(value) : value %></p>
+              </div>
+              <span class="badge bg-primary-subtle text-primary-emphasis rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i class="<%= stat[:icon] %>"></i>
+              </span>
+            </div>
+            <p class="text-muted small mb-0"><%= stat[:hint] %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header bg-white border-0 py-3">
+          <h2 class="h6 mb-0"><%= @design.persisted? ? 'Modifica design' : 'Adauga design' %></h2>
+        </div>
+        <div class="card-body">
+          <%= render 'form', design: @design, categories: @categories %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+          <h2 class="h6 mb-0">Designuri existente</h2>
+          <span class="badge bg-light text-dark"><%= @designs.size %></span>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Denumire</th>
+                <th>Categorie</th>
+                <th>Pret (RON)</th>
+                <th>Actualizat</th>
+                <th class="text-end">Actiuni</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @designs.any? %>
+                <%= render @designs %>
+              <% else %>
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-4">Nu exista designuri create inca.</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

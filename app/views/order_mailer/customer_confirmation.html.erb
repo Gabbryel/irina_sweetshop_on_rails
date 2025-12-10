@@ -1,0 +1,118 @@
+<div style="font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background:#f4f6f8; padding:28px; color:#0b1220;">
+  <div style="max-width:680px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 18px 40px rgba(2,6,23,0.06);">
+    <!-- Header -->
+    <div style="background:linear-gradient(90deg,#111827 0%, #0ea5a4 100%); padding:20px 24px; color:#fff;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; opacity:0.9;">Confirmare comandă</div>
+          <div style="font-size:20px; font-weight:800; margin-top:6px;">Mulțumim, <%= @order.customer_name %></div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:13px; background:rgba(255,255,255,0.08); padding:6px 10px; border-radius:999px; display:inline-block;">Order #<%= @order.id %></div>
+          <div style="font-size:12px; opacity:0.85; margin-top:6px;">
+            <%= l(@order.created_at.in_time_zone(Time.zone), format: :short) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:20px 22px;">
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <div style="flex:1 1 260px; padding:12px; border-radius:10px; border:1px solid #eef2f7; background:#fbfdff;">
+          <div style="font-size:12px; text-transform:uppercase; color:#64748b; font-weight:700;">Livrare</div>
+          <div style="margin-top:8px; font-size:15px; font-weight:700; color:#0b1220;"><%= @order.method_of_delivery == 'pickup' ? 'Ridicare' : 'Livrare' %></div>
+          <div style="margin-top:6px; color:#475569; font-size:14px;">
+            <div>Data: <strong><%= @order.delivery_date.present? ? l(@order.delivery_date) : '—' %></strong></div>
+            <div>Județ: <strong><%= @order.county.presence || '—' %></strong></div>
+            <div>Adresă: <strong><%= @order.delivery_address.presence || '—' %></strong></div>
+          </div>
+        </div>
+
+        <div style="flex:1 1 260px; padding:12px; border-radius:10px; border:1px solid #eef2f7; background:#fbfdff;">
+          <div style="font-size:12px; text-transform:uppercase; color:#64748b; font-weight:700;">Contact</div>
+          <div style="margin-top:8px; font-size:15px; font-weight:700; color:#0b1220;"><%= @order.customer_name %></div>
+          <div style="margin-top:6px; color:#475569; font-size:14px;">
+            <div>Telefon: <strong><%= @order.customer_phone.presence || '—' %></strong></div>
+            <div>Email: <strong><%= @order.contact_email || '—' %></strong></div>
+          </div>
+        </div>
+      </div>
+
+      <% if @order.customer_notes.present? %>
+        <div style="margin-top:14px; padding:12px; background:#fff8f3; border:1px solid #fde8d8; border-radius:10px; color:#92400e;">
+          <strong>Notițe client:</strong>
+          <div style="margin-top:6px; font-size:14px; color:#7c2d12;"><%= @order.customer_notes %></div>
+        </div>
+      <% end %>
+
+      <!-- Items table -->
+      <div style="margin-top:16px; border-radius:10px; overflow:hidden; border:1px solid #eef2f7;">
+        <div style="padding:10px 14px; background:#fbfdff; font-weight:700;">Articole comandate</div>
+        <table style="width:100%; border-collapse:collapse; font-size:14px;">
+          <thead>
+            <tr style="text-align:left; border-bottom:1px solid #eef2f7;">
+              <th style="padding:10px 14px;">Produs</th>
+              <th style="padding:10px 14px;">Cantitate</th>
+              <th style="padding:10px 14px; text-align:right;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @items.each do |item| %>
+              <tr style="border-bottom:1px solid #fafafa;">
+                <td style="padding:10px 14px; font-weight:600;"><%= item.name %></td>
+                <td style="padding:10px 14px; color:#475569;"><%= item.quantity %> <%= item.kg_buc %></td>
+                <td style="padding:10px 14px; text-align:right; font-weight:700;"><%= item.total.format %></td>
+              </tr>
+              <% if item.item_extras.any? %>
+                <tr>
+                  <td colspan="3" style="padding:6px 14px 12px 28px; color:#6b7280; font-size:13px;">
+                    <strong>Extras:</strong>
+                    <ul style="margin:6px 0 0 14px; padding:0;">
+                      <% item.item_extras.each do |ie| %>
+                        <li style="list-style:disc;"> <%= ie.name %> — <%= ie.price.format %></li>
+                      <% end %>
+                    </ul>
+                  </td>
+                </tr>
+              <% end %>
+              <% if item.item_extras.any? %>
+                <% extras_per_unit = item.item_extras.to_a.sum { |ie| ie.price_cents.to_i } %>
+                <% if extras_per_unit.positive? %>
+                  <tr>
+                    <td colspan="3" style="padding:6px 14px 12px 28px; color:#374151; font-size:13px;">
+                      <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div style="font-weight:600; color:#374151;">Extras subtotal</div>
+                        <div style="font-weight:700;"> <%= Money.new(extras_per_unit * item.quantity.to_f, Money.default_currency).format %> </div>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 14px; background:#ffffff;">
+          <div style="font-size:14px; color:#475569;">Articole: <strong><%= @order.line_item_count %></strong></div>
+          <div style="font-size:18px; font-weight:800; color:#0b1220;">Total: <%= @order.total_money.format %></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="margin-top:18px; display:flex; gap:8px; align-items:center;">
+        <% if defined?(shop_cart_url) %>
+          <a href="<%= shop_cart_url %>" style="display:inline-block; padding:10px 16px; background:#0ea5a4; color:#fff; border-radius:10px; text-decoration:none; font-weight:700;">Vezi coșul tău</a>
+        <% end %>
+        <a href="mailto:<%= OrderMailer::ADMIN_EMAIL %>?subject=Întrebare%20comanda%20##<%= @order.id %>" style="display:inline-block; padding:10px 16px; border-radius:10px; background:#fff; border:1px solid #e6eef3; color:#0b1220; text-decoration:none; font-weight:600;">Contact suport</a>
+      </div>
+
+      <div style="margin-top:16px; font-size:13px; color:#64748b;">Dacă ai nevoie de modificări, contactează-ne cât mai curând posibil.</div>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:12px 18px; background:#f8fafc; border-top:1px solid #eef2f7; text-align:center; color:#94a3b8; font-size:13px;">
+      Irina Sweetshop • Patiserie artizanală — Office: <%= OrderMailer::ADMIN_EMAIL %>
+    </div>
+  </div>
+</div>
