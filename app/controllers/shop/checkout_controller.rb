@@ -184,7 +184,7 @@ module Shop
         return
       end
 
-        cart.update!(status: Cart::STATUSES[:no_status])
+          cart.update!(status: Cart::STATUSES[:no_status], paid_at: Time.current)
       # If the order was placed by a guest without email, expose a printable confirmation for the customer
       guest_flow = cart.guest_no_email?
       send_completion_emails(cart)
@@ -259,16 +259,8 @@ module Shop
     end
 
     def start_new_cart!
-      cart = if current_user.present?
-               Cart.create!(user: current_user)
-             else
-               Cart.create!
-             end
-
-      session[:cart_id] = cart.id
-      session[:cart_token] = cart.guest_token if cart.guest_token.present?
-      session[:cart_last_seen_at] = Time.current.iso8601
-      @current_cart = cart
+      clear_cart_session!
+      Cart.new
     end
 
     def send_completion_emails(order)

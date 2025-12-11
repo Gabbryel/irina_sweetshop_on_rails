@@ -11,11 +11,12 @@ module Shop
     private
 
     def set_cart
-      @cart = current_cart
+      @cart = current_cart || Cart.new
     end
 
     def cart_payload(cart = current_cart)
-      cart = cart.reload
+      cart ||= Cart.new
+      cart = cart.reload if cart.persisted?
 
       {
         id: cart.id,

@@ -6,6 +6,8 @@ module Shop
     def create
       return if performed?
 
+      @cart = ensure_cart!
+
       quantity = sanitized_quantity(default: default_quantity_for(@recipe))
       # support extras: if extras selected, create a distinct item record
       extra_ids = Array(params.dig(:cart_item, :extra_ids) || params[:cart_item]&.[](:extra_ids)).reject(&:blank?).map(&:to_i)
@@ -40,6 +42,8 @@ module Shop
         item.save!
       end
 
+      @cart.schedule_payment_followups!
+
       render_cart_success(message: 'Produsul a fost adăugat în coș.')
     end
 
@@ -54,6 +58,8 @@ module Shop
         @item.update!(quantity: quantity)
       end
 
+      destroy_cart_if_empty!
+
       render_cart_success(message: 'Cantitatea a fost actualizată.')
     end
 
@@ -61,6 +67,7 @@ module Shop
       return if performed?
 
       @item.destroy
+      destroy_cart_if_empty!
       render_cart_success(message: 'Produsul a fost eliminat din coș.')
     end
 
@@ -123,6 +130,16 @@ module Shop
       respond_to do |format|
         format.json { render json: payload, status: :ok }
         format.html { redirect_back fallback_location: shop_cart_path, notice: message }
+      end
+    end
+
+    def destroy_cart_if_empty!
+      return if @cart.blank?
+
+      if @cart.items.reload.empty?
+        @cart.destroy
+        clear_cart_session!
+        @cart = Cart.new
       end
     end
   end

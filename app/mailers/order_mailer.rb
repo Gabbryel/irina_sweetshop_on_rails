@@ -18,4 +18,11 @@ class OrderMailer < ApplicationMailer
     @items = @order.items.includes(:recipe)
     mail(to: @order.contact_email, subject: "Actualizare status comandă ##{@order.id}: #{@order.status_label}")
   end
+
+  def payment_reminder
+    @order = params[:order]
+    @items = @order.items.includes(:recipe)
+    @public_order_number = @order.public_order_number
+    mail(to: @order.contact_email, subject: "Comanda ta este încă în așteptare de plată")
+  end
 end

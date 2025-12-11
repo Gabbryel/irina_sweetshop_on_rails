@@ -1,0 +1,16 @@
+<p>Bună,</p>
+
+<p>Comanda ta <strong><%= @public_order_number %></strong> este încă în așteptare de plată. Dacă dorești să continui, poți reveni pe site și să finalizezi plata online.</p>
+
+<% if @items.present? %>
+  <p>Rezumat produse:</p>
+  <ul>
+    <% @items.each do |item| %>
+      <li><%= item.name %> – <%= item.total.format %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>Dacă ai nevoie de ajutor, ne poți contacta la <a href="mailto:<%= OrderMailer::ADMIN_EMAIL %>"><%= OrderMailer::ADMIN_EMAIL %></a>.</p>
+
+<p>Îți mulțumim,<br>Cofetăria Irina</p>

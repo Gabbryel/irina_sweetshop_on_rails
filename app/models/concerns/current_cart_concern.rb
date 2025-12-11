@@ -20,17 +20,33 @@ module CurrentCartConcern
              fetch_guest_cart_from_session
            end
 
-    if cart.present?
-      session[:cart_id] = cart.id
-      session[:cart_token] = cart.guest_token if cart.guest_token.present?
-      session[:cart_last_seen_at] = Time.current.iso8601
-    end
+    remember_cart_session(cart) if cart.present?
 
     @current_cart = cart
   end
 
   def set_cart
     @cart = current_cart
+  end
+
+  def ensure_cart!
+    return current_cart if current_cart.present?
+
+    cart = if current_user.present?
+             Cart.create!(user: current_user)
+           else
+             Cart.create!
+           end
+
+    remember_cart_session(cart)
+    @current_cart = cart
+  end
+
+  def clear_cart_session!
+    session.delete(:cart_id)
+    session.delete(:cart_token)
+    session.delete(:cart_last_seen_at)
+    @current_cart = nil
   end
 
   def expire_cart_session_if_stale!
@@ -64,5 +80,11 @@ module CurrentCartConcern
     end
 
     nil
+  end
+
+  def remember_cart_session(cart)
+    session[:cart_id] = cart.id
+    session[:cart_token] = cart.guest_token if cart.guest_token.present?
+    session[:cart_last_seen_at] = Time.current.iso8601
   end
 end

@@ -53,8 +53,10 @@ class Cart < ApplicationRecord
       session.delete(:cart_token)
     end
 
-    current_cart ||= create!(user: user)
-    current_cart.update!(guest_token: nil) if current_cart.guest_token.present?
+    if current_cart.present? && current_cart.guest_token.present?
+      current_cart.update!(guest_token: nil)
+    end
+
     current_cart
   end
 
@@ -101,6 +103,22 @@ class Cart < ApplicationRecord
     update!(stripe_checkout_session_id: session_id,
       stripe_payment_intent_id: payment_intent,
       status: STATUSES[:no_status])
+  end
+
+  def mark_paid!(timestamp: Time.current)
+    update!(paid_at: timestamp)
+  end
+
+  def paid?
+    paid_at.present?
+  end
+
+  def schedule_payment_followups!
+    return if paid? || payment_followups_scheduled_at.present?
+
+    CartPaymentReminderJob.set(wait: 1.hour).perform_later(id)
+    CartAutoDeleteJob.set(wait: 2.hours).perform_later(id)
+    update_column(:payment_followups_scheduled_at, Time.current)
   end
 
   def customer_name

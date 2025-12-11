@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_12_10_124000) do
+ActiveRecord::Schema[7.0].define(version: 2025_12_11_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -84,8 +84,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_12_10_124000) do
     t.date "delivery_date"
     t.string "method_of_delivery"
     t.boolean "guest_no_email", default: false, null: false
+    t.datetime "paid_at", precision: nil
+    t.datetime "reminder_sent_at", precision: nil
+    t.datetime "payment_followups_scheduled_at", precision: nil
     t.index ["guest_no_email"], name: "index_carts_on_guest_no_email"
     t.index ["guest_token"], name: "index_carts_on_guest_token", unique: true
+    t.index ["paid_at"], name: "index_carts_on_paid_at"
+    t.index ["payment_followups_scheduled_at"], name: "index_carts_on_payment_followups_scheduled_at"
+    t.index ["reminder_sent_at"], name: "index_carts_on_reminder_sent_at"
     t.index ["status"], name: "index_carts_on_status"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
