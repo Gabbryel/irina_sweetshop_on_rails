@@ -117,7 +117,9 @@ module Shop
     end
 
     def cart_payload
-      super(@cart.reload)
+      cart = @cart
+      cart = Cart.new unless cart&.persisted?
+      super(cart)
     end
 
     def default_quantity_for(recipe)
