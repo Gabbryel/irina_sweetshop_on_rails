@@ -3,7 +3,8 @@
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(760px, 94vw);
+  width: 94vw;
+  max-width: 760px;
   background: #ffffff;
   color: #111;
   border-radius: 14px;
