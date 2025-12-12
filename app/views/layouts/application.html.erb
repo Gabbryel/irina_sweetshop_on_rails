@@ -38,15 +38,6 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=<%= request.host == 'cofetaria-irina' ? 'G-4WPLKBGTJL' : 'G-8HVW85T4DE'%>"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', `${window.location.href.split('.').includes('cofetaria-irina') ? 'G-4WPLKBGTJL' : 'G-8HVW85T4DE'}`);
-</script>
   <body data-controller="vh">
     <div class="design-elements">
       <p id="torturi">TORTURI</p>
@@ -62,5 +53,7 @@
     <!-- <%= render 'shared/social' %> -->
     <%= render 'shared/footer' %>
     <%= render 'shared/floating_cart' %>
+    <%= render 'shared/gdpr_modal' %>
+    <%= render 'shared/cookie_banner' %>
   </body>
 </html>

@@ -1,0 +1,35 @@
+<% ga_id = request.host == 'cofetaria-irina' ? 'G-4WPLKBGTJL' : 'G-8HVW85T4DE' %>
+<div class="cookie-banner" data-controller="cookie-consent"
+     data-cookie-consent-ga-id-value="<%= ga_id %>"
+     data-cookie-consent-consent-value="<%= cookies[:cookie_consent].presence || '' %>"
+     data-cookie-consent-policy-url-value="<%= gdpr_path %>">
+  <div class="cookie-banner__rail">
+    <span class="cookie-banner__badge">Preferințe de confidențialitate</span>
+    <h2 class="cookie-banner__title">Ajustează-ți opțiunile pentru cookie-uri</h2>
+    <p class="cookie-banner__copy">Cookie-urile esențiale păstrează coșul și autentificarea. Analiticele se activează doar dacă alegi „Accept”. Poți reveni oricând.</p>
+
+    <div class="cookie-banner__pill-group">
+      <span class="pill pill--locked"><i class="fa-solid fa-lock"></i> Necesare (active)</span>
+      <span class="pill pill--optional"><i class="fa-solid fa-chart-line"></i> Analiză (opțional)</span>
+    </div>
+
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn-light border" data-action="cookie-consent#decline">Doar necesare</button>
+      <button type="button" class="btn btn-dark" data-action="cookie-consent#accept">Accept</button>
+      <%= link_to 'Află mai multe', gdpr_path, class: 'cookie-banner__link' %>
+    </div>
+  </div>
+  <div class="cookie-banner__summary" aria-hidden="true">
+    <div class="summary-icon"><i class="fa-solid fa-shield-check"></i></div>
+    <ul class="summary-list">
+      <li><strong>Transparent:</strong> vezi ce colectăm.</li>
+      <li><strong>Control rapid:</strong> două opțiuni clare.</li>
+      <li><strong>Revocare ușoară:</strong> buton „Preferințe” oricând.</li>
+    </ul>
+  </div>
+</div>
+<button type="button" class="cookie-banner__preferences btn btn-outline-secondary btn-sm"
+        data-cookie-consent-target="preferencesButton"
+        data-action="cookie-consent#openPreferences">
+  Preferințe cookies
+</button>

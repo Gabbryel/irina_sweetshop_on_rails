@@ -1,0 +1,29 @@
+<div class="modal fade" id="gdprModal" tabindex="-1" aria-labelledby="gdprModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gdprModalLabel">Politica GDPR & cookies</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+      </div>
+      <div class="modal-body">
+        <p>Rezumat rapid al politicii noastre:</p>
+        <ul class="mb-3">
+          <li>Date folosite doar pentru comenzi, plăți și suport clienți.</li>
+          <li>Cookie-uri necesare sunt mereu active; analitice doar cu acord.</li>
+          <li>Poți vedea, corecta sau șterge datele și poți retrage consimțământul.</li>
+        </ul>
+        <p>Pentru detalii complete, consultă pagina dedicată.</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-between flex-wrap gap-2">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Închide</button>
+        <div class="d-flex gap-2">
+          <%= link_to 'Deschide pagina GDPR', gdpr_path, class: 'btn btn-link' %>
+          <button type="button" class="btn btn-primary"
+                  onclick="if(window.cookieConsent && window.cookieConsent.changeConsent){ window.cookieConsent.changeConsent(); }">
+            Preferințe cookies
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

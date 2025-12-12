@@ -6,4 +6,8 @@ module ApplicationHelper
   def isUserAdmin?
     current_user && current_user.admin
   end
+
+  def cookie_consent_accepted?
+    cookies[:cookie_consent] == 'accepted'
+  end
 end

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :how_to_order, :about, :valori_nutritionale]
+  skip_before_action :authenticate_user!, only: [:home, :how_to_order, :about, :valori_nutritionale, :gdpr]
 
   def home
     @recipes = Recipe.where(favored: true).order(position: :asc).first(9)
@@ -21,6 +21,12 @@ class PagesController < ApplicationController
   def valori_nutritionale
     @page_main_title = 'Valori nutriționale'
     @categories = Category.all.order(:name)
+  end
+
+  def gdpr
+    @page_title = 'Politica de confidențialitate și cookies'
+    @page_main_title = 'Protecția datelor (GDPR)'
+    @seo_keywords = 'politica cookies, confidențialitate, GDPR Irina Sweet'
   end
 
   def admin_dashboard

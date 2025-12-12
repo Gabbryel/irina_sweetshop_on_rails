@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'how_to_order', to: 'pages#how_to_order'
   get 'about', to: 'pages#about'
   get 'valori-nutritionale', to: 'pages#valori_nutritionale'
+  get 'gdpr', to: 'pages#gdpr', as: :gdpr
   get 'contul-meu', to: 'accounts#show', as: :account
   get 'comenzi-online', to: 'online_orders#index', as: :online_orders
   get 'dashboard',  to: 'pages#admin_dashboard'
