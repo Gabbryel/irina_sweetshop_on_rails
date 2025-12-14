@@ -45,7 +45,7 @@
           <% end %>
         </span>
         <hr>
-        <% unit_value = recipe.sold_by.presence || recipe.kg_buc.presence || 'kg' %>
+        <% unit_value = recipe.kg_buc.presence || recipe.sold_by.presence || 'kg' %>
         <span class="price-design-kg"><%= unit_value %></span>
       </div>
       <% elsif recipe.price == 0 %>
