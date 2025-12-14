@@ -124,13 +124,17 @@ export default class extends Controller {
   closeOpenModal() {
     const modalEl = document.querySelector(".modal.show");
     if (modalEl && window.bootstrap) {
-      const instance = window.bootstrap.Modal.getInstance(modalEl) || new window.bootstrap.Modal(modalEl);
+      const instance =
+        window.bootstrap.Modal.getInstance(modalEl) ||
+        new window.bootstrap.Modal(modalEl);
       instance.hide();
     }
   }
 
   focusAcceptButton() {
-    const btn = this.banner?.querySelector('[data-action="cookie-consent#accept"]');
+    const btn = this.banner?.querySelector(
+      '[data-action="cookie-consent#accept"]'
+    );
     if (btn) {
       setTimeout(() => btn.focus({ preventScroll: true }), 50);
     }

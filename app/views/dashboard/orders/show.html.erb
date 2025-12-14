@@ -161,6 +161,14 @@
             <p class="small text-muted mb-1 mt-2">Stripe payment intent</p>
             <code class="small"><%= @order.stripe_payment_intent_id %></code>
           <% end %>
+          <% if @stripe_payment_status.present? %>
+            <p class="small text-muted mb-1 mt-2">Stripe status</p>
+            <span class="badge bg-light text-dark"><%= @stripe_payment_status %></span>
+          <% end %>
+          <% if @stripe_receipt_url.present? %>
+            <p class="small text-muted mb-1 mt-2">Confirmare Stripe</p>
+            <%= link_to 'Deschide chitanța', @stripe_receipt_url, target: '_blank', rel: 'noopener', class: 'btn btn-sm btn-outline-primary' %>
+          <% end %>
           <% if @order.guest_token.present? %>
             <p class="small text-muted mb-1 mt-2">Token invitat</p>
             <code class="small"><%= @order.guest_token %></code>

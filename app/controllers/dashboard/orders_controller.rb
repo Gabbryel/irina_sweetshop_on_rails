@@ -36,6 +36,7 @@ module Dashboard
     def show
       authorize @order, :dashboard_show?
       @items = @order.items.includes(:recipe)
+      fetch_stripe_confirmation
     end
 
     def update
@@ -158,6 +159,32 @@ module Dashboard
       OrderMailer.with(order: order).customer_confirmation.deliver_later if order.contact_email.present? && !order.guest_no_email?
     rescue StandardError => e
       Rails.logger.error("OrderMailer failed for cart ##{order.id}: #{e.message}")
+    end
+
+    def fetch_stripe_confirmation
+      return unless @order.stripe_payment_intent_id.present? || @order.stripe_checkout_session_id.present?
+
+      intent_id = @order.stripe_payment_intent_id
+
+      if intent_id.blank? && @order.stripe_checkout_session_id.present?
+        intent_id = stripe_payment_intent_from_session(@order.stripe_checkout_session_id)
+      end
+
+      return if intent_id.blank?
+
+      pi = Stripe::PaymentIntent.retrieve({ id: intent_id, expand: ['latest_charge'] })
+      @stripe_payment_status = pi.status
+      @stripe_receipt_url = pi.latest_charge&.receipt_url
+    rescue StandardError => e
+      Rails.logger.warn("Stripe lookup failed for order ##{@order.id}: #{e.message}")
+    end
+
+    def stripe_payment_intent_from_session(session_id)
+      session = Stripe::Checkout::Session.retrieve(session_id)
+      session.payment_intent
+    rescue StandardError => e
+      Rails.logger.warn("Stripe session lookup failed for order ##{@order.id}: #{e.message}")
+      nil
     end
   end
 end
