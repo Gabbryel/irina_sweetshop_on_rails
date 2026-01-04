@@ -29,6 +29,11 @@ class RecipesController < ApplicationController
                .order('name ASC')
                .includes([{ photo_attachment: :blob }, :reviews])
 
+    @available_online = params[:available_online].presence
+    if @available_online.to_s == '1'
+      @recipes = @recipes.where(online_order: true).where('price_cents > 0')
+    end
+
     respond_to do |format|
       format.html do
         @recipe = authorize Recipe.new
