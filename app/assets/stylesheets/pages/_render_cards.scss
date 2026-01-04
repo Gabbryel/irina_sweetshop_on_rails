@@ -38,3 +38,8 @@
         grid-area: 2/1/2/-1;
     }
 }
+
+.cards-header {
+    grid-area: 1 / 1 / 1 / -1;
+    padding-bottom: 1em;
+}

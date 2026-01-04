@@ -140,7 +140,7 @@
                   Preț per <%= base_unit_label %>: <strong><%= price_money.downcase %></strong>.
                 <% end %>
                 <% if online_price_cents.positive? && weight_quantity.positive? %>
-                  Preț per bucată de minim 1,4 kg (<%= number_with_precision(weight_quantity.to_f, precision: weight_precision) %> g): <strong><%= humanized_money_with_symbol(@recipe.online_selling_price).downcase %></strong>.
+                  Preț per bucată (<%= number_with_precision(weight_quantity.to_f, precision: weight_precision) %> g): <strong><%= humanized_money_with_symbol(@recipe.online_selling_price).downcase %></strong>.
                 <% end %>
               </p>
             </div>

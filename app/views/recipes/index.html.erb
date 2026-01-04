@@ -1,5 +1,18 @@
 <div class="cards-main-container">
-  <h3 class='text-center'><%= "#{Category.find_by(slug: params[:category_id]).name.upcase}" %></h3>
+  <div class="d-flex flex-column align-items-center justify-content-center gap-2 cards-header">
+      <h3 class='text-center m-0'><%= @category.name.upcase %></h3>
+      <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+        <% all_active = params[:available_online].blank? %>
+        <% online_active = params[:available_online].to_s == '1' %>
+  
+        <%= link_to 'Toate produsele',
+                    category_recipes_path(@category),
+                    class: "btn btn-sm #{all_active ? 'btn-primary' : 'btn-outline-secondary'}" %>
+        <%= link_to 'Disponibile online',
+                    category_recipes_path(@category, available_online: 1),
+                    class: "btn btn-sm #{online_active ? 'btn-primary' : 'btn-outline-secondary'}" %>
+      </div>
+  </div>
   <% if policy(Recipe).new? %>
     <%= link_to "#", data: {bs_toggle: "modal", bs_target: "#newRecipeModal"}, class: 'btn-default' do %><span>Rețetă nouă</span><% end %>
   <% end %>

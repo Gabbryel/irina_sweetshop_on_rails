@@ -1,6 +1,11 @@
 <% images = ['no-photo_xymghw.webp', 'no-photo_a_rcwsdh.webp', 'jsrnrkphctyr3juntbku2yjmvdcr.webp', 'v1745928510/idee-tort-2_ei3yzy.webp', 'idee-tort-3_q4vczw.webp', 'idee-tort-1_vbl6kb.webp', 'idee-tort_sklqis.jpg'] %>
   
 <div class="card-container-recipes" id="<%= recipe.slug %>">
+  <% if controller_path == 'recipes' && action_name == 'index' && params[:category_id].present? && recipe.supports_online_ordering? %>
+    <div class="online-order-recipe" title="Disponibil pentru comandă online">
+      <i class="fa-solid fa-basket-shopping"></i>
+    </div>
+  <% end %>
   <%= link_to recipe_path(recipe) do %>
     <div class="card-link-container-recipes">
       <div class="card-image-recipes">
@@ -24,7 +29,8 @@
         <div class="card-title-text">
           <h2><%= recipe.name %>
           <% if recipe.energetic_value && controller_path == 'dashboard/recipes' %><i class="fa-brands fa-nutritionix"></i><% end %>
-          <% if recipe.vegan %><i class="fa-solid fa-carrot"></i><% end %></h2>
+          <% if recipe.vegan %><i class="fa-solid fa-carrot"></i><% end %>
+          </h2>
         </div>
         <div class="card-description">
           <span><%= card_recipe_description(recipe.content) %>... <i class="fa-solid fa-circle-info"></i></span>
