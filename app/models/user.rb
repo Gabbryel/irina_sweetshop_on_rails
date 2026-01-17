@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :items, dependent: :destroy
+  has_many :audit_logs, dependent: :nullify
+  has_many :ahoy_visits, class_name: 'Ahoy::Visit', dependent: :nullify
 
   after_create :send_welcome_email
   after_create :send_notice_to_admin

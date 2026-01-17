@@ -61,6 +61,15 @@ Rails.application.routes.draw do
         patch :toggle_admin
       end
     end
+
+    resources :audit_logs, only: %i[index show] do
+      collection do
+        get :statistics
+        get :export
+      end
+    end
+
+    get 'analytics', to: 'analytics#index', as: 'analytics'
   end
 
   namespace :shop do

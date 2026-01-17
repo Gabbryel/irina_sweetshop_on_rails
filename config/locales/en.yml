@@ -31,3 +31,15 @@
 
 en:
   hello: "Hello world"
+  home:
+    cta:
+      title: "Order online"
+      highlight_one: "Fresh products daily"
+      highlight_two: "Classic recipes"
+      note: "Online ordering is available for selected products."
+      primary_button: "Order online"
+      secondary_button: "Browse products"
+      trust: "Quick confirmation. Availability varies by product."
+      modal_title: "Order online"
+      modal_body: "Online ordering is available for selected products. Browse the catalog or contact us for details."
+      modal_close: "Close"

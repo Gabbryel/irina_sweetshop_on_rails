@@ -4,4 +4,5 @@ import "./controllers";
 import "trix";
 import "@rails/actiontext";
 import * as bootstrap from "bootstrap";
+import "chartkick/chart.js";
 console.log("application.js loaded");

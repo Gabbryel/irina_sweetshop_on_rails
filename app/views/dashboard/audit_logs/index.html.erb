@@ -1,0 +1,142 @@
+<div class="container py-5" style="margin-top: 20dvh;">
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+      <h1 class="h4 mb-1">Jurnal de Activitate (Audit Logs)</h1>
+      <p class="text-muted small mb-0">Monitorizează toate acțiunile utilizatorilor și evenimentele de securitate</p>
+    </div>
+    <div class="d-flex gap-2">
+      <%= link_to 'Statistici', statistics_dashboard_audit_logs_path, class: 'btn btn-info btn-sm' %>
+      <%= link_to 'Export CSV', export_dashboard_audit_logs_path(format: :csv, **request.query_parameters), class: 'btn btn-success btn-sm' %>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <%= form_with url: dashboard_audit_logs_path, method: :get, local: true, class: 'row g-3' do |f| %>
+        <div class="col-md-3">
+          <%= f.label :user_id, 'Utilizator', class: 'form-label' %>
+          <%= f.select :user_id, options_for_select(@users, params[:user_id]), { include_blank: 'Toți utilizatorii' }, class: 'form-select form-select-sm' %>
+        </div>
+        
+        <div class="col-md-2">
+          <%= f.label :action_filter, 'Acțiune', class: 'form-label' %>
+          <%= f.select :action_filter, options_for_select(@actions.map { |a| [a.humanize, a] }, params[:action_filter]), { include_blank: 'Toate acțiunile' }, class: 'form-select form-select-sm' %>
+        </div>
+        
+        <div class="col-md-2">
+          <%= f.label :auditable_type, 'Tip resursă', class: 'form-label' %>
+          <%= f.select :auditable_type, options_for_select(@auditable_types.map { |t| [t, t] }, params[:auditable_type]), { include_blank: 'Toate tipurile' }, class: 'form-select form-select-sm' %>
+        </div>
+        
+        <div class="col-md-2">
+          <%= f.label :start_date, 'Data început', class: 'form-label' %>
+          <%= f.date_field :start_date, value: params[:start_date], class: 'form-control form-control-sm' %>
+        </div>
+        
+        <div class="col-md-2">
+          <%= f.label :end_date, 'Data sfârșit', class: 'form-label' %>
+          <%= f.date_field :end_date, value: params[:end_date], class: 'form-control form-control-sm' %>
+        </div>
+        
+        <div class="col-md-4">
+          <%= f.label :search, 'Căutare (IP, email, user agent)', class: 'form-label' %>
+          <%= f.text_field :search, value: params[:search], placeholder: 'Caută...', class: 'form-control form-control-sm' %>
+        </div>
+        
+        <div class="col-md-2 d-flex align-items-end">
+          <%= f.submit 'Filtrează', class: 'btn btn-primary btn-sm me-2' %>
+          <%= link_to 'Resetează', dashboard_audit_logs_path, class: 'btn btn-outline-secondary btn-sm' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Results summary -->
+  <div class="mb-3">
+    <p class="text-muted small">
+      Afișare <%= @pagy.from %>-<%= @pagy.to %> din <%= @pagy.count %> înregistrări
+    </p>
+  </div>
+
+  <!-- Audit Logs Table -->
+  <div class="card shadow-sm border-0">
+    <div class="table-responsive">
+      <table class="table table-sm table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Data/Ora</th>
+            <th>Utilizator</th>
+            <th>Acțiune</th>
+            <th>Resursă</th>
+            <th>IP Address</th>
+            <th class="text-end">Acțiuni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @audit_logs.any? %>
+            <% @audit_logs.each do |log| %>
+              <tr>
+                <td class="text-nowrap">
+                  <small><%= l(log.created_at, format: :long) %></small>
+                </td>
+                <td>
+                  <% if log.user %>
+                    <%= log.user.email %>
+                  <% else %>
+                    <span class="text-muted fst-italic">System</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% action_class = case log.action
+                     when 'create' then 'success'
+                     when 'update' then 'info'
+                     when 'destroy' then 'danger'
+                     when 'login' then 'primary'
+                     when 'logout' then 'secondary'
+                     when 'failed_login' then 'warning'
+                     else 'secondary'
+                     end %>
+                  <span class="badge bg-<%= action_class %>-subtle text-<%= action_class %>-emphasis">
+                    <%= log.human_action %>
+                  </span>
+                </td>
+                <td>
+                  <% if log.auditable_type %>
+                    <small>
+                      <strong><%= log.auditable_type %></strong>
+                      <% if log.auditable_id %>
+                        #<%= log.auditable_id %>
+                      <% end %>
+                    </small>
+                  <% else %>
+                    <span class="text-muted">—</span>
+                  <% end %>
+                </td>
+                <td>
+                  <small class="font-monospace"><%= log.ip_address %></small>
+                </td>
+                <td class="text-end">
+                  <%= link_to 'Detalii', dashboard_audit_log_path(log), class: 'btn btn-outline-secondary btn-sm' %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="6" class="text-center text-muted py-5">
+                <i class="fas fa-info-circle"></i> Nu s-au găsit înregistrări
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <% if @audit_logs.any? %>
+    <div class="mt-4">
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  <% end %>
+</div>

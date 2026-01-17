@@ -1,0 +1,39 @@
+<section class="home-cta" data-controller="cta-tracking">
+  <div class="home-cta__inner">
+    
+    <div class="home-cta__actions">
+      <div class="home-cta__buttons">
+        <button
+          type="button"
+          class="home-cta__button home-cta__button--primary"
+          data-action="click->cta-tracking#trackPrimary"
+          data-bs-toggle="modal"
+          data-bs-target="#orderOnlineModal"
+        >
+          <%= t("home.cta.primary_button") %>
+        </button>
+        <%= link_to t("home.cta.secondary_button"), "#home-categories",
+          class: "home-cta__button home-cta__button--secondary",
+          data: { action: "click->cta-tracking#trackSecondary" } %>
+      </div>
+      <!-- <p class="home-cta__trust"><%= t("home.cta.trust") %></p> -->
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="orderOnlineModal" tabindex="-1" aria-labelledby="orderOnlineModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderOnlineModalLabel"><%= t("home.cta.modal_title") %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%= t("home.cta.modal_close") %>"></button>
+      </div>
+      <div class="modal-body text-center modal-body-text">
+        <p><%= t("home.cta.modal_body") %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-default" data-bs-dismiss="modal"><%= t("home.cta.modal_close") %></button>
+      </div>
+    </div>
+  </div>
+</div>

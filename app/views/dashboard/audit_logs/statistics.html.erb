@@ -1,0 +1,219 @@
+<div class="container py-5" style="margin-top: 20dvh;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h4 mb-1">Statistici Audit</h1>
+      <p class="text-muted small mb-0">Vizualizare completă a activității sistemului</p>
+    </div>
+    <%= link_to '← Înapoi la jurnal', dashboard_audit_logs_path, class: 'btn btn-outline-secondary btn-sm' %>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row mb-4">
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-primary"><%= @total_logs %></div>
+          <p class="mb-0 text-muted small">Total evenimente</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-success"><%= @today_logs %></div>
+          <p class="mb-0 text-muted small">Astăzi</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-info"><%= @week_logs %></div>
+          <p class="mb-0 text-muted small">Săptămâna aceasta</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-warning"><%= @month_logs %></div>
+          <p class="mb-0 text-muted small">Luna aceasta</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authentication Stats -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Statistici Autentificare (Luna Curentă)</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 text-center border-end">
+              <div class="display-6 text-success"><%= @login_count %></div>
+              <p class="mb-0 text-muted">Login-uri reușite</p>
+            </div>
+            <div class="col-md-4 text-center border-end">
+              <div class="display-6 text-secondary"><%= @logout_count %></div>
+              <p class="mb-0 text-muted">Logout-uri</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="display-6 text-danger"><%= @failed_login_count %></div>
+              <p class="mb-0 text-muted">Încercări eșuate</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRUD Operations Stats -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Operațiuni CRUD (Luna Curentă)</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 text-center border-end">
+              <div class="display-6 text-success"><%= @create_count %></div>
+              <p class="mb-0 text-muted">Create</p>
+            </div>
+            <div class="col-md-4 text-center border-end">
+              <div class="display-6 text-info"><%= @update_count %></div>
+              <p class="mb-0 text-muted">Update</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="display-6 text-danger"><%= @destroy_count %></div>
+              <p class="mb-0 text-muted">Delete</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row 1 -->
+  <div class="row mb-4">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Activitate zilnică (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <%= line_chart @daily_activity, 
+              colors: ['#0d6efd'], 
+              height: '300px',
+              library: { 
+                scales: { 
+                  y: { beginAtZero: true } 
+                } 
+              } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Activitate pe tip de acțiune (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <%= pie_chart @activity_by_action.transform_keys(&:humanize), 
+              height: '300px',
+              donut: true,
+              colors: ['#198754', '#0dcaf0', '#dc3545', '#0d6efd', '#6c757d', '#ffc107'] %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row 2 -->
+  <div class="row mb-4">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Activitate pe ore (Astăzi)</h5>
+        </div>
+        <div class="card-body">
+          <%= column_chart @hourly_activity, 
+              colors: ['#0d6efd'],
+              height: '300px',
+              library: { 
+                scales: { 
+                  y: { beginAtZero: true } 
+                } 
+              } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Activitate pe tip de resursă (Luna curentă)</h5>
+        </div>
+        <div class="card-body">
+          <%= bar_chart @active_resources, 
+              colors: ['#6f42c1'],
+              height: '300px',
+              library: { 
+                scales: { 
+                  x: { beginAtZero: true } 
+                },
+                indexAxis: 'y'
+              } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Users Table -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Top 10 utilizatori activi (Luna curentă)</h5>
+        </div>
+        <div class="card-body">
+          <% if @top_users.any? %>
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Poziție</th>
+                    <th>Email</th>
+                    <th class="text-end">Număr activități</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @top_users.each_with_index do |(email, count), index| %>
+                    <tr>
+                      <td>
+                        <% if index < 3 %>
+                          <span class="badge bg-warning text-dark">#<%= index + 1 %></span>
+                        <% else %>
+                          #<%= index + 1 %>
+                        <% end %>
+                      </td>
+                      <td><%= mail_to email %></td>
+                      <td class="text-end">
+                        <strong><%= count %></strong>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <p class="text-muted mb-0">Nu există date disponibile</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

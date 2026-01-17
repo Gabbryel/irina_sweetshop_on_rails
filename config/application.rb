@@ -17,7 +17,7 @@ module IrinaSweetshopOnRails
     # in config/environments, which are processed later.
     #
     config.time_zone = "Bucharest"
-    config.active_record.default_timezone = :local
+    config.active_record.default_timezone = :utc
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.i18n.available_locales = %i[ro en]
