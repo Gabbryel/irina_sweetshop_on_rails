@@ -3,9 +3,11 @@ class ApplicationController < ActionController::Base
   include MetaTagsConcern
   include Pagy::Backend
   include CurrentCartConcern
+  include AuditTrackable
   
   protect_from_forgery with: :exception
   before_action :authenticate_user!, except: %i[index show]
+  after_action :track_action
 
 
   # Pundit: white-list approach.
@@ -28,6 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def track_action
+    ahoy.track "#{controller_name}##{action_name}", request.path_parameters
+  end
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/

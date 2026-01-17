@@ -30,6 +30,9 @@ gem 'money-rails'
 gem 'stripe'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'pagy', '~> 6.0', '>= 6.0.3'
+gem 'ahoy_matey' # Analytics and visit tracking
+gem 'chartkick' # Charts for visualizations
+gem 'groupdate' # Group by date for statistics
 
 gem 'net-http'
 # gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"

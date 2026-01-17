@@ -1,0 +1,253 @@
+<div class="container py-5" style="margin-top: 20dvh;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h4 mb-1">Analiză Trafic Web (Ahoy Analytics)</h1>
+      <p class="text-muted small mb-0">Monitorizează vizitatorii și activitatea pe site</p>
+    </div>
+    <%= link_to 'Audit Logs', dashboard_audit_logs_path, class: 'btn btn-outline-primary btn-sm' %>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row mb-4">
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-primary"><%= @total_visits %></div>
+          <p class="mb-0 text-muted small">Total vizite</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-success"><%= @today_visits %></div>
+          <p class="mb-0 text-muted small">Vizite astăzi</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-info"><%= @week_visits %></div>
+          <p class="mb-0 text-muted small">Vizite săptămâna</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body text-center">
+          <div class="display-6 text-warning"><%= @month_visits %></div>
+          <p class="mb-0 text-muted small">Vizite luna</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unique Visitors -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Vizitatori unici</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 text-center border-end">
+              <div class="display-6 text-success"><%= @unique_visitors_today %></div>
+              <p class="mb-0 text-muted">Astăzi</p>
+            </div>
+            <div class="col-md-4 text-center border-end">
+              <div class="display-6 text-info"><%= @unique_visitors_week %></div>
+              <p class="mb-0 text-muted">Săptămâna aceasta</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="display-6 text-warning"><%= @unique_visitors_month %></div>
+              <p class="mb-0 text-muted">Luna aceasta</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Type Stats -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Tipuri de utilizatori (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 text-center border-end">
+              <div class="display-6 text-primary"><%= @registered_user_visits %></div>
+              <p class="mb-0 text-muted">Utilizatori autentificați</p>
+            </div>
+            <div class="col-md-6 text-center">
+              <div class="display-6 text-secondary"><%= @guest_visits %></div>
+              <p class="mb-0 text-muted">Vizitatori guest</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row 1 -->
+  <div class="row mb-4">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Vizite pe zile (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <%= line_chart @visits_by_day, 
+              colors: ['#0d6efd'], 
+              height: '300px',
+              library: { 
+                scales: { 
+                  y: { beginAtZero: true } 
+                } 
+              } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Vizite pe ore (Astăzi)</h5>
+        </div>
+        <div class="card-body">
+          <%= column_chart @hourly_visits, 
+              colors: ['#198754'],
+              height: '300px',
+              library: { 
+                scales: { 
+                  y: { beginAtZero: true } 
+                } 
+              } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row 2 -->
+  <div class="row mb-4">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Browsere (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <%= pie_chart @browsers, 
+              height: '300px',
+              donut: true %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Sisteme de operare (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <%= pie_chart @operating_systems, 
+              height: '300px',
+              donut: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Device Types -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Tipuri de dispozitive (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <%= bar_chart @device_types, 
+              colors: ['#6f42c1'],
+              height: '250px',
+              library: { 
+                scales: { 
+                  x: { beginAtZero: true } 
+                },
+                indexAxis: 'y'
+              } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Events -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Top 10 Evenimente (Ultimele 30 zile)</h5>
+        </div>
+        <div class="card-body">
+          <% if @top_events.any? %>
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Poziție</th>
+                    <th>Eveniment</th>
+                    <th class="text-end">Număr</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @top_events.each_with_index do |(event_name, count), index| %>
+                    <tr>
+                      <td>
+                        <% if index < 3 %>
+                          <span class="badge bg-warning text-dark">#<%= index + 1 %></span>
+                        <% else %>
+                          #<%= index + 1 %>
+                        <% end %>
+                      </td>
+                      <td><code><%= event_name %></code></td>
+                      <td class="text-end">
+                        <strong><%= count %></strong>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <p class="text-muted mb-0">Nu există date disponibile</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Statistics -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Statistici Evenimente</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 text-center border-end">
+              <div class="display-6 text-primary"><%= @total_events %></div>
+              <p class="mb-0 text-muted">Total evenimente</p>
+            </div>
+            <div class="col-md-6 text-center">
+              <div class="display-6 text-success"><%= @today_events %></div>
+              <p class="mb-0 text-muted">Evenimente astăzi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

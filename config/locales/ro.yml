@@ -108,3 +108,15 @@ ro:
       words_connector: ", "
       two_words_connector: " și "
       last_word_connector: " și "
+  home:
+    cta:
+      title: "Comandă online"
+      highlight_one: "Produse proaspete zilnic"
+      highlight_two: "Rețete clasice"
+      note: "Pentru unele produse este disponibilă comanda online."
+      primary_button: "Comandă online"
+      secondary_button: "Vezi produsele"
+      trust: "Confirmare rapidă. Disponibilitate în funcție de produs."
+      modal_title: "Comandă online"
+      modal_body: "Comanda online este disponibilă pentru anumite produse. Consultă lista de produse sau contactează-ne pentru detalii."
+      modal_close: "Închide"
