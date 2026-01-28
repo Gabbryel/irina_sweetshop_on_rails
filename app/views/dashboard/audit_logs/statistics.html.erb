@@ -1,42 +1,42 @@
 <div class="container py-5" style="margin-top: 20dvh;">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-      <h1 class="h4 mb-1">Statistici Audit</h1>
+      <h1 class="h4 mb-1" style="color: #1e293b; font-weight: 600;">Statistici Audit</h1>
       <p class="text-muted small mb-0">Vizualizare completă a activității sistemului</p>
     </div>
-    <%= link_to '← Înapoi la jurnal', dashboard_audit_logs_path, class: 'btn btn-outline-secondary btn-sm' %>
+    <%= link_to '← Înapoi la jurnal', dashboard_audit_logs_path, class: 'btn btn-sm', style: 'background: white; color: #475569; border: 1px solid #e5e7eb; border-radius: 6px;' %>
   </div>
 
   <!-- Summary Cards -->
   <div class="row mb-4">
     <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 h-100">
+      <div class="card h-100" style="border: 1px solid #e5e7eb; border-radius: 8px;">
         <div class="card-body text-center">
-          <div class="display-6 text-primary"><%= @total_logs %></div>
+          <div class="display-6" style="color: #1e293b; font-weight: 700;"><%= @total_logs %></div>
           <p class="mb-0 text-muted small">Total evenimente</p>
         </div>
       </div>
     </div>
     <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 h-100">
+      <div class="card h-100" style="border: 1px solid #e5e7eb; border-radius: 8px;">
         <div class="card-body text-center">
-          <div class="display-6 text-success"><%= @today_logs %></div>
+          <div class="display-6" style="color: #475569; font-weight: 700;"><%= @today_logs %></div>
           <p class="mb-0 text-muted small">Astăzi</p>
         </div>
       </div>
     </div>
     <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 h-100">
+      <div class="card h-100" style="border: 1px solid #e5e7eb; border-radius: 8px;">
         <div class="card-body text-center">
-          <div class="display-6 text-info"><%= @week_logs %></div>
+          <div class="display-6" style="color: #64748b; font-weight: 700;"><%= @week_logs %></div>
           <p class="mb-0 text-muted small">Săptămâna aceasta</p>
         </div>
       </div>
     </div>
     <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 h-100">
+      <div class="card h-100" style="border: 1px solid #e5e7eb; border-radius: 8px;">
         <div class="card-body text-center">
-          <div class="display-6 text-warning"><%= @month_logs %></div>
+          <div class="display-6" style="color: #334155; font-weight: 700;"><%= @month_logs %></div>
           <p class="mb-0 text-muted small">Luna aceasta</p>
         </div>
       </div>
@@ -46,8 +46,8 @@
   <!-- Authentication Stats -->
   <div class="row mb-4">
     <div class="col-md-12">
-      <div class="card shadow-sm border-0">
-        <div class="card-header bg-light">
+      <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+        <div class="card-header" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
           <h5 class="mb-0">Statistici Autentificare (Luna Curentă)</h5>
         </div>
         <div class="card-body">

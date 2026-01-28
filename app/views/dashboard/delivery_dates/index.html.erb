@@ -1,8 +1,8 @@
 <div class="container py-5 margin-top-20dvh">
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
     <div>
-      <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-2">Dashboard</span>
-      <h1 class="h3 mb-1">Calendar livrări</h1>
+      <span class="badge rounded-pill px-3 py-2 mb-2" style="background: #f1f5f9; color: #475569; font-weight: 600;">Dashboard</span>
+      <h1 class="h3 mb-1" style="color: #1e293b; font-weight: 600;">Calendar livrări</h1>
       <p class="text-muted small mb-0">
         Click pe o zi pentru a o marca ca disponibilă (verde) sau indisponibilă (roșu). Datele la mai mult de <%= @max_window_days %> de zile sunt blocate automat.
       </p>
@@ -13,11 +13,11 @@
     </div>
   </div>
 
-  <div class="card shadow-sm border-0">
+  <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
     <div class="card-body">
       <div class="row g-3 mb-4">
         <div class="col-12 col-lg-6">
-          <div class="p-3 border rounded-3 bg-light h-100">
+          <div class="p-3 rounded-3 h-100" style="border: 1px solid #e5e7eb; background: #f8fafc;">
             <h2 class="h6 mb-3">Blochează un interval rapid</h2>
             <%= form_with url: block_range_dashboard_delivery_dates_path, method: :post, data: { turbo: false }, class: "row g-2" do |f| %>
               <div class="col-12 col-sm-4">
@@ -33,7 +33,7 @@
                 <%= text_field_tag :reason, nil, class: 'form-control' %>
               </div>
               <div class="col-12">
-                <%= submit_tag 'Blochează zilele', class: 'btn btn-primary w-100' %>
+                <%= submit_tag 'Blochează zilele', class: 'btn w-100', style: 'background: #1e293b; color: white; border: none; border-radius: 6px;' %>
               </div>
             <% end %>
             <p class="text-muted small mb-0 mt-2">Se vor bloca zile consecutive începând cu data aleasă.</p>

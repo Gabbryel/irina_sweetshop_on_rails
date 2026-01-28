@@ -1,17 +1,17 @@
 <div class="container py-5" style="margin-top: 20dvh;">
   <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
     <div>
-      <h1 class="h4 mb-1">Jurnal de Activitate (Audit Logs)</h1>
+      <h1 class="h4 mb-1" style="color: #1e293b; font-weight: 600;">Jurnal de Activitate</h1>
       <p class="text-muted small mb-0">Monitorizează toate acțiunile utilizatorilor și evenimentele de securitate</p>
     </div>
     <div class="d-flex gap-2">
-      <%= link_to 'Statistici', statistics_dashboard_audit_logs_path, class: 'btn btn-info btn-sm' %>
-      <%= link_to 'Export CSV', export_dashboard_audit_logs_path(format: :csv, **request.query_parameters), class: 'btn btn-success btn-sm' %>
+      <%= link_to 'Statistici', statistics_dashboard_audit_logs_path, class: 'btn btn-sm', style: 'background: #1e293b; color: white; border-radius: 6px;' %>
+      <%= link_to 'Export CSV', export_dashboard_audit_logs_path(format: :csv, **request.query_parameters), class: 'btn btn-sm', style: 'background: #475569; color: white; border-radius: 6px;' %>
     </div>
   </div>
 
   <!-- Filters -->
-  <div class="card shadow-sm border-0 mb-4">
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 8px;">
     <div class="card-body">
       <%= form_with url: dashboard_audit_logs_path, method: :get, local: true, class: 'row g-3' do |f| %>
         <div class="col-md-3">
@@ -45,8 +45,8 @@
         </div>
         
         <div class="col-md-2 d-flex align-items-end">
-          <%= f.submit 'Filtrează', class: 'btn btn-primary btn-sm me-2' %>
-          <%= link_to 'Resetează', dashboard_audit_logs_path, class: 'btn btn-outline-secondary btn-sm' %>
+          <%= f.submit 'Filtrează', class: 'btn btn-sm me-2', style: 'background: #1e293b; color: white; border: none; border-radius: 6px;' %>
+          <%= link_to 'Resetează', dashboard_audit_logs_path, class: 'btn btn-sm', style: 'background: white; color: #475569; border: 1px solid #e5e7eb; border-radius: 6px;' %>
         </div>
       <% end %>
     </div>
@@ -60,10 +60,10 @@
   </div>
 
   <!-- Audit Logs Table -->
-  <div class="card shadow-sm border-0">
+  <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
     <div class="table-responsive">
       <table class="table table-sm table-hover align-middle mb-0">
-        <thead class="table-light">
+        <thead style="background: #f8fafc;">
           <tr>
             <th>Data/Ora</th>
             <th>Utilizator</th>
@@ -117,7 +117,7 @@
                   <small class="font-monospace"><%= log.ip_address %></small>
                 </td>
                 <td class="text-end">
-                  <%= link_to 'Detalii', dashboard_audit_log_path(log), class: 'btn btn-outline-secondary btn-sm' %>
+                  <%= link_to 'Detalii', dashboard_audit_log_path(log), class: 'btn btn-sm', style: 'background: white; color: #475569; border: 1px solid #e5e7eb; border-radius: 6px;' %>
                 </td>
               </tr>
             <% end %>

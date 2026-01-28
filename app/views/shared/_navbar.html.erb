@@ -80,24 +80,10 @@
           <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
             <% if user_signed_in? %>
               <% if current_user.admin %>
-              <div class="dropdown-item">
-                <%= link_to "Modifică prețuri", preturi_path, class: "dropdown-item text-center" %>
-              </div>
-              <div class="dropdown-item">
-                <%= link_to "Admin rețete", dashboard_recipes_path, class: "dropdown-item text-center" %>
-              </div>
-              <div class="dropdown-item">
-                <%= link_to "Zile livrare", dashboard_delivery_dates_path, class: "dropdown-item text-center" %>
-              </div>
-              <div class="dropdown-item">
-                <%= link_to "Jurnal Activitate", dashboard_audit_logs_path, class: "dropdown-item text-center" %>
-              </div>
-              <div class="dropdown-item">
-                <%= link_to "Analiză Trafic", dashboard_analytics_path, class: "dropdown-item text-center" %>
-              </div>
                 <div class="dropdown-item">
-                  <%= link_to "Dashboard of, #{current_user.name_from_mail}", dashboard_path, class: "dropdown-item text-center" %>
+                  <%= link_to "Dashboard Administrare", dashboard_path, class: "dropdown-item text-center" %>
                 </div>
+                <div class="dropdown-divider"></div>
               <% end %>
   
             <div class="dropdown-item">

@@ -1,94 +1,383 @@
-<div class="container py-5 admin-dashboard margin-top-20dvh">
-  <nav class="dashboard-floating-nav d-none d-md-inline-flex">
-    <a href="#top" class="btn btn-light btn-sm" title="Sus"><i class="fa-solid fa-chevron-up"></i></a>
-    <a href="#stats" class="btn btn-light btn-sm" title="Statistici"><i class="fa-solid fa-chart-line"></i></a>
-    <a href="#quick-links" class="btn btn-light btn-sm" title="Acțiuni rapide"><i class="fa-solid fa-bolt"></i></a>
-    <a href="#orders" class="btn btn-light btn-sm" title="Comenzi"><i class="fa-solid fa-receipt"></i></a>
-    <a href="#reviews" class="btn btn-light btn-sm" title="Recenzii"><i class="fa-solid fa-star"></i></a>
-    <a href="#users-admin" class="btn btn-light btn-sm" title="Utilizatori"><i class="fa-solid fa-users"></i></a>
+<style>
+  .modern-dashboard {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  .modern-header {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    color: white;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .modern-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .modern-header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    font-weight: 400;
+  }
+  
+  .modern-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.375rem 0.875rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .modern-stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    height: 100%;
+  }
+  
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-icon-1 { background: #1e293b; }
+  .stat-icon-2 { background: #475569; }
+  .stat-icon-3 { background: #64748b; }
+  .stat-icon-4 { background: #334155; }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-hint {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    font-weight: 400;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .modern-action-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modern-action-card:hover {
+    border-color: #cbd5e1;
+  }
+  
+  .action-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    color: white;
+    margin-bottom: 1rem;
+    background: #1e293b;
+  }
+  
+  .action-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+  
+  .action-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+  
+  .modern-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+  }
+  
+  .modern-btn-primary {
+    background: #1e293b;
+    color: white;
+  }
+  
+  .modern-btn-primary:hover {
+    background: #0f172a;
+    color: white;
+  }
+  
+  .modern-btn-outline {
+    background: transparent;
+    border: 2px solid #e5e7eb;
+    color: #374151;
+  }
+  
+  .modern-btn-outline:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+  }
+  
+  .modern-table-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .modern-table-header {
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modern-table-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+  }
+  
+  .modern-table {
+    margin: 0;
+  }
+  
+  .modern-table thead th {
+    background: #f9fafb;
+    color: #6b7280;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.5rem;
+    border: none;
+  }
+  
+  .modern-table tbody td {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid #f3f4f6;
+    font-size: 0.9375rem;
+  }
+  
+  .modern-table tbody tr:hover {
+    background: #f9fafb;
+  }
+  
+  .revenue-card {
+    background: #334155;
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: white;
+  }
+  
+  .revenue-label {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+  }
+  
+  .revenue-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  
+  .revenue-subtitle {
+    font-size: 0.875rem;
+    opacity: 0.85;
+  }
+  
+  .floating-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: white;
+    padding: 0.75rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  
+  .floating-nav a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #6b7280;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  
+  .floating-nav a:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+  }
+  
+  @media (max-width: 768px) {
+    .modern-header h1 {
+      font-size: 1.75rem;
+    }
+    
+    .stat-value {
+      font-size: 1.75rem;
+    }
+    
+    .floating-nav {
+      display: none;
+    }
+  }
+</style>
+
+<div class="container py-5 modern-dashboard" style="margin-top: 12vh;">
+  <!-- Floating Navigation -->
+  <nav class="floating-nav d-none d-lg-flex">
+    <a href="#top" title="Sus"><i class="fa-solid fa-chevron-up"></i></a>
+    <a href="#stats" title="Statistici"><i class="fa-solid fa-chart-line"></i></a>
+    <a href="#quick-links" title="Acțiuni rapide"><i class="fa-solid fa-bolt"></i></a>
+    <a href="#orders" title="Comenzi"><i class="fa-solid fa-receipt"></i></a>
+    <a href="#users-admin" title="Utilizatori"><i class="fa-solid fa-users"></i></a>
   </nav>
-  <div class="row align-items-center mb-5" id="top">
-    <div class="col-lg-8">
-      <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-2">Administrator</span>
-      <h1 class="h3 mb-2">Salut, <%= current_user&.name_from_mail || current_user&.email %></h1>
-      <p class="text-muted mb-0">Monitorizează comenzile, actualizează conținutul și păstrează experiența clienților impecabilă.</p>
-    </div>
-    <div class="col-lg-4">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <p class="text-muted small mb-1">Venit luna curentă</p>
-          <p class="h4 mb-0"><%= @revenue_this_month.format %></p>
-          <p class="text-muted small mb-0">Total acumulat: <strong><%= @revenue_all_time.format %></strong></p>
+
+  <!-- Modern Header -->
+  <div class="modern-header" id="top">
+    <div class="row align-items-center">
+      <div class="col-lg-8 position-relative" style="z-index: 1;">
+        <div class="modern-badge">
+          <i class="fa-solid fa-shield-halved"></i>
+          Administrator
+        </div>
+        <h1>Salut, <%= current_user&.name_from_mail || current_user&.email %></h1>
+        <p class="subtitle mb-0">Monitorizează comenzile, actualizează conținutul și păstrează experiența clienților impecabilă.</p>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0" style="z-index: 1;">
+        <div class="revenue-card">
+          <div class="revenue-label">Venit luna curentă</div>
+          <div class="revenue-value"><%= @revenue_this_month.format %></div>
+          <div class="revenue-subtitle">Total acumulat: <strong><%= @revenue_all_time.format %></strong></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3 mb-5" id="stats">
-    <% @stats_cards.each do |stat| %>
-      <div class="col">
-        <div class="card shadow-sm border-0 h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <div>
-                <p class="text-muted small mb-1"><%= stat[:label] %></p>
-                <% value = stat[:value] %>
-                <p class="h4 mb-0"><%= value.is_a?(Numeric) ? number_with_delimiter(value) : value %></p>
-              </div>
-              <span class="badge bg-primary-subtle text-primary-emphasis rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                <i class="<%= stat[:icon] %>"></i>
-              </span>
-            </div>
-            <% hint_value = stat[:hint_value] %>
-            <% hint_label = stat[:hint_label] %>
-            <% hint_text = if hint_label.present?
-                             hint_value.nil? ? hint_label : "#{number_with_delimiter(hint_value)} #{hint_label}"
-                           else
-                             ''
-                           end %>
-            <p class="text-muted small mb-0"><%= hint_text %></p>
+  <!-- Stats Section -->
+  <div class="row g-4 mb-5" id="stats">
+    <% @stats_cards.each_with_index do |stat, index| %>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="modern-stat-card">
+          <div class="stat-icon stat-icon-<%= index + 1 %> text-white">
+            <i class="<%= stat[:icon] %>"></i>
           </div>
+          <div class="stat-label"><%= stat[:label] %></div>
+          <% value = stat[:value] %>
+          <div class="stat-value"><%= value.is_a?(Numeric) ? number_with_delimiter(value) : value %></div>
+          <% hint_value = stat[:hint_value] %>
+          <% hint_label = stat[:hint_label] %>
+          <% hint_text = if hint_label.present?
+                           hint_value.nil? ? hint_label : "#{number_with_delimiter(hint_value)} #{hint_label}"
+                         else
+                           ''
+                         end %>
+          <div class="stat-hint"><%= hint_text %></div>
         </div>
       </div>
     <% end %>
   </div>
 
-  <div class="row g-4 mb-5" id="quick-links">
-    <div class="col-12">
-      <h2 class="h5 mb-3">Acțiuni rapide</h2>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
-        <% @quick_links.each do |link| %>
-          <div class="col">
-            <div class="card shadow-sm border-0 h-100">
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex align-items-start gap-3 mb-3">
-                  <span class="badge bg-primary-subtle text-primary-emphasis rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
-                    <i class="<%= link[:icon] %>"></i>
-                  </span>
-                  <div>
-                    <h3 class="h6 mb-1"><%= link[:title] %></h3>
-                    <p class="text-muted small mb-0"><%= link[:description] %></p>
-                  </div>
-                </div>
-                <%= link_to 'Deschide secțiunea', link[:path], class: 'btn btn-outline-primary mt-auto align-self-start' %>
-              </div>
+  <!-- Quick Actions -->
+  <div id="quick-links" class="mb-5">
+    <h2 class="section-title">Acțiuni rapide</h2>
+    <div class="row g-4">
+      <% @quick_links.each_with_index do |link, index| %>
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="modern-action-card">
+            <div class="action-icon">
+              <i class="<%= link[:icon] %>"></i>
             </div>
+            <div class="action-title"><%= link[:title] %></div>
+            <div class="action-description"><%= link[:description] %></div>
+            <%= link_to link[:path], class: 'modern-btn modern-btn-primary' do %>
+              Deschide
+              <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 
-  <div class="row g-4" id="orders">
+  <!-- Orders and Reviews Section -->
+  <div class="row g-4 mb-5" id="orders">
     <div class="col-lg-8">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-          <h3 class="h6 mb-0">Comenzi recente</h3>
-          <%= link_to 'Vezi toate comenzile', dashboard_orders_path, class: 'btn btn-sm btn-outline-secondary' %>
+      <div class="modern-table-card">
+        <div class="modern-table-header">
+          <h3 class="modern-table-title">Comenzi recente</h3>
+          <%= link_to dashboard_orders_path, class: 'modern-btn modern-btn-outline' do %>
+            Vezi toate
+            <i class="fa-solid fa-arrow-right"></i>
+          <% end %>
         </div>
         <div class="table-responsive">
-          <table class="table table-sm align-middle mb-0">
-            <thead class="table-light">
+          <table class="table modern-table align-middle mb-0">
+            <thead>
               <tr>
                 <th>ID</th>
                 <th>Client</th>
@@ -101,21 +390,24 @@
               <% if @recent_orders.any? %>
                 <% @recent_orders.each do |order| %>
                   <tr>
-                    <td class="fw-semibold">#<%= order.id %></td>
+                    <td><strong>#<%= order.id %></strong></td>
                     <td>
                       <div><%= order.customer_name %></div>
                       <div class="text-muted small"><%= order.contact_email || '—' %></div>
                     </td>
                     <td>
-                      <span class="badge bg-<%= order.status_badge_variant %>"><%= order.status_label %></span>
+                      <span class="badge rounded-pill bg-<%= order.status_badge_variant %>"><%= order.status_label %></span>
                     </td>
-                    <td class="fw-semibold"><%= order.total_money.format %></td>
-                    <td class="text-muted small"><%= l(order.created_at, format: :short) %></td>
+                    <td><strong><%= order.total_money.format %></strong></td>
+                    <td class="text-muted"><%= l(order.created_at, format: :short) %></td>
                   </tr>
                 <% end %>
               <% else %>
                 <tr>
-                  <td colspan="5" class="text-center text-muted py-4">Nu există comenzi recente.</td>
+                  <td colspan="5" class="text-center text-muted py-5">
+                    <i class="fa-solid fa-inbox fa-2x mb-3 d-block opacity-25"></i>
+                    Nu există comenzi recente
+                  </td>
                 </tr>
               <% end %>
             </tbody>
@@ -124,10 +416,10 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="card shadow-sm border-0 mb-4" id="reviews">
-        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-          <h3 class="h6 mb-0">Recenzii în așteptare</h3>
-          <span class="badge bg-warning text-dark"><%= @pending_reviews.size %></span>
+      <div class="modern-table-card mb-4">
+        <div class="modern-table-header">
+          <h3 class="modern-table-title">Recenzii în așteptare</h3>
+          <span class="badge rounded-pill" style="background: #f1f5f9; color: #475569; font-weight: 600;"><%= @pending_reviews.size %></span>
         </div>
         <div class="list-group list-group-flush">
           <% if @pending_reviews.any? %>
@@ -141,91 +433,106 @@
                               else
                                 nil
                               end %>
-              <div class="list-group-item">
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <strong><%= review.author %></strong>
-                    <div class="text-muted small"><%= l(review.created_at, format: :short) %></div>
-                  </div>
-                  <span class="badge bg-warning text-dark"><%= review.rating %>/5</span>
+              <div class="list-group-item border-0 py-3">
+                <div class="d-flex justify-content-between mb-2">
+                  <strong style="color: #111827;"><%= review.author %></strong>
+                  <span class="badge rounded-pill" style="background: #f1f5f9; color: #475569;"><%= review.rating %>/5</span>
                 </div>
                 <p class="small text-muted mb-2"><%= truncate(review.content, length: 100) %></p>
-                <% if review_path.present? %>
-                  <%= link_to 'Vezi contextul', review_path, class: 'small' %>
-                <% else %>
-                  <span class="text-muted small">Review pentru <%= review.reviewable_type %></span>
-                <% end %>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="text-muted small"><%= l(review.created_at, format: :short) %></span>
+                  <% if review_path.present? %>
+                    <%= link_to review_path, class: 'small', style: 'color: #1e293b; text-decoration: none; font-weight: 600;' do %>
+                      Vezi <i class="fa-solid fa-arrow-right"></i>
+                    <% end %>
+                  <% end %>
+                </div>
               </div>
             <% end %>
           <% else %>
-            <div class="list-group-item text-muted small">Nu există recenzii de aprobat.</div>
+            <div class="list-group-item border-0 text-center py-5 text-muted">
+              <i class="fa-solid fa-star fa-2x mb-3 d-block opacity-25"></i>
+              Nu există recenzii de aprobat
+            </div>
           <% end %>
         </div>
       </div>
-
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h3 class="h6">Note interne</h3>
-          <p class="text-muted small mb-0">Folosește secțiunea de comenzi pentru a adăuga notițe interne și a urmări statusul livrărilor. Pentru ajutor rapid, contactează echipa tehnică la <a href="mailto:comenzi@irinasweet.ro">comenzi@irinasweet.ro</a>.</p>
+      
+      <div class="modern-stat-card" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+        <div style="color: #334155;">
+          <div style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">
+            <i class="fa-solid fa-lightbulb me-2"></i>Note interne
+          </div>
+          <p style="font-size: 0.875rem; margin-bottom: 0; opacity: 0.9;">
+            Folosește secțiunea de comenzi pentru a adăuga notițe interne și a urmări statusul livrărilor.
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row g-4 mt-0" id="users-admin">
+  <!-- Users Section -->
+  <div class="row g-4" id="users-admin">
     <div class="col-lg-8">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-          <h3 class="h6 mb-0">Utilizatori recenți</h3>
-          <%= link_to 'Invită utilizator', new_user_registration_path, class: 'btn btn-sm btn-outline-primary' %>
+      <div class="modern-table-card">
+        <div class="modern-table-header">
+          <h3 class="modern-table-title">Utilizatori recenți</h3>
+          <%= link_to new_user_registration_path, class: 'modern-btn modern-btn-primary' do %>
+            <i class="fa-solid fa-user-plus me-2"></i>Invită utilizator
+          <% end %>
         </div>
         <div class="table-responsive">
-          <table class="table table-sm align-middle mb-0">
-            <thead class="table-light">
+          <table class="table modern-table align-middle mb-0">
+            <thead>
               <tr>
                 <th>Email</th>
                 <th>Rol</th>
-                <th>Acțiuni</th>
-                <th>Comenzi finalizate</th>
+                <th>Comenzi</th>
                 <th>Creat</th>
-                <th>Ultima activitate</th>
+                <th>Acțiuni</th>
               </tr>
             </thead>
             <tbody>
               <% if @recent_users.any? %>
                 <% @recent_users.each do |user| %>
                   <% completed_orders = user.carts.select { |cart| cart.status == Cart::STATUSES[:delivered] } %>
-                  <% last_order = user.carts.max_by(&:updated_at) %>
-                  <% last_activity = last_order&.updated_at || user.created_at %>
                   <tr>
-                    <td class="fw-semibold"><%= mail_to user.email %></td>
+                    <td><strong><%= user.email %></strong></td>
                     <td>
                       <% if user.admin? %>
-                        <span class="badge bg-success-subtle text-success-emphasis">Admin</span>
+                        <span class="badge rounded-pill" style="background: #1e293b; color: white; font-weight: 600;">Admin</span>
                       <% else %>
-                        <span class="badge bg-secondary-subtle text-secondary-emphasis">Client</span>
+                        <span class="badge rounded-pill" style="background: #f1f5f9; color: #64748b; font-weight: 600;">Client</span>
                       <% end %>
                     </td>
-                    <td class="text-end">
-                      <div class="btn-group btn-group-sm" role="group" aria-label="User actions">
-                        <%= link_to 'Editează', edit_dashboard_user_path(user), class: 'btn btn-outline-secondary' %>
+                    <td><strong><%= number_with_delimiter(completed_orders.count) %></strong> finalizate</td>
+                    <td class="text-muted"><%= l(user.created_at, format: :short) %></td>
+                    <td>
+                      <div class="btn-group btn-group-sm">
+                        <%= link_to edit_dashboard_user_path(user), class: 'modern-btn modern-btn-outline', style: 'padding: 0.375rem 0.75rem;' do %>
+                          <i class="fa-solid fa-pen"></i>
+                        <% end %>
                         <% if user != current_user %>
                           <% if user.admin? %>
-                            <%= button_to 'Retrage admin', toggle_admin_dashboard_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să retragi dreptul de administrator?' }, class: 'btn btn-outline-danger' %>
+                            <%= button_to toggle_admin_dashboard_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să retragi dreptul de administrator?' }, class: 'modern-btn modern-btn-outline', style: 'padding: 0.375rem 0.75rem; border-color: #cbd5e1; color: #475569;' do %>
+                              <i class="fa-solid fa-user-shield"></i>
+                            <% end %>
                           <% else %>
-                            <%= button_to 'Promovează', toggle_admin_dashboard_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să promovezi utilizatorul la administrator?' }, class: 'btn btn-outline-primary' %>
+                            <%= button_to toggle_admin_dashboard_user_path(user), method: :patch, data: { confirm: 'Sigur vrei să promovezi utilizatorul la administrator?' }, class: 'modern-btn modern-btn-outline', style: 'padding: 0.375rem 0.75rem; border-color: #cbd5e1; color: #475569;' do %>
+                              <i class="fa-solid fa-arrow-up"></i>
+                            <% end %>
                           <% end %>
                         <% end %>
                       </div>
                     </td>
-                    <td><%= number_with_delimiter(completed_orders.count) %></td>
-                    <td class="text-muted small"><%= l(user.created_at, format: :short) %></td>
-                    <td class="text-muted small"><%= last_activity ? l(last_activity, format: :short) : '—' %></td>
                   </tr>
                 <% end %>
               <% else %>
                 <tr>
-                  <td colspan="5" class="text-center text-muted py-4">Nu există utilizatori recenți.</td>
+                  <td colspan="5" class="text-center text-muted py-5">
+                    <i class="fa-solid fa-users fa-2x mb-3 d-block opacity-25"></i>
+                    Nu există utilizatori recenți
+                  </td>
                 </tr>
               <% end %>
             </tbody>
@@ -234,25 +541,30 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="card shadow-sm border-0 mb-4">
-        <div class="card-header bg-white border-0 py-3">
-          <h3 class="h6 mb-0">Statistici utilizatori</h3>
-        </div>
-        <ul class="list-group list-group-flush">
+      <div class="modern-stat-card mb-4" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+        <div style="color: #334155;">
+          <div style="font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-chart-pie me-2"></i>Statistici utilizatori
+          </div>
           <% @user_metrics.each do |metric| %>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <span class="text-muted small"><%= metric[:label] %></span>
-              <strong><%= number_with_delimiter(metric[:value]) %></strong>
-            </li>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span style="font-size: 0.875rem; opacity: 0.8;"><%= metric[:label] %></span>
+              <strong style="font-size: 1.25rem;"><%= number_with_delimiter(metric[:value]) %></strong>
+            </div>
           <% end %>
-        </ul>
-      </div>
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h3 class="h6">Gestionare acces</h3>
-          <p class="text-muted small mb-3">Administrează conturile de utilizator, promovează la admin sau șterge conturi direct din panoul dedicat.</p>
-          <%= link_to 'Administrare utilizatori', dashboard_admin_users_path, class: 'btn btn-outline-secondary btn-sm' %>
         </div>
+      </div>
+      
+      <div class="modern-action-card">
+        <div class="action-icon">
+          <i class="fa-solid fa-users-gear"></i>
+        </div>
+        <div class="action-title">Gestionare acces</div>
+        <div class="action-description">Administrează conturile de utilizator, promovează la admin sau șterge conturi direct din panoul dedicat.</div>
+        <%= link_to dashboard_admin_users_path, class: 'modern-btn modern-btn-primary' do %>
+          Administrare utilizatori
+          <i class="fa-solid fa-arrow-right"></i>
+        <% end %>
       </div>
     </div>
   </div>

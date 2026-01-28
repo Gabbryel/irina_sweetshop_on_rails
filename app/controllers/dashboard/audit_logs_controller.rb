@@ -3,6 +3,7 @@ class Dashboard::AuditLogsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :require_admin
+  skip_after_action :track_audit_log
 
   def index
     # Base scope with policy
