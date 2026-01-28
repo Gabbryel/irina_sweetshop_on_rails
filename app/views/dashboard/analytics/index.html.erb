@@ -434,14 +434,44 @@
     </div>
   </div>
 
-  <!-- Geographic Data (if available) -->
-  <% if @countries.any? || @cities.any? %>
+  <!-- Geographic Distribution -->
+  <div class="mb-4">
+    <h4 class="mb-3" style="color: #1e293b; font-weight: 700;">
+      <i class="fas fa-globe-americas me-2" style="color: #475569;"></i>
+      Distribuție Geografică
+    </h4>
+  </div>
+
+  <!-- Geographic Summary Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+        <div class="card-body text-center py-3">
+          <h3 class="mb-1" style="color: #1e293b; font-weight: 700;"><%= number_with_delimiter(@total_countries) %></h3>
+          <p class="text-muted small mb-0">Țări diferite (30 zile)</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+        <div class="card-body text-center py-3">
+          <h3 class="mb-1" style="color: #1e293b; font-weight: 700;"><%= number_with_delimiter(@total_cities) %></h3>
+          <p class="text-muted small mb-0">Orașe diferite (30 zile)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Geographic Charts -->
+  <% if @countries.any? || @regions.any? || @cities.any? %>
     <div class="row g-4 mb-4">
       <% if @countries.any? %>
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
             <div class="card-header" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
-              <h5 class="mb-0" style="color: #1e293b; font-weight: 600;">Top 10 Țări</h5>
+              <h5 class="mb-0" style="color: #1e293b; font-weight: 600;">
+                <i class="fas fa-flag me-2"></i>Top 10 Țări
+              </h5>
             </div>
             <div class="card-body">
               <%= bar_chart @countries, 
@@ -460,14 +490,17 @@
           </div>
         </div>
       <% end %>
-      <% if @cities.any? %>
-        <div class="col-md-6">
+
+      <% if @regions.any? %>
+        <div class="col-lg-6">
           <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
             <div class="card-header" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
-              <h5 class="mb-0" style="color: #1e293b; font-weight: 600;">Top 10 Orașe</h5>
+              <h5 class="mb-0" style="color: #1e293b; font-weight: 600;">
+                <i class="fas fa-map-marked-alt me-2"></i>Top 10 Regiuni
+              </h5>
             </div>
             <div class="card-body">
-              <%= bar_chart @cities, 
+              <%= bar_chart @regions, 
                   colors: ['#475569'],
                   height: '350px',
                   library: { 
@@ -483,6 +516,90 @@
           </div>
         </div>
       <% end %>
+
+      <% if @cities.any? %>
+        <div class="col-lg-6">
+          <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+            <div class="card-header" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
+              <h5 class="mb-0" style="color: #1e293b; font-weight: 600;">
+                <i class="fas fa-city me-2"></i>Top 10 Orașe
+              </h5>
+            </div>
+            <div class="card-body">
+              <%= bar_chart @cities, 
+                  colors: ['#64748b'],
+                  height: '350px',
+                  library: { 
+                    indexAxis: 'y',
+                    scales: { 
+                      x: { beginAtZero: true }
+                    },
+                    plugins: {
+                      legend: { display: false }
+                    }
+                  } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Geographic Table with Combined Data -->
+      <div class="col-lg-6">
+        <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+          <div class="card-header" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
+            <h5 class="mb-0" style="color: #1e293b; font-weight: 600;">
+              <i class="fas fa-list me-2"></i>Detalii Locații
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm mb-0">
+                <thead style="background: #f8fafc;">
+                  <tr>
+                    <th style="border: none; padding: 0.75rem;">Poziție</th>
+                    <th style="border: none; padding: 0.75rem;">Locație</th>
+                    <th class="text-end" style="border: none; padding: 0.75rem;">Vizite</th>
+                    <th class="text-end" style="border: none; padding: 0.75rem;">%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @countries.any? %>
+                    <% total_geo_visits = @countries.sum { |_, count| count } %>
+                    <% @countries.first(5).each_with_index do |(location, count), index| %>
+                      <tr>
+                        <td style="padding: 0.75rem;">
+                          <span class="badge" style="background: <%= index < 3 ? '#1e293b' : '#e2e8f0' %>; color: <%= index < 3 ? 'white' : '#475569' %>; font-weight: 600;">#<%= index + 1 %></span>
+                        </td>
+                        <td style="padding: 0.75rem;">
+                          <strong style="color: #1e293b;"><%= location %></strong>
+                          <span class="badge bg-primary-subtle text-primary-emphasis ms-2">Țară</span>
+                        </td>
+                        <td class="text-end" style="padding: 0.75rem;">
+                          <strong style="color: #1e293b;"><%= number_with_delimiter(count) %></strong>
+                        </td>
+                        <td class="text-end" style="padding: 0.75rem;">
+                          <span style="color: #64748b;"><%= ((count.to_f / total_geo_visits * 100).round(1)) %>%</span>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                    <tr>
+                      <td colspan="4" class="text-center py-4 text-muted">Nu există date geografice disponibile</td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+      <div class="card-body text-center py-5">
+        <i class="fas fa-globe fa-3x mb-3" style="color: #cbd5e1;"></i>
+        <p class="text-muted mb-0">Nu există încă date geografice. Datele de localizare vor apărea când vizitatorii accesează site-ul.</p>
+      </div>
     </div>
   <% end %>
 </div>

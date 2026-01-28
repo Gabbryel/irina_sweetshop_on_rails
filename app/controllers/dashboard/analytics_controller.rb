@@ -87,7 +87,7 @@ class Dashboard::AnalyticsController < ApplicationController
       .group(:device_type)
       .count
     
-    # Country statistics (if available)
+    # Geographic statistics
     @countries = Ahoy::Visit
       .where('started_at >= ?', 30.days.ago)
       .where.not(country: nil)
@@ -96,7 +96,14 @@ class Dashboard::AnalyticsController < ApplicationController
       .sort_by { |_, count| -count }
       .first(10)
     
-    # City statistics (if available)
+    @regions = Ahoy::Visit
+      .where('started_at >= ?', 30.days.ago)
+      .where.not(region: nil)
+      .group(:region)
+      .count
+      .sort_by { |_, count| -count }
+      .first(10)
+    
     @cities = Ahoy::Visit
       .where('started_at >= ?', 30.days.ago)
       .where.not(city: nil)
@@ -104,6 +111,19 @@ class Dashboard::AnalyticsController < ApplicationController
       .count
       .sort_by { |_, count| -count }
       .first(10)
+    
+    # Total visits by country (for summary)
+    @total_countries = Ahoy::Visit
+      .where('started_at >= ?', 30.days.ago)
+      .where.not(country: nil)
+      .distinct
+      .count(:country)
+    
+    @total_cities = Ahoy::Visit
+      .where('started_at >= ?', 30.days.ago)
+      .where.not(city: nil)
+      .distinct
+      .count(:city)
     
     # Visits by hour (today)
     @hourly_visits = Ahoy::Visit
