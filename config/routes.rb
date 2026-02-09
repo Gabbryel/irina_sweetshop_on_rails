@@ -70,6 +70,10 @@ Rails.application.routes.draw do
     end
 
     get 'analytics', to: 'analytics#index', as: 'analytics'
+    
+    namespace :design do
+      resource :hero_section, only: [:edit, :update]
+    end
   end
 
   namespace :shop do

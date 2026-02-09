@@ -1,3 +1,4 @@
+<%# OLD HERO SECTION - COMMENTED OUT
 <%# images = ['ecler_sgmmrc.webp', 'IMG_5184_Background_Removed_nltgj3.webp', 'IMG_5576_apnxfm.webp', 'IMG_5577_kpip7i.webp'] %>
 <div class="hero-section">
   <%= cl_image_tag('ecler_sgmmrc.webp', fetch_format: :webp, width: 800, crop: :scale) %>
@@ -10,3 +11,34 @@
     <% end %>
   </div>
  </div>
+%>
+
+<%# NEW HERO SECTION WITH MELTING CHOCOLATE EFFECT %>
+<% hero = HeroSection.first %>
+<% if hero.present? %>
+  <div class="hero-section-new">
+    <%= image_tag hero.background_image, class: 'hero-section-new__background' if hero.background_image.attached? %>
+    
+    <div class="hero-section-new__content">
+      <div class="hero-section-new__text">
+        <h1 class="hero-section-new__title"><%= hero.title %></h1>
+        <h2 class="hero-section-new__subtitle"><%= hero.subtitle %></h2>
+        <%= link_to hero.button_text, hero.button_link, class: 'hero-section-new__button' %>
+      </div>
+      
+      <div class="hero-section-new__image-container">
+        <%= image_tag hero.main_image, class: 'hero-section-new__main-image' if hero.main_image.attached? %>
+      </div>
+    </div>
+    
+    <div class="hero-section-new__chocolate-drip">
+      <%= image_tag 'chocolate-drip.svg', class: 'chocolate-drip-svg' %>
+    </div>
+  </div>
+<% else %>
+  <div class="hero-section-new hero-section-new--placeholder">
+    <div class="hero-section-new__content">
+      <p class="text-center text-white">Hero section not configured. Please add content from the admin panel.</p>
+    </div>
+  </div>
+<% end %>
