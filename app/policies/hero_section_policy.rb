@@ -5,7 +5,7 @@ class HeroSectionPolicy < ApplicationPolicy
     end
   end
 
-  def manage?
+  def show?
     isUserAdm?
   end
 
@@ -20,6 +20,6 @@ class HeroSectionPolicy < ApplicationPolicy
   private
 
   def isUserAdm?
-    user&.admin?
+    user && user.admin
   end
 end

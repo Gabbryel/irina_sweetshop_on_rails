@@ -6,6 +6,10 @@ class Dashboard::AnalyticsController < ApplicationController
   def index
     authorize :analytics, :index?
     
+    # Apply filters from params
+    @filtered_source = params[:source_filter]
+    @filtered_country = params[:country_filter]
+    
     # Visit statistics
     @total_visits = Ahoy::Visit.count
     @today_visits = Ahoy::Visit.where('started_at >= ?', Time.zone.now.beginning_of_day).count
@@ -124,6 +128,35 @@ class Dashboard::AnalyticsController < ApplicationController
       .where.not(city: nil)
       .distinct
       .count(:city)
+    
+    # Combined Source × Location Analysis
+    base_scope = Ahoy::Visit.where('started_at >= ?', 30.days.ago)
+    base_scope = base_scope.where(referring_domain: @filtered_source) if @filtered_source.present?
+    base_scope = base_scope.where(country: @filtered_country) if @filtered_country.present?
+    
+    @source_by_location = base_scope
+      .where.not(referring_domain: nil)
+      .where.not(country: nil)
+      .group(:referring_domain, :country)
+      .count
+      .sort_by { |_, count| -count }
+      .first(20)
+      .group_by { |(domain, _), _| domain }
+    
+    # Available filter options
+    @available_sources = Ahoy::Visit
+      .where('started_at >= ?', 30.days.ago)
+      .where.not(referring_domain: nil)
+      .distinct
+      .pluck(:referring_domain)
+      .sort
+    
+    @available_countries = Ahoy::Visit
+      .where('started_at >= ?', 30.days.ago)
+      .where.not(country: nil)
+      .distinct
+      .pluck(:country)
+      .sort
     
     # Visits by hour (today)
     @hourly_visits = Ahoy::Visit
