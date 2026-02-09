@@ -15,10 +15,22 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     background-color: $earth-yellow;
+    
+    &__svg-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
     
     &__overlay {
         position: absolute;
@@ -116,7 +128,7 @@
     }
     
     &--fallback {
-        background: linear-gradient(135deg, $earth-yellow 0%, darken($earth-yellow, 10%) 100%);
+        // Fallback uses SVG gradient instead
     }
 }
 

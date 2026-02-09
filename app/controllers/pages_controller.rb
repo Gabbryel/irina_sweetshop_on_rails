@@ -64,6 +64,7 @@ class PagesController < ApplicationController
 
     @quick_links = [
       { title: 'Administrare comenzi', description: 'Vezi comenzi, actualizează statusul și urmărește livrările.', path: dashboard_orders_path, icon: 'fa-solid fa-clipboard-list' },
+      { title: 'Hero Section', description: 'Personalizează secțiunea principală a paginii de acasă.', path: edit_dashboard_design_hero_section_path, icon: 'fa-solid fa-image' },
       { title: 'Administrează rețetele', description: 'Editează rețete și organizează meniul online.', path: dashboard_recipes_path, icon: 'fa-solid fa-utensils' },
       { title: 'Actualizează prețurile', description: 'Modifică rapid prețurile produselor listate.', path: preturi_path, icon: 'fa-solid fa-tags' },
       { title: 'Jurnal de activitate', description: 'Monitorizează toate acțiunile utilizatorilor și evenimentele de securitate.', path: dashboard_audit_logs_path, icon: 'fa-solid fa-file-shield' },
