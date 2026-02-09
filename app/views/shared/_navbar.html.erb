@@ -1,5 +1,5 @@
-<div class="navbar navbar-expand-lg navbar-light navbar-lewagon p-0">
-  <nav class="navbar navbar-expand-lg navbar-light navbar-lewagon p-0">
+<div class="navbar navbar-expand-lg navbar-light navbar-lewagon p-0" style="background: <%= navbar_color %> !important;">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-lewagon p-0" style="background: <%= navbar_color %> !important;">
     <object>
       <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "logo-white.png", alt: 'Cofetăria Irina Bacău' %>
@@ -13,7 +13,7 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav align-items-center">
+      <ul class="navbar-nav align-items-center" style="background: <%= navbar_color %> !important;">
         <li class="">
           <%= simple_form_for :search, url: cautare_retete_path, method: 'GET' do |f| %>
           <div class="d-flex gap-2">

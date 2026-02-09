@@ -64,13 +64,13 @@ class PagesController < ApplicationController
 
     @quick_links = [
       { title: 'Administrare comenzi', description: 'Vezi comenzi, actualizează statusul și urmărește livrările.', path: dashboard_orders_path, icon: 'fa-solid fa-clipboard-list' },
-      { title: 'Hero Section', description: 'Personalizează secțiunea principală a paginii de acasă.', path: edit_dashboard_design_hero_section_path, icon: 'fa-solid fa-image' },
       { title: 'Administrează rețetele', description: 'Editează rețete și organizează meniul online.', path: dashboard_recipes_path, icon: 'fa-solid fa-utensils' },
       { title: 'Actualizează prețurile', description: 'Modifică rapid prețurile produselor listate.', path: preturi_path, icon: 'fa-solid fa-tags' },
       { title: 'Jurnal de activitate', description: 'Monitorizează toate acțiunile utilizatorilor și evenimentele de securitate.', path: dashboard_audit_logs_path, icon: 'fa-solid fa-file-shield' },
       { title: 'Analiză trafic', description: 'Vizualizează statistici despre vizitatori și comportamentul pe site.', path: dashboard_analytics_path, icon: 'fa-solid fa-chart-line' },
       { title: 'Zile livrare', description: 'Gestionează zilele disponibile pentru comenzi și livrări.', path: dashboard_delivery_dates_path, icon: 'fa-solid fa-calendar-check' },
       { title: 'Design-uri personalizate', description: 'Gestionează variantele de design pentru modele.', path: dashboard_designs_path, icon: 'fa-solid fa-cake-candles' },
+      { title: 'Setări Design Site', description: 'Personalizează culorile și aspectul site-ului web.', path: dashboard_design_site_settings_path, icon: 'fa-solid fa-palette' },
       { title: 'Elemente de prezentare', description: 'Administrează secțiunea cu avantaje și beneficii.', path: dashboard_features_path, icon: 'fa-solid fa-star' },
       { title: 'Administrare utilizatori', description: 'Verifică noile conturi și rolurile de acces.', path: dashboard_path(anchor: 'users-admin'), icon: 'fa-solid fa-users' }
     ]

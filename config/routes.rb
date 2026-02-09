@@ -72,7 +72,8 @@ Rails.application.routes.draw do
     get 'analytics', to: 'analytics#index', as: 'analytics'
     
     namespace :design do
-      resource :hero_section, only: %i[show edit update]
+      get 'site_settings', to: 'site_settings#index'
+      patch 'site_settings', to: 'site_settings#update'
     end
   end
 

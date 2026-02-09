@@ -27,9 +27,7 @@ module Dashboard
       def set_hero_section
         @hero_section = HeroSection.first_or_create!(
           title: 'Deserturi proaspete',
-          subtitle: 'în fiecare zi',
-          button_text: 'Vezi produsele',
-          button_link: '/categories'
+          subtitle: 'în fiecare zi'
         )
       end
 
@@ -38,7 +36,7 @@ module Dashboard
       end
 
       def hero_section_params
-        params.require(:hero_section).permit(:title, :subtitle, :button_text, :button_link, :background_image_url, :chocolate_color)
+        params.require(:hero_section).permit(:title, :subtitle, :background_image, :main_image)
       end
     end
   end

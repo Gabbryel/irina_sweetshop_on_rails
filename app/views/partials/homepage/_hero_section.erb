@@ -1,72 +1,13 @@
-<% hero = HeroSection.first %>
-<% if hero.present? %>
-  <div class="hero-section-new">
-    <% if hero.background_image_url.present? %>
-      <div class="hero-section-new__svg-background">
-        <svg width="100%" height="100%" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="heroBackgroundImage" patternUnits="userSpaceOnUse" width="1440" height="1000">
-              <image href="<%= hero.background_image_url %>" x="0" y="0" width="1440" height="1000" preserveAspectRatio="xMidYMid slice" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#heroBackgroundImage)" />
-        </svg>
-      </div>
-    <% end %>
-    <div class="hero-section-new__overlay"></div>
-    
-    <div class="hero-section-new__content">
-      <h1 class="hero-section-new__title" data-aos="fade-up" data-aos-duration="800">
-        <%= hero.title %>
+<%# images = ['ecler_sgmmrc.webp', 'IMG_5184_Background_Removed_nltgj3.webp', 'IMG_5576_apnxfm.webp', 'IMG_5577_kpip7i.webp'] %>
+<!-- <div class="hero-section">
+  <%= cl_image_tag('ecler_sgmmrc.webp', fetch_format: :webp, width: 800, crop: :scale) %>
+  <%#= cl_image_tag(images.sample, fetch_format: :webp, :quality=>70, :width=>1000, :height=>500, :crop=>"scale") %>
+  <div>
+    <%= link_to categories_path, class: 'hero-section__button' do %>
+      <h1>
+        <span>Deserturi proaspete</span></br><span>în fiecare zi</span>
       </h1>
-      <p class="hero-section-new__subtitle" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-        <%= hero.subtitle %>
-      </p>
-      <%= link_to hero.button_text, hero.button_link, class: 'hero-section-new__cta', data: { aos: "fade-up", aos_duration: "800", aos_delay: "200" } %>
-    </div>
-    
-    <div class="hero-section-new__chocolate-drip">
-      <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 140" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
-            <stop stop-color="<%= hero.chocolate_color || '#3d2817' %>" offset="0%"></stop>
-            <stop stop-color="<%= hero.chocolate_color || '#3d2817' %>" stop-opacity="0.95" offset="100%"></stop>
-          </linearGradient>
-        </defs>
-        <path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,0L10.4,16.3C20.9,33,42,65,63,74.7C83.5,84,104,70,125,53.7C146.1,37,167,19,188,21C208.7,23,230,47,250,67.7C271.3,89,292,107,313,100.3C333.9,93,355,61,376,58.3C396.5,56,417,84,438,79.3C459.1,75,480,37,501,39.7C521.7,42,543,84,563,88.7C584.3,93,605,61,626,39.7C647,19,668,9,689,23.3C709.6,37,730,75,751,93.3C772.2,112,793,112,814,93.3C834.8,75,856,37,877,32.7C897.4,28,918,56,939,70C960,84,981,84,1002,81.7C1022.6,79,1043,75,1064,72.3C1085.2,70,1106,70,1127,74.7C1147.8,79,1169,89,1190,84C1210.4,79,1231,61,1252,51.3C1273,42,1294,42,1315,37.3C1335.7,33,1357,23,1377,35C1398.3,47,1419,79,1440,88.7C1460.9,98,1482,84,1492,77L1502.6,70L1502.6,140L1492.2,140C1481.7,140,1461,140,1440,140C1419.1,140,1398,140,1377,140C1356.5,140,1336,140,1315,140C1293.9,140,1273,140,1252,140C1231.3,140,1210,140,1190,140C1168.7,140,1148,140,1127,140C1106.1,140,1085,140,1064,140C1043.5,140,1023,140,1002,140C980.9,140,960,140,939,140C918.3,140,897,140,877,140C855.7,140,835,140,814,140C793,140,772,140,751,140C730.4,140,710,140,689,140C667.8,140,647,140,626,140C605.2,140,584,140,563,140C542.6,140,522,140,501,140C480,140,459,140,438,140C417.4,140,397,140,376,140C354.8,140,334,140,313,140C292.2,140,271,140,250,140C229.6,140,209,140,188,140C167,140,146,140,125,140C104.3,140,83,140,63,140C41.7,140,21,140,10,140L0,140Z"></path>
-      </svg>
-    </div>
+    <% end %>
   </div>
-<% else %>
-  <!-- Fallback if no hero section configured -->
-  <div class="hero-section-new hero-section-new--fallback">
-    <div class="hero-section-new__svg-background">
-      <svg width="100%" height="100%" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="fallbackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#f4a261;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#e76f51;stop-opacity:1" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#fallbackGradient)" />
-      </svg>
-    </div>
-    <div class="hero-section-new__overlay"></div>
-    <div class="hero-section-new__content">
-      <h1 class="hero-section-new__title">Cofetăria Irina</h1>
-      <p class="hero-section-new__subtitle">Deserturi proaspete în fiecare zi</p>
-      <%= link_to 'Vezi produsele', categories_path, class: 'hero-section-new__cta' %>
-    </div>
-    <div class="hero-section-new__chocolate-drip">
-      <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 140" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sw-gradient-fallback" x1="0" x2="0" y1="1" y2="0">
-            <stop stop-color="#3d2817" offset="0%"></stop>
-            <stop stop-color="#3d2817" stop-opacity="0.95" offset="100%"></stop>
-          </linearGradient>
-        </defs>
-        <path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-fallback)" d="M0,0L10.4,16.3C20.9,33,42,65,63,74.7C83.5,84,104,70,125,53.7C146.1,37,167,19,188,21C208.7,23,230,47,250,67.7C271.3,89,292,107,313,100.3C333.9,93,355,61,376,58.3C396.5,56,417,84,438,79.3C459.1,75,480,37,501,39.7C521.7,42,543,84,563,88.7C584.3,93,605,61,626,39.7C647,19,668,9,689,23.3C709.6,37,730,75,751,93.3C772.2,112,793,112,814,93.3C834.8,75,856,37,877,32.7C897.4,28,918,56,939,70C960,84,981,84,1002,81.7C1022.6,79,1043,75,1064,72.3C1085.2,70,1106,70,1127,74.7C1147.8,79,1169,89,1190,84C1210.4,79,1231,61,1252,51.3C1273,42,1294,42,1315,37.3C1335.7,33,1357,23,1377,35C1398.3,47,1419,79,1440,88.7C1460.9,98,1482,84,1492,77L1502.6,70L1502.6,140L1492.2,140C1481.7,140,1461,140,1440,140C1419.1,140,1398,140,1377,140C1356.5,140,1336,140,1315,140C1293.9,140,1273,140,1252,140C1231.3,140,1210,140,1190,140C1168.7,140,1148,140,1127,140C1106.1,140,1085,140,1064,140C1043.5,140,1023,140,1002,140C980.9,140,960,140,939,140C918.3,140,897,140,877,140C855.7,140,835,140,814,140C793,140,772,140,751,140C730.4,140,710,140,689,140C667.8,140,647,140,626,140C605.2,140,584,140,563,140C542.6,140,522,140,501,140C480,140,459,140,438,140C417.4,140,397,140,376,140C354.8,140,334,140,313,140C292.2,140,271,140,250,140C229.6,140,209,140,188,140C167,140,146,140,125,140C104.3,140,83,140,63,140C41.7,140,21,140,10,140L0,140Z"></path>
-      </svg>
-    </div>
-  </div>
-<% end %>
+ </div> -->
+
