@@ -1,78 +1,153 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="card p-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="h4 mb-0">Editare Hero Section</h3>
-          <%= link_to 'Înapoi la Dashboard', dashboard_path, class: 'btn btn-outline-secondary' %>
+<div class="container py-5 margin-top-20dvh">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+    <div>
+      <span class="badge rounded-pill px-3 py-2 mb-2" style="background: #f1f5f9; color: #475569; font-weight: 600;">Administrator / Design</span>
+      <h1 class="h3 mb-0" style="color: #1e293b; font-weight: 700;">Editare Hero Section</h1>
+      <p class="text-muted small mb-0">Personalizează secțiunea principală (70dvh înălțime cu efect de ciocolată topită)</p>
+    </div>
+    <%= link_to 'Înapoi la Dashboard', dashboard_path, class: 'btn btn-outline-secondary' %>
+  </div>
+
+  <% if @hero_section.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@hero_section.errors.count, "eroare") %> au împiedicat salvarea:</h4>
+      <ul class="mb-0">
+        <% @hero_section.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+        <div class="card-header py-3" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
+          <h2 class="h6 mb-0" style="color: #1e293b; font-weight: 600;">Detalii Hero Section</h2>
         </div>
-
-        <% if @hero_section.errors.any? %>
-          <div class="alert alert-danger">
-            <h4><%= pluralize(@hero_section.errors.count, "eroare") %> au împiedicat salvarea:</h4>
-            <ul>
-              <% @hero_section.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <%= form_with(model: @hero_section, url: dashboard_design_hero_section_path, local: true, html: { multipart: true }) do |f| %>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <%= f.label :title, 'Titlu (linia 1)', class: 'form-label' %>
-              <%= f.text_field :title, class: 'form-control', placeholder: 'ex: Deserturi proaspete' %>
+        <div class="card-body">
+          <%= form_with(model: @hero_section, url: dashboard_design_hero_section_path, local: true) do |f| %>
+            
+            <div class="mb-4">
+              <%= f.label :title, 'Titlu principal', class: 'form-label fw-semibold' %>
+              <%= f.text_field :title, class: 'form-control form-control-lg', placeholder: 'ex: Deserturi proaspete' %>
+              <small class="form-text text-muted">Textul principal care va fi afișat în hero section</small>
             </div>
 
-            <div class="col-md-6 mb-3">
-              <%= f.label :subtitle, 'Subtitlu (linia 2)', class: 'form-label' %>
+            <div class="mb-4">
+              <%= f.label :subtitle, 'Subtitlu', class: 'form-label fw-semibold' %>
               <%= f.text_field :subtitle, class: 'form-control', placeholder: 'ex: în fiecare zi' %>
+              <small class="form-text text-muted">Text secundar sub titlul principal</small>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <%= f.label :background_image, 'Imagine de fundal', class: 'form-label' %>
-              <% if @hero_section.background_image.attached? %>
-                <div class="mb-2">
-                  <%= image_tag @hero_section.background_image, class: 'img-fluid rounded', style: 'max-height: 200px; object-fit: cover;' %>
+            <hr class="my-4">
+
+            <div class="row">
+              <div class="col-md-7 mb-4">
+                <%= f.label :button_text, 'Text buton CTA', class: 'form-label fw-semibold' %>
+                <%= f.text_field :button_text, class: 'form-control', placeholder: 'ex: Vezi produsele' %>
+              </div>
+              <div class="col-md-5 mb-4">
+                <%= f.label :button_link, 'Link buton', class: 'form-label fw-semibold' %>
+                <%= f.text_field :button_link, class: 'form-control', placeholder: 'ex: /categories' %>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="mb-4">
+              <%= f.label :background_image_url, 'Imagine de fundal (Cloudinary URL)', class: 'form-label fw-semibold' %>
+              <div class="input-group">
+                <%= f.text_field :background_image_url, class: 'form-control', placeholder: 'URL Cloudinary' %>
+                <button type="button" class="btn btn-primary" onclick="openCloudinaryWidget()">
+                  <i class="fas fa-cloud-upload-alt me-2"></i>Upload
+                </button>
+              </div>
+              <small class="form-text text-muted">Imaginea de fundal pentru hero section (recomandare: 1920x1080px)</small>
+              
+              <% if @hero_section.background_image_url.present? %>
+                <div class="mt-3 p-3 bg-light rounded">
+                  <p class="small text-muted mb-2">Preview imagine curentă:</p>
+                  <%= image_tag @hero_section.background_image_url, class: 'img-fluid rounded', style: 'max-height: 200px; object-fit: cover;' %>
                 </div>
               <% end %>
-              <%= f.file_field :background_image, class: 'form-control', accept: 'image/*' %>
-              <small class="form-text text-muted">Imaginea va fi afișată ca fundal pentru hero section</small>
             </div>
 
-            <div class="col-md-6 mb-4">
-              <%= f.label :main_image, 'Imagine principală', class: 'form-label' %>
-              <% if @hero_section.main_image.attached? %>
-                <div class="mb-2">
-                  <%= image_tag @hero_section.main_image, class: 'img-fluid rounded', style: 'max-height: 200px; object-fit: cover;' %>
-                </div>
-              <% end %>
-              <%= f.file_field :main_image, class: 'form-control', accept: 'image/*' %>
-              <small class="form-text text-muted">Imaginea va fi afișată în centrul hero section</small>
+            <div class="mb-4">
+              <%= f.label :chocolate_color, 'Culoare ciocolată topită (hex)', class: 'form-label fw-semibold' %>
+              <div class="input-group" style="max-width: 300px;">
+                <%= f.color_field :chocolate_color, class: 'form-control form-control-color', value: @hero_section.chocolate_color || '#3d2817' %>
+                <%= f.text_field :chocolate_color, class: 'form-control', placeholder: '#3d2817', value: @hero_section.chocolate_color || '#3d2817' %>
+              </div>
+              <small class="form-text text-muted">Culoarea efectului de ciocolată topită de jos (default: #3d2817)</small>
             </div>
-          </div>
 
-          <div class="card bg-light p-3 mb-4">
-            <h5 class="h6 mb-2">Preview text</h5>
-            <div class="hero-preview text-center">
-              <h1 class="display-4 fw-bold text-primary">
-                <%= @hero_section.title || 'Titlu' %>
-              </h1>
-              <h2 class="h3 text-secondary">
-                <%= @hero_section.subtitle || 'Subtitlu' %>
-              </h2>
+            <hr class="my-4">
+
+            <div class="d-flex justify-content-end gap-2">
+              <%= link_to 'Anulează', dashboard_path, class: 'btn btn-outline-secondary' %>
+              <%= f.submit 'Salvează modificările', class: 'btn btn-primary' %>
             </div>
-          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-          <div class="d-flex gap-2">
-            <%= f.submit 'Salvează modificările', class: 'btn btn-primary' %>
-            <%= link_to 'Anulează', dashboard_path, class: 'btn btn-outline-secondary' %>
-          </div>
-        <% end %>
+    <div class="col-lg-4">
+      <div class="card mb-3" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+        <div class="card-header py-3" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
+          <h2 class="h6 mb-0" style="color: #1e293b; font-weight: 600;">Preview Text</h2>
+        </div>
+        <div class="card-body text-center">
+          <h1 class="display-5 fw-bold mb-2" style="color: #1e293b;">
+            <%= @hero_section.title || 'Titlu' %>
+          </h1>
+          <p class="lead text-muted mb-3">
+            <%= @hero_section.subtitle || 'Subtitlu' %>
+          </p>
+          <a href="#" class="btn btn-primary btn-lg">
+            <%= @hero_section.button_text || 'Buton CTA' %>
+          </a>
+        </div>
+      </div>
+
+      <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+        <div class="card-header py-3" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
+          <h2 class="h6 mb-0" style="color: #1e293b; font-weight: 600;">
+            <i class="fas fa-info-circle me-2"></i>Informații
+          </h2>
+        </div>
+        <div class="card-body">
+          <ul class="small text-muted mb-0">
+            <li>Secțiunea are 70dvh înălțime</li>
+            <li>Include efect SVG de ciocolată topită</li>
+            <li>Imaginea de fundal se afișează în spatele conținutului</li>
+            <li>Textul și butonul sunt responsive</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script>
+  function openCloudinaryWidget() {
+    cloudinary.openUploadWidget({
+      cloudName: '<%= ENV['CLOUD_NAME'] %>',
+      uploadPreset: 'ml_default',
+      sources: ['local', 'url', 'camera'],
+      multiple: false,
+      resourceType: 'image',
+      clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
+      maxFileSize: 5000000,
+      cropping: false,
+      folder: 'hero_sections'
+    }, (error, result) => {
+      if (!error && result && result.event === "success") {
+        const imageUrl = result.info.secure_url;
+        document.querySelector('#hero_section_background_image_url').value = imageUrl;
+      }
+    });
+  }
+</script>
