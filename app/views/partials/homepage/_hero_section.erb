@@ -1,12 +1,57 @@
-<%# images = ['ecler_sgmmrc.webp', 'IMG_5184_Background_Removed_nltgj3.webp', 'IMG_5576_apnxfm.webp', 'IMG_5577_kpip7i.webp'] %>
-<div class="hero-section">
-  <%= cl_image_tag('ecler_sgmmrc.webp', fetch_format: :webp, width: 800, crop: :scale) %>
-  <%#= cl_image_tag(images.sample, fetch_format: :webp, :quality=>70, :width=>1000, :height=>500, :crop=>"scale") %>
+<% images = ['ecler_sgmmrc.webp', 'IMG_5184_Background_Removed_nltgj3.webp', 'IMG_5576_apnxfm.webp', 'IMG_5577_kpip7i.webp'] %>
+<div class="hero-section" style="--hero-background-color: <%= hero_background_color %>; --hero-image-max-width-mobile: <%= hero_image_max_width_mobile %>%; --hero-image-max-width-tablet: <%= hero_image_max_width_tablet %>%; --hero-image-max-width-desktop: <%= hero_image_max_width_desktop %>%;">
+  <% if hearts_animation_enabled? %>
+    <!-- Falling Hearts Animation -->
+    <div class="falling-hearts">
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+      <div class="heart">♥</div>
+    </div>
+  <% end %>
+  
+  <% 
+    image_url = hero_image_url
+    
+    # Check if there's an uploaded image
+    if image_url == :uploaded
+      hero_attachment = hero_image_attachment
+      if hero_attachment.hero_image.attached?
+  %>
+    <%= image_tag(url_for(hero_attachment.hero_image), class: "hero-section__image") %>
+  <%
+      end
+    elsif image_url.match?(/^https?:\/\//)
+      # It's a full URL, use image_tag
+  %>
+    <%= image_tag(image_url, class: "hero-section__image") %>
+  <% else
+      # It's a Cloudinary public_id, use cl_image_tag
+  %>
+    <%= cl_image_tag(image_url, fetch_format: :webp, width: 1200, crop: :scale, class: "hero-section__image") %>
+  <% end %>
   <div>
     <%= link_to categories_path, class: 'hero-section__button' do %>
       <h1>
-        <span>Deserturi proaspete</span></br><span>în fiecare zi</span>
+        <span><%= hero_text_line1 %></span></br><span><%= hero_text_line2 %></span>
       </h1>
     <% end %>
   </div>
  </div>
+
