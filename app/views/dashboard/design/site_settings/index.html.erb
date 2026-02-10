@@ -88,6 +88,588 @@
     </div>
   </div>
 
+  <!-- Hero Wave Settings Card -->
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #f36a3e 0%, #ff9966 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-wave-square me-2"></i>Setări Hero Wave
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'hero_wave_color' %>
+        <%= hidden_field_tag 'site_setting[description]', 'Culoarea wave-ului de sub navbar' %>
+        
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-fill-drip me-2" style="color: #f36a3e;"></i>Culoare Hero Wave
+              </label>
+              <p class="small text-muted mb-3">
+                Selectează culoarea wave-ului decorativ de sub navbar. Acest element adaugă un accent vizual site-ului.
+              </p>
+              
+              <div class="d-flex gap-3 align-items-center">
+                <%= color_field_tag 'site_setting[value]', 
+                    @hero_wave_color&.value || '#f36a3e', 
+                    class: 'form-control form-control-color', 
+                    style: 'width: 80px; height: 50px; border-radius: 8px; cursor: pointer;',
+                    id: 'hero_wave_color_picker' %>
+                
+                <div class="flex-grow-1">
+                  <%= text_field_tag 'hero_wave_color_hex', 
+                      @hero_wave_color&.value || '#f36a3e', 
+                      class: 'form-control', 
+                      placeholder: '#f36a3e',
+                      style: 'border-radius: 8px;',
+                      pattern: '^#[0-9A-Fa-f]{6}$' %>
+                  <small class="form-text text-muted">Format: #RRGGBB (hex)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 text-md-end">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Salvează Schimbările', 
+                  class: 'btn btn-lg', 
+                  style: 'background: linear-gradient(135deg, #f36a3e 0%, #ff9966 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(243, 106, 62, 0.3);' %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="mt-4 p-4" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <p class="small fw-semibold mb-3" style="color: #475569;">
+            <i class="fas fa-eye me-2"></i>Preview Wave
+          </p>
+          <div id="wave_preview_container" class="position-relative" style="height: 100px; background: #ffffff; border-radius: 8px; overflow: hidden;">
+            <svg id="wave_preview" style="transform:rotate(180deg); transition: fill 0.3s ease; width: 100%; height: 100%;" viewBox="0 0 1440 150" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <path style="transform:translate(0, 0px); opacity:1" fill="<%= @hero_wave_color&.value || '#f36a3e' %>" d="M0,105L10,102.5C20,100,40,95,60,97.5C80,100,100,110,120,100C140,90,160,60,180,50C200,40,220,50,240,55C260,60,280,60,300,67.5C320,75,340,90,360,90C380,90,400,75,420,77.5C440,80,460,100,480,110C500,120,520,120,540,100C560,80,580,40,600,37.5C620,35,640,70,660,80C680,90,700,75,720,80C740,85,760,110,780,112.5C800,115,820,95,840,77.5C860,60,880,45,900,45C920,45,940,60,960,67.5C980,75,1000,75,1020,62.5C1040,50,1060,25,1080,30C1100,35,1120,70,1140,90C1160,110,1180,115,1200,117.5C1220,120,1240,120,1260,122.5C1280,125,1300,130,1320,127.5C1340,125,1360,115,1380,100C1400,85,1420,65,1430,55L1440,45L1440,150L1430,150C1420,150,1400,150,1380,150C1360,150,1340,150,1320,150C1300,150,1280,150,1260,150C1240,150,1220,150,1200,150C1180,150,1160,150,1140,150C1120,150,1100,150,1080,150C1060,150,1040,150,1020,150C1000,150,980,150,960,150C940,150,920,150,900,150C880,150,860,150,840,150C820,150,800,150,780,150C760,150,740,150,720,150C700,150,680,150,660,150C640,150,620,150,600,150C580,150,560,150,540,150C520,150,500,150,480,150C460,150,440,150,420,150C400,150,380,150,360,150C340,150,320,150,300,150C280,150,260,150,240,150C220,150,200,150,180,150C160,150,140,150,120,150C100,150,80,150,60,150C40,150,20,150,10,150L0,150Z"></path>
+            </svg>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Hero Background Color Settings Card -->
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #E0A458 0%, #d4984b 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-palette me-2"></i>Setări Fundal Hero
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'hero_background_color' %>
+        <%= hidden_field_tag 'site_setting[description]', 'Culoarea fundalului secțiunii hero' %>
+        
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-paint-roller me-2" style="color: #E0A458;"></i>Culoare Fundal Hero
+              </label>
+              <p class="small text-muted mb-3">
+                Selectează culoarea de fundal pentru secțiunea hero de pe pagina principală.
+              </p>
+              
+              <div class="d-flex gap-3 align-items-center">
+                <%= color_field_tag 'site_setting[value]', 
+                    @hero_background_color&.value || '#E0A458', 
+                    class: 'form-control form-control-color', 
+                    style: 'width: 80px; height: 50px; border-radius: 8px; cursor: pointer;',
+                    id: 'hero_background_color_picker' %>
+                
+                <div class="flex-grow-1">
+                  <%= text_field_tag 'hero_background_color_hex', 
+                      @hero_background_color&.value || '#E0A458', 
+                      class: 'form-control', 
+                      placeholder: '#E0A458',
+                      style: 'border-radius: 8px;',
+                      pattern: '^#[0-9A-Fa-f]{6}$' %>
+                  <small class="form-text text-muted">Format: #RRGGBB (hex)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 text-md-end">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Salvează Schimbările', 
+                  class: 'btn btn-lg', 
+                  style: 'background: linear-gradient(135deg, #E0A458 0%, #d4984b 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(224, 164, 88, 0.3);' %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="mt-4 p-4" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <p class="small fw-semibold mb-3" style="color: #475569;">
+            <i class="fas fa-eye me-2"></i>Preview Fundal Hero
+          </p>
+          <div id="hero_background_preview" 
+               class="p-5 rounded text-center" 
+               style="background-color: <%= @hero_background_color&.value || '#E0A458' %>; transition: background-color 0.3s ease; border: 2px solid #dee2e6;">
+            <span style="font-weight: 600; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-size: 1.5rem;">Secțiunea Hero</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Hero Bottom Wave Settings Card -->
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #f36a3e 0%, #ff9966 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-water me-2"></i>Setări Wave Hero (Jos)
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'hero_bottom_wave_color' %>
+        <%= hidden_field_tag 'site_setting[description]', 'Culoarea wave-ului de sub secțiunea hero' %>
+        
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-fill-drip me-2" style="color: #f36a3e;"></i>Culoare Wave Hero (Jos)
+              </label>
+              <p class="small text-muted mb-3">
+                Selectează culoarea wave-ului decorativ care apare sub secțiunea hero pe pagina principală.
+              </p>
+              
+              <div class="d-flex gap-3 align-items-center">
+                <%= color_field_tag 'site_setting[value]', 
+                    @hero_bottom_wave_color&.value || '#f36a3e', 
+                    class: 'form-control form-control-color', 
+                    style: 'width: 80px; height: 50px; border-radius: 8px; cursor: pointer;',
+                    id: 'hero_bottom_wave_color_picker' %>
+                
+                <div class="flex-grow-1">
+                  <%= text_field_tag 'hero_bottom_wave_color_hex', 
+                      @hero_bottom_wave_color&.value || '#f36a3e', 
+                      class: 'form-control', 
+                      placeholder: '#f36a3e',
+                      style: 'border-radius: 8px;',
+                      pattern: '^#[0-9A-Fa-f]{6}$' %>
+                  <small class="form-text text-muted">Format: #RRGGBB (hex)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 text-md-end">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Salvează Schimbările', 
+                  class: 'btn btn-lg', 
+                  style: 'background: linear-gradient(135deg, #f36a3e 0%, #ff9966 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(243, 106, 62, 0.3);' %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="mt-4 p-4" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <p class="small fw-semibold mb-3" style="color: #475569;">
+            <i class="fas fa-eye me-2"></i>Preview Wave Hero (Jos)
+          </p>
+          <div id="hero_bottom_wave_preview_container" class="position-relative" style="height: 100px; background: #ffffff; border-radius: 8px; overflow: hidden;">
+            <svg id="hero_bottom_wave_preview" style="transform:rotate(180deg); transition: fill 0.3s ease; width: 100%; height: 100%;" viewBox="0 0 1440 150" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <path style="transform:translate(0, 0px); opacity:1" fill="<%= @hero_bottom_wave_color&.value || '#f36a3e' %>" d="M0,105L10,102.5C20,100,40,95,60,97.5C80,100,100,110,120,100C140,90,160,60,180,50C200,40,220,50,240,55C260,60,280,60,300,67.5C320,75,340,90,360,90C380,90,400,75,420,77.5C440,80,460,100,480,110C500,120,520,120,540,100C560,80,580,40,600,37.5C620,35,640,70,660,80C680,90,700,75,720,80C740,85,760,110,780,112.5C800,115,820,95,840,77.5C860,60,880,45,900,45C920,45,940,60,960,67.5C980,75,1000,75,1020,62.5C1040,50,1060,25,1080,30C1100,35,1120,70,1140,90C1160,110,1180,115,1200,117.5C1220,120,1240,120,1260,122.5C1280,125,1300,130,1320,127.5C1340,125,1360,115,1380,100C1400,85,1420,65,1430,55L1440,45L1440,150L1430,150C1420,150,1400,150,1380,150C1360,150,1340,150,1320,150C1300,150,1280,150,1260,150C1240,150,1220,150,1200,150C1180,150,1160,150,1140,150C1120,150,1100,150,1080,150C1060,150,1040,150,1020,150C1000,150,980,150,960,150C940,150,920,150,900,150C880,150,860,150,840,150C820,150,800,150,780,150C760,150,740,150,720,150C700,150,680,150,660,150C640,150,620,150,600,150C580,150,560,150,540,150C520,150,500,150,480,150C460,150,440,150,420,150C400,150,380,150,360,150C340,150,320,150,300,150C280,150,260,150,240,150C220,150,200,150,180,150C160,150,140,150,120,150C100,150,80,150,60,150C40,150,20,150,10,150L0,150Z"></path>
+            </svg>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Hero Image Settings Card -->
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-image me-2"></i>Setări Imagine Hero
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <!-- Hero Image URL Form -->
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation mb-4' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'hero_image_url' %>
+        <%= hidden_field_tag 'site_setting[description]', 'URL sau Cloudinary public_id pentru imaginea hero' %>
+        
+        <div class="row align-items-end">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-link me-2" style="color: #10b981;"></i>URL sau Cloudinary Public ID
+                <% if @hero_image_setting.hero_image.attached? %>
+                  <span class="badge bg-secondary ms-2" style="font-size: 0.65rem;">Inactiv - Imagine Încărcată</span>
+                <% end %>
+              </label>
+              <p class="small text-muted mb-3">
+                <% if @hero_image_setting.hero_image.attached? %>
+                  <strong>Notă:</strong> Această setare este inactivă momentan deoarece ai o imagine încărcată. Șterge imaginea încărcată pentru a folosi această setare.<br>
+                <% end %>
+                Introdu URL-ul complet al imaginii (http://... sau https://...) sau Cloudinary public_id (ex: ecler_sgmmrc.webp)
+              </p>
+              <%= text_field_tag 'site_setting[value]', 
+                  @hero_image_url&.value || 'ecler_sgmmrc.webp', 
+                  class: 'form-control', 
+                  placeholder: 'ecler_sgmmrc.webp sau https://example.com/image.jpg',
+                  style: 'border-radius: 8px;' %>
+              <small class="form-text text-muted">
+                <i class="fas fa-info-circle me-1"></i>
+                Pentru Cloudinary: folosește doar public_id (ex: ecler_sgmmrc.webp). Pentru URL extern: introdu URL-ul complet.
+              </small>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Salvează URL', 
+                  class: 'btn btn-lg', 
+                  style: 'background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Divider -->
+      <hr class="my-4" style="border-top: 1px solid #e5e7eb;">
+
+      <!-- Hero Image Upload Form -->
+      <%= form_with url: dashboard_design_site_settings_upload_hero_image_path, method: :post, local: true, multipart: true, html: { class: 'needs-validation' } do |f| %>
+        <div class="row align-items-end">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-upload me-2" style="color: #10b981;"></i>Încarcă Imagine Nouă
+                <% if @hero_image_setting.hero_image.attached? %>
+                  <span class="badge bg-success ms-2" style="font-size: 0.65rem;">Imagine Încărcată</span>
+                <% end %>
+              </label>
+              <p class="small text-muted mb-3">
+                Încarcă o imagine de pe computer. Acest lucru va înlocui temporar setarea URL/Cloudinary ID.
+              </p>
+              <%= file_field_tag 'hero_image', 
+                  accept: 'image/*',
+                  class: 'form-control', 
+                  style: 'border-radius: 8px;' %>
+              <small class="form-text text-muted">Formate acceptate: JPG, PNG, WEBP, GIF</small>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Încarcă Imagine', 
+                  class: 'btn btn-lg', 
+                  style: 'background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @hero_image_setting.hero_image.attached? %>
+        <div class="mt-3">
+          <%= form_with url: dashboard_design_site_settings_remove_hero_image_path, method: :delete, local: true, data: { turbo_confirm: 'Sigur vrei să ștergi imaginea încărcată? Se va folosi setarea URL în schimb.' } do |f| %>
+            <%= f.submit 'Șterge Imagine Încărcată', 
+                class: 'btn btn-danger', 
+                style: 'border-radius: 8px; font-weight: 600;' %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <!-- Divider -->
+      <hr class="my-4" style="border-top: 1px solid #e5e7eb;">
+
+      <!-- Hero Image Max-Width Forms -->
+      <div class="mb-4">
+        <h6 class="fw-semibold mb-3" style="color: #1e293b;">
+          <i class="fas fa-mobile-alt me-2" style="color: #10b981;"></i>Dimensiuni Responsive
+        </h6>
+        <p class="small text-muted mb-4">
+          Controlează dimensiunea imaginii pentru fiecare tip de ecran. Valorile sunt procente din lățimea containerului.
+        </p>
+        
+        <!-- Mobile Width -->
+        <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation mb-3' } do |f| %>
+          <%= hidden_field_tag 'site_setting[key]', 'hero_image_max_width_mobile' %>
+          <%= hidden_field_tag 'site_setting[description]', 'Lățimea maximă a imaginii hero pe mobile' %>
+          
+          <div class="row align-items-center g-3">
+            <div class="col-md-2">
+              <label class="form-label fw-semibold mb-0" style="color: #475569;">
+                <i class="fas fa-mobile-alt me-1"></i>Mobile<br>
+                <small class="text-muted" style="font-weight: normal; font-size: 0.7rem;">&lt; 768px</small>
+              </label>
+            </div>
+            <div class="col-md-7">
+              <div class="d-flex gap-3 align-items-center">
+                <%= range_field_tag 'site_setting[value]', 
+                    @hero_image_max_width_mobile&.value || '85', 
+                    min: '30',
+                    max: '100',
+                    step: '5',
+                    class: 'form-range flex-grow-1',
+                    id: 'hero_max_width_mobile_input' %>
+                <span class="badge bg-primary px-3 py-2" id="hero_max_width_mobile_display" style="min-width: 60px;">
+                  <%= @hero_image_max_width_mobile&.value || '85' %>%
+                </span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <%= f.submit 'Salvează', 
+                  class: 'btn btn-sm w-100', 
+                  style: 'background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 6px; font-weight: 600;' %>
+            </div>
+          </div>
+        <% end %>
+        
+        <!-- Tablet Width -->
+        <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation mb-3' } do |f| %>
+          <%= hidden_field_tag 'site_setting[key]', 'hero_image_max_width_tablet' %>
+          <%= hidden_field_tag 'site_setting[description]', 'Lățimea maximă a imaginii hero pe tablet' %>
+          
+          <div class="row align-items-center g-3">
+            <div class="col-md-2">
+              <label class="form-label fw-semibold mb-0" style="color: #475569;">
+                <i class="fas fa-tablet-alt me-1"></i>Tablet<br>
+                <small class="text-muted" style="font-weight: normal; font-size: 0.7rem;">768px - 1099px</small>
+              </label>
+            </div>
+            <div class="col-md-7">
+              <div class="d-flex gap-3 align-items-center">
+                <%= range_field_tag 'site_setting[value]', 
+                    @hero_image_max_width_tablet&.value || '75', 
+                    min: '30',
+                    max: '100',
+                    step: '5',
+                    class: 'form-range flex-grow-1',
+                    id: 'hero_max_width_tablet_input' %>
+                <span class="badge bg-info px-3 py-2" id="hero_max_width_tablet_display" style="min-width: 60px;">
+                  <%= @hero_image_max_width_tablet&.value || '75' %>%
+                </span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <%= f.submit 'Salvează', 
+                  class: 'btn btn-sm w-100', 
+                  style: 'background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 6px; font-weight: 600;' %>
+            </div>
+          </div>
+        <% end %>
+        
+        <!-- Desktop Width -->
+        <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation mb-3' } do |f| %>
+          <%= hidden_field_tag 'site_setting[key]', 'hero_image_max_width_desktop' %>
+          <%= hidden_field_tag 'site_setting[description]', 'Lățimea maximă a imaginii hero pe desktop' %>
+          
+          <div class="row align-items-center g-3">
+            <div class="col-md-2">
+              <label class="form-label fw-semibold mb-0" style="color: #475569;">
+                <i class="fas fa-desktop me-1"></i>Desktop<br>
+                <small class="text-muted" style="font-weight: normal; font-size: 0.7rem;">≥ 1100px</small>
+              </label>
+            </div>
+            <div class="col-md-7">
+              <div class="d-flex gap-3 align-items-center">
+                <%= range_field_tag 'site_setting[value]', 
+                    @hero_image_max_width_desktop&.value || '60', 
+                    min: '30',
+                    max: '100',
+                    step: '5',
+                    class: 'form-range flex-grow-1',
+                    id: 'hero_max_width_desktop_input' %>
+                <span class="badge bg-success px-3 py-2" id="hero_max_width_desktop_display" style="min-width: 60px;">
+                  <%= @hero_image_max_width_desktop&.value || '60' %>%
+                </span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <%= f.submit 'Salvează', 
+                  class: 'btn btn-sm w-100', 
+                  style: 'background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 6px; font-weight: 600;' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="mt-4 p-4" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <p class="small fw-semibold mb-3" style="color: #475569;">
+          <i class="fas fa-eye me-2"></i>Preview Imagine Hero Curentă
+        </p>
+        <div class="text-center" style="max-height: 300px; overflow: hidden; border-radius: 8px;">
+          <% 
+            # Check for uploaded image first
+            if @hero_image_setting.hero_image.attached?
+          %>
+            <%= image_tag(url_for(@hero_image_setting.hero_image), style: "max-width: 80%; height: auto; border-radius: 8px;", class: "img-fluid") %>
+          <% else
+            current_image_url = @hero_image_url&.value || 'ecler_sgmmrc.webp'
+            
+            if current_image_url.match?(/^https?:\/\//)
+          %>
+            <%= image_tag(current_image_url, style: "max-width: 80%; height: auto; border-radius: 8px;", class: "img-fluid") %>
+          <% else %>
+            <%= cl_image_tag(current_image_url, fetch_format: :webp, width: 1200, crop: :scale, class: "img-fluid", style: "max-width: 80%; height: auto; border-radius: 8px;") rescue image_tag("https://via.placeholder.com/800x400?text=Imagine+indisponibilă", class: "img-fluid", style: "max-width: 100%; height: auto;") %>
+          <% end
+          end %>
+        </div>
+        <p class="small text-muted text-center mt-3 mb-0">
+          <% if @hero_image_setting.hero_image.attached? %>
+            <strong>Tip:</strong> Imagine încărcată<br>
+          <% else %>
+            <strong>URL/ID curent:</strong> <%= @hero_image_url&.value || 'ecler_sgmmrc.webp' %><br>
+          <% end %>
+          <strong>Lățimi:</strong> 
+          <i class="fas fa-mobile-alt"></i> Mobile: <%= @hero_image_max_width_mobile&.value || '85' %>% | 
+          <i class="fas fa-tablet-alt"></i> Tablet: <%= @hero_image_max_width_tablet&.value || '75' %>% | 
+          <i class="fas fa-desktop"></i> Desktop: <%= @hero_image_max_width_desktop&.value || '60' %>%
+        </p>
+      </div>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Text Settings Card -->
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-font me-2"></i>Setări Text Hero
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <!-- Hero Text Line 1 -->
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation mb-4' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'hero_text_line1' %>
+        <%= hidden_field_tag 'site_setting[description]', 'Prima linie de text din secțiunea hero' %>
+        
+        <div class="row align-items-end">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-heading me-2" style="color: #8b5cf6;"></i>Linia 1 - Text Principal
+              </label>
+              <p class="small text-muted mb-3">
+                Prima linie de text afișată în secțiunea hero (ex: "Deserturi proaspete")
+              </p>
+              <%= text_field_tag 'site_setting[value]', 
+                  @hero_text_line1&.value || 'Deserturi proaspete', 
+                  class: 'form-control', 
+                  placeholder: 'Deserturi proaspete',
+                  style: 'border-radius: 8px;' %>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Salvează Text', 
+                  class: 'btn btn-lg', 
+                  style: 'background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Hero Text Line 2 -->
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation mb-4' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'hero_text_line2' %>
+        <%= hidden_field_tag 'site_setting[description]', 'A doua linie de text din secțiunea hero' %>
+        
+        <div class="row align-items-end">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-heading me-2" style="color: #8b5cf6;"></i>Linia 2 - Text Secundar
+              </label>
+              <p class="small text-muted mb-3">
+                A doua linie de text afișată în secțiunea hero (ex: "în fiecare zi")
+              </p>
+              <%= text_field_tag 'site_setting[value]', 
+                  @hero_text_line2&.value || 'în fiecare zi', 
+                  class: 'form-control', 
+                  placeholder: 'în fiecare zi',
+                  style: 'border-radius: 8px;' %>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Salvează Text', 
+                  class: 'btn btn-lg', 
+                  style: 'background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Preview Section -->
+      <div class="mt-4 p-4" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <p class="small fw-semibold mb-3" style="color: #475569;">
+          <i class="fas fa-eye me-2"></i>Preview Text Hero
+        </p>
+        <div class="text-center p-4" style="background: linear-gradient(135deg, #E0A458 0%, #d4984b 100%); border-radius: 8px;">
+          <h1 style="color: white; font-weight: 900; text-shadow: 3px 3px 5px rgba(0,0,0,0.3); font-family: Montserrat, sans-serif; font-size: clamp(34px, 7vw, 90px);">
+            <span><%= @hero_text_line1&.value || 'Deserturi proaspete' %></span><br>
+            <span><%= @hero_text_line2&.value || 'în fiecare zi' %></span>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animations Settings Card -->
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-wand-magic-sparkles me-2"></i>Setări Animații
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <p class="small text-muted mb-4">
+        Activează sau dezactivează animațiile decorative de pe site.
+      </p>
+      
+      <!-- Hearts Animation Toggle -->
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'mb-3' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'hearts_animation_enabled' %>
+        <%= hidden_field_tag 'site_setting[description]', 'Activează/dezactivează animația cu inimi pe secțiunea hero' %>
+        
+        <div class="d-flex align-items-center justify-content-between p-3" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <div>
+            <label class="form-label fw-semibold mb-1" style="color: #1e293b;">
+              <i class="fas fa-heart me-2" style="color: #ec4899;"></i>Inimi Căzătoare (Hero)
+            </label>
+            <p class="small text-muted mb-0">
+              Animație decorativă cu inimi roșii pe fundalul secțiunii hero.
+            </p>
+          </div>
+          
+          <div class="form-check form-switch ms-3">
+            <%= hidden_field_tag 'site_setting[value]', 'false' %>
+            <%= check_box_tag 'site_setting[value]', 
+                'true', 
+                (@hearts_animation_enabled&.value == 'true' || @hearts_animation_enabled.nil?),
+                class: 'form-check-input',
+                style: 'width: 60px; height: 30px; cursor: pointer;',
+                onchange: 'this.form.submit()' %>
+          </div>
+        </div>
+      <% end %>
+      
+      <div class="mt-3 p-3" style="background: #fef3c7; border-radius: 8px; border: 1px solid #fde68a;">
+        <p class="small mb-0" style="color: #92400e;">
+          <i class="fas fa-info-circle me-2"></i>
+          <strong>Notă:</strong> Animațiile pot fi dezactivate pentru a îmbunătăți performanța pe dispozitive mai slabe.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- Preset Colors -->
   <div class="card" style="border: 1px solid #e5e7eb; border-radius: 12px;">
     <div class="card-header py-3" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
@@ -126,18 +708,117 @@
     </div>
   </div>
 
-  <!-- Info Alert -->
-  <div class="alert alert-info mt-4 d-flex align-items-start" style="border-radius: 8px; border-left: 4px solid #3b82f6;">
-    <i class="fas fa-info-circle me-3 mt-1" style="color: #3b82f6;"></i>
-    <div>
-      <strong>Nota:</strong> Modificările vor fi aplicate imediat pe întreg site-ul. 
-      Asigură-te că alegi o culoare care se potrivește cu brandul și că textul rămâne lizibil.
+  <!-- Templates Section -->
+  <div class="card mt-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-save me-2"></i>Șabloane Design
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <!-- Save Template Form -->
+      <div class="mb-4 p-4" style="background: #faf5ff; border-radius: 8px; border: 1px solid #e9d5ff;">
+        <h3 class="h6 mb-3" style="color: #6d28d9; font-weight: 600;">
+          <i class="fas fa-plus-circle me-2"></i>Salvează Setările Curente ca Șablon
+        </h3>
+        <p class="small text-muted mb-3">
+          Salvează toate setările actuale (culori, imagine hero) ca un șablon pe care îl poți aplica mai târziu.
+          Perfect pentru ocazii speciale precum Crăciun, Paște, sau evenimente sezoniere.
+        </p>
+        
+        <%= form_with url: dashboard_design_create_site_setting_template_path, method: :post, local: true, html: { class: 'needs-validation' } do |f| %>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <%= text_field_tag 'template_name', '', 
+                  class: 'form-control', 
+                  placeholder: 'ex: Crăciun 2026',
+                  required: true,
+                  style: 'border-radius: 8px;' %>
+              <small class="form-text text-muted">Nume șablon (obligatoriu, unic)</small>
+            </div>
+            <div class="col-md-4">
+              <%= text_field_tag 'template_description', '', 
+                  class: 'form-control', 
+                  placeholder: 'Descriere opțională',
+                  style: 'border-radius: 8px;' %>
+              <small class="form-text text-muted">Descriere (opțional)</small>
+            </div>
+            <div class="col-md-2">
+              <%= f.submit 'Salvează Șablon', 
+                  class: 'btn btn-lg w-100', 
+                  style: 'background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Templates List -->
+      <% if @templates.any? %>
+        <h3 class="h6 mb-3" style="color: #1e293b; font-weight: 600;">
+          <i class="fas fa-layer-group me-2"></i>Șabloane Salvate
+        </h3>
+        <div class="row g-3">
+          <% @templates.each do |template| %>
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100" style="border: 2px solid <%= template.active? ? '#8b5cf6' : '#e5e7eb' %>; border-radius: 8px;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h4 class="h6 mb-0" style="color: #1e293b; font-weight: 600;">
+                      <%= template.name %>
+                    </h4>
+                    <% if template.active? %>
+                      <span class="badge bg-purple px-2 py-1" style="background: #8b5cf6; font-size: 0.7rem;">
+                        <i class="fas fa-check me-1"></i>Activ
+                      </span>
+                    <% end %>
+                  </div>
+                  
+                  <% if template.description.present? %>
+                    <p class="small text-muted mb-3"><%= template.description %></p>
+                  <% end %>
+                  
+                  <div class="small text-muted mb-3">
+                    <i class="fas fa-clock me-1"></i>
+                    Creat: <%= template.created_at.strftime('%d/%m/%Y') %>
+                  </div>
+                  
+                  <div class="d-flex gap-2">
+                    <%= button_to dashboard_design_apply_site_setting_template_path(template), 
+                        method: :post,
+                        class: 'btn btn-sm flex-grow-1',
+                        style: 'background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; border: none; border-radius: 6px;',
+                        data: { confirm: "Ești sigur că vrei să aplici șablonul '#{template.name}'? Setările actuale vor fi înlocuite." } do %>
+                      <i class="fas fa-check me-1"></i>Aplică
+                    <% end %>
+                    
+                    <%= button_to dashboard_design_destroy_site_setting_template_path(template), 
+                        method: :delete,
+                        class: 'btn btn-sm btn-outline-danger',
+                        style: 'border-radius: 6px;',
+                        data: { confirm: "Ești sigur că vrei să ștergi șablonul '#{template.name}'?" } do %>
+                      <i class="fas fa-trash"></i>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="alert alert-secondary d-flex align-items-center" style="border-radius: 8px;">
+          <i class="fas fa-info-circle me-3"></i>
+          <span>Nu există șabloane salvate încă. Salvează setările actuale folosind formularul de mai sus.</span>
+        </div>
+      <% end %>
     </div>
   </div>
+
+  <!-- Info Alert -->
+  
 </div>
 
 <script>
-  // Sync color picker with hex input
+  // Sync color picker with hex input - Navbar
   const colorPicker = document.getElementById('navbar_color_picker');
   const hexInput = document.getElementById('navbar_color_hex');
   const preview = document.getElementById('navbar_preview');
@@ -174,6 +855,91 @@
         this.style.transform = 'scale(1)';
         this.style.boxShadow = 'none';
       });
+    });
+  }
+
+  // Sync color picker with hex input - Hero Wave
+  const waveColorPicker = document.getElementById('hero_wave_color_picker');
+  const waveHexInput = document.getElementById('hero_wave_color_hex');
+  const wavePreview = document.querySelector('#wave_preview path');
+
+  if (waveColorPicker && waveHexInput && wavePreview) {
+    waveColorPicker.addEventListener('input', function() {
+      waveHexInput.value = this.value;
+      wavePreview.setAttribute('fill', this.value);
+    });
+
+    waveHexInput.addEventListener('input', function() {
+      if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+        waveColorPicker.value = this.value;
+        wavePreview.setAttribute('fill', this.value);
+      }
+    });
+  }
+
+  // Sync color picker with hex input - Hero Background
+  const heroBackgroundColorPicker = document.getElementById('hero_background_color_picker');
+  const heroBackgroundHexInput = document.getElementById('hero_background_color_hex');
+  const heroBackgroundPreview = document.getElementById('hero_background_preview');
+
+  if (heroBackgroundColorPicker && heroBackgroundHexInput && heroBackgroundPreview) {
+    heroBackgroundColorPicker.addEventListener('input', function() {
+      heroBackgroundHexInput.value = this.value;
+      heroBackgroundPreview.style.backgroundColor = this.value;
+    });
+
+    heroBackgroundHexInput.addEventListener('input', function() {
+      if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+        heroBackgroundColorPicker.value = this.value;
+        heroBackgroundPreview.style.backgroundColor = this.value;
+      }
+    });
+  }
+
+  // Sync color picker with hex input - Hero Bottom Wave
+  const heroBottomWaveColorPicker = document.getElementById('hero_bottom_wave_color_picker');
+  const heroBottomWaveHexInput = document.getElementById('hero_bottom_wave_color_hex');
+  const heroBottomWavePreview = document.querySelector('#hero_bottom_wave_preview path');
+
+  if (heroBottomWaveColorPicker && heroBottomWaveHexInput && heroBottomWavePreview) {
+    heroBottomWaveColorPicker.addEventListener('input', function() {
+      heroBottomWaveHexInput.value = this.value;
+      heroBottomWavePreview.setAttribute('fill', this.value);
+    });
+
+    heroBottomWaveHexInput.addEventListener('input', function() {
+      if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+        heroBottomWaveColorPicker.value = this.value;
+        heroBottomWavePreview.setAttribute('fill', this.value);
+      }
+    });
+  }
+
+  // Update hero image max-width displays for responsive sliders
+  const heroMaxWidthMobileInput = document.getElementById('hero_max_width_mobile_input');
+  const heroMaxWidthMobileDisplay = document.getElementById('hero_max_width_mobile_display');
+  
+  const heroMaxWidthTabletInput = document.getElementById('hero_max_width_tablet_input');
+  const heroMaxWidthTabletDisplay = document.getElementById('hero_max_width_tablet_display');
+  
+  const heroMaxWidthDesktopInput = document.getElementById('hero_max_width_desktop_input');
+  const heroMaxWidthDesktopDisplay = document.getElementById('hero_max_width_desktop_display');
+
+  if (heroMaxWidthMobileInput && heroMaxWidthMobileDisplay) {
+    heroMaxWidthMobileInput.addEventListener('input', function() {
+      heroMaxWidthMobileDisplay.textContent = this.value + '%';
+    });
+  }
+  
+  if (heroMaxWidthTabletInput && heroMaxWidthTabletDisplay) {
+    heroMaxWidthTabletInput.addEventListener('input', function() {
+      heroMaxWidthTabletDisplay.textContent = this.value + '%';
+    });
+  }
+  
+  if (heroMaxWidthDesktopInput && heroMaxWidthDesktopDisplay) {
+    heroMaxWidthDesktopInput.addEventListener('input', function() {
+      heroMaxWidthDesktopDisplay.textContent = this.value + '%';
     });
   }
 </script>

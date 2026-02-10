@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_02_09_185129) do
+ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -632,6 +632,17 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_09_185129) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_roles_on_name", unique: true
+  end
+
+  create_table "site_setting_templates", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.json "settings", default: {}
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active"], name: "index_site_setting_templates_on_active"
+    t.index ["name"], name: "index_site_setting_templates_on_name", unique: true
   end
 
   create_table "site_settings", force: :cascade do |t|
