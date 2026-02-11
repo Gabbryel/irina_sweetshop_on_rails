@@ -3,6 +3,7 @@ class Cakemodel < ApplicationRecord
 
   attr_accessor :initial_recipe_id
   attribute :available_for_delivery, :boolean, default: true
+  attribute :display_order, :integer, default: 0
 
   has_one_attached :photo
   has_many :model_images, dependent: :destroy
@@ -17,8 +18,10 @@ class Cakemodel < ApplicationRecord
   validates :initial_recipe_id, presence: { message: 'trebuie selectata la creare' }, on: :create
   validates :available_online, inclusion: { in: [true, false], message: 'trebuie selectat' }
   validates :available_for_delivery, inclusion: { in: [true, false], message: 'trebuie selectat' }
-  validates :price_per_kg, :price_per_piece, :final_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :price_per_kg, :price_per_piece, :final_price, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true
+  validates :display_order, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true
 
+  before_validation :normalize_integer_price_fields
   before_validation :prefill_pricing_fields
   after_save :slugify, unless: :check_slug
   include RatingsConcern
@@ -47,15 +50,22 @@ class Cakemodel < ApplicationRecord
 
     design_price_per_kg = money_to_decimal(design.price)
     recipe_price_per_kg = money_to_decimal(pricing_recipe.price)
-    derived_price_per_kg = (design_price_per_kg + recipe_price_per_kg).round(2)
+    derived_price_per_kg = (design_price_per_kg + recipe_price_per_kg).round(0)
 
     weight_decimal = decimal_or_zero(weight)
     kg_weight = weight_decimal.positive? ? (weight_decimal / BigDecimal('1000')) : BigDecimal('0')
-    derived_price_per_piece = (derived_price_per_kg * kg_weight).round(2)
+    derived_price_per_piece = (derived_price_per_kg * kg_weight).round(0)
 
     self.price_per_kg = derived_price_per_kg if price_per_kg.blank?
     self.price_per_piece = derived_price_per_piece if price_per_piece.blank?
     self.final_price = derived_price_per_piece if final_price.blank?
+  end
+
+  def normalize_integer_price_fields
+    self.price_per_kg = normalize_integer(price_per_kg)
+    self.price_per_piece = normalize_integer(price_per_piece)
+    self.final_price = normalize_integer(final_price)
+    self.display_order = normalize_integer(display_order) || 0
   end
 
   def recipe_for_pricing
@@ -80,5 +90,13 @@ class Cakemodel < ApplicationRecord
     BigDecimal(value.to_s)
   rescue ArgumentError
     BigDecimal('0')
+  end
+
+  def normalize_integer(value)
+    return nil if value.blank?
+
+    BigDecimal(value.to_s).round(0).to_i
+  rescue ArgumentError
+    nil
   end
 end

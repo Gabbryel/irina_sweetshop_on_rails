@@ -1,6 +1,6 @@
 <% images = ['no-photo_xymghw.webp', 'no-photo_a_rcwsdh.webp', 'jsrnrkphctyr3juntbku2yjmvdcr.webp', 'v1745928510/idee-tort-2_ei3yzy.webp', 'idee-tort-3_q4vczw.webp', 'idee-tort-1_vbl6kb.webp', 'idee-tort_sklqis.jpg'] %>
 <% display_price = cakemodel.final_price.presence || cakemodel.price_per_piece.presence %>
-<% formatted_price = display_price.present? ? number_with_precision(display_price, precision: 2, separator: ',', delimiter: '.') : '-,--' %>
+<% formatted_price = display_price.present? ? number_with_delimiter(display_price.to_i, delimiter: '.') : '-' %>
 <% description_source = if cakemodel.content.respond_to?(:to_plain_text)
                           cakemodel.content.to_plain_text
                         else

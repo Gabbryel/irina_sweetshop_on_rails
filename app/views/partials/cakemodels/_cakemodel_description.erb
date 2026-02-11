@@ -23,7 +23,7 @@
       <li>Design: <%= @design.name %> (+ <%= humanized_money_with_symbol(@design.price) %>/kg)</li>
       <li><%= @cakemodel.content %></li>
       <br>
-      <li>Greutate totală a modelului afișat: <%= total_weight(@cakemodel).round(2) %> kg. Preț total pentru modelul afișat: <u><%= total_price(@cakemodel) ? total_price(@cakemodel).round(2) : '--,--' %> lei</u>.</li>
+      <li>Greutate totală a modelului afișat: <%= total_weight(@cakemodel).round(2) %> kg. Preț total pentru modelul afișat: <u><%= total_price(@cakemodel) ? number_with_delimiter(total_price(@cakemodel).round, delimiter: '.') : '-' %> lei</u>.</li>
     </ul>
     <hr>
     <p>Fotografiile sunt reale, iar produsul finit va corespunde acestei descrieri.</p>

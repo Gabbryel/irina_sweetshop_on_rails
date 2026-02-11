@@ -5,7 +5,12 @@ class PagesController < ApplicationController
     @recipes = Recipe.where(favored: true).order(position: :asc).first(9)
     @features = Feature.all.order(:id)
     @categories = Category.all.order(:id)
-    @featured_cakemodels = Cakemodel.where(featured_for_quick_order: true).includes(:category).order(created_at: :desc).limit(6)
+    featured_scope = Cakemodel.where(featured_for_quick_order: true).includes(:category)
+    @featured_cakemodels = if Cakemodel.column_names.include?('display_order')
+                             featured_scope.order(Arel.sql('COALESCE(display_order, 2147483647) ASC'), created_at: :desc).limit(6)
+                           else
+                             featured_scope.order(created_at: :desc).limit(6)
+                           end
   end
 
   def recepies

@@ -11,7 +11,7 @@
 <% description_text = raw_description.to_s.strip %>
 <% price_value = @cakemodel.final_price.presence || @cakemodel.price_per_piece.presence %>
 <% formatted_final_price = if price_value.present?
-                             "#{number_with_precision(price_value, precision: 2, separator: ',', delimiter: '.')} lei"
+                             "#{number_with_delimiter(price_value.to_i, delimiter: '.')} lei"
                            else
                              'Preț indisponibil'
                            end %>

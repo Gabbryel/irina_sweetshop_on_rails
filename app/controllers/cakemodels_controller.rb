@@ -101,6 +101,7 @@ class CakemodelsController < ApplicationController
       :final_price,
       :available_online,
       :available_for_delivery,
+      :display_order,
       :initial_recipe_id
     )
   end

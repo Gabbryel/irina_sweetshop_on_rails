@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_02_11_195000) do
+ActiveRecord::Schema[7.0].define(version: 2026_02_11_201000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -152,9 +152,11 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_11_195000) do
     t.boolean "available_online", default: false, null: false
     t.decimal "final_price", precision: 10, scale: 2
     t.boolean "available_for_delivery", default: true, null: false
+    t.integer "display_order", default: 0, null: false
     t.index ["cake_recipe_id"], name: "index_cakemodels_on_cake_recipe_id"
     t.index ["category_id"], name: "index_cakemodels_on_category_id"
     t.index ["design_id"], name: "index_cakemodels_on_design_id"
+    t.index ["display_order"], name: "index_cakemodels_on_display_order"
   end
 
   create_table "carts", force: :cascade do |t|

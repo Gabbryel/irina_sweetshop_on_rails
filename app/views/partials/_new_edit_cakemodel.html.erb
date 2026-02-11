@@ -35,14 +35,15 @@
                       label: 'Rețetă',
                       input_html: { data: { cakemodel_pricing_target: 'recipe', action: 'change->cakemodel-pricing#refresh' } } %>
           <%= f.input :weight, label: 'Greutate (gr)', input_html: { min: 0, data: { cakemodel_pricing_target: 'weight', action: 'input->cakemodel-pricing#refresh change->cakemodel-pricing#refresh' } } %>
-          <%= f.input :price_per_kg, label: 'Preț/kg (lei)', input_html: { step: 0.01, data: { cakemodel_pricing_target: 'pricePerKg' } } %>
-          <%= f.input :price_per_piece, label: 'Preț/buc (lei)', input_html: { step: 0.01, data: { cakemodel_pricing_target: 'pricePerPiece' } } %>
+          <%= f.input :price_per_kg, label: 'Preț/kg (lei)', input_html: { step: 1, min: 0, data: { cakemodel_pricing_target: 'pricePerKg' } } %>
+          <%= f.input :price_per_piece, label: 'Preț/buc (lei)', input_html: { step: 1, min: 0, data: { cakemodel_pricing_target: 'pricePerPiece' } } %>
           <%= f.input :final_price,
                       label: 'Preț final (lei)',
                       hint: 'Se calculează automat, dar poate fi modificat.',
-                      input_html: { step: 0.01, data: { cakemodel_pricing_target: 'finalPrice',
+                      input_html: { step: 1, min: 0, data: { cakemodel_pricing_target: 'finalPrice',
                                                         manual: final_price_manual,
                                                         action: 'input->cakemodel-pricing#markFinalPriceManual' } } %>
+          <%= f.input :display_order, label: 'Ordine afișare homepage', input_html: { step: 1, min: 0 } %>
           <%= f.input :available_online,
                       as: :select,
                       collection: [['Da', true], ['Nu', false]],

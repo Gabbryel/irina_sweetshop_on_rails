@@ -31,15 +31,15 @@ export default class extends Controller {
     const designPrice = this.lookupPrice(this.designPricesValue, designId);
     if (recipePrice === null || designPrice === null) return;
 
-    const derivedPerKg = this.roundTo2(recipePrice + designPrice);
-    const derivedPerPiece = this.roundTo2(derivedPerKg * weightKg);
+    const derivedPerKg = this.roundToInt(recipePrice + designPrice);
+    const derivedPerPiece = this.roundToInt(derivedPerKg * weightKg);
 
     if (this.hasPricePerKgTarget) {
-      this.pricePerKgTarget.value = derivedPerKg.toFixed(2);
+      this.pricePerKgTarget.value = String(derivedPerKg);
     }
 
     if (this.hasPricePerPieceTarget) {
-      this.pricePerPieceTarget.value = derivedPerPiece.toFixed(2);
+      this.pricePerPieceTarget.value = String(derivedPerPiece);
     }
 
     if (!this.hasFinalPriceTarget) return;
@@ -47,7 +47,7 @@ export default class extends Controller {
     const manual = this.finalPriceTarget.dataset.manual === "true";
     const currentValue = this.finalPriceTarget.value.trim();
     if (!manual || currentValue === "") {
-      this.finalPriceTarget.value = derivedPerPiece.toFixed(2);
+      this.finalPriceTarget.value = String(derivedPerPiece);
       this.finalPriceTarget.dataset.manual = "false";
     }
   }
@@ -83,7 +83,7 @@ export default class extends Controller {
     return Number.isNaN(parsed) ? null : parsed;
   }
 
-  roundTo2(value) {
-    return Math.round((value + Number.EPSILON) * 100) / 100;
+  roundToInt(value) {
+    return Math.round(value);
   }
 }
