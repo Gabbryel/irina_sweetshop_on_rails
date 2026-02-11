@@ -24,8 +24,9 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
-  # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
+  # CSS is compiled by cssbundling-rails (Dart Sass) into app/assets/builds.
+  # Disable Sprockets/SassC recompression to avoid SassC parse errors on modern CSS.
+  config.assets.css_compressor = nil
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
