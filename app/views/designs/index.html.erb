@@ -1,28 +1,28 @@
-<div class="container py-5 admin-designs">
+<div class="container py-5 dashboard-designs margin-top-20dvh">
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
     <div>
-      <span class="badge bg-light text-dark border rounded-pill px-3 py-2 mb-2">Administrator</span>
-      <h1 class="h3 mb-0">Gestionare designuri</h1>
-      <p class="text-muted small mb-0">Adauga, actualizeaza si monitorizeaza designurile disponibile pentru modele personalizate.</p>
+      <span class="badge rounded-pill px-3 py-2 mb-2" style="background: #f1f5f9; color: #475569; font-weight: 600;">Administrator</span>
+      <h1 class="h3 mb-0" style="color: #1e293b; font-weight: 600;">Administrare designuri</h1>
+      <p class="text-muted small mb-0">Adaugă, actualizează și monitorizează designurile disponibile pentru modele personalizate.</p>
     </div>
     <div class="text-md-end">
       <p class="text-muted small mb-1">Designuri active</p>
-      <p class="h4 mb-0"><%= @designs.size %></p>
+      <p class="h4 mb-0"><%= number_with_delimiter(@designs.size) %></p>
     </div>
   </div>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
     <% @stats_cards.each do |stat| %>
       <div class="col">
-        <div class="card shadow-sm border-0 h-100">
+        <div class="card h-100" style="border: 1px solid #e5e7eb; border-radius: 8px;">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-start mb-3">
               <div>
                 <p class="text-muted small mb-1"><%= stat[:label] %></p>
                 <% value = stat[:value] %>
-                <p class="h4 mb-0"><%= value.is_a?(Numeric) ? number_with_delimiter(value) : value %></p>
+                <p class="h4 mb-0" style="color: #1e293b; font-weight: 700;"><%= value.is_a?(Numeric) ? number_with_delimiter(value) : value %></p>
               </div>
-              <span class="badge bg-primary-subtle text-primary-emphasis rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+              <span class="badge rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #1e293b; color: white;">
                 <i class="<%= stat[:icon] %>"></i>
               </span>
             </div>
@@ -35,9 +35,9 @@
 
   <div class="row g-4">
     <div class="col-lg-4">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white border-0 py-3">
-          <h2 class="h6 mb-0"><%= @design.persisted? ? 'Modifica design' : 'Adauga design' %></h2>
+      <div class="card" style="border: 1px solid #e5e7eb; border-radius: 8px;">
+        <div class="card-header py-3" style="background: #f8fafc; border-bottom: 1px solid #e5e7eb;">
+          <h2 class="h6 mb-0" style="color: #1e293b; font-weight: 600;"><%= @design.persisted? ? 'Modifică design' : 'Adaugă design' %></h2>
         </div>
         <div class="card-body">
           <%= render 'form', design: @design, categories: @categories %>
@@ -46,10 +46,10 @@
     </div>
 
     <div class="col-lg-8">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
           <h2 class="h6 mb-0">Designuri existente</h2>
-          <span class="badge bg-light text-dark"><%= @designs.size %></span>
+          <span class="badge bg-light text-dark"><%= pluralize(@designs.size, 'înregistrare') %></span>
         </div>
         <div class="table-responsive">
           <table class="table table-sm align-middle mb-0">
@@ -57,9 +57,9 @@
               <tr>
                 <th>Denumire</th>
                 <th>Categorie</th>
-                <th>Pret (RON)</th>
+                <th>Preț</th>
                 <th>Actualizat</th>
-                <th class="text-end">Actiuni</th>
+                <th class="text-end">Acțiuni</th>
               </tr>
             </thead>
             <tbody>
@@ -67,7 +67,7 @@
                 <%= render @designs %>
               <% else %>
                 <tr>
-                  <td colspan="5" class="text-center text-muted py-4">Nu exista designuri create inca.</td>
+                  <td colspan="5" class="text-center text-muted py-4">Nu există designuri create încă.</td>
                 </tr>
               <% end %>
             </tbody>
@@ -77,5 +77,4 @@
     </div>
   </div>
 </div>
-
 

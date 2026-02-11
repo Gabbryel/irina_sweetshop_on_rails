@@ -242,7 +242,8 @@ module Shop
               name: item.name,
               metadata: {
                 cart_item_id: item.id,
-                recipe_id: item.recipe_id
+                recipe_id: item.recipe_id,
+                cakemodel_id: item.cakemodel_id
               }.compact
             }
           },
@@ -274,10 +275,27 @@ module Shop
     end
 
     def cart_items_available_online?
-      @cart.items.includes(:recipe).all? do |item|
+      @cart.items.includes(:recipe, :cakemodel).all? do |item|
         recipe = item.recipe
-        recipe.present? && recipe.supports_online_ordering?
+        cakemodel = item.cakemodel
+
+        if recipe.present?
+          recipe.supports_online_ordering?
+        elsif cakemodel.present?
+          cakemodel.available_online? && cakemodel_price_cents(cakemodel).positive?
+        else
+          false
+        end
       end
+    end
+
+    def cakemodel_price_cents(cakemodel)
+      return 0 if cakemodel.blank?
+
+      price = cakemodel.final_price.presence || cakemodel.price_per_piece
+      (price.to_d * 100).round.to_i
+    rescue StandardError
+      0
     end
 
     def parse_delivery_date(value)

@@ -38,16 +38,19 @@ module Shop
         },
         items: cart.items.map do |item|
           recipe = item.recipe
+          cakemodel = item.cakemodel
           {
             id: item.id,
             recipe_id: item.recipe_id,
+            cakemodel_id: item.cakemodel_id,
+            item_type: recipe.present? ? 'recipe' : (cakemodel.present? ? 'cakemodel' : 'custom'),
             name: item.name,
             quantity: item.quantity,
             kg_buc: item.kg_buc,
             price_cents: item.price_cents,
             total_cents: item.total_cents,
             total: item.total_cents_money.format,
-            unit_label: recipe&.sold_by.presence || recipe&.kg_buc.presence
+            unit_label: recipe&.sold_by.presence || recipe&.kg_buc.presence || item.kg_buc
           }
         end
       }

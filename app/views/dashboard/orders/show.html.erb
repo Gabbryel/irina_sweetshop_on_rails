@@ -34,6 +34,8 @@
                     <strong><%= item.name %></strong>
                     <% if item.recipe.present? %>
                       <div class="text-muted small">ID rețetă: <%= item.recipe.id %></div>
+                    <% elsif item.cakemodel.present? %>
+                      <div class="text-muted small">ID model: <%= item.cakemodel.id %></div>
                     <% end %>
                   </td>
                   <td class="text-muted">

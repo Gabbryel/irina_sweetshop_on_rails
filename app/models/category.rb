@@ -12,4 +12,10 @@ class Category < ApplicationRecord
     "#{slug}"
   end
 
+  def menu_like?
+    return false unless has_attribute?(:menu_like)
+
+    self[:menu_like]
+  end
+
 end

@@ -11,7 +11,7 @@
             <%= link_to 'Rețete', category_recipes_path(c.id) %>  
           <% end %>
           <% if c.has_models %>
-            <%= link_to 'Modele', category_cakemodels_path(c.id) %>
+            <%= link_to 'Modele', category_cakemodels_path(c) %>
           <% end %>
           <% if policy(c).edit? %>
             <%= link_to 'Edit', edit_category_path(c.id) %>  

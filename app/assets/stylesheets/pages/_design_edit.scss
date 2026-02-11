@@ -1,0 +1,116 @@
+.design-edit-page {
+  color: #0f172a;
+}
+
+.design-edit-shell {
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(251, 191, 36, 0.14) 0%, rgba(251, 191, 36, 0) 55%),
+    radial-gradient(120% 100% at 0% 100%, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0) 55%),
+    #ffffff;
+  border: 1px solid #dbe2ea;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  padding: clamp(1.2rem, 2vw, 2rem);
+}
+
+.design-edit-header h1 {
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+
+.design-edit-header p {
+  color: #475569;
+  margin: 0;
+}
+
+.design-edit-back {
+  align-items: center;
+  color: #0f172a;
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  text-decoration: none;
+}
+
+.design-edit-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.2rem;
+}
+
+.design-edit-panel__head {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.design-edit-panel__head h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.design-edit-panel__head span {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.design-edit-page .design-form .form-control,
+.design-edit-page .design-form .form-select {
+  border-radius: 10px;
+}
+
+.design-edit-page .design-form .btn {
+  border-radius: 10px;
+  font-weight: 600;
+  padding-block: 0.7rem;
+}
+
+.design-edit-summary {
+  background: #0f172a;
+  border-radius: 14px;
+  color: #f8fafc;
+  padding: 1.2rem;
+}
+
+.design-edit-summary__label {
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.design-edit-summary h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.85rem;
+}
+
+.design-edit-summary__meta {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.design-edit-summary__meta span {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.45rem;
+}
+
+.design-edit-summary hr {
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+.design-edit-summary ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.design-edit-summary li {
+  color: #e2e8f0;
+  margin-bottom: 0.4rem;
+}

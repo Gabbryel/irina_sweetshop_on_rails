@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
+ActiveRecord::Schema[7.0].define(version: 2026_02_11_133000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -130,6 +130,13 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
     t.index ["user_id"], name: "index_audit_logs_on_user_id"
   end
 
+  create_table "cake_recipes", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price_cents", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cakemodels", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
@@ -137,6 +144,14 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
     t.string "name"
     t.string "slug"
     t.bigint "design_id"
+    t.boolean "featured_for_quick_order", default: false
+    t.bigint "cake_recipe_id"
+    t.integer "weight"
+    t.decimal "price_per_kg", precision: 10, scale: 2
+    t.decimal "price_per_piece", precision: 10, scale: 2
+    t.boolean "available_online", default: false, null: false
+    t.decimal "final_price", precision: 10, scale: 2
+    t.index ["cake_recipe_id"], name: "index_cakemodels_on_cake_recipe_id"
     t.index ["category_id"], name: "index_cakemodels_on_category_id"
     t.index ["design_id"], name: "index_cakemodels_on_design_id"
   end
@@ -181,6 +196,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
     t.boolean "has_models"
     t.string "slug"
     t.string "description", default: " "
+    t.boolean "menu_like", default: false, null: false
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
@@ -253,6 +269,8 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
     t.integer "price_cents", default: 0, null: false
     t.integer "total_cents", default: 0, null: false
     t.bigint "recipe_id"
+    t.bigint "cakemodel_id"
+    t.index ["cakemodel_id"], name: "index_items_on_cakemodel_id"
     t.index ["cart_id"], name: "index_items_on_cart_id"
     t.index ["recipe_id"], name: "index_items_on_recipe_id"
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -693,6 +711,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
   add_foreign_key "audit_logs", "users"
+  add_foreign_key "cakemodels", "cake_recipes"
   add_foreign_key "cakemodels", "categories"
   add_foreign_key "cakemodels", "designs"
   add_foreign_key "carts", "users"
@@ -700,6 +719,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_09_192536) do
   add_foreign_key "extras", "recipes"
   add_foreign_key "item_extras", "extras"
   add_foreign_key "item_extras", "items"
+  add_foreign_key "items", "cakemodels", on_delete: :nullify
   add_foreign_key "items", "carts"
   add_foreign_key "items", "recipes"
   add_foreign_key "items", "users"

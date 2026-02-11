@@ -31,8 +31,17 @@
             </div>
 
             <div class="list-group list-group-flush">
-              <% @cart.items.includes(:recipe, :item_extras).each do |item| %>
+              <% @cart.items.includes(:recipe, :cakemodel, :item_extras).each do |item| %>
                 <% recipe = item.recipe %>
+                <% cakemodel = item.cakemodel %>
+                <% orderable_name = recipe&.name || cakemodel&.name || item.name %>
+                <% orderable_path = if recipe
+                                     recipe_path(recipe)
+                                   elsif cakemodel
+                                     cakemodel_path(cakemodel)
+                                   else
+                                     shop_cart_path
+                                   end %>
                 <% unit_display = item.kg_buc.presence || 'buc' %>
                 <% is_weight_item = unit_display.to_s.downcase == 'kg' %>
                 <% item_step = is_weight_item ? 0.1 : 1 %>
@@ -42,7 +51,7 @@
                     <div class="col-12 col-md-5">
                       <div class="d-flex align-items-center gap-3 cart-item-summary">
                         <% if recipe&.photo&.attached? %>
-                          <%= link_to recipe_path(recipe), class: 'cart-item-thumb d-inline-flex overflow-hidden rounded-3' do %>
+                          <%= link_to orderable_path, class: 'cart-item-thumb d-inline-flex overflow-hidden rounded-3' do %>
                             <%= cl_image_tag(recipe.photo.key,
                                             alt: recipe.name,
                                             width: 72,
@@ -51,8 +60,18 @@
                                             fetch_format: :webp,
                                             class: 'w-100 h-100 object-fit-cover') %>
                           <% end %>
+                        <% elsif cakemodel&.photo&.attached? %>
+                          <%= link_to orderable_path, class: 'cart-item-thumb d-inline-flex overflow-hidden rounded-3' do %>
+                            <%= cl_image_tag(cakemodel.photo.key,
+                                            alt: cakemodel.name,
+                                            width: 72,
+                                            height: 72,
+                                            crop: :fill,
+                                            fetch_format: :webp,
+                                            class: 'w-100 h-100 object-fit-cover') %>
+                          <% end %>
                         <% else %>
-                          <%= link_to(recipe ? recipe_path(recipe) : shop_cart_path,
+                          <%= link_to(orderable_path,
                                       class: 'cart-item-thumb cart-item-thumb--placeholder d-inline-flex align-items-center justify-content-center rounded-3') do %>
                             <i class="fa-solid fa-cake-candles"></i>
                           <% end %>
@@ -60,12 +79,8 @@
 
                         <div class="cart-item-info">
                           <h3 class="h6 mb-1 text-dark">
-                            <% if recipe %>
-                              <%= link_to recipe_path(recipe), class: 'cart-item-link text-dark text-decoration-none' do %>
-                                <%= recipe.name %>
-                              <% end %>
-                            <% else %>
-                              <span class="text-dark"><%= item.name %></span>
+                            <%= link_to orderable_path, class: 'cart-item-link text-dark text-decoration-none' do %>
+                              <%= orderable_name %>
                             <% end %>
                           </h3>
                           <% unit_label = "Preț/#{unit_display}" %>
@@ -321,4 +336,3 @@
     </div>
   </div>
 </div>
-

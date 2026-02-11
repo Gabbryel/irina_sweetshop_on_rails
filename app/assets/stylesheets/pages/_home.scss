@@ -494,6 +494,28 @@
 //     }
 // }
 
+// Quick Order Section
+.home-page__quick-order {
+    position: relative;
+    width: 100%;
+    max-width: 110rem;
+    margin: 0 auto;
+    padding: unquote("0 calc(var(--vh) * 5) calc(var(--vh) * 10)");
+    text-align: center;
+    
+    .quick-order-subtitle {
+        font-size: clamp(16px, 1.2rem, 20px);
+        color: #64748b;
+        margin: -3rem 0 3rem;
+        font-weight: 500;
+    }
+
+    .quick-order-index {
+        position: relative;
+        z-index: 10;
+    }
+}
+
 .home-page__samples {
     position: relative;
     overflow: hidden;

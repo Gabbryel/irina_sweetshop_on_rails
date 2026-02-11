@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       post :resend_emails, on: :member
     end
     resources :recipes, only: :index
+    resources :cakemodels, only: %i[index create update]
     resources :delivery_dates, only: :index do
       collection do
         post :toggle

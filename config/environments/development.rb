@@ -33,8 +33,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # Prefer Cloudinary when configured so attached images are immediately usable with cl_image_tag.
+  config.active_storage.service = ENV["CLOUDINARY_URL"].present? ? :cloudinary : :local
 
   # Mailer settings for debugging actual delivery in dev.
   config.action_mailer.raise_delivery_errors = true

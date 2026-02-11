@@ -1,0 +1,67 @@
+<tr id="cakemodel_<%= cakemodel.id %>">
+  <td>
+    <div class="ratio ratio-1x1 rounded overflow-hidden" style="width: 60px;">
+      <% if cakemodel.photo.attached? %>
+        <%= cl_image_tag(cakemodel.photo.key, alt: cakemodel.name, fetch_format: :webp, class: 'w-100 h-100', style: 'object-fit: cover;', width: 120, crop: :fill) %>
+      <% else %>
+        <div class="bg-light d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-image text-muted"></i>
+        </div>
+      <% end %>
+    </div>
+  </td>
+  <td>
+    <div class="d-flex flex-column">
+      <span class="fw-semibold text-dark"><%= cakemodel.name %></span>
+      <small class="text-muted"><%= cakemodel.slug %></small>
+    </div>
+  </td>
+  <td>
+    <span class="badge rounded-pill bg-light text-dark">
+      <%= cakemodel.category.name %>
+    </span>
+  </td>
+  <td>
+    <span class="badge rounded-pill bg-info-subtle text-info-emphasis">
+      <%= cakemodel.design.name %>
+    </span>
+  </td>
+  <td>
+    <% if cakemodel.featured_for_quick_order? %>
+      <span class="badge rounded-pill bg-warning-subtle text-warning-emphasis">
+        <i class="fa-solid fa-star me-1"></i>Homepage
+      </span>
+    <% else %>
+      <span class="text-muted small">—</span>
+    <% end %>
+  </td>
+  <td>
+    <small class="text-muted" title="<%= l(cakemodel.updated_at, format: :long) %>">
+      <%= time_ago_in_words(cakemodel.updated_at) %> în urmă
+    </small>
+  </td>
+  <td class="text-end">
+    <% modal_id = "editCakemodel#{cakemodel.id}" %>
+    <div class="btn-group btn-group-sm" role="group">
+      <%= link_to cakemodel_path(cakemodel), 
+          class: 'btn btn-outline-primary', 
+          title: 'Vezi/Editează',
+          target: '_blank' do %>
+        <i class="fa-solid fa-eye"></i>
+      <% end %>
+      <%= link_to '#',
+          class: 'btn btn-outline-secondary',
+          data: { bs_toggle: 'modal', bs_target: "##{modal_id}" },
+          title: 'Editează' do %>
+        <i class="fa-solid fa-pen"></i>
+      <% end %>
+      <%= link_to category_cakemodel_path(cakemodel.category, cakemodel), 
+          method: :delete,
+          data: { turbo_method: :delete, turbo_confirm: "Ștergi definitiv modelul '#{cakemodel.name}'?" },
+          class: 'btn btn-outline-danger',
+          title: 'Șterge' do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

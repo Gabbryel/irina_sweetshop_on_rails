@@ -1,0 +1,9 @@
+<% if @featured_cakemodels.any? %>
+  <div class="home-page__samples home-page__quick-order" id="quick-order">
+    <h2 class="h2">Comandă rapid</h2>
+    <p class="quick-order-subtitle">Modele populare disponibile pentru comandă imediată</p>
+    <div class="samples-index quick-order-index">
+      <%= render partial: 'cakemodels/cakemodel', collection: @featured_cakemodels, as: :cakemodel %>
+    </div>
+  </div>
+<% end %>

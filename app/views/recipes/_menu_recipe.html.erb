@@ -1,0 +1,53 @@
+<% raw_description = recipe.content %>
+<% plain_description = (raw_description.respond_to?(:to_plain_text) ? raw_description.to_plain_text : strip_tags(raw_description.to_s)).squish %>
+<% unit_value = recipe.kg_buc.presence || recipe.sold_by.presence || 'kg' %>
+
+<article class="recipes-menu-item" id="<%= recipe.slug %>">
+  <div class="recipes-menu-item__main">
+    <div class="recipes-menu-item__content">
+      <div class="recipes-menu-item__line">
+        <h2 class="recipes-menu-item__name">
+          <%= link_to recipe.name, recipe_path(recipe) %>
+          <% if recipe.vegan %>
+            <span class="recipes-menu-item__tag recipes-menu-item__tag--vegan">Vegan</span>
+          <% end %>
+        </h2>
+        <span class="recipes-menu-item__leader" aria-hidden="true"></span>
+        <p class="recipes-menu-item__price">
+          <%= humanized_money_with_symbol(recipe.price) %>
+          <small>/ <%= unit_value %></small>
+        </p>
+      </div>
+
+      <p class="recipes-menu-item__description">
+        <%= truncate(plain_description.presence || 'Descoperă detaliile complete ale rețetei.', length: 170) %>
+      </p>
+
+      <div class="recipes-menu-item__meta">
+        <% if recipe.supports_online_ordering? %>
+          <span class="recipes-menu-item__tag recipes-menu-item__tag--online">
+            <i class="fa-solid fa-basket-shopping"></i> Comandă online
+          </span>
+        <% else %>
+          <span class="recipes-menu-item__tag">Doar în cofetărie</span>
+        <% end %>
+
+        <%= link_to 'Detalii', recipe_path(recipe), class: 'recipes-menu-item__details' %>
+      </div>
+    </div>
+  </div>
+
+  <% if recipe.supports_online_ordering? %>
+    <% default_quantity = 1 %>
+    <div class="recipes-menu-item__actions">
+      <%= form_with url: shop_cart_items_path, method: :post, data: { turbo: false }, class: 'recipes-menu-item__cart-form' do %>
+        <%= hidden_field_tag :recipe_id, recipe.id %>
+        <%= hidden_field_tag 'cart_item[quantity]', default_quantity %>
+        <button type="submit" class="recipes-menu-item__cart-button" title="Adaugă în coș">
+          <i class="fa-solid fa-cart-plus"></i>
+          Adaugă în coș
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+</article>

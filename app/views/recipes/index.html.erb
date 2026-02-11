@@ -1,10 +1,49 @@
-<div class="cards-main-container">
-  <div class="d-flex flex-column align-items-center justify-content-center gap-2 cards-header">
+<% all_active = params[:available_online].blank? %>
+<% online_active = params[:available_online].to_s == '1' %>
+<% total_recipes = @recipes.size %>
+<% if @category.menu_like? %>
+  <div class="recipes-menu-page">
+    <header class="recipes-menu-page__hero">
+      <h1 class="recipes-menu-page__title"><%= @category.name %></h1>
+      <div class="recipes-menu-page__stats">
+        <span><strong><%= total_recipes %></strong> rețete</span>
+      </div>
+
+      <div class="recipes-menu-page__filters">
+        <%= link_to 'Toate produsele',
+                    category_recipes_path(@category),
+                    class: "recipes-menu-page__filter #{all_active ? 'is-active' : ''}" %>
+        <%= link_to 'Disponibile online',
+                    category_recipes_path(@category, available_online: 1),
+                    class: "recipes-menu-page__filter #{online_active ? 'is-active' : ''}" %>
+        <% if policy(Recipe).new? %>
+          <%= link_to '#',
+                      class: 'recipes-menu-page__filter recipes-menu-page__filter--new',
+                      data: { bs_toggle: 'modal', bs_target: '#newRecipeModal' } do %>
+            Rețetă nouă
+          <% end %>
+        <% end %>
+      </div>
+    </header>
+
+    <%= render partial: 'modal', locals: { new: true, bs_toggle: 'modal', modal_id: 'newRecipeModal', recipe: @recipe } %>
+
+    <% if @recipes.any? %>
+      <section class="recipes-menu-list" aria-label="Listă rețete">
+        <%= render partial: 'menu_recipe', collection: @recipes, as: :recipe %>
+      </section>
+    <% else %>
+      <div class="recipes-menu-page__empty">
+        <h2>Nu există rețete disponibile momentan</h2>
+        <p>Revino în curând sau încearcă filtrul „Toate produsele”.</p>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="cards-main-container">
+    <div class="d-flex flex-column align-items-center justify-content-center gap-2 cards-header">
       <h3 class='text-center m-0'><%= @category.name.upcase %></h3>
       <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
-        <% all_active = params[:available_online].blank? %>
-        <% online_active = params[:available_online].to_s == '1' %>
-  
         <%= link_to 'Toate produsele',
                     category_recipes_path(@category),
                     class: "btn btn-sm #{all_active ? 'btn-primary' : 'btn-outline-secondary'}" %>
@@ -12,10 +51,11 @@
                     category_recipes_path(@category, available_online: 1),
                     class: "btn btn-sm #{online_active ? 'btn-primary' : 'btn-outline-secondary'}" %>
       </div>
+    </div>
+    <% if policy(Recipe).new? %>
+      <%= link_to "#", data: { bs_toggle: "modal", bs_target: "#newRecipeModal" }, class: 'btn-default' do %><span>Rețetă nouă</span><% end %>
+    <% end %>
+    <%= render partial: 'modal', locals: { new: true, bs_toggle: "modal", modal_id: "newRecipeModal", recipe: @recipe } %>
+    <%= render @recipes %>
   </div>
-  <% if policy(Recipe).new? %>
-    <%= link_to "#", data: {bs_toggle: "modal", bs_target: "#newRecipeModal"}, class: 'btn-default' do %><span>Rețetă nouă</span><% end %>
-  <% end %>
-  <%= render partial: 'modal', locals: { new: true, bs_toggle: "modal", modal_id: "newRecipeModal", recipe: @recipe } %>
-  <%= render @recipes %>
-</div>
+<% end %>

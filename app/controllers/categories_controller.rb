@@ -50,7 +50,9 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :photo, :has_recipe, :has_models, :slug, :description)
+    permitted = [:name, :photo, :has_recipe, :has_models, :slug, :description]
+    permitted << :menu_like if Category.column_names.include?('menu_like')
+    params.require(:category).permit(*permitted)
   end
 
   def set_category

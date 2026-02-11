@@ -129,6 +129,32 @@
             }
         }
     }
+    .card-price-sec--cakemodel {
+        height: 72px;
+        width: 72px;
+        top: 7px;
+        right: 7px;
+        .price-design--cakemodel {
+            height: 72px;
+            width: 72px;
+            font-size: 16px;
+            .price-design-amount {
+                display: inline-flex;
+                align-items: baseline;
+                gap: 2px;
+            }
+            .price-design-currency {
+                font-size: 0.58em;
+                font-weight: 500;
+            }
+            hr {
+                margin: 10px 0;
+            }
+            .price-design-kg {
+                font-size: 13px;
+            }
+        }
+    }
     .card-crud {
         position: absolute;
         top: 8px;

@@ -1,6 +1,6 @@
 module Shop
   class CartItemsController < BaseController
-    before_action :find_recipe, only: :create
+    before_action :find_orderable, only: :create
     before_action :find_item, only: %i[update destroy]
 
     def create
@@ -8,38 +8,12 @@ module Shop
 
       @cart = ensure_cart!
 
-      quantity = sanitized_quantity(default: default_quantity_for(@recipe))
-      # support extras: if extras selected, create a distinct item record
-      extra_ids = Array(params.dig(:cart_item, :extra_ids) || params[:cart_item]&.[](:extra_ids)).reject(&:blank?).map(&:to_i)
+      quantity = sanitized_quantity(default: default_quantity_for(@orderable))
 
-      if extra_ids.present?
-        item = @cart.items.new(recipe: @recipe)
-      else
-        item = @cart.items.find_or_initialize_by(recipe: @recipe)
-      end
-      item.user = current_user if current_user.present?
-      item.name ||= @recipe.name
-
-      item.kg_buc = @recipe.sold_by.presence || @recipe.kg_buc.presence || 'buc'
-      recipe_price = @recipe.online_selling_price_cents.to_i
-      item.price_cents = recipe_price.positive? ? recipe_price : @recipe.price_cents
-
-      new_quantity = (item.quantity || 0) + quantity
-
-      item.quantity = new_quantity
-      item.save!
-
-      # attach extras if provided
-      if extra_ids.present?
-        # remove any placeholder extras for a fresh item
-        item.item_extras.destroy_all
-        extras = Extra.where(id: extra_ids, recipe_id: @recipe.id).available
-        extras.each do |extra|
-          item.item_extras.create!(extra: extra, name: extra.name, price_cents: extra.price_cents)
-        end
-        Rails.logger.info("[CartItems] Created #{item.item_extras.count} item_extras for item_id=#{item.id} extras=#{extra_ids.inspect}")
-        # recalc totals after adding extras
-        item.save!
+      if @orderable.is_a?(Recipe)
+        create_recipe_item(quantity)
+      elsif @orderable.is_a?(Cakemodel)
+        create_cakemodel_item(quantity)
       end
 
       @cart.schedule_payment_followups!
@@ -55,6 +29,7 @@ module Shop
       if quantity <= 0
         @item.destroy
       else
+        quantity = normalize_quantity(@item.recipe || @item.cakemodel, quantity)
         @item.update!(quantity: quantity)
       end
 
@@ -73,25 +48,41 @@ module Shop
 
     private
 
-    def find_recipe
-      identifier = params[:recipe_id] || params[:recipe_slug]
-      scope = Recipe.online_for_order
-      @recipe = scope.find_by(id: identifier) || scope.find_by(slug: identifier)
+    def find_orderable
+      recipe_identifier = params[:recipe_id] || params[:recipe_slug]
+      cakemodel_identifier = params[:cakemodel_id] || params[:cakemodel_slug]
 
-      unless @recipe&.supports_online_ordering?
-        message = 'Produsul nu este disponibil pentru comandă online.'
-        respond_to do |format|
-          format.json { render json: { error: message }, status: :unprocessable_entity }
-          format.html { redirect_to shop_cart_path, alert: message }
+      if recipe_identifier.present?
+        recipe_scope = Recipe.online_for_order
+        recipe = recipe_scope.find_by(id: recipe_identifier) || recipe_scope.find_by(slug: recipe_identifier)
+
+        if recipe&.supports_online_ordering?
+          @orderable = recipe
+          return
         end
-        return
       end
+
+      if cakemodel_identifier.present?
+        cakemodel_scope = Cakemodel.where(available_online: true)
+        cakemodel = cakemodel_scope.find_by(id: cakemodel_identifier) || cakemodel_scope.find_by(slug: cakemodel_identifier)
+
+        if cakemodel_available_for_order?(cakemodel)
+          @orderable = cakemodel
+          return
+        end
+      end
+
+      message = 'Produsul nu este disponibil pentru comandă online.'
+      respond_to do |format|
+        format.json { render json: { error: message }, status: :unprocessable_entity }
+        format.html { redirect_to shop_cart_path, alert: message }
+      end
+      nil
     end
 
     def find_item
-      @item = @cart.items.includes(:recipe).find(params[:id])
-
-      return if @item.recipe.present? && @item.recipe.supports_online_ordering?
+      @item = @cart.items.includes(:recipe, :cakemodel).find(params[:id])
+      return if item_available_for_order?(@item)
 
       message = 'Produsul nu mai este disponibil pentru comandă online.'
       @item.destroy
@@ -100,8 +91,12 @@ module Shop
         format.json { render json: { error: message, cart: cart_payload }, status: :unprocessable_entity }
         format.html { redirect_to shop_cart_path, alert: message }
       end
-
-      nil
+    rescue ActiveRecord::RecordNotFound
+      message = 'Produsul nu există în coș.'
+      respond_to do |format|
+        format.json { render json: { error: message, cart: cart_payload }, status: :not_found }
+        format.html { redirect_to shop_cart_path, alert: message }
+      end
     end
 
     def sanitized_quantity(allow_zero: false, default: 1.0)
@@ -122,7 +117,7 @@ module Shop
       super(cart)
     end
 
-    def default_quantity_for(recipe)
+    def default_quantity_for(_orderable)
       1.0
     end
 
@@ -143,6 +138,83 @@ module Shop
         clear_cart_session!
         @cart = Cart.new
       end
+    end
+
+    def create_recipe_item(quantity)
+      recipe = @orderable
+      quantity_to_add = normalize_quantity(recipe, quantity)
+      extra_ids = Array(params.dig(:cart_item, :extra_ids) || params[:cart_item]&.[](:extra_ids)).reject(&:blank?).map(&:to_i)
+
+      item = if extra_ids.present?
+               @cart.items.new(recipe: recipe)
+             else
+               @cart.items.find_or_initialize_by(recipe: recipe, cakemodel_id: nil)
+             end
+
+      item.user = current_user if current_user.present?
+      item.name ||= recipe.name
+      item.kg_buc = recipe.sold_by.presence || recipe.kg_buc.presence || 'buc'
+
+      recipe_price = recipe.online_selling_price_cents.to_i
+      item.price_cents = recipe_price.positive? ? recipe_price : recipe.price_cents
+      item.quantity = (item.quantity || 0) + quantity_to_add
+      item.save!
+
+      return if extra_ids.blank?
+
+      item.item_extras.destroy_all
+      extras = Extra.where(id: extra_ids, recipe_id: recipe.id).available
+      extras.each do |extra|
+        item.item_extras.create!(extra: extra, name: extra.name, price_cents: extra.price_cents)
+      end
+      item.save!
+    end
+
+    def create_cakemodel_item(quantity)
+      cakemodel = @orderable
+      quantity_to_add = normalize_quantity(cakemodel, quantity)
+      item = @cart.items.find_or_initialize_by(cakemodel: cakemodel, recipe_id: nil)
+
+      item.user = current_user if current_user.present?
+      item.name = cakemodel.name
+      item.kg_buc = 'buc'
+      item.price_cents = cakemodel_price_cents(cakemodel)
+      item.quantity = (item.quantity || 0) + quantity_to_add
+      item.save!
+    end
+
+    def normalize_quantity(orderable, quantity)
+      quantity_value = quantity.to_f
+
+      if orderable.is_a?(Recipe)
+        unit = orderable.sold_by.presence || orderable.kg_buc.presence || 'buc'
+        return quantity_value if unit.to_s.casecmp('kg').zero?
+      end
+
+      quantity_value.ceil
+    end
+
+    def item_available_for_order?(item)
+      if item.recipe.present?
+        return item.recipe.supports_online_ordering?
+      end
+
+      return cakemodel_available_for_order?(item.cakemodel) if item.cakemodel.present?
+
+      false
+    end
+
+    def cakemodel_available_for_order?(cakemodel)
+      cakemodel.present? && cakemodel.available_online? && cakemodel_price_cents(cakemodel).positive?
+    end
+
+    def cakemodel_price_cents(cakemodel)
+      return 0 if cakemodel.blank?
+
+      price = cakemodel.final_price.presence || cakemodel.price_per_piece
+      (price.to_d * 100).round.to_i
+    rescue StandardError
+      0
     end
   end
 end

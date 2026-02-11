@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     @recipes = Recipe.where(favored: true).order(position: :asc).first(9)
     @features = Feature.all.order(:id)
     @categories = Category.all.order(:id)
+    @featured_cakemodels = Cakemodel.where(featured_for_quick_order: true).includes(:category).order(created_at: :desc).limit(6)
   end
 
   def recepies
@@ -65,12 +66,13 @@ class PagesController < ApplicationController
     @quick_links = [
       { title: 'Administrare comenzi', description: 'Vezi comenzi, actualizează statusul și urmărește livrările.', path: dashboard_orders_path, icon: 'fa-solid fa-clipboard-list' },
       { title: 'Administrează rețetele', description: 'Editează rețete și organizează meniul online.', path: dashboard_recipes_path, icon: 'fa-solid fa-utensils' },
+      { title: 'Administrează modele tort', description: 'Gestionează modelele disponibile și marchează cele pentru comandă rapidă.', path: dashboard_cakemodels_path, icon: 'fa-solid fa-cake-candles' },
       { title: 'Actualizează prețurile', description: 'Modifică rapid prețurile produselor listate.', path: preturi_path, icon: 'fa-solid fa-tags' },
       { title: 'Jurnal de activitate', description: 'Monitorizează toate acțiunile utilizatorilor și evenimentele de securitate.', path: dashboard_audit_logs_path, icon: 'fa-solid fa-file-shield' },
       { title: 'Analiză trafic', description: 'Vizualizează statistici despre vizitatori și comportamentul pe site.', path: dashboard_analytics_path, icon: 'fa-solid fa-chart-line' },
       { title: 'Zile livrare', description: 'Gestionează zilele disponibile pentru comenzi și livrări.', path: dashboard_delivery_dates_path, icon: 'fa-solid fa-calendar-check' },
-      { title: 'Design-uri personalizate', description: 'Gestionează variantele de design pentru modele.', path: dashboard_designs_path, icon: 'fa-solid fa-cake-candles' },
-      { title: 'Setări Design Site', description: 'Personalizează culorile și aspectul site-ului web.', path: dashboard_design_site_settings_path, icon: 'fa-solid fa-palette' },
+      { title: 'Design-uri personalizate', description: 'Gestionează variantele de design pentru modele.', path: dashboard_designs_path, icon: 'fa-solid fa-palette' },
+      { title: 'Setări Design Site', description: 'Personalizează culorile și aspectul site-ului web.', path: dashboard_design_site_settings_path, icon: 'fa-solid fa-swatchbook' },
       { title: 'Elemente de prezentare', description: 'Administrează secțiunea cu avantaje și beneficii.', path: dashboard_features_path, icon: 'fa-solid fa-star' },
       { title: 'Administrare utilizatori', description: 'Verifică noile conturi și rolurile de acces.', path: dashboard_path(anchor: 'users-admin'), icon: 'fa-solid fa-users' }
     ]

@@ -6,14 +6,21 @@ class ModelComponentsController < ApplicationController
   end
 
   def create
-    @model_component = authorize ModelComponent.create(model_components_params)
+    @model_component = authorize ModelComponent.new(model_components_params.except(:recipe_id))
     @model_component.cakemodel = @cakemodel
+    selected_recipe = torturi_recipes_scope.find_by(id: params.dig(:model_component, :recipe_id))
+
+    unless selected_recipe
+      redirect_to cakemodel_path(@cakemodel), alert: 'Rețeta selectată trebuie să fie din categoria Torturi.'
+      return
+    end
+
+    @model_component.recipe = selected_recipe
+
     if @model_component.save
-      @model_component.recipe = Recipe.find(params[:model_component][:recipe_id])
-      @model_component.save
-      redirect_to cakemodel_path(@cakemodel), notice: "Rețeta a fost adăugată!"
+      redirect_to cakemodel_path(@cakemodel), notice: 'Rețeta a fost adăugată!'
     else
-      redirect_to cakemodel_path(@cakemodel), notice: "Rețeta nu a fost salvată!"
+      redirect_to cakemodel_path(@cakemodel), alert: 'Rețeta nu a fost salvată!'
     end
   end
 
@@ -31,5 +38,12 @@ class ModelComponentsController < ApplicationController
 
   def set_cakemodel
     @cakemodel = Cakemodel.find_by(slug: params[:cakemodel_id])
+  end
+
+  def torturi_recipes_scope
+    torturi_category = Category.where("LOWER(TRIM(slug)) = :name OR LOWER(TRIM(name)) = :name", name: 'torturi').first
+    return Recipe.none unless torturi_category
+
+    Recipe.where(category_id: torturi_category.id)
   end
 end

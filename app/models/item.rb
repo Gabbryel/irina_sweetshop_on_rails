@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :cart
   belongs_to :recipe, optional: true
+  belongs_to :cakemodel, optional: true
   has_many :item_extras, dependent: :destroy
   accepts_nested_attributes_for :item_extras, allow_destroy: true
 

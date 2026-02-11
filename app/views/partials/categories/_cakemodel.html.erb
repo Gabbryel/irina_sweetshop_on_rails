@@ -15,12 +15,12 @@
     </p>
   <div class='card-crud'>
     <% if policy(cakemodel).edit? %>
-    <%= link_to edit_category_cakemodel_path(cakemodel.category_id, cakemodel.id) do %>
+    <%= link_to edit_category_cakemodel_path(cakemodel.category, cakemodel) do %>
     <i class="far fa-edit color-fonts"></i>
     <% end %>
     <% end %>
     <% if policy(cakemodel).destroy? %>
-    <%= link_to category_cakemodel_path(cakemodel.category_id, cakemodel.id), method: :delete do %>
+    <%= link_to category_cakemodel_path(cakemodel.category, cakemodel), method: :delete do %>
     <i class="fas fa-trash-alt color-fonts"></i>
     <% end %>
     <% end %>
@@ -31,7 +31,7 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
       <% if policy(Cakemodel).new? %>
-        <%= link_to 'Model nou', new_category_cakemodel_path(@category.id), class: 'btn-default' %>
+        <%= link_to 'Model nou', new_category_cakemodel_path(@category), class: 'btn-default' %>
       <% end %>
   </div>
 </div> -->

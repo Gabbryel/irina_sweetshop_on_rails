@@ -1,0 +1,82 @@
+<% cakemodel = local_assigns[:cakemodel] || @cakemodel %>
+<% submit_label = local_assigns[:submit_label] || (cakemodel&.persisted? ? 'Salvează modificările' : 'Adaugă model') %>
+<% selected_recipe_id = cakemodel.initial_recipe_id.presence || cakemodel.model_components.min_by(&:id)&.recipe_id %>
+<% final_price_manual = cakemodel.persisted? && cakemodel.final_price.present? %>
+
+<%= simple_form_for [:dashboard, cakemodel], html: { multipart: true,
+                                                     data: { turbo: false,
+                                                             controller: 'cakemodel-pricing',
+                                                             cakemodel_pricing_recipe_prices_value: @recipe_price_map.to_json,
+                                                             cakemodel_pricing_design_prices_value: @design_price_map.to_json,
+                                                             cakemodel_pricing_selected_recipe_value: selected_recipe_id.to_s } } do |f| %>
+  <%= f.error_notification message: 'Completează câmpurile obligatorii și încearcă din nou.' %>
+  <div class="row g-3">
+    <div class="col-12 col-lg-6">
+      <%= f.input :name, label: 'Nume model', placeholder: 'Ex.: Tort aniversar' %>
+    </div>
+    <div class="col-12 col-lg-6">
+      <%= f.input :category_id,
+                  collection: @categories,
+                  label_method: :name,
+                  value_method: :id,
+                  prompt: 'Alege categoria',
+                  label: 'Categorie' %>
+    </div>
+    <div class="col-12 col-lg-6">
+      <%= f.input :design_id,
+                  collection: @designs,
+                  label_method: :name,
+                  value_method: :id,
+                  prompt: 'Alege designul',
+                  label: 'Design',
+                  input_html: { data: { cakemodel_pricing_target: 'design', action: 'change->cakemodel-pricing#refresh' } } %>
+    </div>
+    <div class="col-12 col-lg-6">
+      <%= f.input :initial_recipe_id,
+                  collection: @torturi_recipes,
+                  label_method: :name,
+                  value_method: :id,
+                  prompt: 'Alege rețeta (Torturi)',
+                  label: 'Rețetă de bază',
+                  input_html: { data: { cakemodel_pricing_target: 'recipe', action: 'change->cakemodel-pricing#refresh' } } %>
+    </div>
+    <div class="col-12 col-lg-6">
+      <%= f.rich_text_area :content, label: 'Descriere', placeholder: 'Descriere scurtă pentru model...' %>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= f.input :weight, label: 'Greutate (gr)', input_html: { min: 0, data: { cakemodel_pricing_target: 'weight', action: 'input->cakemodel-pricing#refresh change->cakemodel-pricing#refresh' } } %>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= f.input :price_per_kg, label: 'Preț/kg (lei)', input_html: { step: 0.01, data: { cakemodel_pricing_target: 'pricePerKg' } } %>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= f.input :price_per_piece, label: 'Preț/buc (lei)', input_html: { step: 0.01, data: { cakemodel_pricing_target: 'pricePerPiece' } } %>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= f.input :final_price,
+                  label: 'Preț final (lei)',
+                  hint: 'Poate fi ajustat manual de admin.',
+                  input_html: { step: 0.01,
+                                data: { cakemodel_pricing_target: 'finalPrice',
+                                        manual: final_price_manual,
+                                        action: 'input->cakemodel-pricing#markFinalPriceManual' } } %>
+    </div>
+    <div class="col-12 col-lg-6">
+      <%= f.input :available_online,
+                  as: :select,
+                  collection: [['Da', true], ['Nu', false]],
+                  include_blank: false,
+                  label: 'Disponibil online?',
+                  input_html: { required: true } %>
+    </div>
+    <div class="col-12 col-lg-6">
+      <%= f.input :featured_for_quick_order, label: 'Afișează la comandă rapidă?' %>
+    </div>
+    <div class="col-12">
+      <%= f.input :photo, as: :file, label: 'Fotografie' %>
+    </div>
+    <div class="col-12">
+      <%= f.submit submit_label, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

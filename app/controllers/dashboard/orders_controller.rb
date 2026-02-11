@@ -35,7 +35,7 @@ module Dashboard
 
     def show
       authorize @order, :dashboard_show?
-      @items = @order.items.includes(:recipe)
+      @items = @order.items.includes(:recipe, :cakemodel)
       fetch_stripe_confirmation
     end
 

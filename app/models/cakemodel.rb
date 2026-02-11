@@ -1,20 +1,29 @@
 class Cakemodel < ApplicationRecord
+  require 'bigdecimal'
+
+  attr_accessor :initial_recipe_id
+
   has_one_attached :photo
   has_many :model_images, dependent: :destroy
   has_many :model_components, dependent: :destroy
+  has_many :items, dependent: :nullify
   has_rich_text :content
   belongs_to :category
   belongs_to :design
 
   validates :name, presence: true
   validates :photo, presence: true
+  validates :initial_recipe_id, presence: { message: 'trebuie selectata la creare' }, on: :create
+  validates :available_online, inclusion: { in: [true, false], message: 'trebuie selectat' }
+  validates :price_per_kg, :price_per_piece, :final_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
+  before_validation :prefill_pricing_fields
   after_save :slugify, unless: :check_slug
   include RatingsConcern
   include Reviewable
   include SlugHelper
 
-  self.ignored_columns = ["recipe_id"]
+  self.ignored_columns = ["recipe_id", "cake_recipe_id"]
 
   def to_param
     "#{slug}"
@@ -26,5 +35,48 @@ class Cakemodel < ApplicationRecord
 
   def no_of_ratings
     ratings.count == 1 ? "(#{ratings.count} recenzie)" : "(#{ratings.count} recenzii)"
+  end
+
+  private
+
+  def prefill_pricing_fields
+    pricing_recipe = recipe_for_pricing
+    return unless pricing_recipe && design.present?
+
+    design_price_per_kg = money_to_decimal(design.price)
+    recipe_price_per_kg = money_to_decimal(pricing_recipe.price)
+    derived_price_per_kg = (design_price_per_kg + recipe_price_per_kg).round(2)
+
+    weight_decimal = decimal_or_zero(weight)
+    kg_weight = weight_decimal.positive? ? (weight_decimal / BigDecimal('1000')) : BigDecimal('0')
+    derived_price_per_piece = (derived_price_per_kg * kg_weight).round(2)
+
+    self.price_per_kg = derived_price_per_kg if price_per_kg.blank?
+    self.price_per_piece = derived_price_per_piece if price_per_piece.blank?
+    self.final_price = derived_price_per_piece if final_price.blank?
+  end
+
+  def recipe_for_pricing
+    selected_recipe_id = initial_recipe_id.presence
+    return Recipe.find_by(id: selected_recipe_id) if selected_recipe_id
+
+    model_components.includes(:recipe).order(:id).first&.recipe
+  end
+
+  def money_to_decimal(value)
+    return BigDecimal('0') if value.blank?
+    return value.to_d if value.respond_to?(:to_d)
+
+    BigDecimal(value.to_s)
+  rescue ArgumentError
+    BigDecimal('0')
+  end
+
+  def decimal_or_zero(value)
+    return BigDecimal('0') if value.blank?
+
+    BigDecimal(value.to_s)
+  rescue ArgumentError
+    BigDecimal('0')
   end
 end

@@ -3,6 +3,8 @@
   <% else %>
   <%= content_for(:title) {"Sugestie de prezentare nouă - Cofetăria Irina Bacău"} %>
   <% end %>
+  <% selected_recipe_id = @cakemodel.initial_recipe_id.presence || @cakemodel.model_components.min_by(&:id)&.recipe_id %>
+  <% final_price_manual = @cakemodel.persisted? && @cakemodel.final_price.present? %>
   <div class="cakemodel-form__page">
     <div class="cakemodel-form">
       <div class="cakemodel-form__title">
@@ -12,10 +14,41 @@
           <h1>Sugestie nouă</h1>
         <% end %>
       </div>
-          <%= simple_form_for [@category, @cakemodel] do |f| %>
+          <%= simple_form_for [@category, @cakemodel], html: { data: { turbo: false,
+                                                                        controller: 'cakemodel-pricing',
+                                                                        cakemodel_pricing_recipe_prices_value: @recipe_price_map.to_json,
+                                                                        cakemodel_pricing_design_prices_value: @design_price_map.to_json,
+                                                                        cakemodel_pricing_selected_recipe_value: selected_recipe_id.to_s } } do |f| %>
+          <%= f.error_notification message: 'Completează câmpurile obligatorii și încearcă din nou.' %>
           <%= f.input :name, label: false, placeholder: 'Nume model'  %>
           <%= f.rich_text_area :content, label: false, placeholder: 'dacă acest model are anumite particularități...' %>
-          <%= f.input :design_id, collection: @designs, prompt: 'Alege designul', label: false %>
+          <%= f.input :design_id,
+                      collection: @designs,
+                      prompt: 'Alege designul',
+                      label: false,
+                      input_html: { data: { cakemodel_pricing_target: 'design', action: 'change->cakemodel-pricing#refresh' } } %>
+          <%= f.input :initial_recipe_id,
+                      collection: @torturi_recipes,
+                      label_method: :name,
+                      value_method: :id,
+                      prompt: 'Alege rețeta (Torturi)',
+                      label: 'Rețetă',
+                      input_html: { data: { cakemodel_pricing_target: 'recipe', action: 'change->cakemodel-pricing#refresh' } } %>
+          <%= f.input :weight, label: 'Greutate (gr)', input_html: { min: 0, data: { cakemodel_pricing_target: 'weight', action: 'input->cakemodel-pricing#refresh change->cakemodel-pricing#refresh' } } %>
+          <%= f.input :price_per_kg, label: 'Preț/kg (lei)', input_html: { step: 0.01, data: { cakemodel_pricing_target: 'pricePerKg' } } %>
+          <%= f.input :price_per_piece, label: 'Preț/buc (lei)', input_html: { step: 0.01, data: { cakemodel_pricing_target: 'pricePerPiece' } } %>
+          <%= f.input :final_price,
+                      label: 'Preț final (lei)',
+                      hint: 'Se calculează automat, dar poate fi modificat.',
+                      input_html: { step: 0.01, data: { cakemodel_pricing_target: 'finalPrice',
+                                                        manual: final_price_manual,
+                                                        action: 'input->cakemodel-pricing#markFinalPriceManual' } } %>
+          <%= f.input :available_online,
+                      as: :select,
+                      collection: [['Da', true], ['Nu', false]],
+                      include_blank: false,
+                      label: 'Disponibil online?',
+                      input_html: { required: true } %>
           <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
           <% if @cakemodel.id %>
             <%= f.button :submit, value: 'Modifică model', class: 'btn button-default btn-block button-rounded mt-5' %>

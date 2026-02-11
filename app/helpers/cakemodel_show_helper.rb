@@ -20,6 +20,8 @@ module CakemodelShowHelper
   end
 
   def total_price(cm)
+    return cm.final_price.to_f if cm.respond_to?(:final_price) && cm.final_price.present?
+
     recipes_price(cm).to_f + design_price(cm)
   end
 end

@@ -1,13 +1,47 @@
-<div class="container py-5 admin-designs">
-  <div class="row justify-content-center">
-    <div class="col-lg-6">
-      <div class="card shadow-sm border-0">
-        <div class="card-header bg-white border-0 py-3">
-          <h1 class="h5 mb-0">Editeaza designul</h1>
-        </div>
-        <div class="card-body">
+<% price_preview = @design.price_cents.to_i.positive? ? number_with_precision(@design.price_cents.to_f / 100, precision: 2, separator: ',', delimiter: '.') : nil %>
+<div class="container py-5 design-edit-page margin-top-20dvh">
+  <div class="design-edit-shell">
+    <div class="design-edit-header">
+      <%= link_to dashboard_designs_path, class: 'design-edit-back' do %>
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Înapoi la designuri</span>
+      <% end %>
+      <h1>Editează designul</h1>
+      <p>Actualizează denumirea, categoria și prețul folosit în configurarea modelelor.</p>
+    </div>
+
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-7">
+        <section class="design-edit-panel">
+          <div class="design-edit-panel__head">
+            <h2>Formular editare</h2>
+            <span><%= l(@design.updated_at, format: :short) %></span>
+          </div>
           <%= render 'form', design: @design, categories: @categories %>
-        </div>
+        </section>
+      </div>
+
+      <div class="col-lg-5">
+        <aside class="design-edit-summary">
+          <p class="design-edit-summary__label">Previzualizare</p>
+          <h3><%= @design.name.presence || 'Design fără nume' %></h3>
+          <div class="design-edit-summary__meta">
+            <span>
+              <i class="fa-solid fa-layer-group"></i>
+              <%= @design.category&.name || 'Categorie nealocată' %>
+            </span>
+            <span>
+              <i class="fa-solid fa-coins"></i>
+              <%= price_preview ? "#{price_preview} lei / kg" : 'Preț neconfigurat' %>
+            </span>
+          </div>
+          <hr>
+          <ul>
+            <li>Prețul este introdus în bani în formular (de ex. `15000` pentru `150,00 lei`).</li>
+            <li>Schimbarea designului influențează prețul calculat pentru modelele asociate.</li>
+            <li>Salvarea păstrează istoricul actualizării în dashboard.</li>
+          </ul>
+        </aside>
       </div>
     </div>
   </div>

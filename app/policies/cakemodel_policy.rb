@@ -24,4 +24,8 @@ class CakemodelPolicy < ApplicationPolicy
     user && user.admin
   end
   
+  def admin_cakemodels?
+    user && user.admin
+  end
+  
 end
