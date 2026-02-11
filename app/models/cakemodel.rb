@@ -2,6 +2,7 @@ class Cakemodel < ApplicationRecord
   require 'bigdecimal'
 
   attr_accessor :initial_recipe_id
+  attribute :available_for_delivery, :boolean, default: true
 
   has_one_attached :photo
   has_many :model_images, dependent: :destroy
@@ -15,6 +16,7 @@ class Cakemodel < ApplicationRecord
   validates :photo, presence: true
   validates :initial_recipe_id, presence: { message: 'trebuie selectata la creare' }, on: :create
   validates :available_online, inclusion: { in: [true, false], message: 'trebuie selectat' }
+  validates :available_for_delivery, inclusion: { in: [true, false], message: 'trebuie selectat' }
   validates :price_per_kg, :price_per_piece, :final_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   before_validation :prefill_pricing_fields

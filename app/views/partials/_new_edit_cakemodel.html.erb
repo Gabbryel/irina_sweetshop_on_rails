@@ -49,6 +49,12 @@
                       include_blank: false,
                       label: 'Disponibil online?',
                       input_html: { required: true } %>
+          <%= f.input :available_for_delivery,
+                      as: :select,
+                      collection: [['Da', true], ['Nu (doar ridicare)', false]],
+                      include_blank: false,
+                      label: 'Disponibil pentru livrare?',
+                      input_html: { required: true } %>
           <%= f.input :photo, as: :file, label: 'Alege fotografia', label_html: { class: 'btn button-default btn-block button-rounded' } %>
           <% if @cakemodel.id %>
             <%= f.button :submit, value: 'Modifică model', class: 'btn button-default btn-block button-rounded mt-5' %>

@@ -157,7 +157,14 @@ class Cart < ApplicationRecord
   end
 
   def requires_pickup_only?
-    items.joins(:recipe).where(recipes: { only_pickup: true }).exists?
+    recipe_pickup_only = items.joins(:recipe).where(recipes: { only_pickup: true }).exists?
+    cakemodel_pickup_only = if Cakemodel.column_names.include?('available_for_delivery')
+                              items.joins(:cakemodel).where(cakemodels: { available_for_delivery: false }).exists?
+                            else
+                              false
+                            end
+
+    recipe_pickup_only || cakemodel_pickup_only
   end
 
   # Public-facing order number used for guests and printed confirmations

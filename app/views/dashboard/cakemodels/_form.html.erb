@@ -70,6 +70,14 @@
                   input_html: { required: true } %>
     </div>
     <div class="col-12 col-lg-6">
+      <%= f.input :available_for_delivery,
+                  as: :select,
+                  collection: [['Da', true], ['Nu (doar ridicare)', false]],
+                  include_blank: false,
+                  label: 'Disponibil pentru livrare?',
+                  input_html: { required: true } %>
+    </div>
+    <div class="col-12 col-lg-6">
       <%= f.input :featured_for_quick_order, label: 'Afișează la comandă rapidă?' %>
     </div>
     <div class="col-12">

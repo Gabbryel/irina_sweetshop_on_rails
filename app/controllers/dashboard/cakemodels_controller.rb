@@ -166,6 +166,7 @@ module Dashboard
         :price_per_piece,
         :final_price,
         :available_online,
+        :available_for_delivery,
         :initial_recipe_id
       )
     end
