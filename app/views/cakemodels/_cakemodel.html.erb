@@ -12,7 +12,7 @@
                          'Model personalizabil în funcție de design și rețetă.'
                        end %>
 
-<div class="card-container-recipes">
+<div class="card-container-recipes" style="background-color: <%= card_container_recipes_background_color %>;">
   <% if cakemodel.available_online? %>
     <div class="online-order-recipe" title="Disponibil pentru comandă online">
       <i class="fa-solid fa-basket-shopping"></i>

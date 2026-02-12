@@ -57,4 +57,8 @@ module SiteSettingsHelper
   def hearts_animation_enabled?
     site_setting('hearts_animation_enabled', 'true') == 'true'
   end
+
+  def card_container_recipes_background_color
+    site_setting('card_container_recipes_background_color', '#fff6d9')
+  end
 end

@@ -1,0 +1,130 @@
+.site-settings-page {
+  max-width: 1080px;
+
+  > .card {
+    border-radius: 10px !important;
+    margin-bottom: 0.85rem !important;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 940px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  }
+
+  .badge {
+    font-size: 0.75rem;
+  }
+
+  .card-header {
+    position: relative;
+    padding: 0.7rem 0.95rem !important;
+  }
+
+  .card-header .h5,
+  .card-header .h6 {
+    font-size: 0.98rem;
+    line-height: 1.2;
+  }
+
+  .card-body {
+    padding: 1rem 1rem !important;
+  }
+
+  .btn-lg {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .site-settings-toolbar {
+    position: sticky;
+    top: clamp(126px, 16vh, 172px);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.09);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .site-settings-toolbar__quicklinks {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: thin;
+  }
+
+  .site-settings-toolbar__chip {
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .site-settings-toolbar__chip:hover {
+    background: #e2e8f0;
+  }
+
+  .site-settings-toolbar__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .site-settings-card {
+    overflow: hidden;
+  }
+
+  .site-settings-card__toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    font-size: 0.72rem;
+  }
+
+  .site-settings-card.is-collapsed {
+    box-shadow: none;
+    border-color: #dbe0e9 !important;
+  }
+
+  .site-settings-card.is-collapsed .card-header {
+    border-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .site-settings-page {
+    > .card {
+      max-width: 100%;
+    }
+
+    .card-body {
+      padding: 0.85rem 0.85rem !important;
+    }
+
+    .site-settings-toolbar {
+      top: clamp(108px, 15vh, 144px);
+    }
+  }
+}

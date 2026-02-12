@@ -24,6 +24,7 @@ module Dashboard
         @hero_text_line1 = @site_settings.find_by(key: 'hero_text_line1')
         @hero_text_line2 = @site_settings.find_by(key: 'hero_text_line2')
         @hearts_animation_enabled = @site_settings.find_by(key: 'hearts_animation_enabled')
+        @card_container_recipes_background_color = @site_settings.find_by(key: 'card_container_recipes_background_color')
         
         # Load templates
         @templates = policy_scope(SiteSettingTemplate).order(created_at: :desc)
@@ -131,6 +132,10 @@ module Dashboard
         
         unless SiteSetting.exists?(key: 'hero_image_max_width')
           SiteSetting.set('hero_image_max_width', '90', 'Lățimea maximă a imaginii hero ca procent (ex: 90 pentru 90%)')
+        end
+
+        unless SiteSetting.exists?(key: 'card_container_recipes_background_color')
+          SiteSetting.set('card_container_recipes_background_color', '#fff6d9', 'Culoarea de fundal pentru cardurile de rețete și modele tort')
         end
       end
     end

@@ -1,4 +1,4 @@
-<div class="container-fluid py-5" style="margin-top: 20dvh; max-width: 1400px;">
+<div class="site-settings-page container-fluid py-4" style="margin-top: 17dvh; max-width: 1200px;">
   <!-- Header -->
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
     <div>
@@ -12,6 +12,14 @@
       <%= link_to dashboard_path, class: 'btn btn-sm', style: 'background: white; color: #475569; border: 1px solid #e5e7eb; border-radius: 6px;' do %>
         <i class="fas fa-arrow-left me-2"></i>Înapoi la Dashboard
       <% end %>
+    </div>
+  </div>
+
+  <div class="site-settings-toolbar mb-4">
+    <div id="site-settings-quicklinks" class="site-settings-toolbar__quicklinks"></div>
+    <div class="site-settings-toolbar__actions">
+      <button type="button" id="site-settings-collapse-all" class="btn btn-sm btn-light">Restrânge tot</button>
+      <button type="button" id="site-settings-expand-all" class="btn btn-sm btn-dark">Extinde tot</button>
     </div>
   </div>
 
@@ -82,6 +90,71 @@
                 <span style="color: #666;">Contact</span>
               </div>
             </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Recipe Card Background Settings Card -->
+  <div class="card mb-4" style="border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+    <div class="card-header py-3" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border: none;">
+      <h2 class="h5 mb-0 text-white" style="font-weight: 600;">
+        <i class="fas fa-square me-2"></i>Fundal Carduri Rețete
+      </h2>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with url: dashboard_design_site_settings_path, method: :patch, local: true, html: { class: 'needs-validation' } do |f| %>
+        <%= hidden_field_tag 'site_setting[key]', 'card_container_recipes_background_color' %>
+        <%= hidden_field_tag 'site_setting[description]', 'Culoarea de fundal pentru cardurile de rețete și modele tort' %>
+
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="mb-3 mb-md-0">
+              <label class="form-label fw-semibold mb-2" style="color: #1e293b;">
+                <i class="fas fa-fill me-2" style="color: #d97706;"></i>Culoare Fundal Card
+              </label>
+              <p class="small text-muted mb-3">
+                Schimbă fundalul pentru `div.card-container-recipes` (rețete și modele de tort).
+              </p>
+
+              <div class="d-flex gap-3 align-items-center">
+                <%= color_field_tag 'site_setting[value]',
+                    @card_container_recipes_background_color&.value || '#fff6d9',
+                    class: 'form-control form-control-color',
+                    style: 'width: 80px; height: 50px; border-radius: 8px; cursor: pointer;',
+                    id: 'recipe_card_background_color_picker' %>
+
+                <div class="flex-grow-1">
+                  <%= text_field_tag 'recipe_card_background_color_hex',
+                      @card_container_recipes_background_color&.value || '#fff6d9',
+                      class: 'form-control',
+                      placeholder: '#fff6d9',
+                      style: 'border-radius: 8px;',
+                      pattern: '^#[0-9A-Fa-f]{6}$' %>
+                  <small class="form-text text-muted">Format: #RRGGBB (hex)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 text-md-end">
+            <div class="d-grid gap-2">
+              <%= f.submit 'Salvează Schimbările',
+                  class: 'btn btn-lg',
+                  style: 'background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; border: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-4" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <p class="small fw-semibold mb-3" style="color: #475569;">
+            <i class="fas fa-eye me-2"></i>Preview Card
+          </p>
+          <div id="recipe_card_background_preview"
+               class="p-4 rounded"
+               style="background-color: <%= @card_container_recipes_background_color&.value || '#fff6d9' %>; border: 2px solid #dee2e6; transition: background-color 0.3s ease;">
+            <span style="font-weight: 600; color: #334155;">Card rețetă / model tort</span>
           </div>
         </div>
       <% end %>
@@ -530,8 +603,6 @@
           <i class="fas fa-desktop"></i> Desktop: <%= @hero_image_max_width_desktop&.value || '60' %>%
         </p>
       </div>
-        </p>
-      </div>
     </div>
   </div>
 
@@ -858,6 +929,25 @@
     });
   }
 
+  // Sync color picker with hex input - Recipe Cards
+  const recipeCardColorPicker = document.getElementById('recipe_card_background_color_picker');
+  const recipeCardHexInput = document.getElementById('recipe_card_background_color_hex');
+  const recipeCardPreview = document.getElementById('recipe_card_background_preview');
+
+  if (recipeCardColorPicker && recipeCardHexInput && recipeCardPreview) {
+    recipeCardColorPicker.addEventListener('input', function() {
+      recipeCardHexInput.value = this.value;
+      recipeCardPreview.style.backgroundColor = this.value;
+    });
+
+    recipeCardHexInput.addEventListener('input', function() {
+      if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+        recipeCardColorPicker.value = this.value;
+        recipeCardPreview.style.backgroundColor = this.value;
+      }
+    });
+  }
+
   // Sync color picker with hex input - Hero Wave
   const waveColorPicker = document.getElementById('hero_wave_color_picker');
   const waveHexInput = document.getElementById('hero_wave_color_hex');
@@ -940,6 +1030,83 @@
   if (heroMaxWidthDesktopInput && heroMaxWidthDesktopDisplay) {
     heroMaxWidthDesktopInput.addEventListener('input', function() {
       heroMaxWidthDesktopDisplay.textContent = this.value + '%';
+    });
+  }
+
+  // Compact mode: quick section links + collapsible cards
+  const siteSettingsPage = document.querySelector('.site-settings-page');
+  const quickLinksContainer = document.getElementById('site-settings-quicklinks');
+  const collapseAllButton = document.getElementById('site-settings-collapse-all');
+  const expandAllButton = document.getElementById('site-settings-expand-all');
+
+  if (siteSettingsPage && quickLinksContainer) {
+    const cards = Array.from(siteSettingsPage.children).filter((element) => element.classList && element.classList.contains('card'));
+    const slugify = (value) => value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+    const setCollapsedState = (card, shouldCollapse) => {
+      const body = card.querySelector('.card-body');
+      const toggle = card.querySelector('.site-settings-card__toggle');
+      if (!body) return;
+
+      card.classList.toggle('is-collapsed', shouldCollapse);
+      body.hidden = shouldCollapse;
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', (!shouldCollapse).toString());
+        toggle.innerHTML = shouldCollapse ? '<i class="fa-solid fa-plus"></i>' : '<i class="fa-solid fa-minus"></i>';
+      }
+    };
+
+    quickLinksContainer.innerHTML = '';
+
+    cards.forEach((card, index) => {
+      const heading = card.querySelector('.card-header h2, .card-header h3');
+      const body = card.querySelector('.card-body');
+      if (!heading || !body) return;
+
+      card.classList.add('site-settings-card');
+
+      if (!card.id) {
+        card.id = `site-setting-${slugify(heading.textContent.trim()) || `section-${index + 1}`}`;
+      }
+
+      let toggle = card.querySelector('.site-settings-card__toggle');
+      if (!toggle) {
+        toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'site-settings-card__toggle';
+        toggle.setAttribute('aria-label', `Arată/ascunde ${heading.textContent.trim()}`);
+        card.querySelector('.card-header')?.appendChild(toggle);
+      }
+
+      toggle.addEventListener('click', () => {
+        const nextCollapsedState = !card.classList.contains('is-collapsed');
+        setCollapsedState(card, nextCollapsedState);
+      });
+
+      const quickLink = document.createElement('button');
+      quickLink.type = 'button';
+      quickLink.className = 'site-settings-toolbar__chip';
+      quickLink.textContent = heading.textContent.trim();
+      quickLink.addEventListener('click', () => {
+        setCollapsedState(card, false);
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      quickLinksContainer.appendChild(quickLink);
+
+      setCollapsedState(card, index > 1);
+    });
+
+    collapseAllButton?.addEventListener('click', () => {
+      cards.forEach((card) => setCollapsedState(card, true));
+    });
+
+    expandAllButton?.addEventListener('click', () => {
+      cards.forEach((card) => setCollapsedState(card, false));
     });
   }
 </script>

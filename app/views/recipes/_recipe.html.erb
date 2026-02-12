@@ -1,6 +1,6 @@
 <% images = ['no-photo_xymghw.webp', 'no-photo_a_rcwsdh.webp', 'jsrnrkphctyr3juntbku2yjmvdcr.webp', 'v1745928510/idee-tort-2_ei3yzy.webp', 'idee-tort-3_q4vczw.webp', 'idee-tort-1_vbl6kb.webp', 'idee-tort_sklqis.jpg'] %>
   
-<div class="card-container-recipes" id="<%= recipe.slug %>">
+<div class="card-container-recipes" id="<%= recipe.slug %>" style="background-color: <%= card_container_recipes_background_color %>;">
   <% if controller_path == 'recipes' && action_name == 'index' && params[:category_id].present? && recipe.supports_online_ordering? %>
     <div class="online-order-recipe" title="Disponibil pentru comandă online">
       <i class="fa-solid fa-basket-shopping"></i>
