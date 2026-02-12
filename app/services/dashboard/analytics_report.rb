@@ -1,6 +1,7 @@
 module Dashboard
   class AnalyticsReport
     PERIOD_OPTIONS = {
+      'today' => 'Astăzi',
       '7d' => 'Ultimele 7 zile',
       '30d' => 'Ultimele 30 zile',
       '90d' => 'Ultimele 90 zile',
@@ -9,6 +10,7 @@ module Dashboard
     }.freeze
 
     FIXED_PERIOD_DAYS = {
+      'today' => 0,
       '7d' => 7,
       '30d' => 30,
       '90d' => 90,

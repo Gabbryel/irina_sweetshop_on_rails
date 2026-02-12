@@ -25,11 +25,20 @@ class Dashboard::AuditLogsController < ApplicationController
     # Search filter (for IP, user agent, email)
     if params[:search].present?
       search_term = "%#{params[:search]}%"
-      @audit_logs = @audit_logs.joins(:user)
+      @audit_logs = @audit_logs.left_joins(:user)
         .where('audit_logs.ip_address ILIKE ? OR audit_logs.user_agent ILIKE ? OR users.email ILIKE ?', 
                search_term, search_term, search_term)
     end
-    
+
+    # Snapshot for summary metrics before pagination
+    filtered_scope = @audit_logs
+    @summary_total = filtered_scope.count
+    @summary_today = filtered_scope.where('created_at >= ?', Time.zone.now.beginning_of_day).count
+    @summary_failed_logins = filtered_scope.where(action: AuditLog::ACTIONS[:failed_login]).count
+    @summary_unique_users = filtered_scope.where.not(user_id: nil).distinct.count(:user_id)
+    @summary_unique_ips = filtered_scope.where.not(ip_address: [nil, '']).distinct.count(:ip_address)
+    @action_distribution = filtered_scope.reorder(nil).group(:action).count
+
     # Pagination
     @pagy, @audit_logs = pagy(@audit_logs, items: 25)
     
