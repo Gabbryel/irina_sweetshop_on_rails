@@ -62,9 +62,11 @@
                                         manual: final_price_manual,
                                         action: 'input->cakemodel-pricing#markFinalPriceManual' } } %>
     </div>
-    <div class="col-12 col-lg-4">
-      <%= f.input :display_order, label: 'Ordine afișare homepage', input_html: { step: 1, min: 0 } %>
-    </div>
+    <% if cakemodel.respond_to?(:display_order) %>
+      <div class="col-12 col-lg-4">
+        <%= f.input :display_order, label: 'Ordine afișare homepage', input_html: { step: 1, min: 0 } %>
+      </div>
+    <% end %>
     <div class="col-12 col-lg-6">
       <%= f.input :available_online,
                   as: :select,

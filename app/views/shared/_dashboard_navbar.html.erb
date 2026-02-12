@@ -1,0 +1,25 @@
+<% return unless current_user&.admin? && request.path.start_with?('/dashboard') %>
+
+<% nav_items = [
+  { label: 'Dashboard', icon: 'fa-solid fa-gauge-high', path: dashboard_path, match: '/dashboard', exact: true },
+  { label: 'Comenzi', icon: 'fa-solid fa-receipt', path: dashboard_orders_path, match: '/dashboard/orders' },
+  { label: 'Rețete', icon: 'fa-solid fa-utensils', path: dashboard_recipes_path, match: '/dashboard/recipes' },
+  { label: 'Modele Tort', icon: 'fa-solid fa-cake-candles', path: dashboard_cakemodels_path, match: '/dashboard/cakemodels' },
+  { label: 'Livrări', icon: 'fa-solid fa-calendar-check', path: dashboard_delivery_dates_path, match: '/dashboard/delivery_dates' },
+  { label: 'Design', icon: 'fa-solid fa-palette', path: dashboard_designs_path, match: '/dashboard/design' },
+  { label: 'Analytics', icon: 'fa-solid fa-chart-line', path: dashboard_analytics_path, match: '/dashboard/analytics' },
+  { label: 'Audit', icon: 'fa-solid fa-file-shield', path: dashboard_audit_logs_path, match: '/dashboard/audit_logs' },
+  { label: 'Admini', icon: 'fa-solid fa-users-gear', path: dashboard_admin_users_path, match: '/dashboard/admin_users' }
+] %>
+
+<nav class="dashboard-mini-nav" aria-label="Navigare dashboard">
+  <div class="dashboard-mini-nav__inner">
+    <% nav_items.each do |item| %>
+      <% active = item[:exact] ? request.path == item[:match] : request.path.start_with?(item[:match]) %>
+      <%= link_to item[:path], class: "dashboard-mini-nav__link#{' is-active' if active}" do %>
+        <i class="<%= item[:icon] %>" aria-hidden="true"></i>
+        <span><%= item[:label] %></span>
+      <% end %>
+    <% end %>
+  </div>
+</nav>

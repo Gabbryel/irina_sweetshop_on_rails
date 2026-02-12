@@ -1,28 +1,73 @@
-.dashboard-floating-nav {
+.dashboard-mini-nav {
   position: fixed;
-  top: 18vh;
-  right: 18px;
-  z-index: 1030;
+  top: clamp(78px, 10vh, 114px);
+  left: 0;
+  right: 0;
+  z-index: 101;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 0.75rem;
+}
+
+.dashboard-mini-nav__inner {
+  pointer-events: auto;
+  width: min(1120px, calc(100% - 0.5rem));
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  scrollbar-width: none;
+}
+
+.dashboard-mini-nav__inner::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboard-mini-nav__link {
   display: inline-flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(33, 37, 41, 0.08);
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(33, 37, 41, 0.12);
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
 
-  .btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    border-color: rgba(33, 37, 41, 0.1);
-    color: #212529;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(33, 37, 41, 0.08);
+  i {
+    font-size: 0.82rem;
+  }
 
-    &:hover {
-      background-color: #f8f9fa;
-    }
+  &:hover {
+    color: #0f172a;
+    background: #f8fafc;
+    border-color: rgba(15, 23, 42, 0.08);
+  }
+
+  &.is-active {
+    color: #fff;
+    background: linear-gradient(135deg, #1f2937, #0f172a);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.25);
+  }
+}
+
+@media (max-width: 991px) {
+  .dashboard-mini-nav {
+    top: clamp(70px, 9.5vh, 102px);
+  }
+
+  .dashboard-mini-nav__inner {
+    border-radius: 18px;
   }
 }

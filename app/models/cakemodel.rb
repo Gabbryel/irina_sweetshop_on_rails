@@ -3,7 +3,6 @@ class Cakemodel < ApplicationRecord
 
   attr_accessor :initial_recipe_id
   attribute :available_for_delivery, :boolean, default: true
-  attribute :display_order, :integer, default: 0
 
   has_one_attached :photo
   has_many :model_images, dependent: :destroy
@@ -19,7 +18,7 @@ class Cakemodel < ApplicationRecord
   validates :available_online, inclusion: { in: [true, false], message: 'trebuie selectat' }
   validates :available_for_delivery, inclusion: { in: [true, false], message: 'trebuie selectat' }
   validates :price_per_kg, :price_per_piece, :final_price, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true
-  validates :display_order, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true
+  validates :display_order, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true, if: -> { has_attribute?(:display_order) }
 
   before_validation :normalize_integer_price_fields
   before_validation :prefill_pricing_fields
@@ -65,7 +64,7 @@ class Cakemodel < ApplicationRecord
     self.price_per_kg = normalize_integer(price_per_kg)
     self.price_per_piece = normalize_integer(price_per_piece)
     self.final_price = normalize_integer(final_price)
-    self.display_order = normalize_integer(display_order) || 0
+    self.display_order = normalize_integer(display_order) || 0 if has_attribute?(:display_order)
   end
 
   def recipe_for_pricing

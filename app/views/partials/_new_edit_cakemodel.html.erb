@@ -43,7 +43,9 @@
                       input_html: { step: 1, min: 0, data: { cakemodel_pricing_target: 'finalPrice',
                                                         manual: final_price_manual,
                                                         action: 'input->cakemodel-pricing#markFinalPriceManual' } } %>
-          <%= f.input :display_order, label: 'Ordine afișare homepage', input_html: { step: 1, min: 0 } %>
+          <% if @cakemodel.respond_to?(:display_order) %>
+            <%= f.input :display_order, label: 'Ordine afișare homepage', input_html: { step: 1, min: 0 } %>
+          <% end %>
           <%= f.input :available_online,
                       as: :select,
                       collection: [['Da', true], ['Nu', false]],
